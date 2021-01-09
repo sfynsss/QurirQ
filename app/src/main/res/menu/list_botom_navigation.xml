@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/selector_dashboard_home"
+        android:title="@string/dashboard_home"/>
+
+    <item
+        android:id="@+id/fav"
+        android:icon="@drawable/selector_dashboard_favourite"
+        android:title="@string/dashboard_favourite"/>
+
+    <item
+        android:id="@+id/cart"
+        android:icon="@drawable/selector_dashboard_cart"
+        android:title="@string/dashboard_cart"/>
+
+    <item
+        android:id="@+id/notif"
+        android:icon="@drawable/selector_dashboard_notification"
+        android:title="@string/dashboard_notification" />
+
+    <item
+        android:id="@+id/user"
+        android:icon="@drawable/selector_dashboard_user"
+        android:title="@string/dashboard_user"/>
+</menu>

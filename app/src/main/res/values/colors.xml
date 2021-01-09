@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF971E</color>
+    <color name="colorPrimaryDark">#FF971E</color>
+    <color name="colorPrimaryDark1">#EF4B4B</color>
+    <color name="colorAccent">#FD7468</color>
+    <color name="grey">#F5F5F5</color>
+
+    <color name="green_notif">#47D764</color>
+    <color name="blue_notif">#2F86EB</color>
+    <color name="yellow_notif">#FFC021</color>
+
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LarissoApps</string>
+    <string name="daftar">Belum memiliki akun? Klik <b>disini</b></string>
+    <string name="welcome">Selamat datang, <b>User</b></string>
+    <string name="forgot"><u><b>Lupa Password</b></u></string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="dashboard_home"><font size="12">Beranda</font></string>
+    <string name="dashboard_favourite"><font size="12">Favorit</font></string>
+    <string name="dashboard_cart"><font size="12">Keranjang</font></string>
+    <string name="dashboard_notification"><font size="12">Notifikasi</font></string>
+    <string name="dashboard_user"><font size="12">User</font></string>
+
+</resources>
