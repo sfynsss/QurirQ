@@ -14,53 +14,13 @@
         android:orientation="vertical"
         android:paddingLeft="16dp"
         android:background="@drawable/rt_dashboard_header">
-        <LinearLayout
-            android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="200dp"
             android:layout_height="60dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="24dp"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/rt_logo_larisso_bunga">
-            </ImageView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Larisso Retail Apps"
-                    android:textSize="24dp"
-                    android:textColor="#fff"
-                    android:textStyle="bold">
-                </TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Selamat datang, "
-                        android:textSize="14dp"
-                        android:textStyle="bold"
-                        android:textColor="#FFF">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/nama_pengguna"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Biyonda Kurniawan"
-                        android:textSize="14dp"
-                        android:textStyle="bold"
-                        android:textColor="#FFF">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/rt_logo_full">
+        </ImageView>
     </RelativeLayout>
 
     <androidx.cardview.widget.CardView
@@ -82,14 +42,14 @@
                     android:layout_weight="3"
                     android:paddingLeft="16dp"
                     android:gravity="center_vertical|bottom"
-                    android:text="Ada yang dicari?"
+                    android:text="Cari Barang Disini"
                     android:textStyle="bold"
                     android:textColor="#000">
                 </TextView>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_weight="7"
+                    android:layout_weight="6"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="10dp"
                     android:background="#F6F6F6">
