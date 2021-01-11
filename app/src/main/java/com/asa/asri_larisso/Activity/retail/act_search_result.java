@@ -147,13 +147,30 @@ public class act_search_result extends AppCompatActivity {
                         disc.add(response.body().getData().get(i).getDisc().toString());
                         harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
                     }
-                    adapterBarang = new AdapterBarang(act_search_result.this, act_search_result.this, kd_brg, gambar, nm_brg, kat_brg, hrg_brg, satuan, harga_asli);
+
+                    adapterBarang = new AdapterBarang(act_search_result.this, act_search_result.this,
+                            kd_brg,
+                            gambar,
+                            nm_brg,
+                            kat_brg,
+                            harga_asli,
+                            hrg_brg,
+                            harga_jl2,
+                            harga_jl3,
+                            harga_jl4,
+                            qty_min2,
+                            qty_min3,
+                            qty_min4,
+                            satuan,
+                            disc,
+                            harga_disc);
                     list_barang.setLayoutManager(new GridLayoutManager(act_search_result.this, 2));
                     list_barang.setAdapter(adapterBarang);
 
                 } else {
                     Toasty.error(act_search_result.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
                 }
+
 
             }
 
