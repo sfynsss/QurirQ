@@ -50,8 +50,16 @@ public class act_search_result extends AppCompatActivity {
     ArrayList<String> kat_brg = new ArrayList<>();
     ArrayList<String> hrg_brg = new ArrayList<>();
     ArrayList<String> harga_asli = new ArrayList<>();
+    ArrayList<String> harga_jl2 = new ArrayList<>();
+    ArrayList<String> harga_jl3 = new ArrayList<>();
+    ArrayList<String> harga_jl4 = new ArrayList<>();
+    ArrayList<String> qty_min2 = new ArrayList<>();
+    ArrayList<String> qty_min3 = new ArrayList<>();
+    ArrayList<String> qty_min4 = new ArrayList<>();
     ArrayList<String> satuan = new ArrayList<>();
     ArrayList<String> gambar = new ArrayList<>();
+    ArrayList<String> disc = new ArrayList<>();
+    ArrayList<String> harga_disc = new ArrayList<>();
 
     AdapterBarang adapterBarang;
     NumberFormat formatRupiah;
@@ -110,23 +118,59 @@ public class act_search_result extends AppCompatActivity {
                     nm_brg.clear();
                     kat_brg.clear();
                     hrg_brg.clear();
+                    harga_asli.clear();
+                    harga_jl2.clear();
+                    harga_jl3.clear();
+                    harga_jl4.clear();
+                    qty_min2.clear();
+                    qty_min3.clear();
+                    qty_min4.clear();
                     satuan.clear();
                     gambar.clear();
+                    disc.clear();
+                    harga_disc.clear();
+
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         kd_brg.add(response.body().getData().get(i).getKdBrg());
                         nm_brg.add(response.body().getData().get(i).getNmBrg());
                         kat_brg.add(getIntent().getStringExtra("judul"));
                         hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
                         harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
-                        satuan.add(response.body().getData().get(i).getSatuan1());
+                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
+                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
+                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
+                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
+                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
+                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
+                        satuan. add(response.body().getData().get(i).getSatuan1());
                         gambar.add(response.body().getData().get(i).getGambar());
+                        disc.add(response.body().getData().get(i).getDisc().toString());
+                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
                     }
-                    adapterBarang = new AdapterBarang(act_search_result.this, act_search_result.this, kd_brg, gambar, nm_brg, kat_brg, hrg_brg, satuan, harga_asli);
+
+                    adapterBarang = new AdapterBarang(act_search_result.this, act_search_result.this,
+                            kd_brg,
+                            gambar,
+                            nm_brg,
+                            kat_brg,
+                            harga_asli,
+                            hrg_brg,
+                            harga_jl2,
+                            harga_jl3,
+                            harga_jl4,
+                            qty_min2,
+                            qty_min3,
+                            qty_min4,
+                            satuan,
+                            disc,
+                            harga_disc);
                     list_barang.setLayoutManager(new GridLayoutManager(act_search_result.this, 2));
                     list_barang.setAdapter(adapterBarang);
+
                 } else {
                     Toasty.error(act_search_result.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override
