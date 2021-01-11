@@ -72,22 +72,15 @@
         app:cardCornerRadius="10dp"
         app:cardElevation="10dp"
         android:layout_below="@+id/ly_header">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:weightSum="10">
             <LinearLayout
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="6.5"
-                android:weightSum="10"
                 android:orientation="vertical">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
-                    android:paddingLeft="12dp"
+                    android:paddingLeft="16dp"
                     android:gravity="center_vertical|bottom"
                     android:text="Ada yang dicari?"
                     android:textStyle="bold"
@@ -97,9 +90,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="7"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginHorizontal="16dp"
                     android:layout_marginVertical="10dp"
-                    android:background="@drawable/rt_bg_white_round">
+                    android:background="#F6F6F6">
                     <TextView
                         android:id="@+id/ke_halaman_pencarian"
                         android:layout_width="match_parent"
@@ -116,95 +109,139 @@
                     </TextView>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:weightSum="10"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="Point"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="#000">
-                </TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_profil_point">
-                    </ImageView>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="0 pts"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textColor="#000">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1.75"
-                android:weightSum="10"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="Voucher"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textColor="#000">
-                </TextView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="4"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:background="@drawable/ic_profil_voucher">
-                    </ImageView>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:text="2"
-                    android:textSize="12sp"
-                    android:gravity="center"
-                    android:textColor="#000">
-                </TextView>
-            </LinearLayout>
-        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe_refresh_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ly_section">
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ly_section">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pilih Outlet Larisso"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:textSize="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/lihat_keterangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Lihat Semua"
+                        android:textColor="#AEAEAE"
+                        android:textStyle="bold"
+                        android:textSize="12dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="16dp">
+                    </TextView>
+                </RelativeLayout>
+                <Spinner
+                    android:id="@+id/pilih_outlet"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@drawable/rt_bg_white_round">
+                </Spinner>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:textStyle="bold"
+                        android:layout_height="wrap_content"
+                        android:text="Voucher dan Point"
+                        android:textColor="#000000"
+                        android:textSize="18dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="16dp">
+                    </TextView>
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:orientation="horizontal"
+                    android:weightSum="10"
+                    android:layout_marginHorizontal="16dp">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/rt_bg_white_round"
+                        android:layout_marginRight="4dp">
+                        <TextView
+                            android:id="@+id/text_total_point"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Total Point Anda"
+                            android:textColor="#FF661B"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="12dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/jumlah_poin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_total_point"
+                            android:text="0"
+                            android:textColor="#FF971E"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="12dp">
+                        </TextView>
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rt_dashboard_ic_point"
+                            android:layout_alignParentEnd="true">
+                        </ImageView>
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/rt_bg_white_round"
+                        android:layout_marginLeft="4dp">
+                        <TextView
+                            android:id="@+id/text_voucher_anda"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Voucher Anda"
+                            android:textColor="#FF661B"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginLeft="12dp">
+                        </TextView>
+                        <TextView
+                            android:id="@+id/voucher"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/text_voucher_anda"
+                            android:text="0"
+                            android:textColor="#FF971E"
+                            android:textSize="24dp"
+                            android:textStyle="bold"
+                            android:layout_marginLeft="12dp">
+                        </TextView>
+                        <ImageView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:background="@drawable/rt_dashboard_ic_voucher"
+                            android:layout_alignParentEnd="true">
+                        </ImageView>
+                    </RelativeLayout>
+                </LinearLayout>
+
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="50dp">
@@ -216,7 +253,7 @@
                         android:textStyle="bold"
                         android:textSize="18dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginLeft="16dp">
                     </TextView>
                     <TextView
                         android:id="@+id/lihat_semua"
@@ -228,29 +265,19 @@
                         android:textSize="12dp"
                         android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginRight="10dp">
+                        android:layout_marginRight="16dp">
                     </TextView>
                 </RelativeLayout>
-
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="240dp"
                     android:orientation="vertical"
                     android:gravity="center">
-                    <com.facebook.shimmer.ShimmerFrameLayout
-                        android:id="@+id/shimmer"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerVertical="true">
-                        <include
-                            layout="@layout/shimmer_category_loading">
-                        </include>
-                    </com.facebook.shimmer.ShimmerFrameLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/kategori_barang"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:visibility="gone">
+                        android:visibility="visible">
                     </androidx.recyclerview.widget.RecyclerView>
                 </RelativeLayout>
 
@@ -302,6 +329,5 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

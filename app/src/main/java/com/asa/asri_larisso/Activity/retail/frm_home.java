@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,10 +41,6 @@ import retrofit2.Response;
 
 public class frm_home extends Fragment {
 
-    //test
-    //test juga
-    //test lagi
-
     CarouselView carouselView;
     Api api;
     Session session;
@@ -59,6 +56,7 @@ public class frm_home extends Fragment {
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
+    Spinner pilih_outlet;
 
     SwipeRefreshLayout swipeRefreshLayout;
     Handler handler = new Handler();
@@ -77,6 +75,7 @@ public class frm_home extends Fragment {
         ke_halaman_pencarian = view.findViewById(R.id.ke_halaman_pencarian);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         shimmer = view.findViewById(R.id.shimmer);
+        pilih_outlet = (Spinner) view.findViewById(R.id.pilih_outlet);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
