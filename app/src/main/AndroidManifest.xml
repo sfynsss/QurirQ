@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".Activity.retail.act_lupa_password"/>
+        <activity android:name=".Activity.retail.act_pilih_outlet_retail"></activity>
+        <activity android:name=".Activity.retail.act_lupa_password" />
         <activity android:name=".Activity.retail.act_search_result" />
         <activity android:name=".Activity.retail.act_order_track" />
         <activity android:name=".Activity.retail.act_detail_transaksi" />
@@ -41,7 +42,7 @@
         <activity android:name=".Activity.retail.act_user_profile" />
         <activity
             android:name=".Activity.retail.act_edit_profil_retail"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.retail.act_otp_validation_retail"
             android:windowSoftInputMode="adjustNothing" />
@@ -57,6 +58,7 @@
             android:name=".Activity.retail.act_home_retail"
             android:windowSoftInputMode="adjustNothing" />
         <activity android:name=".Activity.retail.act_login_retail" />
+        <activity android:name=".Activity.retail.act_customer_service_retail" />
         <activity android:name=".Activity.retail.act_splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

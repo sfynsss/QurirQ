@@ -7,6 +7,10 @@
     android:orientation="vertical"
     tools:context=".Activity.retail.frm_home">
 
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -22,12 +26,44 @@
                     android:paddingLeft="16dp"
                     android:background="@drawable/rt_dashboard_header">
                     <ImageView
+                        android:id="@+id/logo"
                         android:layout_width="200dp"
                         android:layout_height="60dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
                         android:background="@drawable/rt_logo_full">
                     </ImageView>
+                    <TextView
+                        android:id="@+id/tx_hallo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hallo, "
+                        android:layout_below="@+id/logo"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/nama_pengguna"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="namapengguna"
+                        android:layout_below="@id/logo"
+                        android:layout_toEndOf="@+id/tx_hallo"
+                        android:layout_marginTop="10dp"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFF">
+                    </TextView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Selamat datang di aplikasi LaRisso"
+                        android:layout_below="@+id/tx_hallo"
+                        android:textSize="16sp"
+                        android:textColor="#FFF">
+                    </TextView>
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
@@ -35,7 +71,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:layout_marginHorizontal="15dp"
-                    android:layout_marginTop="-50dp"
+                    android:layout_marginTop="-45dp"
                     app:cardCornerRadius="10dp"
                     app:cardElevation="10dp"
                     android:layout_below="@+id/ly_header">
@@ -47,9 +83,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"
                             android:layout_weight="3"
-                            android:paddingLeft="16dp"
+                            android:paddingLeft="16sp"
                             android:gravity="center_vertical|bottom"
-                            android:text="Cari Barang Disini"
+                            android:text="Ada yang dicari?"
                             android:textStyle="bold"
                             android:textColor="#000">
                         </TextView>
@@ -59,15 +95,15 @@
                             android:layout_weight="6"
                             android:layout_marginHorizontal="16dp"
                             android:layout_marginVertical="10dp"
-                            android:background="#F6F6F6">
+                            android:background="@drawable/rt_bg_white_round">
                             <TextView
                                 android:id="@+id/ke_halaman_pencarian"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:gravity="center_vertical"
-                                android:hint="Ketik nama barang ..."
+                                android:hint="Ketik nama barang disini..."
                                 android:inputType="text"
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:maxLength="50"
                                 android:maxLines="1"
                                 android:textColor="#000"
@@ -83,7 +119,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Pilih Outlet Larisso"
+                        android:text="Pilih Outlet LaRisso"
                         android:textColor="#000000"
                         android:textStyle="bold"
                         android:textSize="18dp"
@@ -234,6 +270,15 @@
                     android:layout_height="240dp"
                     android:orientation="vertical"
                     android:gravity="center">
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerVertical="true">
+                        <include
+                            layout="@layout/shimmer_category_loading">
+                        </include>
+                    </com.facebook.shimmer.ShimmerFrameLayout>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/kategori_barang"
                         android:layout_width="match_parent"
@@ -290,5 +335,9 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+
 
 </RelativeLayout>
