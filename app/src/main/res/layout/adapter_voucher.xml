@@ -2,7 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="265dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <LinearLayout
         android:id="@+id/item_list"
@@ -21,7 +21,7 @@
                 android:id="@+id/gambar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/rt_voucher_bg">
+                android:background="#EAEAEA">
             </ImageView>
             <TextView
                 android:id="@+id/sk"
@@ -59,7 +59,7 @@
                     <ImageView
                         android:layout_width="32dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/rt_voucher_ic_clock">
+                        android:background="#EAEAEA">
                     </ImageView>
                 </LinearLayout>
                 <LinearLayout
@@ -93,10 +93,9 @@
                         android:layout_width="120dp"
                         android:layout_height="40dp"
                         android:text="Lihat Voucher"
-                        android:textColor="#FF661B"
                         android:textStyle="bold"
                         android:textAllCaps="false"
-                        android:background="@drawable/rt_voucher_bt_use">
+                        android:background="#EAEAEA">
                     </Button>
                 </LinearLayout>
             </LinearLayout>
