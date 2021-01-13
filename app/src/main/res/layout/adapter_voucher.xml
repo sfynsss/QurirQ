@@ -2,103 +2,83 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="265dp"
+    android:layout_height="190dp"
+    android:gravity="center"
+    android:background="#FFF"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <LinearLayout
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/item_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/rt_bg_white_round"
-        android:orientation="vertical"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="5dp">
+        android:layout_height="175dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginVertical="5dp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="2dp">
         <LinearLayout
+            android:id="@+id/gambar_kosong"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:orientation="vertical"
-            android:gravity="center">
-            <ImageView
-                android:id="@+id/gambar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#EAEAEA">
-            </ImageView>
-            <TextView
-                android:id="@+id/sk"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="invisible">
-            </TextView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/judul_voucher"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:text="NAMA VOUCHER"
-                android:textColor="#000"
-                android:textSize="18dp"
-                android:textStyle="bold"
-                android:layout_marginHorizontal="10dp">
-            </TextView>
-            <LinearLayout
+                android:layout_height="110dp"
+                android:background="@drawable/rt_voucher_bg">
+                <TextView
+                    android:id="@+id/judul_voucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Voucher LaRisso 100.000"
+                    android:textSize="18dp"
+                    android:textColor="#FDE789"
+                    android:textStyle="bold"
+                    android:visibility="visible">
+                </TextView>
+                <TextView
+                    android:id="@+id/sk"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/judul_voucher"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="8dp"
+                    android:text="Nikmati voucher belanja Rp100.000 tanpa minimum pembelian di semua outlet LaRisso"
+                    android:textColor="#FFF"
+                    android:textAlignment="textEnd"
+                    android:visibility="visible">
+                </TextView>
+            </RelativeLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="65dp"
                 android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_marginHorizontal="10dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal">
-                    <ImageView
-                        android:layout_width="32dp"
-                        android:layout_height="30dp"
-                        android:background="#EAEAEA">
-                    </ImageView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical"
-                    android:paddingLeft="5dp">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical|top"
-                        android:text="Masa Berlaku">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/tgl_berlaku"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="#000"
-                        android:textStyle="bold">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="4"
-                    android:gravity="center">
-                    <Button
-                        android:id="@+id/btn_gunakan"
-                        android:layout_width="120dp"
-                        android:layout_height="40dp"
-                        android:text="Lihat Voucher"
-                        android:textStyle="bold"
-                        android:textAllCaps="false"
-                        android:background="#EAEAEA">
-                    </Button>
-                </LinearLayout>
-            </LinearLayout>
+                android:background="#FFF">
+                <TextView
+                    android:id="@+id/tgl_berlaku"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:text="Berlaku Hingga 2021-12-31">
+                </TextView>
+                <Button
+                    android:id="@+id/btn_gunakan"
+                    android:layout_width="125dp"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentEnd="true"
+                    android:text="Gunakan Voucher"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="#FFF"
+                    android:textAllCaps="false"
+                    android:background="#FFC000">
+                </Button>
+            </RelativeLayout>
         </LinearLayout>
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

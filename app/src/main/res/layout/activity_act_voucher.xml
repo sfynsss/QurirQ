@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
+    android:background="#FFF"
     tools:context=".Activity.retail.act_voucher">
 
     <!-- HEADER START -->
@@ -27,7 +28,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Voucher Kamu"
+                android:text="Voucher Anda"
                 android:textSize="20dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
@@ -53,8 +54,9 @@
             android:id="@+id/list_voucher"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="#00ffffff"
-            android:dividerHeight="5dp">
+            android:layout_marginTop="10dp"
+            android:divider="#FFF"
+            android:dividerHeight="10dp">
         </ListView>
     </RelativeLayout>
 

@@ -19,6 +19,8 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import androidx.cardview.widget.CardView;
+
 /**
  * Created by Sfyn on 04/02/2018.
  */
@@ -82,7 +84,7 @@ public class AdapterVoucher extends ArrayAdapter<String> {
     }
 
     class ViewHolder{
-        LinearLayout item_list;
+        CardView item_list;
         ImageView gambar;
         TextView judul_voucher, sk, tgl_berlaku;
         Button btn_gunakan;
