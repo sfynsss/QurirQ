@@ -105,7 +105,7 @@
                         android:id="@+id/klaim"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Klaim Voucher"
+                        android:text="Tukar Poin"
                         android:textAlignment="center"
                         android:textSize="16dp"
                         android:textStyle="bold"

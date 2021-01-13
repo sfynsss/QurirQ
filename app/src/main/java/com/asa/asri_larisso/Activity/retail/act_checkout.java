@@ -61,7 +61,7 @@ public class act_checkout extends AppCompatActivity {
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
-    double subtot = 0, sub_total = 0, ongkir_total = 0;
+    double total = 0, netto = 0, ongkir_total = 0;
     boolean sts_kurir = false;
     NumberFormat formatRupiah;
     String no_ent, a = "";
@@ -108,7 +108,7 @@ public class act_checkout extends AppCompatActivity {
         qty = (ArrayList<String>) getIntent().getSerializableExtra("qty");
         gambar = (ArrayList<String>) getIntent().getSerializableExtra("gambar");
 
-        subtot = Double.parseDouble(getIntent().getStringExtra("subtot"));
+        total = Double.parseDouble(getIntent().getStringExtra("subtot"));
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
         session = new Session(act_checkout.this);
@@ -148,7 +148,7 @@ public class act_checkout extends AppCompatActivity {
         list_barang.setAdapter(adapterCheckout);
         adapterCheckout.notifyDataSetChanged();
 
-        total_belanja.setText("" + formatRupiah.format(subtot));
+        total_belanja.setText("" + formatRupiah.format(total));
 
         ganti_alamat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -171,8 +171,8 @@ public class act_checkout extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 harga_ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))));
                 ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))));
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + subtot));
-                sub_total = Double.parseDouble(costs.get(position)) + subtot;
+                jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total));
+                netto = Double.parseDouble(costs.get(position)) + total;
                 ongkir_total = Double.parseDouble(costs.get(position));
                 sts_kurir = true;
             }
@@ -214,7 +214,7 @@ public class act_checkout extends AppCompatActivity {
         // Create new Transaction Request
 
         //set customer details
-        TransactionRequest transactionRequest = new TransactionRequest(no_ent, (long) sub_total);
+        TransactionRequest transactionRequest = new TransactionRequest(no_ent, (long) netto);
         transactionRequest.setCustomerDetails(initCustomerDetails());
 
         ShippingAddress shippingAddress = new ShippingAddress();
@@ -534,7 +534,7 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(harga_barang);
         System.out.println(quantity);
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
-                no_penerima.getText().toString(), sub_total+"", "", "", "", "", subtot+"",
+                no_penerima.getText().toString(), total+"", "", "", "", "", netto+"",
                 ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL");
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
@@ -570,8 +570,8 @@ public class act_checkout extends AppCompatActivity {
                 servis.setAdapter(arrayAdapter);
                 harga_ongkir.setText("");
                 ongkir.setText("");
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + subtot));
-                sub_total = Double.parseDouble("0") + subtot;
+                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + total));
+                netto = Double.parseDouble("0") + total;
                 ongkir_total = Double.parseDouble("0");
                 sts_kurir = false;
             }
