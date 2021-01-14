@@ -24,8 +24,10 @@ import com.asa.asri_larisso.Api.Api;
 import com.asa.asri_larisso.Api.RetrofitClient;
 import com.asa.asri_larisso.R;
 import com.asa.asri_larisso.Response.BaseResponse;
+import com.asa.asri_larisso.Response.BaseResponse1;
 import com.asa.asri_larisso.Session.Session;
 import com.asa.asri_larisso.Table.Penawaran;
+import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.kategori;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -48,13 +50,14 @@ public class frm_home extends Fragment {
     Session session;
     Call<BaseResponse<kategori>> getKategori;
     Call<BaseResponse<Penawaran>> getPenawaran;
+    Call<BaseResponse1<PoinVoucher>> getPointVoucher;
 
     ArrayList<String> kd_kategori = new ArrayList<>();
     ArrayList<String> judul = new ArrayList<>();
     ArrayList<String> gambar = new ArrayList<>();
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
-    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna;
+    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, tx_voucher, tx_point;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
@@ -65,6 +68,7 @@ public class frm_home extends Fragment {
     ShimmerFrameLayout shimmer;
 
     RelativeLayout btn_voucher, btn_point;
+    int voucher = 0, point = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -81,7 +85,8 @@ public class frm_home extends Fragment {
         shimmer = view.findViewById(R.id.shimmer);
         btn_voucher = view.findViewById(R.id.btn_voucher);
         btn_point = view.findViewById(R.id.btn_point);
-
+        tx_voucher = view.findViewById(R.id.tx_voucher);
+        tx_point = view.findViewById(R.id.tx_point);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -91,6 +96,7 @@ public class frm_home extends Fragment {
             @Override
             public void onRefresh() {
                 tampilKategori();
+                dataPoinVoucher();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -139,6 +145,7 @@ public class frm_home extends Fragment {
         });
 
         tampilKategori();
+        dataPoinVoucher();
         requestOptions = new RequestOptions().centerCrop();
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
@@ -205,6 +212,28 @@ public class frm_home extends Fragment {
 
             @Override
             public void onFailure(Call<BaseResponse<kategori>> call, Throwable t) {
+                Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void dataPoinVoucher(){
+        getPointVoucher = api.getPointVoucher(session.getIdUser());
+        getPointVoucher.enqueue(new Callback<BaseResponse1<PoinVoucher>>() {
+            @Override
+            public void onResponse(Call<BaseResponse1<PoinVoucher>> call, Response<BaseResponse1<PoinVoucher>> response) {
+                if (response.isSuccessful()) {
+                    voucher = response.body().getData().getVoucher();
+                    point = response.body().getData().getPoint();
+                    tx_voucher.setText(voucher+"");
+                    tx_point.setText(point+"");
+                } else {
+                    Toasty.error(getContext(), "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse1<PoinVoucher>> call, Throwable t) {
                 Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });

@@ -1,6 +1,7 @@
 package com.asa.asri_larisso.Api;
 
 import com.asa.asri_larisso.Response.BaseResponse;
+import com.asa.asri_larisso.Response.BaseResponse1;
 import com.asa.asri_larisso.Response.RegisterResponse;
 import com.asa.asri_larisso.Response.UserResponse;
 import com.asa.asri_larisso.Table.Alamat;
@@ -13,6 +14,7 @@ import com.asa.asri_larisso.Table.MstJual;
 import com.asa.asri_larisso.Table.Notif;
 import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.Pengiriman;
+import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.Provinsi;
 import com.asa.asri_larisso.Table.Voucher;
 import com.asa.asri_larisso.Table.Wishlist;
@@ -123,6 +125,12 @@ public interface Api {
     @FormUrlEncoded
     @POST("getVoucher")
     Call<BaseResponse<Voucher>> getVoucher(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("countPointVoucher")
+    Call<BaseResponse1<PoinVoucher>> getPointVoucher(
             @Field("id") String id
     );
 

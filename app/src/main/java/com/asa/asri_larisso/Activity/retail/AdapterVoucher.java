@@ -87,7 +87,7 @@ public class AdapterVoucher extends ArrayAdapter<String> {
         CardView item_list;
         ImageView gambar;
         TextView judul_voucher, sk, tgl_berlaku;
-        Button btn_gunakan;
+        CardView btn_gunakan;
         ViewHolder(View view){
             item_list = view.findViewById(R.id.item_list);
             item_list.setOnClickListener(new View.OnClickListener() {

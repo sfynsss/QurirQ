@@ -219,12 +219,23 @@
                                 android:background="@drawable/ic_profil_voucher">
                             </ImageView>
                             <TextView
+                                android:id="@+id/tx_voucher"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tx_voucher_anda"
                                 android:layout_toEndOf="@+id/ic_voucher_anda"
                                 android:layout_marginTop="6dp"
-                                android:text="0 Voucher"
+                                android:text="0"
+                                android:textColor="#FFDC45"
+                                android:textStyle="bold">
+                            </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tx_voucher_anda"
+                                android:layout_toEndOf="@+id/tx_voucher"
+                                android:layout_marginTop="6dp"
+                                android:text=" Voucher"
                                 android:textColor="#FFDC45"
                                 android:textStyle="bold">
                             </TextView>
@@ -268,12 +279,23 @@
                                 android:background="@drawable/ic_profil_point">
                             </ImageView>
                             <TextView
+                                android:id="@+id/tx_point"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@id/tx_poin_anda"
                                 android:layout_toEndOf="@+id/ic_poin_anda"
                                 android:layout_marginTop="6dp"
-                                android:text="0 Point"
+                                android:text="0"
+                                android:textColor="#FFDC45"
+                                android:textStyle="bold">
+                            </TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tx_poin_anda"
+                                android:layout_toEndOf="@+id/tx_point"
+                                android:layout_marginTop="6dp"
+                                android:text=" Point"
                                 android:textColor="#FFDC45"
                                 android:textStyle="bold">
                             </TextView>
