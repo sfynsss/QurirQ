@@ -10,8 +10,6 @@ import com.asa.asri_larisso.R;
 
 public class act_pilih_outlet_retail extends AppCompatActivity {
 
-    LinearLayout outlet_larisso, outlet_labaku, outlet_bellio;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
