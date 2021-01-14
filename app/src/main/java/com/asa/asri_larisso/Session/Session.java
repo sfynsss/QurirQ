@@ -41,7 +41,7 @@ public class Session {
     }
 
     public String getBaseUrl() {
-        return preferences.getString("baseUrl", "192.168.1.15:8000");
+        return preferences.getString("baseUrl", "192.168.0.6:8000");
     }
 
     public boolean getUserStatus(){

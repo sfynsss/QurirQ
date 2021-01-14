@@ -7,6 +7,7 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -95,7 +96,7 @@ public class act_register_retail extends AppCompatActivity {
         btn_daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register = api.register(username.getText().toString()+"",  tgl_lahir.getText().toString(),"02", email.getText().toString()+"",
+                register = api.register(username.getText().toString()+"",  tgl_lahir.getText().toString(),"RETAIL", email.getText().toString()+"",
                         alamat.getText().toString(), no_telp.getText().toString(), password.getText().toString(), firebase_token);
 //                startActivity(new Intent(act_register_retail.this, act_otp_validation_retail.class));
                 progressBar.setVisibility(View.VISIBLE);
@@ -128,7 +129,9 @@ public class act_register_retail extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<RegisterResponse> call, Throwable t) {
+                        pd.hide();
                         Toasty.error(act_register_retail.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("Error", "onFailure: " +t.getMessage());
                     }
                 });
             }

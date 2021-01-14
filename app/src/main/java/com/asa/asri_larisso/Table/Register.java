@@ -22,7 +22,7 @@ public class Register {
     private Integer id;
     @SerializedName("otoritas")
     @Expose
-    private Integer otoritas;
+    private String otoritas;
 
     public String getName() {
         return name;
@@ -64,11 +64,11 @@ public class Register {
         this.id = id;
     }
 
-    public Integer getOtoritas() {
+    public String getOtoritas() {
         return otoritas;
     }
 
-    public void setOtoritas(Integer otoritas) {
+    public void setOtoritas(String otoritas) {
         this.otoritas = otoritas;
     }
 
