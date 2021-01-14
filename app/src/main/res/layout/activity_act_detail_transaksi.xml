@@ -201,7 +201,7 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:background="#FFF"
         android:gravity="center"
         android:orientation="vertical"
@@ -224,10 +224,5 @@
             android:textSize="22sp"
             android:textStyle="bold"/>
     </LinearLayout>
-
-
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
