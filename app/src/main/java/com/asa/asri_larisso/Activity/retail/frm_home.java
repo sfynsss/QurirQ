@@ -64,7 +64,6 @@ public class frm_home extends Fragment {
     Handler handler = new Handler();
     ShimmerFrameLayout shimmer;
 
-    LinearLayout btn_transaksi, btn_alamat;
     RelativeLayout btn_voucher, btn_point;
 
     @Override
@@ -80,8 +79,6 @@ public class frm_home extends Fragment {
         ke_halaman_pencarian = view.findViewById(R.id.ke_halaman_pencarian);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         shimmer = view.findViewById(R.id.shimmer);
-        btn_alamat = view.findViewById(R.id.btn_alamat);
-        btn_transaksi = view.findViewById(R.id.btn_transaksi);
         btn_voucher = view.findViewById(R.id.btn_voucher);
         btn_point = view.findViewById(R.id.btn_point);
 
@@ -124,20 +121,6 @@ public class frm_home extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), act_search_result.class));
-            }
-        });
-
-        btn_alamat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), act_list_alamat.class));
-            }
-        });
-
-        btn_transaksi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), act_history_transaksi.class));
             }
         });
 

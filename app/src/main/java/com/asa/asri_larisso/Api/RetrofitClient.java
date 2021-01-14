@@ -16,8 +16,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-  private static String BASE_URL = "http://192.168.0.6:8000/api/";
-//    private static String BASE_URL = "http://server.larisso.co.id/api/";
+    private static String BASE_URL = "http://192.168.0.6:8000/api/";
+    //private static String BASE_URL = "http://server.larisso.co.id/api/";
     private final static OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private static RetrofitClient mInstance;
     private static Retrofit retrofit = buildRetrofit(client);

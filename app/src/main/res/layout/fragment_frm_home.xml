@@ -18,63 +18,54 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <RelativeLayout
                     android:id="@+id/ly_header"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
+                    android:background="@drawable/rt_dashboard_header"
                     android:orientation="vertical"
-                    android:paddingLeft="16dp"
-                    android:background="@drawable/rt_dashboard_header">
+                    android:paddingLeft="16dp">
+
                     <ImageView
                         android:id="@+id/logo"
                         android:layout_width="200dp"
                         android:layout_height="60dp"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/rt_logo_full">
-                    </ImageView>
+                        android:background="@drawable/rt_logo_full"></ImageView>
+
                     <TextView
                         android:id="@+id/tx_hallo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hallo, "
                         android:layout_below="@+id/logo"
                         android:layout_marginTop="10dp"
+                        android:text="Hallo, "
+                        android:textColor="#FFF"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFF">
-                    </TextView>
+                        android:textStyle="bold"></TextView>
+
                     <TextView
                         android:id="@+id/nama_pengguna"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="namapengguna"
                         android:layout_below="@id/logo"
-                        android:layout_toEndOf="@+id/tx_hallo"
                         android:layout_marginTop="10dp"
+                        android:layout_toEndOf="@+id/tx_hallo"
+                        android:text="namapengguna"
+                        android:textColor="#FFF"
                         android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFF">
-                    </TextView>
+                        android:textStyle="bold"></TextView>
+
                     <TextView
                         android:id="@+id/tx_greeting"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Saat ini anda berbelanja di outlet, "
                         android:layout_below="@+id/tx_hallo"
-                        android:textSize="16sp"
-                        android:textColor="#FFF">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Larisso"
-                        android:layout_below="@+id/tx_hallo"
-                        android:layout_toEndOf="@+id/tx_greeting"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFF">
-                    </TextView>
+                        android:text="Selamat datang di aplikasi LaRisso"
+                        android:textColor="#FFF"
+                        android:textSize="16sp"></TextView>
                 </RelativeLayout>
 
                 <androidx.cardview.widget.CardView
@@ -133,59 +124,40 @@
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_weight="1.75"
+                            android:layout_weight="3.5"
                             android:weightSum="10"
                             android:orientation="vertical">
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="3"
-                                android:text="Transaksi"
+                                android:text="Outlet Saat Ini"
                                 android:textSize="12sp"
                                 android:gravity="center"
                                 android:textStyle="bold"
                                 android:textColor="#000">
                             </TextView>
                             <LinearLayout
-                                android:id="@+id/btn_transaksi"
                                 android:layout_width="match_parent"
                                 android:layout_height="0dp"
                                 android:layout_weight="7"
+                                android:weightSum="10"
+                                android:orientation="vertical"
                                 android:gravity="center">
                                 <ImageView
+                                    android:id="@+id/gambar_outlet"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:background="@drawable/ic_profil_transaksi">
+                                    android:background="#EAEAEA">
                                 </ImageView>
-                            </LinearLayout>
-                        </LinearLayout>
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1.75"
-                            android:weightSum="10"
-                            android:orientation="vertical">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="3"
-                                android:text="Alamat"
-                                android:textSize="12sp"
-                                android:gravity="center"
-                                android:textStyle="bold"
-                                android:textColor="#000">
-                            </TextView>
-                            <LinearLayout
-                                android:id="@+id/btn_alamat"
-                                android:layout_width="match_parent"
-                                android:layout_height="0dp"
-                                android:layout_weight="7"
-                                android:gravity="center">
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:background="@drawable/ic_profil_alamat">
-                                </ImageView>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="6dp"
+                                    android:text="nama_outlet"
+                                    android:textSize="12sp"
+                                    android:textColor="#000">
+                                </TextView>
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -200,9 +172,9 @@
                         android:layout_height="wrap_content"
                         android:text="Voucher dan Point"
                         android:textColor="#000000"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp">
+                        android:layout_marginStart="16dp">
                     </TextView>
                 </RelativeLayout>
 
@@ -238,8 +210,8 @@
                                 android:layout_height="25dp"
                                 android:layout_below="@id/tx_voucher_anda"
                                 android:layout_marginTop="6dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginRight="6dp"
+                                android:layout_marginStart="16dp"
+                                android:layout_marginEnd="6dp"
                                 android:background="@drawable/ic_profil_voucher">
                             </ImageView>
                             <TextView
@@ -314,9 +286,9 @@
                         android:text="Pilih Kategori Produk"
                         android:textColor="#000000"
                         android:textStyle="bold"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp">
+                        android:layout_marginStart="16dp">
                     </TextView>
                     <TextView
                         android:id="@+id/lihat_semua"
@@ -362,9 +334,9 @@
                         android:text="Penawaran Terbaik"
                         android:textColor="#000000"
                         android:textStyle="bold"
-                        android:textSize="18dp"
+                        android:textSize="18sp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="10dp">
+                        android:layout_marginStart="16dp">
                     </TextView>
                     <TextView
                         android:layout_width="wrap_content"
