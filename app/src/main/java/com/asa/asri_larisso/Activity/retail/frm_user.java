@@ -68,7 +68,7 @@ public class frm_user extends Fragment {
     }
 
     TextView nama_pengguna, alamat;
-    LinearLayout btn_pengguna, btn_alamat, btn_logout, btn_transaksi, btn_voucher, btn_point, btn_customerservice;
+    LinearLayout btn_pengguna, btn_alamat, btn_logout, btn_transaksi, btn_voucher, btn_point, btn_customerservice, btn_outlet;
 
     Session session;
     Api service;
@@ -88,6 +88,7 @@ public class frm_user extends Fragment {
         btn_transaksi = view.findViewById(R.id.btn_transaksi);
         btn_voucher = view.findViewById(R.id.btn_voucher);
         btn_point = view.findViewById(R.id.btn_point);
+        btn_outlet = view.findViewById(R.id.btn_outlet);
         btn_customerservice = view.findViewById(R.id.btn_customerservice);
 
         session = new Session(getContext());
@@ -186,6 +187,13 @@ public class frm_user extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), act_user_profile.class));
+            }
+        });
+
+        btn_outlet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
             }
         });
 

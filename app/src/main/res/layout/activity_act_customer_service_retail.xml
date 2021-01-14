@@ -15,7 +15,7 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="325dp"
                 android:orientation="vertical"
                 android:background="@drawable/rt_helpdesk_bg">
                 <LinearLayout
@@ -45,15 +45,16 @@
                             android:layout_height="match_parent"
                             android:gravity="center_vertical"
                             android:text="Helpdesk Larisso Retail Apps"
-                            android:textSize="22dp"
+                            android:textSize="22sp"
                             android:textColor="#FFF"
-                            android:textStyle="bold">
+                            android:textStyle="bold"
+                            android:fontFamily="@font/overpass_regular">
                         </TextView>
                     </LinearLayout>
                 </LinearLayout>
                 <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
+                    android:layout_width="140dp"
+                    android:layout_height="140dp"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/ic_helpdesk_icon_retail">
@@ -66,15 +67,17 @@
                 android:layout_marginLeft="16dp"
                 android:text="Ada yang bisa kami bantu?"
                 android:textColor="#000"
-                android:textSize="18dp"
-                android:textStyle="bold">
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textSize="16dp"
-                android:text="Temukan berbagai informasi melalui Customer Service kami">
+                android:textSize="16sp"
+                android:text="Temukan berbagai informasi melalui Customer Service kami"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
@@ -83,22 +86,25 @@
                 android:layout_marginLeft="16dp"
                 android:text="Jam Operasional Layanan"
                 android:textColor="#000"
-                android:textSize="18dp"
-                android:textStyle="bold">
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textSize="16dp"
-                android:text="Senin - Jumat : 08.00 sd 15.00">
+                android:textSize="16sp"
+                android:text="Senin - Jumat : 08.00 sd 15.00"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:textSize="16dp"
-                android:text="Sabtu - Minggu : 08.00 sd 17.00">
+                android:textSize="16sp"
+                android:text="Sabtu - Minggu : 08.00 sd 17.00"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <Button
                 android:id="@+id/hubungi_wa"

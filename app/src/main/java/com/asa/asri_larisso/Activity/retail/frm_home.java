@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,9 @@ public class frm_home extends Fragment {
     Handler handler = new Handler();
     ShimmerFrameLayout shimmer;
 
+    LinearLayout btn_transaksi, btn_alamat;
+    RelativeLayout btn_voucher, btn_point;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +80,11 @@ public class frm_home extends Fragment {
         ke_halaman_pencarian = view.findViewById(R.id.ke_halaman_pencarian);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         shimmer = view.findViewById(R.id.shimmer);
-        pilih_outlet = (Spinner) view.findViewById(R.id.pilih_outlet);
+        btn_alamat = view.findViewById(R.id.btn_alamat);
+        btn_transaksi = view.findViewById(R.id.btn_transaksi);
+        btn_voucher = view.findViewById(R.id.btn_voucher);
+        btn_point = view.findViewById(R.id.btn_point);
+
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -115,6 +124,34 @@ public class frm_home extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), act_search_result.class));
+            }
+        });
+
+        btn_alamat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), act_list_alamat.class));
+            }
+        });
+
+        btn_transaksi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), act_history_transaksi.class));
+            }
+        });
+
+        btn_point.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), act_point_retail.class));
+            }
+        });
+
+        btn_voucher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), act_voucher.class));
             }
         });
 

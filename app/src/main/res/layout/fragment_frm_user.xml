@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Profil Anda"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:layout_marginLeft="16dp"
@@ -145,7 +145,7 @@
 
             <!-- Alamat Pengantaran Pengguna -->
             <LinearLayout
-                android:id="@+id/btn_pilih_outlet"
+                android:id="@+id/btn_outlet"
                 android:layout_width="match_parent"
                 android:layout_height="65dp"
                 android:background="#fff"
