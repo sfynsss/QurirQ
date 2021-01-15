@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -167,7 +168,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         TextView harga_brg;
         TextView kategori_brg;
         ImageView gambar;
-        LinearLayout disc, harga_disc;
+        RelativeLayout disc, harga_disc;
         TextView disc_value, harga_disc_value;
 
         public MyViewHolder(View itemView) {
@@ -177,8 +178,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             harga_brg = (TextView) itemView.findViewById(R.id.harga_barang);
             kategori_brg = (TextView) itemView.findViewById(R.id.kategori_barang);
             gambar = (ImageView) itemView.findViewById(R.id.gambar);
-            disc = (LinearLayout) itemView.findViewById(R.id.disc);
-            harga_disc = (LinearLayout) itemView.findViewById(R.id.harga_disc);
+            disc = (RelativeLayout) itemView.findViewById(R.id.disc);
+            harga_disc = (RelativeLayout) itemView.findViewById(R.id.harga_disc);
             disc_value = (TextView) itemView.findViewById(R.id.disc_value);
             harga_disc_value = (TextView) itemView.findViewById(R.id.harga_disc_value);
         }
