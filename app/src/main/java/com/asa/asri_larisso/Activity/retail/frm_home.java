@@ -226,10 +226,16 @@ public class frm_home extends Fragment {
             @Override
             public void onResponse(Call<BaseResponse1<PoinVoucher>> call, Response<BaseResponse1<PoinVoucher>> response) {
                 if (response.isSuccessful()) {
-                    voucher = response.body().getData().getVoucher();
-                    point = response.body().getData().getPoint();
-                    tx_voucher.setText(voucher+"");
-                    tx_point.setText(point+"");
+                    if (response.body().getData().getVoucher() == null){
+                        tx_voucher.setText("0");
+                    } else if(response.body().getData().getPoint() == null) {
+                        tx_point.setText("0");
+                    } else {
+                        voucher = response.body().getData().getVoucher();
+                        point = response.body().getData().getPoint();
+                        tx_voucher.setText(voucher+"");
+                        tx_point.setText(point+"");
+                    }
                 } else {
                     Toasty.error(getContext(), "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
                 }
