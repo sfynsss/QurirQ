@@ -170,8 +170,6 @@ public class act_search_result extends AppCompatActivity {
                 } else {
                     Toasty.error(act_search_result.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
 
             @Override
