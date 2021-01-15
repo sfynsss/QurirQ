@@ -57,7 +57,8 @@ public class frm_home extends Fragment {
     ArrayList<String> gambar = new ArrayList<>();
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
-    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, tx_voucher, tx_point;
+    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, nama_outlet, tx_voucher, tx_point;
+    ImageView gambar_outlet;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
@@ -85,6 +86,8 @@ public class frm_home extends Fragment {
         shimmer = view.findViewById(R.id.shimmer);
         btn_voucher = view.findViewById(R.id.btn_voucher);
         btn_point = view.findViewById(R.id.btn_point);
+        gambar_outlet = view.findViewById(R.id.gambar_outlet);
+        nama_outlet = view.findViewById(R.id.nama_outlet);
         tx_voucher = view.findViewById(R.id.tx_voucher);
         tx_point = view.findViewById(R.id.tx_point);
 
