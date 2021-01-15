@@ -133,16 +133,20 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         holder.nama_brg.setText(nm_brg.get(position));
         holder.kategori_brg.setText(kat_brg.get(position));
-        if (gambar.get(position).equals("")) {
+        if (gambar.get(position) == null){
             holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
         } else {
-            RequestOptions requestOptions = new RequestOptions();
-            requestOptions.signature(
-                    new ObjectKey(String.valueOf(System.currentTimeMillis())));
-            Glide.with(mContext)
-                    .setDefaultRequestOptions(requestOptions)
-                    .load("http://"+session.getBaseUrl()+"/storage/" + gambar.get(position) + "").into(holder.gambar);
+            if (gambar.get(position).equals("")) {
+                holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
+            } else {
+                RequestOptions requestOptions = new RequestOptions();
+                requestOptions.signature(
+                        new ObjectKey(String.valueOf(System.currentTimeMillis())));
+                Glide.with(mContext)
+                        .setDefaultRequestOptions(requestOptions)
+                        .load("http://" + session.getBaseUrl() + "/storage/" + gambar.get(position) + "").into(holder.gambar);
 //                    .load("http://asarasa.id/larisso/storage/" + gambar.get(position) + "").into(holder.gambar);
+            }
         }
         if (disc.get(position).equals("0")) {
             holder.harga_brg.setText(harga_jl.get(position));

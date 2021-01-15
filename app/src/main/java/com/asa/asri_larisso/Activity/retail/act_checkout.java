@@ -339,7 +339,7 @@ public class act_checkout extends AppCompatActivity {
                             switch (result.getStatus()) {
                                 case TransactionResult.STATUS_SUCCESS:
                                     Toast.makeText(act_checkout.this, "Transaction Finished. ID: " + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
-                                    initInputPenjualan();
+                                    initInputPenjualan("1");
                                     break;
                                 case TransactionResult.STATUS_PENDING:
                                     Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
@@ -349,7 +349,17 @@ public class act_checkout extends AppCompatActivity {
                                     System.out.println("Transaction ID"+result.getResponse().getTransactionId());
                                     System.out.println("Bank"+result.getResponse().getAccountNumbers().get(0).getBank());
                                     System.out.println("Expire"+result.getResponse().getPermataExpiration());
-                                    initInputPenjualan();
+                                    initInputPenjualan("0");
+
+                                    Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
+                                    it.putExtra("VA", result.getResponse().getAccountNumbers().get(0).getAccountNumber());
+                                    it.putExtra("Payment Type", result.getResponse().getPaymentType());
+                                    it.putExtra("Status Code", result.getResponse().getStatusCode());
+                                    it.putExtra("Transaction ID", result.getResponse().getTransactionId());
+                                    it.putExtra("Bank", result.getResponse().getAccountNumbers().get(0).getBank());
+                                    it.putExtra("Expire", result.getResponse().getPermataExpiration());
+                                    startActivity(it);
+
                                     break;
                                 case TransactionResult.STATUS_FAILED:
                                     Toast.makeText(act_checkout.this, "Transaction Failed. ID: " + result.getResponse().getTransactionId() + ". Message: " + result.getResponse().getStatusMessage(), Toast.LENGTH_LONG).show();
@@ -523,7 +533,7 @@ public class act_checkout extends AppCompatActivity {
         });
     }
 
-    public void initInputPenjualan() {
+    public void initInputPenjualan(String sts_bayar) {
         String kode_barang = TextUtils.join(";", kd_brg);
         String nama_barang = TextUtils.join(";", nm_brg);
         String harga_barang = TextUtils.join(";", hrg_asli);
@@ -535,7 +545,7 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(quantity);
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
                 no_penerima.getText().toString(), total+"", "", "", "", "", netto+"",
-                ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL");
+                ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar);
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

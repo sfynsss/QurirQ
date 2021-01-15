@@ -267,7 +267,9 @@ public interface Api {
             @Field("harga") String harga,
             @Field("jumlah") String jumlah,
             @Field("satuan") String satuan,
-            @Field("sts_jual") String sts_jual
+            @Field("sts_jual") String sts_jual,
+            @Field("sts_bayar") String sts_bayar
+
     );
 
     @FormUrlEncoded
