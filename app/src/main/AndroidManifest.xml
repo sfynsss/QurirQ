@@ -46,7 +46,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.retail.act_otp_validation_retail"
-            android:windowSoftInputMode="adjustNothing" />
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Activity.retail.act_otp_success_retail"
             android:windowSoftInputMode="adjustPan" />

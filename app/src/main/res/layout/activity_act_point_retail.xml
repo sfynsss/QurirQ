@@ -12,10 +12,18 @@
         android:layout_height="240dp"
         android:background="@drawable/rt_point_bg_header"
         android:orientation="vertical">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/ic_back_gbr">
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="16dp"
             android:text="LaRisso Point"
             android:textStyle="bold"
@@ -59,9 +67,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:layout_marginLeft="8dp"
-                            android:text="namapengguna"
+                            android:text="nama_pengguna"
                             android:textStyle="bold"
-                            android:textSize="16sp"
                             android:textColor="#FFF">
                         </TextView>
                         <TextView
@@ -86,9 +93,10 @@
                             android:textColor="#FFF">
                         </TextView>
                         <TextView
+                            android:id="@+id/total_point"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="0"
+                            android:text="69"
                             android:textSize="24sp"
                             android:textStyle="bold"
                             android:textColor="#FFF038">
@@ -154,7 +162,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="16dp"
         android:text="Tukar Point Anda"
         android:textStyle="bold"
         android:textSize="18sp">
