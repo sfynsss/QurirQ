@@ -99,31 +99,53 @@ public class act_otp_validation_retail extends AppCompatActivity {
             }
         });
 
+        empat.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                prosesRegistrasi();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String token = satu.getText().toString()+""+dua.getText().toString()+""+tiga.getText().toString()+""+empat.getText().toString();
-                aktifasi = api.aktifasi(session.getIdUser(), token);
-                aktifasi.enqueue(new Callback<BaseResponse>() {
-                    @Override
-                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                        if (response.isSuccessful()) {
-                            startActivity(new Intent(act_otp_validation_retail.this, act_otp_success_retail.class));
-                            finish();
-                        } else {
-                            Toasty.error(getApplicationContext(), "Aktifasi Gagal", Toast.LENGTH_SHORT).show();
-                            session.setUserActivation(false);
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-                        Toasty.error(act_otp_validation_retail.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        session.setUserActivation(false);
-                    }
-                });
+                prosesRegistrasi();
             }
         });
 
     }
+
+    public void prosesRegistrasi(){
+        String token = satu.getText().toString()+""+dua.getText().toString()+""+tiga.getText().toString()+""+empat.getText().toString();
+        aktifasi = api.aktifasi(session.getIdUser(), token);
+        aktifasi.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    startActivity(new Intent(act_otp_validation_retail.this, act_otp_success_retail.class));
+                    finish();
+                } else {
+                    Toasty.error(getApplicationContext(), "Aktifasi Gagal", Toast.LENGTH_SHORT).show();
+                    session.setUserActivation(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                Toasty.error(act_otp_validation_retail.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                session.setUserActivation(false);
+            }
+        });
+    }
+
 }
