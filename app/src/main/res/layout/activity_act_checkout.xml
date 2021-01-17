@@ -58,18 +58,18 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Pesanan Diantar Ke"
+                    android:text="Pesanan diantar ke"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
+                    android:paddingLeft="16dp">
                 </TextView>
                 <TextView
                     android:id="@+id/ganti_alamat"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="Ganti Alamat"
+                    android:text="Pilih Alamat"
                     android:textColor="#8C97AA"
                     android:textStyle="bold"
                     android:gravity="center_vertical|end"
@@ -79,7 +79,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:orientation="horizontal"
                 android:weightSum="10">
                 <LinearLayout
@@ -98,7 +98,6 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
-                    android:layout_marginLeft="10dp"
                     android:text=""
                     android:textColor="#000"
                     android:gravity="center_vertical">
@@ -107,56 +106,55 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
+                android:layout_height="60dp"
+                android:weightSum="10"
+                android:orientation="horizontal">
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Nama Penerima :"
-                    android:textColor="#000"
+                    android:layout_weight="5"
+                    android:orientation="vertical"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
-                </TextView>
-                <TextView
+                    android:paddingLeft="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Penerima :"
+                        android:textColor="#000">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/nama_penerima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="nama_penerima"
+                        android:textColor="#000"
+                        android:textStyle="bold">
+                    </TextView>
+                </LinearLayout>
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="No. Telepon :"
-                    android:textColor="#000"
+                    android:layout_weight="5"
+                    android:orientation="vertical"
                     android:gravity="center_vertical|end"
-                    android:paddingRight="20dp">
-                </TextView>
+                    android:paddingRight="16dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Telepon Penerima :"
+                        android:textColor="#000">
+                    </TextView>
+                    <TextView
+                        android:id="@+id/no_penerima"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="nomor_penerima"
+                        android:textColor="#000"
+                        android:textStyle="bold">
+                    </TextView>
+                </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:id="@+id/nama_penerima"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/no_penerima"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical|end"
-                    android:paddingRight="20dp">
-                </TextView>
-            </LinearLayout>
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="5dp"
@@ -172,7 +170,7 @@
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp">
+                android:paddingLeft="16dp">
             </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -180,7 +178,6 @@
                 android:orientation="horizontal"
                 android:weightSum="10"
                 android:layout_marginBottom="10dp">
-
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -252,7 +249,7 @@
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp">
+                android:paddingLeft="16dp">
             </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -287,7 +284,7 @@
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
+                    android:paddingLeft="16dp">
                 </TextView>
                 <TextView
                     android:id="@+id/pilih_voucher"
@@ -302,7 +299,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
                 android:weightSum="10">
                 <TextView
@@ -347,15 +344,15 @@
             </TextView>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="60dp"
                 android:padding="10dp">
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/rt_bt_form"
+                    android:background="@drawable/rt_bg_white_round"
                     android:hint="Tulis catatan / keterangan pesanan anda bila perlu"
                     android:textSize="12dp"
-                    android:paddingLeft="10dp">
+                    android:paddingLeft="16dp">
                 </EditText>
             </LinearLayout>
 

@@ -5,52 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFF"
+    android:background="#F9F9F9"
     tools:context=".Activity.retail.act_pilih_outlet_retail">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:gravity="center">
+        android:layout_height="150dp"
+        android:orientation="vertical"
+        android:background="@drawable/rt_outlet_header">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:background="@drawable/ic_back_gbr">
+        </ImageView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="Pilih"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:text="Pilih Outlet"
             android:textStyle="bold"
-            android:textColor="#FF661B">
+            android:textSize="22sp"
+            android:textColor="#FFF">
         </TextView>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="28sp"
-            android:text="Outlet"
-            android:textStyle="bold"
-            android:layout_marginLeft="5dp"
-            android:textColor="#FFC62A">
+            android:layout_marginLeft="16dp"
+            android:text="Pilih salah satu outlet kami berikut\nuntuk segala kebutuhan anda"
+            android:textSize="12sp"
+            android:textColor="#FFF">
         </TextView>
     </LinearLayout>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Yuk, pilih salah satu outlet kami untuk belanja kebutuhan anda"
-        android:textSize="16dp"
-        android:paddingHorizontal="10dp"
-        android:textAlignment="center">
-    </TextView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="#EAEAEA">
-        </ImageView>
-    </LinearLayout>
-    <ListView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginLeft="16dp"
+        android:text="Daftar Outlet LaRisso"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="#FF971E">
+    </TextView>
+    <ListView
+        android:id="@+id/outlet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="8dp">
     </ListView>
+
 </LinearLayout>

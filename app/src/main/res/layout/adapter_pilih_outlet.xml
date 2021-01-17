@@ -6,10 +6,10 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="16dp"
-        app:cardElevation="2dp"
+        android:layout_marginHorizontal="8dp"
+        app:cardElevation="5dp"
         app:cardCornerRadius="5dp">
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3.5"
+                android:layout_weight="3"
                 android:gravity="center">
                 <ImageView
                     android:id="@+id/gambar_outlet"
@@ -32,30 +32,36 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="6.5"
+                android:layout_weight="7"
                 android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:weightSum="10">
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama Outlet"
-                    android:textSize="22sp"
-                    android:textStyle="bold">
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="Larisso Ambulu Jember"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF661B">
                 </TextView>
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginRight="5dp"
-                    android:text="Keterangan Outlet"
-                    android:textSize="14sp">
-                </TextView>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Alamat Outlet"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="4"
+                    android:gravity="center_vertical"
+                    android:text="Ini text untuk menampilkan deskripsi outlet yang ada di LaRisso Group"
                     android:textSize="12sp">
+                </TextView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="3"
+                    android:gravity="center_vertical"
+                    android:text="Alamat outlet dari LaRisso"
+                    android:textSize="10sp"
+                    android:textColor="#000">
                 </TextView>
             </LinearLayout>
         </LinearLayout>

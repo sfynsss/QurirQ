@@ -90,7 +90,7 @@ public class act_history_transaksi extends AppCompatActivity {
                     adapterTransaksi.notifyDataSetChanged();
                     list_transaksi.setAdapter(adapterTransaksi);
                 } else {
-                    Toasty.error(act_history_transaksi.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
+                    Toasty.error(act_history_transaksi.this, "Anda belum bertransaksi", Toast.LENGTH_SHORT).show();
                 }
             }
 
