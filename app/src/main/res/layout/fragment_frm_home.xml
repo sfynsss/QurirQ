@@ -148,14 +148,14 @@
                                     android:id="@+id/gambar_outlet"
                                     android:layout_width="30dp"
                                     android:layout_height="30dp"
-                                    android:background="#EAEAEA">
+                                    android:background="@drawable/rt_logo_larisso_bunga">
                                 </ImageView>
                                 <TextView
                                     android:id="@+id/nama_outlet"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="6dp"
-                                    android:text="nama_outlet"
+                                    android:text="LaRisso Ambulu"
                                     android:textSize="12sp"
                                     android:textColor="#000">
                                 </TextView>
