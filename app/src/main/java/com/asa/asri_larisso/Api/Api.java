@@ -17,6 +17,7 @@ import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.Pengiriman;
 import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.Provinsi;
+import com.asa.asri_larisso.Table.SettingVoucher;
 import com.asa.asri_larisso.Table.Voucher;
 import com.asa.asri_larisso.Table.Wishlist;
 import com.asa.asri_larisso.Table.kategori;
@@ -296,4 +297,7 @@ public interface Api {
 
     @GET("getOutlet")
     Call<BaseResponse<Outlet>> getOutlet();
+
+    @GET("getSettingVoucher")
+    Call<BaseResponse<SettingVoucher>> getSettingVoucher();
 }

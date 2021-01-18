@@ -40,7 +40,6 @@
                     android:layout_below="@id/judul"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="8dp"
-                    android:text="Nikmati voucher belanja Rp100.000 tanpa minimum pembelian di semua outlet LaRisso"
                     android:textColor="#FFF"
                     android:textAlignment="textEnd">
                 </TextView>
@@ -88,7 +87,7 @@
                             android:text="Masa Berlaku  ">
                         </TextView>
                         <TextView
-                            android:id="@+id/tgl_mulai"
+                            android:id="@+id/masa_berlaku"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="30 Hari"

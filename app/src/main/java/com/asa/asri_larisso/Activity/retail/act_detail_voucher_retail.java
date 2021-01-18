@@ -19,17 +19,17 @@ public class act_detail_voucher_retail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_detail_voucher_retail);
 
-        back = findViewById(R.id.back);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        gambar_voucher = findViewById(R.id.gambar_voucher);
-        judul_voucher = findViewById(R.id.judul_voucher);
-        deskripsi_voucher = findViewById(R.id.tgl_mulai);
-        tgl_berlaku = findViewById(R.id.tgl_berlaku);
+//        back = findViewById(R.id.back);
+//        back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//        gambar_voucher = findViewById(R.id.gambar_voucher);
+//        judul_voucher = findViewById(R.id.judul_voucher);
+//        deskripsi_voucher = findViewById(R.id.tgl_mulai);
+//        tgl_berlaku = findViewById(R.id.tgl_berlaku);
 
     }
 }
