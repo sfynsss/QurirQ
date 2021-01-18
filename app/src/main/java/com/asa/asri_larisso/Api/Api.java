@@ -12,6 +12,7 @@ import com.asa.asri_larisso.Table.Kecamatan;
 import com.asa.asri_larisso.Table.Kota;
 import com.asa.asri_larisso.Table.MstJual;
 import com.asa.asri_larisso.Table.Notif;
+import com.asa.asri_larisso.Table.Outlet;
 import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.Pengiriman;
 import com.asa.asri_larisso.Table.PoinVoucher;
@@ -293,4 +294,6 @@ public interface Api {
     @GET("getPenawaran")
     Call<BaseResponse<Penawaran>> getPenawaran();
 
+    @GET("getOutlet")
+    Call<BaseResponse<Outlet>> getOutlet();
 }
