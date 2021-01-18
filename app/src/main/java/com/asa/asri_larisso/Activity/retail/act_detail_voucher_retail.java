@@ -12,7 +12,7 @@ import com.asa.asri_larisso.R;
 public class act_detail_voucher_retail extends AppCompatActivity {
 
     ImageView back, gambar_voucher;
-    TextView nama_voucher, deskripsi_voucher, tgl_mulai, tgl_berakhir;
+    TextView judul_voucher, deskripsi_voucher, tgl_berlaku, tgl_berakhir;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +27,9 @@ public class act_detail_voucher_retail extends AppCompatActivity {
             }
         });
         gambar_voucher = findViewById(R.id.gambar_voucher);
-        nama_voucher = findViewById(R.id.nama_voucher);
+        judul_voucher = findViewById(R.id.judul_voucher);
         deskripsi_voucher = findViewById(R.id.tgl_mulai);
-        tgl_mulai = findViewById(R.id.tgl_mulai);
-        tgl_berakhir = findViewById(R.id.tgl_berakhir);
+        tgl_berlaku = findViewById(R.id.tgl_berlaku);
 
     }
 }
