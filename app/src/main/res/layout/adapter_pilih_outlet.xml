@@ -24,10 +24,9 @@
                 android:gravity="center">
                 <ImageView
                     android:id="@+id/gambar_outlet"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:background="#EAEAEA">
-                </ImageView>
+                    android:layout_margin="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></ImageView>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="0dp"

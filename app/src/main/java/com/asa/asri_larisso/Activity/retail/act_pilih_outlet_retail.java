@@ -54,6 +54,7 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
 
         session = new Session(act_pilih_outlet_retail.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+        dataOutlet();
     }
 
     public void dataOutlet() {
