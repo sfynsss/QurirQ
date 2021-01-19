@@ -58,7 +58,7 @@ public class act_category_retail extends AppCompatActivity {
 
         session = new Session(act_category_retail.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-        getKategori = api.getKategoriBarang("all");
+        getKategori = api.getKategoriBarang("all", session.getKdOutlet());
 
         handler.postDelayed(new Runnable() {
             @Override

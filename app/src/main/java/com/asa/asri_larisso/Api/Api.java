@@ -152,13 +152,15 @@ public interface Api {
     @FormUrlEncoded
     @POST("getBarangByName")
     Call<BaseResponse<Barang>> getBarangByName(
-            @Field("nm_brg") String nm_brg
+            @Field("nm_brg") String nm_brg,
+            @Field("kd_outlet") String kd_outlet
     );
 
     @FormUrlEncoded
     @POST("getKategori")
     Call<BaseResponse<kategori>> getKategoriBarang(
-            @Field("filter") String filter
+            @Field("filter") String filter,
+            @Field("kd_outlet") String kd_outlet
     );
 
     @FormUrlEncoded

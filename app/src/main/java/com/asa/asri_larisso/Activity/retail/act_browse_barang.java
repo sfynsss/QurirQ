@@ -76,7 +76,7 @@ public class act_browse_barang extends AppCompatActivity {
 
         session = new Session(act_browse_barang.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-        getBarang = api.getBarang(getIntent().getStringExtra("kd_kategori"), "");
+        getBarang = api.getBarang(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
         getBarang.enqueue(new Callback<BaseResponse<Barang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {

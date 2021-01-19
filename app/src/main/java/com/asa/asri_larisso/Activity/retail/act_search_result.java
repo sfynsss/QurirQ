@@ -109,7 +109,7 @@ public class act_search_result extends AppCompatActivity {
     }
 
     public void getData(String nama_barang) {
-        getBarang = api.getBarangByName(nama_barang);
+        getBarang = api.getBarangByName(nama_barang, session.getKdOutlet());
         getBarang.enqueue(new Callback<BaseResponse<Barang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {

@@ -200,7 +200,7 @@ public class frm_home extends Fragment {
     };
 
     public void tampilKategori(){
-        getKategori = api.getKategoriBarang("6");
+        getKategori = api.getKategoriBarang("6", session.getKdOutlet());
         getKategori.enqueue(new Callback<BaseResponse<kategori>>() {
             @Override
             public void onResponse(Call<BaseResponse<kategori>> call, Response<BaseResponse<kategori>> response) {
