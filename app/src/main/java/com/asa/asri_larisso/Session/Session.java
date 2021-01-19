@@ -30,13 +30,21 @@ public class Session {
         editor.commit();
     }
 
-    public void setKd_cust(String kd_cust){
+    public void setKdCust(String kd_cust){
         editor.putString("kd_cust", kd_cust);
         editor.commit();
     }
 
     public void setNoTelp(String no_telp){
         editor.putString("no_telp", no_telp);
+        editor.commit();
+    }
+
+    public void setOutlet(String kd_outlet, String nama_outlet, String gambar_outlet, Boolean sts_outlet){
+        editor.putString("kd_outlet", kd_outlet);
+        editor.putString("nama_outlet", nama_outlet);
+        editor.putString("gambar_outlet", gambar_outlet);
+        editor.putBoolean("sts_outlet", sts_outlet);
         editor.commit();
     }
 
@@ -74,6 +82,26 @@ public class Session {
 
     public String getOtoritas() {
         return preferences.getString("otoritas", "");
+    }
+
+    public String getKdCust() {
+        return preferences.getString("kd_cust", "");
+    }
+
+    public String getKdOutlet() {
+        return preferences.getString("kd_outlet", "");
+    }
+
+    public String getNamaOutlet() {
+        return preferences.getString("nama_outlet", "");
+    }
+
+    public String getGambarOutlet() {
+        return preferences.getString("gambar_outlet", "");
+    }
+
+    public boolean getStsOutlet() {
+        return preferences.getBoolean("sts_outlet", false);
     }
 
     public void setAlamat(String nama_penerima, String provinsi, String kota, String kecamatan, String kd_provinsi, String kd_kota,

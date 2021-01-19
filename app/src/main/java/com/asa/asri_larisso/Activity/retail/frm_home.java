@@ -94,6 +94,17 @@ public class frm_home extends Fragment {
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         nama_pengguna.setText(session.getUsername());
+        requestOptions = new RequestOptions().centerCrop();
+        if (!session.getGambarOutlet().equals("")) {
+            Glide.with(getActivity())
+                    .setDefaultRequestOptions(requestOptions)
+                    .load("http://" + session.getBaseUrl() + "/storage/" + session.getGambarOutlet() + "")
+                    .into(gambar_outlet);
+        }
+
+        if (!session.getNamaOutlet().equals("")) {
+            nama_outlet.setText(session.getNamaOutlet());
+        }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -149,7 +160,6 @@ public class frm_home extends Fragment {
 
         tampilKategori();
         dataPoinVoucher();
-        requestOptions = new RequestOptions().centerCrop();
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
             @Override
@@ -184,7 +194,7 @@ public class frm_home extends Fragment {
         public void setImageForPosition(int position, ImageView imageView) {
             Glide.with(getActivity())
                     .setDefaultRequestOptions(requestOptions)
-                    .load("http://larisso.co.id/storage/" + gambar_penawaran.get(position) + "")
+                    .load("http://" + session.getBaseUrl() + "/storage/" + gambar_penawaran.get(position) + "")
                     .into(imageView);
         }
     };

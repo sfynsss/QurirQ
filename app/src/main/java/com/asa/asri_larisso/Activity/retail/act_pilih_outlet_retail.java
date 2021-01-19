@@ -2,8 +2,10 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -55,6 +57,13 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
         session = new Session(act_pilih_outlet_retail.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         dataOutlet();
+        outlet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                session.setOutlet(kd_outlet.get(position), nama_outlet.get(position), gambar.get(position), true);
+                startActivity(new Intent(act_pilih_outlet_retail.this, act_home_retail.class));
+            }
+        });
     }
 
     public void dataOutlet() {

@@ -73,7 +73,7 @@ public class act_point_retail extends AppCompatActivity {
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         nama_pengguna.setText(session.getUsername());
-        id_member_pengguna.setText(session.getIdUser());
+        id_member_pengguna.setText(session.getKdCust());
         getBarcode();
         dataPoinVoucher();
         dataSettingVoucher();

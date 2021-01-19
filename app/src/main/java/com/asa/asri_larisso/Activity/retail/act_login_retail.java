@@ -81,13 +81,14 @@ public class act_login_retail extends AppCompatActivity {
                         @Override
                         public void onResponse(Call<UserResponse> call, final Response<UserResponse> response) {
                             if (response.isSuccessful()) {
-                                if (response.body().getUser().getEmail_activation().equals("1")) {
+                                if (response.body().getUser().getEmailActivation().equals("1")) {
 //                                    Toasty.success(getApplicationContext(), "Selamat Datang " + response.body().getUser().getName(), Toast.LENGTH_SHORT).show();
                                     session.setUserStatus(true, response.body().getUser().getId() + "",
                                             response.body().getUser().getName() + "",
                                             response.body().getUser().getEmail() + "",
                                             response.body().getUser().getApiToken() + "",
                                             response.body().getUser().getOtoritas() + "");
+                                    session.setKdCust(response.body().getUser().getKDCUST());
                                     String latitude = "";
                                     String longitude = "";
                                     if(response.body().getUser().getLatitude() == null){
@@ -124,10 +125,11 @@ public class act_login_retail extends AppCompatActivity {
                                                             @Override
                                                             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                                                 if (response.isSuccessful()) {
-                                                                    startActivity(new Intent(act_login_retail.this, act_home_retail.class));
+//                                                                    startActivity(new Intent(act_login_retail.this, act_home_retail.class));
+                                                                    startActivity(new Intent(act_login_retail.this, act_pilih_outlet_retail.class));
                                                                     finish();
                                                                 } else {
-                                                                    startActivity(new Intent(act_login_retail.this, act_home_retail.class));
+                                                                    startActivity(new Intent(act_login_retail.this, act_pilih_outlet_retail.class));
                                                                     finish();
                                                                 }
                                                             }

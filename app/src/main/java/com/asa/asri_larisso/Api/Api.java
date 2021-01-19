@@ -145,7 +145,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("getBarang")
     Call<BaseResponse<Barang>> getBarang(
-            @Field("kd_kategori") String kd_kategori
+            @Field("kd_kategori") String kd_kategori,
+            @Field("kd_outlet") String kd_outlet
     );
 
     @FormUrlEncoded

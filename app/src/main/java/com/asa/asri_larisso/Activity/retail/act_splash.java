@@ -55,11 +55,19 @@ public class act_splash extends AppCompatActivity {
                                                 public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                                     if (response.isSuccessful()) {
                                                         System.out.println("sukses");
-                                                        startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                        if (session.getStsOutlet() == false) {
+                                                            startActivity(new Intent(act_splash.this, act_pilih_outlet_retail.class));
+                                                        } else {
+                                                            startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                        }
                                                         finish();
                                                     } else {
                                                         System.out.println("gagal");
-                                                        startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                        if (session.getStsOutlet() == false) {
+                                                            startActivity(new Intent(act_splash.this, act_pilih_outlet_retail.class));
+                                                        } else {
+                                                            startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                        }
                                                         finish();
                                                     }
                                                 }
