@@ -149,15 +149,15 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             }
         }
         if (disc.get(position).equals("0")) {
-            holder.harga_brg.setText(harga_jl.get(position));
+            holder.harga_brg.setText(harga_jl.get(position).replace(",00", ""));
             holder.disc.setVisibility(View.INVISIBLE);
             holder.harga_disc.setVisibility(View.INVISIBLE);
         } else {
-            holder.harga_brg.setText(formatRupiah.format((Double.parseDouble(harga_asli.get(position)) - Double.parseDouble(harga_disc.get(position)))));
+            holder.harga_brg.setText(formatRupiah.format((Double.parseDouble(harga_asli.get(position)) - Double.parseDouble(harga_disc.get(position)))).replace(",00", ""));
             holder.disc.setVisibility(View.VISIBLE);
             holder.harga_disc.setVisibility(View.VISIBLE);
             holder.disc_value.setText("Disc "+disc.get(position)+"%");
-            holder.harga_disc_value.setText(harga_jl.get(position));
+            holder.harga_disc_value.setText(harga_jl.get(position).replace(",00", ""));
         }
     }
 

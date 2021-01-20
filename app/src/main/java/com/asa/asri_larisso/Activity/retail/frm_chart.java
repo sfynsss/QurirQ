@@ -379,6 +379,6 @@ public class frm_chart extends Fragment {
             tot += Double.parseDouble(qty.get(i)) * Double.parseDouble(hrg_asli.get(i));
         }
 
-        total.setText(formatRupiah.format(tot));
+        total.setText(formatRupiah.format(tot).replace(",00", ""));
     }
 }

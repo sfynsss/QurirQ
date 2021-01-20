@@ -11,12 +11,14 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +48,7 @@ public class act_register_retail extends AppCompatActivity {
     Boolean showPasswordClicked = false;
     LinearLayout select_tgl_lahir;
     TextView tgl_lahir;
+    Spinner jenis_kelamin;
 
     Api api;
     Session session;
@@ -56,6 +59,8 @@ public class act_register_retail extends AppCompatActivity {
     int yy = calendar.get(Calendar.YEAR);
     int mm = calendar.get(Calendar.MONTH);
     int dd = calendar.get(Calendar.DAY_OF_MONTH);
+
+    String[] jk = {"Laki-Laki", "Perempuan"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,13 @@ public class act_register_retail extends AppCompatActivity {
         tgl_lahir = findViewById(R.id.tgl_lahir);
         select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
         show_password = findViewById(R.id.show_password);
+        jenis_kelamin = findViewById(R.id.jenis_kelamin);
+
+        //Ini buat ngisi Spinner
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_register_retail.this, R.layout.spinner_alamat, jk);
+        arrayAdapter.setDropDownViewResource(R.layout.spinner_alamat);
+        jenis_kelamin.setAdapter(arrayAdapter);
+        //End isi spinner
 
         final ProgressDialog pd = new ProgressDialog(act_register_retail.this);
 
@@ -108,7 +120,7 @@ public class act_register_retail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 register = api.register(username.getText().toString()+"",  tgl_lahir.getText().toString(),"RETAIL", email.getText().toString()+"",
-                        alamat.getText().toString(), no_telp.getText().toString(), password.getText().toString(), firebase_token);
+                        alamat.getText().toString(), no_telp.getText().toString(), password.getText().toString(), firebase_token, jenis_kelamin.getSelectedItem().toString());
 //                startActivity(new Intent(act_register_retail.this, act_otp_validation_retail.class));
                 progressBar.setVisibility(View.VISIBLE);
                 pd.setTitle("Mohon Menunggu");

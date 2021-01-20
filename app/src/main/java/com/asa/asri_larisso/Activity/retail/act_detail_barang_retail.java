@@ -85,7 +85,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
         kd_brg = getIntent().getStringExtra("kd_brg");
         nm_brg = nama_barang.getText().toString();
         satuan = getIntent().getStringExtra("satuan");
-        harga_jl = getIntent().getStringExtra("harga_jl");
+        harga_jl = getIntent().getStringExtra("harga_jl").replace(",00", "");
         qty = jml.getText().toString();
         gbr = getIntent().getStringExtra("gambar");
         kat = getIntent().getStringExtra("kat_brg");
@@ -122,7 +122,15 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 qty = jml.getText().toString();
                 gbr = getIntent().getStringExtra("gambar");
                 kat = getIntent().getStringExtra("kat_brg");
-                inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat);
+//                System.out.println(session.getIdUser());
+//                System.out.println(kd_brg);
+//                System.out.println(nm_brg);
+//                System.out.println(satuan);
+//                System.out.println(harga_jl);
+//                System.out.println(qty);
+//                System.out.println(gbr);
+//                System.out.println(kat);
+                inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat, session.getKdOutlet());
                 inputToCart.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {

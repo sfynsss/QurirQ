@@ -71,7 +71,7 @@ public class AdapterCartBarang extends ArrayAdapter<String> {
         }
 
         viewHolder.nama_barang.setText(nm_brg.get(position));
-        viewHolder.harga_barang.setText(hrg_brg.get(position));
+        viewHolder.harga_barang.setText(hrg_brg.get(position).replace(",00", ""));
         viewHolder.qty.setText(qty.get(position));
         if (!TextUtils.isEmpty(gambar.get(position))) {
             RequestOptions requestOptions = new RequestOptions();

@@ -114,7 +114,8 @@ public interface Api {
             @Field("alamat") String alamat,
             @Field("no_telp") String no_telp,
             @Field("password") String password,
-            @Field("firebase_token") String firebase_token
+            @Field("firebase_token") String firebase_token,
+            @Field("jenis_kelamin") String jenis_kelamin
     );
 
     @FormUrlEncoded
@@ -179,7 +180,8 @@ public interface Api {
             @Field("harga_jl") String harga_jl,
             @Field("qty") String qty,
             @Field("gambar") String gambar,
-            @Field("kategori") String kat
+            @Field("kategori") String kat,
+            @Field("kd_outlet") String kd_outlet
     );
 
     @FormUrlEncoded

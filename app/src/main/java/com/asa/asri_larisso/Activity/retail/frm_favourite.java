@@ -205,7 +205,7 @@ public class frm_favourite extends Fragment {
         tmp_harga_jl = hrg_asli.get(position);
         tmp_gbr = gambar.get(position);
         tmp_kat = kategori.get(position);
-        inputToCart = api.inputToCart(session.getIdUser(), tmp_kd_brg, tmp_nm_brg, tmp_satuan, tmp_harga_jl, tmp_qty, tmp_gbr, tmp_kat);
+        inputToCart = api.inputToCart(session.getIdUser(), tmp_kd_brg, tmp_nm_brg, tmp_satuan, tmp_harga_jl, tmp_qty, tmp_gbr, tmp_kat, session.getKdOutlet());
         inputToCart.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
