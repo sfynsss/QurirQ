@@ -303,4 +303,17 @@ public interface Api {
 
     @GET("getSettingVoucher")
     Call<BaseResponse<SettingVoucher>> getSettingVoucher();
+
+    @FormUrlEncoded
+    @POST("tambahVoucher")
+    Call<BaseResponse> tambahVoucher(
+            @Field("kd_cust") String kd_cust,
+            @Field("nama_voucher") String nama_voucher,
+            @Field("nilai_voucher") String nilai_voucher,
+            @Field("tgl_start") String tgl_start,
+            @Field("tgl_end") String tgl_end,
+            @Field("sk") String sk,
+            @Field("gambar") String gambar,
+            @Field("ketentuan") String ketentuan
+    );
 }

@@ -24,7 +24,11 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -42,6 +46,7 @@ public class act_point_retail extends AppCompatActivity {
     Api api;
     Call<BaseResponse1<PoinVoucher>> getPointVoucher;
     Call<BaseResponse<SettingVoucher>> getSettingVoucher;
+    Call<BaseResponse> tambahVoucher;
 
     private ArrayList<String> nmr = new ArrayList<>();
     private ArrayList<String> nama_voucher = new ArrayList<>();
@@ -107,7 +112,7 @@ public class act_point_retail extends AppCompatActivity {
         getSettingVoucher = api.getSettingVoucher();
         getSettingVoucher.enqueue(new Callback<BaseResponse<SettingVoucher>>() {
             @Override
-            public void onResponse(Call<BaseResponse<SettingVoucher>> call, Response<BaseResponse<SettingVoucher>> response) {
+            public void onResponse(Call<BaseResponse<SettingVoucher>> call, final Response<BaseResponse<SettingVoucher>> response) {
                 if (response.isSuccessful()) {
                     nmr.clear();
                     nama_voucher.clear();
@@ -126,7 +131,43 @@ public class act_point_retail extends AppCompatActivity {
                     adapterRedeem = new AdapterRedeem(act_point_retail.this, nmr, nama_voucher, nilai_voucher, ketentuan, masa_berlaku, new AdapterRedeem.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
+                            if (point < Integer.parseInt(ketentuan.get(position))) {
+                                Toasty.warning(act_point_retail.this, "Maaf Point Anda Kurang !!!", Toast.LENGTH_SHORT).show();
+                            } else {
+                                SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+                                Date date = new Date(System.currentTimeMillis());
+                                Calendar c = Calendar.getInstance();
+                                String dt = formatter.format(date);
+                                try {
+                                    c.setTime(formatter.parse(dt));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                c.add(Calendar.DATE, Integer.parseInt(masa_berlaku.get(position)));  // number of days to add
+                                dt = formatter.format(c.getTime());  // dt is now the new date
 
+//                                System.out.println(dt+" | "+formatter.format(date));
+                                tambahVoucher = api.tambahVoucher(session.getKdCust(), nama_voucher.get(position), nilai_voucher.get(position),
+                                        formatter.format(date), dt, "", response.body().getData().get(position).getGambarVoucher(), ketentuan.get(position));
+                                tambahVoucher.enqueue(new Callback<BaseResponse>() {
+                                    @Override
+                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                                        if (response.isSuccessful()) {
+                                            getBarcode();
+                                            dataPoinVoucher();
+                                            dataSettingVoucher();
+                                            Toasty.success(act_point_retail.this, "Voucher Berhasil Anda klaim !!!", Toast.LENGTH_SHORT).show();
+                                        } else {
+                                            Toasty.warning(act_point_retail.this, "Error, voucher gagal di klaim", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                        Toasty.error(act_point_retail.this, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            }
                         }
                     });
                     adapterRedeem.notifyDataSetChanged();
