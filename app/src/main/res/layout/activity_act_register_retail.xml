@@ -98,26 +98,26 @@
                 android:imeOptions="actionDone">
             </EditText>
             <!--Jenis Kelamin-->
-<!--            <TextView-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginLeft="16dp"-->
-<!--                android:text="Jenis Kelamin"-->
-<!--                android:textSize="18sp"-->
-<!--                android:textColor="#000"-->
-<!--                android:textStyle="bold">-->
-<!--            </TextView>-->
-<!--            <LinearLayout-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="40dp"-->
-<!--                android:layout_marginHorizontal="16dp">-->
-<!--                <Spinner-->
-<!--                    android:id="@+id/jenis_kelamin"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent">-->
-<!--                </Spinner>-->
-<!--            </LinearLayout>-->
+            <!--<TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="16dp"
+                android:text="Jenis Kelamin"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:textStyle="bold">
+            </TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginHorizontal="16dp">
+                <Spinner
+                    android:id="@+id/jenis_kelamin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </Spinner>
+            </LinearLayout>-->
             <!--Tanggal Lahir-->
             <TextView
                 android:layout_width="wrap_content"
@@ -129,16 +129,26 @@
                 android:textColor="#000"
                 android:textStyle="bold">
             </TextView>
-            <EditText
-                android:id="@+id/tgl_lahir"
+            <LinearLayout
+                android:id="@+id/select_tgl_lahir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
-                android:hint="Contoh : 2021-12-31"
-                android:textSize="14sp"
-                android:inputType="datetime"
-                android:imeOptions="actionDone">
-            </EditText>
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/tgl_lahir"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:hint="Contoh : 2021-12-31"
+                    android:textSize="14sp"
+                    android:gravity="center_vertical">
+                </TextView>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="#999">
+                </View>
+            </LinearLayout>
             <!--Email-->
             <TextView
                 android:layout_width="wrap_content"
