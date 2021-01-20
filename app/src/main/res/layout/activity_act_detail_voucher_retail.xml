@@ -68,6 +68,14 @@
                 </ImageView>
             </LinearLayout>
             <TextView
+                android:id="@+id/kode_voucher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="12345678910"
+                android:textAlignment="center"
+                android:visibility="gone">
+            </TextView>
+            <TextView
                 android:id="@+id/judul_voucher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -125,7 +133,7 @@
                 android:textSize="16sp">
             </TextView>
             <TextView
-                android:id="@+id/sk_voucher"
+                android:id="@+id/deskripsi_voucher"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

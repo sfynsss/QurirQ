@@ -15,7 +15,9 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asa.asri_larisso.Api.Api;
@@ -37,11 +39,13 @@ import retrofit2.Response;
 
 public class act_register_retail extends AppCompatActivity {
 
-    EditText username, email, tgl_lahir, alamat, no_telp, password;
+    EditText username, email, alamat, no_telp, password;
     ImageView show_password;
     Button btn_daftar;
     ProgressBar progressBar;
     Boolean showPasswordClicked = false;
+    LinearLayout select_tgl_lahir;
+    TextView tgl_lahir;
 
     Api api;
     Session session;
@@ -66,6 +70,7 @@ public class act_register_retail extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_register);
         btn_daftar = findViewById(R.id.btn_daftar);
         tgl_lahir = findViewById(R.id.tgl_lahir);
+        select_tgl_lahir = findViewById(R.id.select_tgl_lahir);
         show_password = findViewById(R.id.show_password);
 
         final ProgressDialog pd = new ProgressDialog(act_register_retail.this);
@@ -85,7 +90,7 @@ public class act_register_retail extends AppCompatActivity {
                     }
                 });
 
-        tgl_lahir.setOnClickListener(new View.OnClickListener() {
+        select_tgl_lahir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DatePickerDialog datePickerDialog = new DatePickerDialog(act_register_retail.this, new DatePickerDialog.OnDateSetListener() {
