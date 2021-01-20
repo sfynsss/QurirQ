@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +42,7 @@ public class act_point_retail extends AppCompatActivity {
     ImageView back, barcode;
     TextView nama_pengguna, total_point, id_member_pengguna;
     ListView list_voucher;
+    SwipeRefreshLayout swipe_refresh_layout;
     int point = 0;
 
     Session session;
@@ -66,6 +69,7 @@ public class act_point_retail extends AppCompatActivity {
         barcode = findViewById(R.id.barcode);
         id_member_pengguna = findViewById(R.id.id_member_pengguna);
         list_voucher = findViewById(R.id.list_voucher);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,6 +86,21 @@ public class act_point_retail extends AppCompatActivity {
         getBarcode();
         dataPoinVoucher();
         dataSettingVoucher();
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                dataPoinVoucher();
+                dataSettingVoucher();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+
     }
 
     public void dataPoinVoucher(){
