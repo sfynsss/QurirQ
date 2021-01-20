@@ -41,6 +41,7 @@
         <activity android:name=".Activity.retail.act_browse_barang" />
         <activity android:name=".Activity.retail.act_user_profile" />
         <activity android:name=".Activity.retail.act_point_retail" />
+        <activity android:name=".Activity.retail.act_detail_voucher_retail" />
         <activity
             android:name=".Activity.retail.act_edit_profil_retail"
             android:windowSoftInputMode="adjustPan" />

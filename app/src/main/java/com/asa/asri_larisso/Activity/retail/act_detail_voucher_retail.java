@@ -9,6 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.asa.asri_larisso.R;
+import com.asa.asri_larisso.Session.Session;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -19,6 +23,8 @@ public class act_detail_voucher_retail extends AppCompatActivity {
 
     ImageView back, gambar_voucher, barcode_voucher;
     TextView judul_voucher, kode_voucher, deskripsi_voucher, tgl_berlaku, tgl_berakhir;
+    Session session;
+    String kd_voucher = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +40,21 @@ public class act_detail_voucher_retail extends AppCompatActivity {
         });
         gambar_voucher = findViewById(R.id.gambar_voucher);
         judul_voucher = findViewById(R.id.judul_voucher);
-        kode_voucher = findViewById(R.id.kode_voucher);
         deskripsi_voucher = findViewById(R.id.deskripsi_voucher);
         tgl_berlaku = findViewById(R.id.tgl_berlaku);
-        barcode_voucher = findViewById(R.id.barcode_voucher);
 
-        getBarcode();
+        session = new Session(this);
+        kd_voucher = getIntent().getStringExtra("kd_voucher");
+        RequestOptions requestOptions = new RequestOptions();
+        requestOptions.signature(
+                new ObjectKey(String.valueOf(System.currentTimeMillis())));
+        Glide.with(act_detail_voucher_retail.this)
+                .setDefaultRequestOptions(requestOptions)
+                .load("http://" + session.getBaseUrl() + "/storage/" + getIntent().getStringExtra("gambar") + "").into(gambar_voucher);
+        judul_voucher.setText(getIntent().getStringExtra("nama_voucher"));
+        tgl_berlaku.setText(getIntent().getStringExtra("tgl_berlaku"));
+        deskripsi_voucher.setText(getIntent().getStringExtra("sk"));
+//        getBarcode();
     }
 
     public void getBarcode(){

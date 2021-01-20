@@ -52,29 +52,9 @@
             <ImageView
                 android:id="@+id/gambar_voucher"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:background="#EAEAEA">
             </ImageView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/barcode_voucher"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginHorizontal="16dp"
-                    android:background="#F9F9F9">
-                </ImageView>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/kode_voucher"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="12345678910"
-                android:textAlignment="center"
-                android:visibility="gone">
-            </TextView>
             <TextView
                 android:id="@+id/judul_voucher"
                 android:layout_width="wrap_content"

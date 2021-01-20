@@ -62,7 +62,7 @@ public class act_voucher extends AppCompatActivity {
         getVoucher = api.getVoucher(session.getIdUser());
         getVoucher.enqueue(new Callback<BaseResponse<Voucher>>() {
             @Override
-            public void onResponse(Call<BaseResponse<Voucher>> call, Response<BaseResponse<Voucher>> response) {
+            public void onResponse(Call<BaseResponse<Voucher>> call, final Response<BaseResponse<Voucher>> response) {
                 if (response.isSuccessful()) {
                     list_voucher.setVisibility(View.VISIBLE);
                     not_found.setVisibility(View.INVISIBLE);
@@ -87,10 +87,11 @@ public class act_voucher extends AppCompatActivity {
                         @Override
                         public void onClickAdapter(int position) {
                             Intent it = new Intent(act_voucher.this, act_detail_voucher_retail.class);
+                            it.putExtra("kd_voucher", kd_voucher.get(position));
                             it.putExtra("nama_voucher", nama_voucher.get(position));
                             it.putExtra("gambar", gambar.get(position));
                             it.putExtra("sk", sk.get(position));
-                            it.putExtra("tgl_berlaku", tgl_berlaku.get(position));
+                            it.putExtra("tgl_berlaku", response.body().getData().get(position).getTglBerlaku2());
                             startActivity(it);
                             //Toasty.success(act_voucher.this, "Terpakai", Toast.LENGTH_SHORT).show();
                         }
