@@ -77,7 +77,7 @@ public class act_detail_transaksi extends AppCompatActivity {
         } else if (getIntent().getStringExtra("sts_byr").equals("1")) {
             sts_byr.setText("Lunas");
         }
-        subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))));
+        subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
 
         getDetailTransaksi = api.getDetailTransaksi(getIntent().getStringExtra("no_ent"));
         getDetailTransaksi.enqueue(new Callback<BaseResponse<DetJual>>() {

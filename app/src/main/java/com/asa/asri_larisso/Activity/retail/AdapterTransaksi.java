@@ -57,7 +57,7 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         viewHolder.no_ent.setText(no_ent.get(position));
         viewHolder.jml_item.setText(jml_item.get(position)+"");
         viewHolder.tgl_transaksi.setText(tgl_transaksi.get(position));
-        viewHolder.subtot.setText(formatRupiah.format(subtot.get(position)));
+        viewHolder.subtot.setText(formatRupiah.format(subtot.get(position)).replace(",00", ""));
 
         return v;
     }

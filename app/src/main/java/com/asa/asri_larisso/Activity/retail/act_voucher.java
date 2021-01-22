@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -86,13 +87,22 @@ public class act_voucher extends AppCompatActivity {
                     adapterVoucher = new AdapterVoucher(act_voucher.this, kd_voucher, nama_voucher, gambar, nilai_voucher, sk, tgl_berlaku, new AdapterVoucher.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
-                            Intent it = new Intent(act_voucher.this, act_detail_voucher_retail.class);
-                            it.putExtra("kd_voucher", kd_voucher.get(position));
-                            it.putExtra("nama_voucher", nama_voucher.get(position));
-                            it.putExtra("gambar", gambar.get(position));
-                            it.putExtra("sk", sk.get(position));
-                            it.putExtra("tgl_berlaku", response.body().getData().get(position).getTglBerlaku2());
-                            startActivity(it);
+                            if (TextUtils.isEmpty(getIntent().getStringExtra("sts"))) {
+                                Intent it = new Intent(act_voucher.this, act_detail_voucher_retail.class);
+                                it.putExtra("kd_voucher", kd_voucher.get(position));
+                                it.putExtra("nama_voucher", nama_voucher.get(position));
+                                it.putExtra("gambar", gambar.get(position));
+                                it.putExtra("sk", sk.get(position));
+                                it.putExtra("tgl_berlaku", response.body().getData().get(position).getTglBerlaku2());
+                                startActivity(it);
+                            } else {
+                                Intent it = new Intent();
+                                it.putExtra("kd_voucher", kd_voucher.get(position));
+                                it.putExtra("nama_voucher", nama_voucher.get(position));
+                                it.putExtra("nilai_voucher", nilai_voucher.get(position));
+                                setResult(2, it);
+                                finish();
+                            }
                             //Toasty.success(act_voucher.this, "Terpakai", Toast.LENGTH_SHORT).show();
                         }
                     });

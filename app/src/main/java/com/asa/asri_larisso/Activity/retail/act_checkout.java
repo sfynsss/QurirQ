@@ -67,7 +67,7 @@ public class act_checkout extends AppCompatActivity {
     String no_ent, a = "";
 
     TextView ganti_alamat, total_belanja, ongkir, jumlah_total, harga_ongkir;
-    TextView alamat_pengiriman, nama_penerima, no_penerima;
+    TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher;
     ImageView nama_kurir;
     ListView list_barang;
     Button btn_pengiriman, pilih_pembayaran;
@@ -80,6 +80,8 @@ public class act_checkout extends AppCompatActivity {
     ArrayList<String> costs = new ArrayList<>();
     ArrayList<String> hrg_ongkir = new ArrayList<>();
     ListView list_pengiriman;
+    String tmp_nm_voucher, tmp_kd_voucher;
+    double nilai_voucher = 0;
 
     // Koordinat Lokasi Penerima
     double initialLat = 0;
@@ -133,6 +135,7 @@ public class act_checkout extends AppCompatActivity {
         btn_pengiriman = findViewById(R.id.btn_pengiriman);
         pilih_pembayaran = findViewById(R.id.pilih_pembayaran);
         pilih_voucher = findViewById(R.id.pilih_voucher);
+        nama_voucher = findViewById(R.id.nama_voucher);
 
         alamat_pengiriman = findViewById(R.id.alamat_pengiriman);
         nama_penerima = findViewById(R.id.nama_penerima);
@@ -162,7 +165,9 @@ public class act_checkout extends AppCompatActivity {
         pilih_voucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_checkout.this, act_voucher.class));
+                Intent intent = new Intent(act_checkout.this, act_voucher.class);
+                intent.putExtra("sts", "checkout");
+                startActivityForResult(intent, 0);
             }
         });
 
@@ -584,6 +589,11 @@ public class act_checkout extends AppCompatActivity {
                 netto = Double.parseDouble("0") + total;
                 ongkir_total = Double.parseDouble("0");
                 sts_kurir = false;
+            } else if (resultCode == 2) {
+                tmp_nm_voucher = data.getStringExtra("nama_voucher");
+                tmp_kd_voucher = data.getStringExtra("kd_voucher");
+                nilai_voucher = Double.parseDouble(data.getStringExtra("nilai_voucher"));
+                nama_voucher.setText(tmp_nm_voucher);
             }
         }
     }
