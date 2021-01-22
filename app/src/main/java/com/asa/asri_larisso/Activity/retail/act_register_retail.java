@@ -52,7 +52,7 @@ public class act_register_retail extends AppCompatActivity {
 
     Api api;
     Session session;
-    Call <RegisterResponse> register;
+    Call<RegisterResponse> register;
     String firebase_token = "";
 
     final Calendar calendar = Calendar.getInstance();
@@ -119,7 +119,7 @@ public class act_register_retail extends AppCompatActivity {
         btn_daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                register = api.register(username.getText().toString()+"",  tgl_lahir.getText().toString(),"RETAIL", email.getText().toString()+"",
+                register = api.register(username.getText().toString() + "", tgl_lahir.getText().toString(), "RETAIL", email.getText().toString() + "",
                         alamat.getText().toString(), no_telp.getText().toString(), password.getText().toString(), firebase_token, jenis_kelamin.getSelectedItem().toString());
 //                startActivity(new Intent(act_register_retail.this, act_otp_validation_retail.class));
                 progressBar.setVisibility(View.VISIBLE);
@@ -133,13 +133,13 @@ public class act_register_retail extends AppCompatActivity {
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         if (response.isSuccessful()) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            session.setUserStatus(true, response.body().getRegister().getId()+"",
-                                    response.body().getRegister().getName()+"",
-                                    response.body().getRegister().getEmail()+"",
-                                    response.body().getRegister().getApiToken()+"",
-                                    response.body().getRegister().getOtoritas()+"");
+                            session.setUserStatus(true, response.body().getRegister().getId() + "",
+                                    response.body().getRegister().getName() + "",
+                                    response.body().getRegister().getEmail() + "",
+                                    response.body().getRegister().getApiToken() + "",
+                                    response.body().getRegister().getOtoritas() + "");
                             Intent it = new Intent(act_register_retail.this, act_otp_validation_retail.class);
-                            it.putExtra("email", response.body().getRegister().getEmail()+"");
+                            it.putExtra("email", response.body().getRegister().getEmail() + "");
                             startActivity(it);
                             pd.hide();
                             finish();
@@ -154,7 +154,7 @@ public class act_register_retail extends AppCompatActivity {
                     public void onFailure(Call<RegisterResponse> call, Throwable t) {
                         pd.hide();
                         Toasty.error(act_register_retail.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                        Log.d("Error", "onFailure: " +t.getMessage());
+                        Log.d("Error", "onFailure: " + t.getMessage());
                     }
                 });
             }
@@ -165,13 +165,13 @@ public class act_register_retail extends AppCompatActivity {
         show_password.setOnClickListener(mToggleShowPasswordButton);
     }
 
-    View.OnClickListener mToggleShowPasswordButton = new View.OnClickListener(){
+    View.OnClickListener mToggleShowPasswordButton = new View.OnClickListener() {
         @Override
-        public void onClick(View v){
-            if(showPasswordClicked){
+        public void onClick(View v) {
+            if (showPasswordClicked) {
                 v.setBackgroundResource(R.drawable.ic_eye_closed_24);
                 password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-            }else{
+            } else {
                 v.setBackgroundResource(R.drawable.ic_eye_open_24);
                 password.setTransformationMethod(PasswordTransformationMethod.getInstance());
             }
