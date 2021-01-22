@@ -67,8 +67,9 @@ public class act_checkout extends AppCompatActivity {
     String no_ent, a = "";
 
     TextView ganti_alamat, total_belanja, ongkir, jumlah_total, harga_ongkir;
-    TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher;
+    TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher, tx_voucher;
     ImageView nama_kurir;
+    LinearLayout linear_voucher;
     ListView list_barang;
     Button btn_pengiriman, pilih_pembayaran;
     Spinner servis;
@@ -136,6 +137,8 @@ public class act_checkout extends AppCompatActivity {
         pilih_pembayaran = findViewById(R.id.pilih_pembayaran);
         pilih_voucher = findViewById(R.id.pilih_voucher);
         nama_voucher = findViewById(R.id.nama_voucher);
+        tx_voucher = findViewById(R.id.tx_voucher);
+        linear_voucher = findViewById(R.id.linear_voucher);
 
         alamat_pengiriman = findViewById(R.id.alamat_pengiriman);
         nama_penerima = findViewById(R.id.nama_penerima);
@@ -151,7 +154,7 @@ public class act_checkout extends AppCompatActivity {
         list_barang.setAdapter(adapterCheckout);
         adapterCheckout.notifyDataSetChanged();
 
-        total_belanja.setText("" + formatRupiah.format(total));
+        total_belanja.setText("" + formatRupiah.format(total).replace(",00", ""));
 
         ganti_alamat.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,11 +177,11 @@ public class act_checkout extends AppCompatActivity {
         servis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                harga_ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))));
-                ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))));
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total));
+                harga_ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))).replace(",00", ""));
+                ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))).replace(",00", ""));
+                jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total).replace(",00", ""));
                 netto = Double.parseDouble(costs.get(position)) + total;
-                ongkir_total = Double.parseDouble(costs.get(position));
+                ongkir_total = Double.parseDouble(costs.get(position).replace(",00", ""));
                 sts_kurir = true;
             }
 
@@ -585,11 +588,13 @@ public class act_checkout extends AppCompatActivity {
                 servis.setAdapter(arrayAdapter);
                 harga_ongkir.setText("");
                 ongkir.setText("");
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + total));
+                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + total).replace(",00", ""));
                 netto = Double.parseDouble("0") + total;
                 ongkir_total = Double.parseDouble("0");
                 sts_kurir = false;
             } else if (resultCode == 2) {
+                tx_voucher.setVisibility(View.GONE);
+                linear_voucher.setVisibility(View.VISIBLE);
                 tmp_nm_voucher = data.getStringExtra("nama_voucher");
                 tmp_kd_voucher = data.getStringExtra("kd_voucher");
                 nilai_voucher = Double.parseDouble(data.getStringExtra("nilai_voucher"));

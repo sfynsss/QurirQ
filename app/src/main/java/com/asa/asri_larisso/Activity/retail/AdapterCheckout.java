@@ -71,8 +71,8 @@ public class AdapterCheckout extends ArrayAdapter<String> {
 
         viewHolder.nama_barang.setText(nm_brg.get(position));
         viewHolder.jumlah_barang.setText(qty.get(position));
-        viewHolder.harga_barang.setText(formatRupiah.format(Double.parseDouble(hrg_brg.get(position))));
-        viewHolder.subtot.setText(formatRupiah.format(Double.parseDouble(hrg_brg.get(position)) * Double.parseDouble(qty.get(position))));
+        viewHolder.harga_barang.setText(formatRupiah.format(Double.parseDouble(hrg_brg.get(position))).replace(",00", ""));
+        viewHolder.subtot.setText(formatRupiah.format(Double.parseDouble(hrg_brg.get(position)) * Double.parseDouble(qty.get(position))).replace(",00", ""));
         if (!TextUtils.isEmpty(gambar.get(position))) {
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.signature(

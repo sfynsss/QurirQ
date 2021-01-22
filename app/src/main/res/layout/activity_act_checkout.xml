@@ -303,19 +303,25 @@
                 android:orientation="horizontal"
                 android:weightSum="10">
                 <TextView
+                    android:id="@+id/tx_voucher"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="0"
+                    android:layout_weight="10"
                     android:text="Anda belum menggunakan voucher"
                     android:textColor="#000"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:gravity="center_vertical|start">
                 </TextView>
                 <LinearLayout
+                    android:id="@+id/linear_voucher"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="9"
-                    android:layout_marginVertical="10dp"
+                    android:layout_weight="10"
+                    android:visibility="gone"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/rt_checkout_bt_voucher">
                     <TextView
                         android:id="@+id/nama_voucher"
