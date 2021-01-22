@@ -67,7 +67,7 @@ public class frm_user extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-    TextView nama_pengguna, alamat;
+    TextView nama_pengguna, alamat, nama_outlet;
     LinearLayout btn_pengguna, btn_alamat, btn_logout, btn_transaksi, btn_voucher, btn_point, btn_customerservice, btn_outlet;
 
     Session session;
@@ -90,6 +90,7 @@ public class frm_user extends Fragment {
         btn_point = view.findViewById(R.id.btn_point);
         btn_outlet = view.findViewById(R.id.btn_outlet);
         btn_customerservice = view.findViewById(R.id.btn_customerservice);
+        nama_outlet = view.findViewById(R.id.nama_outlet);
 
         session = new Session(getContext());
         service = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -97,6 +98,10 @@ public class frm_user extends Fragment {
 
         if (session.getAlamat() != "null") {
             alamat.setText(session.getAlamat());
+        }
+
+        if (!session.getNamaOutlet().equals("")) {
+            nama_outlet.setText(session.getNamaOutlet());
         }
 
         btn_alamat.setOnClickListener(new View.OnClickListener() {
