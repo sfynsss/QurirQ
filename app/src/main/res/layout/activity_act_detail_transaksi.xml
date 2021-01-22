@@ -43,7 +43,7 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="290dp"
         android:background="#FFF"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
@@ -142,6 +142,59 @@
             </TextView>
         </LinearLayout>
         <LinearLayout
+            android:id="@+id/ly_ongkir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:layout_marginTop="6dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Ongkos Kirim"
+                android:gravity="center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/ongkir"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Rp.100"
+                android:textColor="#090F47"
+                android:textStyle="bold"
+                android:gravity="center_vertical|end">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ly_potongan_voucher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:layout_marginTop="6dp"
+            android:layout_marginHorizontal="16dp"
+            android:orientation="horizontal"
+            android:visibility="gone">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Potongan Voucher"
+                android:gravity="center_vertical">
+            </TextView>
+            <TextView
+                android:id="@+id/potongan_voucher"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="5"
+                android:text="Rp.100"
+                android:textColor="#090F47"
+                android:textStyle="bold"
+                android:gravity="center_vertical|end">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="10"
@@ -166,6 +219,7 @@
                 android:gravity="center_vertical|end">
             </TextView>
         </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="40dp"

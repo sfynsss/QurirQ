@@ -120,6 +120,8 @@ public class act_history_transaksi extends AppCompatActivity {
                 it.putExtra("total", subtot.get(position)+"");
                 it.putExtra("sts_byr", sts_byr.get(position)+"");
                 it.putExtra("jns_pengiriman", jns_pengiriman.get(position));
+                it.putExtra("ongkir", ongkir.get(position)+"");
+                it.putExtra("nilai_voucher", disc_value.get(position)+"");
                 startActivity(it);
             }
         });

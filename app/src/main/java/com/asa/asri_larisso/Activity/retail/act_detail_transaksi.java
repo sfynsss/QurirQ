@@ -3,8 +3,10 @@ package com.asa.asri_larisso.Activity.retail;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +30,9 @@ import retrofit2.Response;
 
 public class act_detail_transaksi extends AppCompatActivity {
 
-    TextView no_ent, tgl_transaksi, waktu_transaksi, pengiriman, sts_byr, subtotal;
+    TextView no_ent, tgl_transaksi, waktu_transaksi, pengiriman, sts_byr, subtotal, potongan_voucher, ongkir;
     ListView list_barang;
+    LinearLayout ly_ongkir, ly_potongan_voucher;
 
     NumberFormat formatRupiah;
     Session session;
@@ -61,6 +64,10 @@ public class act_detail_transaksi extends AppCompatActivity {
         sts_byr = findViewById(R.id.sts_byr);
         subtotal = findViewById(R.id.subtotal);
         list_barang = findViewById(R.id.list_barang);
+        ly_ongkir = findViewById(R.id.ly_ongkir);
+        ly_potongan_voucher = findViewById(R.id.ly_potongan_voucher);
+        potongan_voucher = findViewById(R.id.potongan_voucher);
+        ongkir = findViewById(R.id.ongkir);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -71,6 +78,10 @@ public class act_detail_transaksi extends AppCompatActivity {
         tgl_transaksi.setText(getIntent().getStringExtra("tgl_transaksi"));
         waktu_transaksi.setText(getIntent().getStringExtra("waktu_transaksi"));
         pengiriman.setText(getIntent().getStringExtra("jns_pengiriman"));
+        if (!TextUtils.isEmpty(getIntent().getStringExtra("ongkir"))) {
+            ongkir.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("ongkir"))).replace(",00",""));
+        }
+
         System.out.println(getIntent().getStringExtra("sts_byr"));
         if (getIntent().getStringExtra("sts_byr").equals("0")) {
             sts_byr.setText("Belum Terbayar");
@@ -78,6 +89,13 @@ public class act_detail_transaksi extends AppCompatActivity {
             sts_byr.setText("Lunas");
         }
         subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
+        if (TextUtils.isEmpty(getIntent().getStringExtra("nilai_voucher"))) {
+            ly_potongan_voucher.setVisibility(View.GONE);
+            potongan_voucher.setText("0");
+        } else {
+            ly_potongan_voucher.setVisibility(View.VISIBLE);
+            potongan_voucher.setText(getIntent().getStringExtra("nilai_voucher"));
+        }
 
         getDetailTransaksi = api.getDetailTransaksi(getIntent().getStringExtra("no_ent"));
         getDetailTransaksi.enqueue(new Callback<BaseResponse<DetJual>>() {
