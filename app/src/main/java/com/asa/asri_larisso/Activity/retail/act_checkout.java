@@ -67,7 +67,7 @@ public class act_checkout extends AppCompatActivity {
     String no_ent, a = "";
 
     TextView ganti_alamat, total_belanja, ongkir, jumlah_total, harga_ongkir;
-    TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher, tx_voucher;
+    TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher, tx_voucher, hapus_voucher;
     ImageView nama_kurir;
     LinearLayout linear_voucher;
     ListView list_barang;
@@ -139,6 +139,7 @@ public class act_checkout extends AppCompatActivity {
         nama_voucher = findViewById(R.id.nama_voucher);
         tx_voucher = findViewById(R.id.tx_voucher);
         linear_voucher = findViewById(R.id.linear_voucher);
+        hapus_voucher = findViewById(R.id.hapus_voucher);
 
         alamat_pengiriman = findViewById(R.id.alamat_pengiriman);
         nama_penerima = findViewById(R.id.nama_penerima);
@@ -171,6 +172,13 @@ public class act_checkout extends AppCompatActivity {
                 Intent intent = new Intent(act_checkout.this, act_voucher.class);
                 intent.putExtra("sts", "checkout");
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        hapus_voucher.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
