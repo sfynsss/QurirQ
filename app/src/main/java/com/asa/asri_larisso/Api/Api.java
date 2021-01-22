@@ -261,7 +261,7 @@ public interface Api {
             @Field("no_telp_penerima") String no_telp_penerima,
             @Field("total") String total,
             @Field("disc_pr") String disc_pr,
-            @Field("disc_value") String disc_value,
+            @Field("disc_value") double disc_value,
             @Field("kd_voucher") String kd_voucher,
 //            @Field("jml_bayar") String jml_bayar,
             @Field("jns_bayar") String jns_bayar,

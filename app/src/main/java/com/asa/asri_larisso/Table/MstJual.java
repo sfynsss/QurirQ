@@ -10,7 +10,7 @@ public class MstJual {
     private String noEnt;
     @SerializedName("id_user")
     @Expose
-    private Integer idUser;
+    private String idUser;
     @SerializedName("sts_byr")
     @Expose
     private Integer stsByr;
@@ -23,6 +23,12 @@ public class MstJual {
     @SerializedName("total")
     @Expose
     private Integer total;
+    @SerializedName("ongkir")
+    @Expose
+    private Integer ongkir;
+    @SerializedName("disc_value")
+    @Expose
+    private String discValue;
     @SerializedName("jumlah")
     @Expose
     private Integer jumlah;
@@ -35,11 +41,11 @@ public class MstJual {
         this.noEnt = noEnt;
     }
 
-    public Integer getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
@@ -73,6 +79,22 @@ public class MstJual {
 
     public void setTotal(Integer total) {
         this.total = total;
+    }
+
+    public Integer getOngkir() {
+        return ongkir;
+    }
+
+    public void setOngkir(Integer ongkir) {
+        this.ongkir = ongkir;
+    }
+
+    public String getDiscValue() {
+        return discValue;
+    }
+
+    public void setDiscValue(String discValue) {
+        this.discValue = discValue;
     }
 
     public Integer getJumlah() {

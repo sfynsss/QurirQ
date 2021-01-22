@@ -81,7 +81,7 @@ public class act_checkout extends AppCompatActivity {
     ArrayList<String> costs = new ArrayList<>();
     ArrayList<String> hrg_ongkir = new ArrayList<>();
     ListView list_pengiriman;
-    String tmp_nm_voucher, tmp_kd_voucher;
+    String tmp_nm_voucher = "", tmp_kd_voucher = "";
     double nilai_voucher = 0;
 
     // Koordinat Lokasi Penerima
@@ -187,6 +187,25 @@ public class act_checkout extends AppCompatActivity {
                 tmp_kd_voucher = "";
                 nilai_voucher = 0;
                 nama_voucher.setText("");
+                if (sts_kurir == false) {
+                    harga_ongkir.setText("");
+                    ongkir.setText(formatRupiah.format(0).replace(",00", ""));
+                    if (nilai_voucher == 0) {
+                        jumlah_total.setText(formatRupiah.format(0 + total).replace(",00", ""));
+                    } else {
+                        jumlah_total.setText(formatRupiah.format(0 + total - nilai_voucher).replace(",00", ""));
+                    }
+                    netto = total - nilai_voucher;
+                } else {
+                    harga_ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
+                    ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
+                    if (nilai_voucher == 0) {
+                        jumlah_total.setText(formatRupiah.format(ongkir_total + total).replace(",00", ""));
+                    } else {
+                        jumlah_total.setText(formatRupiah.format(ongkir_total + total - nilai_voucher).replace(",00", ""));
+                    }
+                    netto = ongkir_total + total - nilai_voucher;
+                }
             }
         });
 
@@ -196,7 +215,11 @@ public class act_checkout extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 harga_ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))).replace(",00", ""));
                 ongkir.setText(formatRupiah.format(Double.parseDouble(costs.get(position))).replace(",00", ""));
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total).replace(",00", ""));
+                if (nilai_voucher == 0) {
+                    jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total).replace(",00", ""));
+                } else {
+                    jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total - nilai_voucher).replace(",00", ""));
+                }
                 netto = Double.parseDouble(costs.get(position)) + total;
                 ongkir_total = Double.parseDouble(costs.get(position).replace(",00", ""));
                 sts_kurir = true;
@@ -240,6 +263,7 @@ public class act_checkout extends AppCompatActivity {
 
         //set customer details
         TransactionRequest transactionRequest = new TransactionRequest(no_ent, (long) netto);
+//        TransactionRequest transactionRequest = new TransactionRequest(System.currentTimeMillis() + "", (long) netto);
         transactionRequest.setCustomerDetails(initCustomerDetails());
 
         ShippingAddress shippingAddress = new ShippingAddress();
@@ -271,7 +295,12 @@ public class act_checkout extends AppCompatActivity {
         // set item details
         ArrayList<ItemDetails> itemDetailsArrayList = new ArrayList<>();
         ItemDetails itemDetails1 = new ItemDetails("ongkir", (int) ongkir_total, 1, "ongkir");
+        ItemDetails itemDetails2 = null;
+        if (nilai_voucher != 0) {
+            itemDetails2 = new ItemDetails("diskon", (int) -nilai_voucher, 1, "nilai_voucher");
+        }
         itemDetailsArrayList.add(itemDetails1);
+        itemDetailsArrayList.add(itemDetails2);
         for (int i = 0; i < kd_brg.size(); i++) {
             ItemDetails itemDetails = new ItemDetails(kd_brg.get(i), Integer.parseInt(hrg_asli.get(i)), Integer.parseInt(qty.get(i)), nm_brg.get(i));
             itemDetailsArrayList.add(itemDetails);
@@ -365,26 +394,30 @@ public class act_checkout extends AppCompatActivity {
                                 case TransactionResult.STATUS_SUCCESS:
                                     Toast.makeText(act_checkout.this, "Transaction Finished. ID: " + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
                                     initInputPenjualan("1", result.getResponse().getTransactionId());
-                                    break;
-                                case TransactionResult.STATUS_PENDING:
-                                    Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
-//                                    System.out.println("VA"+result.getResponse().getAccountNumbers().get(0).getAccountNumber());
 //                                    System.out.println("Payment type"+result.getResponse().getPaymentType());
 //                                    System.out.println("Status code"+result.getResponse().getStatusCode());
 //                                    System.out.println("Transaction ID"+result.getResponse().getTransactionId());
-//                                    System.out.println("Bank"+result.getResponse().getAccountNumbers().get(0).getBank());
+//                                    System.out.println("Bank"+result.getResponse().getBank());
 //                                    System.out.println("Expire"+result.getResponse().getPermataExpiration());
+//                                    String bank = result.getResponse().getBank();
+//                                    if (!TextUtils.isEmpty(bank)) {
+//                                        if (bank.equals("bca")) {
+//
+//                                        } else if (bank.equals("permata")) {
+//
+//                                        } else if (bank.equals("mandiri")) {
+//
+//                                        }
+//                                    }
+                                    break;
+                                case TransactionResult.STATUS_PENDING:
+                                    Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
                                     initInputPenjualan("0", result.getResponse().getTransactionId());
-
-//                                    Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
-//                                    it.putExtra("VA", result.getResponse().getAccountNumbers().get(0).getAccountNumber());
-//                                    it.putExtra("Payment Type", result.getResponse().getPaymentType());
-//                                    it.putExtra("Status Code", result.getResponse().getStatusCode());
-//                                    it.putExtra("Transaction ID", result.getResponse().getTransactionId());
-//                                    it.putExtra("Bank", result.getResponse().getAccountNumbers().get(0).getBank());
-//                                    it.putExtra("Expire", result.getResponse().getPermataExpiration());
-//                                    startActivity(it);
-
+//                                    System.out.println("Payment type"+result.getResponse().getPaymentType());
+//                                    System.out.println("Status code"+result.getResponse().getStatusCode());
+//                                    System.out.println("Transaction ID"+result.getResponse().getTransactionId());
+//                                    System.out.println("Bank"+result.getResponse());
+//                                    System.out.println("Expire"+result.getResponse().getPermataExpiration());
                                     break;
                                 case TransactionResult.STATUS_FAILED:
                                     Toast.makeText(act_checkout.this, "Transaction Failed. ID: " + result.getResponse().getTransactionId() + ". Message: " + result.getResponse().getStatusMessage(), Toast.LENGTH_LONG).show();
@@ -568,7 +601,7 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(harga_barang);
         System.out.println(quantity);
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
-                no_penerima.getText().toString(), total+"", "", "", "", "", netto+"",
+                no_penerima.getText().toString(), total+"", "", nilai_voucher, tmp_kd_voucher, "", netto+"",
                 ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id);
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
@@ -616,8 +649,26 @@ public class act_checkout extends AppCompatActivity {
                 tmp_kd_voucher = data.getStringExtra("kd_voucher");
                 nilai_voucher = Double.parseDouble(data.getStringExtra("nilai_voucher"));
                 nama_voucher.setText(tmp_nm_voucher);
-                potongan_voucher.setText("Rp"+nilai_voucher);
-                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + total - nilai_voucher).replace(",00", ""));
+                potongan_voucher.setText(formatRupiah.format(nilai_voucher).replace(",00", ""));
+                if (sts_kurir == false) {
+                    harga_ongkir.setText("");
+                    ongkir.setText(formatRupiah.format(0).replace(",00", ""));
+                    if (nilai_voucher == 0) {
+                        jumlah_total.setText(formatRupiah.format(0 + total).replace(",00", ""));
+                    } else {
+                        jumlah_total.setText(formatRupiah.format(0 + total - nilai_voucher).replace(",00", ""));
+                    }
+                    netto = total - nilai_voucher;
+                } else {
+                    harga_ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
+                    ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
+                    if (nilai_voucher == 0) {
+                        jumlah_total.setText(formatRupiah.format(ongkir_total + total).replace(",00", ""));
+                    } else {
+                        jumlah_total.setText(formatRupiah.format(ongkir_total + total - nilai_voucher).replace(",00", ""));
+                    }
+                    netto = ongkir_total + total - nilai_voucher;
+                }
             }
 
         }

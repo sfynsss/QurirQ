@@ -39,6 +39,8 @@ public class act_history_transaksi extends AppCompatActivity {
     ArrayList<String> tgl_transaksi = new ArrayList<>();
     ArrayList<String> waktu_transaksi = new ArrayList<>();
     ArrayList<String> jns_pengiriman = new ArrayList<>();
+    ArrayList<String> disc_value = new ArrayList<>();
+    ArrayList<Integer> ongkir = new ArrayList<>();
     ArrayList<Integer> subtot = new ArrayList<>();
     ArrayList<Integer> sts_byr = new ArrayList<>();
 
@@ -72,6 +74,8 @@ public class act_history_transaksi extends AppCompatActivity {
                     tgl_transaksi.clear();
                     waktu_transaksi.clear();
                     subtot.clear();
+                    ongkir.clear();
+                    disc_value.clear();
                     sts_byr.clear();
                     jns_pengiriman.clear();
 
@@ -80,6 +84,12 @@ public class act_history_transaksi extends AppCompatActivity {
                         jml_item.add(response.body().getData().get(i).getJumlah());
                         tgl_transaksi.add(TextUtils.substring(response.body().getData().get(i).getTanggal(), 0, 10));
                         waktu_transaksi.add(TextUtils.substring(response.body().getData().get(i).getTanggal(), 11, 16));
+                        if (!TextUtils.isEmpty(response.body().getData().get(i).getDiscValue())) {
+                            disc_value.add(response.body().getData().get(i).getDiscValue());
+                        } else {
+                            disc_value.add("");
+                        }
+                        ongkir.add(response.body().getData().get(i).getOngkir());
                         sts_byr.add(response.body().getData().get(i).getStsByr());
                         subtot.add(response.body().getData().get(i).getTotal());
                         jns_pengiriman.add(response.body().getData().get(i).getJnsPengiriman());
