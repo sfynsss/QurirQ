@@ -310,7 +310,7 @@
                     android:text="Anda belum menggunakan voucher">
                 </TextView>
                 <LinearLayout
-                    android:id="@+id/linear_voucher"
+                    android:id="@+id/ly_gunakan_voucher"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginHorizontal="16dp"
@@ -446,10 +446,12 @@
                 </TextView>
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ly_potongan_voucher"
                 android:layout_width="match_parent"
                 android:layout_height="30dp"
                 android:orientation="horizontal"
-                android:weightSum="2">
+                android:weightSum="2"
+                android:visibility="gone">
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"

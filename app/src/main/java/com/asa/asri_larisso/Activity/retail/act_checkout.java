@@ -61,15 +61,15 @@ public class act_checkout extends AppCompatActivity {
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
-    double total = 0, netto = 0, ongkir_total = 0;
+    double total = 0, netto = 0, ongkir_total = 0, potongan = 0;
     boolean sts_kurir = false;
     NumberFormat formatRupiah;
     String no_ent, a = "";
 
-    TextView ganti_alamat, total_belanja, ongkir, jumlah_total, harga_ongkir;
+    TextView ganti_alamat, total_belanja, ongkir, jumlah_total, harga_ongkir, potongan_voucher;
     TextView alamat_pengiriman, nama_penerima, no_penerima, nama_voucher, tx_voucher, hapus_voucher;
     ImageView nama_kurir;
-    LinearLayout linear_voucher;
+    LinearLayout ly_gunakan_voucher, ly_potongan_voucher;
     ListView list_barang;
     Button btn_pengiriman, pilih_pembayaran;
     Spinner servis;
@@ -138,8 +138,10 @@ public class act_checkout extends AppCompatActivity {
         pilih_voucher = findViewById(R.id.pilih_voucher);
         nama_voucher = findViewById(R.id.nama_voucher);
         tx_voucher = findViewById(R.id.tx_voucher);
-        linear_voucher = findViewById(R.id.linear_voucher);
+        ly_gunakan_voucher = findViewById(R.id.ly_gunakan_voucher);
         hapus_voucher = findViewById(R.id.hapus_voucher);
+        potongan_voucher = findViewById(R.id.potongan_voucher);
+        ly_potongan_voucher = findViewById(R.id.ly_potongan_voucher);
 
         alamat_pengiriman = findViewById(R.id.alamat_pengiriman);
         nama_penerima = findViewById(R.id.nama_penerima);
@@ -178,9 +180,16 @@ public class act_checkout extends AppCompatActivity {
         hapus_voucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                tx_voucher.setVisibility(View.VISIBLE);
+                ly_gunakan_voucher.setVisibility(View.GONE);
+                ly_potongan_voucher.setVisibility(View.GONE);
+                tmp_nm_voucher = "";
+                tmp_kd_voucher = "";
+                nilai_voucher = 0;
+                nama_voucher.setText("");
             }
         });
+
 
         servis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -528,7 +537,6 @@ public class act_checkout extends AppCompatActivity {
         });
     }
 
-
     public void getNoEnt() {
         getNoEnt = api.getNoEnt(session.getIdUser());
         getNoEnt.enqueue(new Callback<String>() {
@@ -602,13 +610,18 @@ public class act_checkout extends AppCompatActivity {
                 sts_kurir = false;
             } else if (resultCode == 2) {
                 tx_voucher.setVisibility(View.GONE);
-                linear_voucher.setVisibility(View.VISIBLE);
+                ly_gunakan_voucher.setVisibility(View.VISIBLE);
+                ly_potongan_voucher.setVisibility(View.VISIBLE);
                 tmp_nm_voucher = data.getStringExtra("nama_voucher");
                 tmp_kd_voucher = data.getStringExtra("kd_voucher");
                 nilai_voucher = Double.parseDouble(data.getStringExtra("nilai_voucher"));
                 nama_voucher.setText(tmp_nm_voucher);
+                potongan_voucher.setText("Rp"+nilai_voucher);
+                jumlah_total.setText(formatRupiah.format(Double.parseDouble("0") + total - nilai_voucher).replace(",00", ""));
             }
+
         }
+
     }
 
     public double CalculationByDistance(double initialLat, double initialLong, double finalLat, double finalLong){
