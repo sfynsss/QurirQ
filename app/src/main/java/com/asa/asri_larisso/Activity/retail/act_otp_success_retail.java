@@ -22,7 +22,7 @@ public class act_otp_success_retail extends AppCompatActivity {
         btn_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_otp_success_retail.this, act_home_retail.class));
+                startActivity(new Intent(act_otp_success_retail.this, act_pilih_outlet_retail.class));
                 finish();
             }
         });
