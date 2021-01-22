@@ -275,7 +275,8 @@ public interface Api {
             @Field("jumlah") String jumlah,
             @Field("satuan") String satuan,
             @Field("sts_jual") String sts_jual,
-            @Field("sts_bayar") String sts_bayar
+            @Field("sts_bayar") String sts_bayar,
+            @Field("transaction_id") String transaction_id
 
     );
 
