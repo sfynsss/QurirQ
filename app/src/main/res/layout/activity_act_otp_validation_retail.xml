@@ -119,7 +119,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:gravity="center">
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
         <Button
             android:id="@+id/btn_next"
             android:layout_width="220dp"
@@ -129,6 +131,25 @@
             android:textAllCaps="false"
             android:background="@drawable/rt_bt_tertiary">
         </Button>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tidak menerima kode? ">
+            </TextView>
+            <TextView
+                android:id="@+id/resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Klik disini"
+                android:textStyle="bold"
+                android:textColor="#FF661B">
+            </TextView>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

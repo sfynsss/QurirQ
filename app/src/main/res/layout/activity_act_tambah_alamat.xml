@@ -267,7 +267,7 @@
                     android:background="@drawable/rt_bt_form"
                     android:hint="082345678910"
                     android:textSize="13dp"
-                    android:inputType="text"
+                    android:inputType="text|number"
                     android:imeOptions="actionNext"
                     android:drawablePadding="10dp"
                     android:paddingLeft="20dp">
