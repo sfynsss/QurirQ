@@ -282,7 +282,10 @@ public interface Api {
             @Field("satuan") String satuan,
             @Field("sts_jual") String sts_jual,
             @Field("sts_bayar") String sts_bayar,
-            @Field("transaction_id") String transaction_id
+            @Field("transaction_id") String transaction_id,
+            @Field("no_va") String no_va,
+            @Field("payment_bank") String payment_bank,
+            @Field("payment_type") String payment_type
 
     );
 

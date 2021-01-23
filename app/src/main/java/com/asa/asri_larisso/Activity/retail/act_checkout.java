@@ -98,6 +98,8 @@ public class act_checkout extends AppCompatActivity {
     Call<BaseResponse> cekOngkirCod;
     Call<String> getNoEnt;
     Call<BaseResponse> inputPenjualan;
+    
+    String no_va = "", payment_type = "", payment_bank = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -390,34 +392,84 @@ public class act_checkout extends AppCompatActivity {
                     @Override
                     public void onTransactionFinished(TransactionResult result) {
                         if (result.getResponse() != null) {
+                            // Credit Card
+                            if (result.getResponse().getPaymentType().equals("credit_card")) {
+                                no_va = result.getResponse().getMaskedCard();
+                                payment_type = "Credit Card";
+                                payment_bank = result.getResponse().getBank();
+                            }
+
+                            // BCA Klikpay
+                            if (result.getResponse().getPaymentType().equals("bca_klikpay")) {
+                                no_va = result.getResponse().getTransactionId();
+                                payment_type = "BCA KlikPay";
+                                payment_bank = "BCA";
+                            }
+
+                            // CIMB Clicks
+                            if (result.getResponse().getPaymentType().equals("cimb_clicks")) {
+                                no_va = result.getResponse().getTransactionId();
+                                payment_type = "CIMB Clikcs";
+                                payment_bank = "CIMB";
+                            }
+
+                            // Danamon Online
+                            if (result.getResponse().getPaymentType().equals("danamon_online")) {
+                                no_va = result.getResponse().getTransactionId();
+                                payment_type = "Danamon Online Banking";
+                                payment_bank = "DANAMON";
+                            }
+
+                            // Bank Transfer
+                            if (result.getResponse().getPaymentType().equals("bank_transfer")) {
+                                if(!TextUtils.isEmpty(result.getResponse().getPermataVANumber())){
+                                    no_va = result.getResponse().getPermataVANumber();
+                                    payment_bank = "PERMATA";
+                                } else if(!TextUtils.isEmpty(result.getResponse().getMandiriBillExpiration())){
+                                    no_va = result.getResponse().getMandiriBillExpiration();
+                                    payment_bank = "MANDIRI";
+                                } else if (result.getResponse().getAccountNumbers() != null) {
+                                    no_va = result.getResponse().getAccountNumbers().get(0).getAccountNumber();
+                                    payment_bank = result.getResponse().getAccountNumbers().get(0).getBank();
+                                } else {
+                                    no_va = result.getResponse().getTransactionId();
+                                    payment_bank = "Other Bank";
+                                }
+
+                                payment_type = "Bank Transfer";
+                            }
+
+                            if (result.getResponse().getPaymentType().equals("echannel")) {
+                                if(!TextUtils.isEmpty(result.getResponse().getPaymentCode())){
+                                   no_va = result.getResponse().getPaymentCode();
+                                   payment_bank = "MANDIRI";
+                                }
+
+                                payment_type = "Bank Transfer";
+                            }
+
+                            // GOPAY
+                            if (result.getResponse().getPaymentType().equals("gopay")) {
+                                no_va = result.getResponse().getTransactionId();
+                                payment_bank = "GOPAY";
+                                payment_type = "Virtual Cash";
+                            }
+
+                            // AKULAKU
+                            if (result.getResponse().getPaymentType().equals("akulaku")) {
+                                no_va = result.getResponse().getTransactionId();
+                                payment_bank = "AKULAKU";
+                                payment_type = "Virtual Cash";
+                            }
+
                             switch (result.getStatus()) {
                                 case TransactionResult.STATUS_SUCCESS:
                                     Toast.makeText(act_checkout.this, "Transaction Finished. ID: " + result.getResponse().getTransactionId(), Toast.LENGTH_LONG).show();
-                                    initInputPenjualan("1", result.getResponse().getTransactionId());
-//                                    System.out.println("Payment type"+result.getResponse().getPaymentType());
-//                                    System.out.println("Status code"+result.getResponse().getStatusCode());
-//                                    System.out.println("Transaction ID"+result.getResponse().getTransactionId());
-//                                    System.out.println("Bank"+result.getResponse().getBank());
-//                                    System.out.println("Expire"+result.getResponse().getPermataExpiration());
-//                                    String bank = result.getResponse().getBank();
-//                                    if (!TextUtils.isEmpty(bank)) {
-//                                        if (bank.equals("bca")) {
-//
-//                                        } else if (bank.equals("permata")) {
-//
-//                                        } else if (bank.equals("mandiri")) {
-//
-//                                        }
-//                                    }
+                                    initInputPenjualan("1", result.getResponse().getTransactionId(), no_va, payment_bank, payment_type, "sukses");
                                     break;
                                 case TransactionResult.STATUS_PENDING:
                                     Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
-                                    initInputPenjualan("0", result.getResponse().getTransactionId());
-//                                    System.out.println("Payment type"+result.getResponse().getPaymentType());
-//                                    System.out.println("Status code"+result.getResponse().getStatusCode());
-//                                    System.out.println("Transaction ID"+result.getResponse().getTransactionId());
-//                                    System.out.println("Bank"+result.getResponse());
-//                                    System.out.println("Expire"+result.getResponse().getPermataExpiration());
+                                    initInputPenjualan("0", result.getResponse().getTransactionId(), no_va, payment_bank, payment_type, "pending");
                                     break;
                                 case TransactionResult.STATUS_FAILED:
                                     Toast.makeText(act_checkout.this, "Transaction Failed. ID: " + result.getResponse().getTransactionId() + ". Message: " + result.getResponse().getStatusMessage(), Toast.LENGTH_LONG).show();
@@ -590,11 +642,13 @@ public class act_checkout extends AppCompatActivity {
         });
     }
 
-    public void initInputPenjualan(String sts_bayar, String transaction_id) {
+    public void initInputPenjualan(String sts_bayar, String transaction_id, final String va, final String payment_bank, final String payment_type, final String sts) {
         String kode_barang = TextUtils.join(";", kd_brg);
         String nama_barang = TextUtils.join(";", nm_brg);
         String harga_barang = TextUtils.join(";", hrg_asli);
         String quantity = TextUtils.join(";", qty);
+
+        System.out.println(no_va+" | "+payment_bank+" | "+payment_type);
 
         System.out.println(kode_barang);
         System.out.println(nama_barang);
@@ -602,13 +656,24 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(quantity);
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
                 no_penerima.getText().toString(), total+"", "", nilai_voucher, tmp_kd_voucher, "", netto+"",
-                ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id);
+                ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id,
+                va, payment_bank, payment_type);
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
-                    startActivity(new Intent(act_checkout.this, act_home_retail.class));
-                    finish();
+                    if (sts.equals("sukses")) {
+                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                        finish();
+                    } else if (sts.equals("pending")){
+                        Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
+                        it.putExtra("payment_type", payment_type+"");
+                        it.putExtra("payment_bank", payment_bank+"");
+                        it.putExtra("va", va+"");
+                        it.putExtra("total", netto+"");
+                        startActivity(it);
+                        finish();
+                    }
                 } else {
                     Toasty.error(act_checkout.this, "Error, Input Data Gagal !!!", Toast.LENGTH_SHORT).show();
                 }

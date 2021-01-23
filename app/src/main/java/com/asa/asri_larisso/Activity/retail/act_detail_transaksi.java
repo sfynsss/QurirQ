@@ -87,6 +87,8 @@ public class act_detail_transaksi extends AppCompatActivity {
             sts_byr.setText("Belum Terbayar");
         } else if (getIntent().getStringExtra("sts_byr").equals("1")) {
             sts_byr.setText("Lunas");
+        } else if (getIntent().getStringExtra("sts_byr").equals("2")) {
+            sts_byr.setText("Transaksi Dibatalkan");
         }
         subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
         if (TextUtils.isEmpty(getIntent().getStringExtra("nilai_voucher"))) {
