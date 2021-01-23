@@ -121,8 +121,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("resendAktifasi")
     Call<BaseResponse> resendAktifasi(
-            @Field("email") String email,
-            @Field("firebase_token") String firebase_token
+            @Field("email") String email
     );
 
     @FormUrlEncoded

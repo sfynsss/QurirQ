@@ -147,13 +147,12 @@ public class act_otp_validation_retail extends AppCompatActivity {
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                resendAktifasi = api.resendAktifasi(email.getText().toString() + "", firebase_token);
+                resendAktifasi = api.resendAktifasi(email.getText().toString() + "");
                 resendAktifasi.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         if (response.isSuccessful()) {
-                            session.getToken();
-                            finish();
+                            Toasty.success(getApplicationContext(), "Silahkan cek kembali email Anda untuk kode OTP !!!", Toast.LENGTH_SHORT).show();
                         } else {
                             Toasty.error(getApplicationContext(), "Gagal Resend Aktifasi", Toast.LENGTH_SHORT).show();
                         }
