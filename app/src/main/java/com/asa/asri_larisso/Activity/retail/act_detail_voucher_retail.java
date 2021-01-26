@@ -107,7 +107,7 @@ public class act_detail_voucher_retail extends AppCompatActivity {
     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
     private void barcode() throws WriterException {
-        BitMatrix bitMatrix = multiFormatWriter.encode(kd_voucher, BarcodeFormat.CODE_128, 500, 60, null);
+        BitMatrix bitMatrix = multiFormatWriter.encode(kd_voucher, BarcodeFormat.QR_CODE, 1000, 1000, null);
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
         barcode_voucher.setImageBitmap(bitmap);
