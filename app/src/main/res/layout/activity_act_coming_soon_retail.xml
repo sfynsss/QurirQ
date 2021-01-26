@@ -8,12 +8,51 @@
     android:orientation="vertical"
     tools:context=".Activity.retail.act_coming_soon_retail">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginHorizontal="16dp"
-        android:text="Terima kasih atas antusiasme para customer. Tetap setia nantikan peluncuran LaRisso Apps segera, pada Februari 2021 ya!">
+        android:layout_marginTop="45dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35sp"
+            android:text="TERIMA "
+            android:textColor="#FF661B"
+            android:textStyle="bold">
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="35dp"
+            android:text="KASIH"
+            android:textColor="#FFA52E"
+            android:textStyle="bold">
+        </TextView>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="atas antusiasme anda"
+        android:textSize="18sp">
+    </TextView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_fileName="coming-soon-animation.json">
+    </com.airbnb.lottie.LottieAnimationView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="nantikan kehadiran kami"
+        android:textSize="18sp">
     </TextView>
 
 </LinearLayout>
