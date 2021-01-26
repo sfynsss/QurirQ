@@ -2,11 +2,14 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,8 +42,9 @@ import retrofit2.Response;
 
 public class act_point_retail extends AppCompatActivity {
 
-    ImageView back, barcode;
+    ImageView back, barcode, barcode_cust;
     TextView nama_pengguna, total_point, id_member_pengguna;
+    LinearLayout btn_barcode;
     ListView list_voucher;
     SwipeRefreshLayout swipe_refresh_layout;
     int point = 0;
@@ -68,6 +72,7 @@ public class act_point_retail extends AppCompatActivity {
         total_point = findViewById(R.id.total_point);
         barcode = findViewById(R.id.barcode);
         id_member_pengguna = findViewById(R.id.id_member_pengguna);
+        btn_barcode = findViewById(R.id.btn_barcode);
         list_voucher = findViewById(R.id.list_voucher);
         swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
         back = findViewById(R.id.back);
@@ -101,6 +106,12 @@ public class act_point_retail extends AppCompatActivity {
             }
         });
 
+        btn_barcode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                zoomBarcode();
+            }
+        });
     }
 
     public void dataPoinVoucher(){
@@ -203,6 +214,30 @@ public class act_point_retail extends AppCompatActivity {
         });
     }
 
+    public void zoomBarcode() {
+        final Dialog dialog = new Dialog(act_point_retail.this);
+        dialog.setTitle("Gambar Barang");
+        View v = getLayoutInflater().inflate(R.layout.popup_gambar_barang, null);
+        dialog.setContentView(v);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+        dialog.getWindow().setAttributes(lp);
+
+        ImageView close = v.findViewById(R.id.close);
+        barcode_cust = v.findViewById(R.id.barcode);
+
+        close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        getBarcode1();
+
+        dialog.show();
+    }
+
     public void getBarcode(){
         try {
             barcode();
@@ -214,10 +249,25 @@ public class act_point_retail extends AppCompatActivity {
     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
     private void barcode() throws WriterException {
-        BitMatrix bitMatrix = multiFormatWriter.encode(id_member_pengguna.getText().toString(), BarcodeFormat.ITF, 500, 60, null);
+        BitMatrix bitMatrix = multiFormatWriter.encode(id_member_pengguna.getText().toString(), BarcodeFormat.CODE_128, 500, 60, null);
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
         barcode.setImageBitmap(bitmap);
+    }
+
+    public void getBarcode1(){
+        try {
+            barcode1();
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
+    }
+
+    private void barcode1() throws WriterException {
+        BitMatrix bitMatrix = multiFormatWriter.encode(id_member_pengguna.getText().toString(), BarcodeFormat.CODE_128, 1700, 500, null);
+        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+        Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+        barcode_cust.setImageBitmap(bitmap);
     }
 
 }
