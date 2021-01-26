@@ -58,6 +58,7 @@ public class frm_home extends Fragment {
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
     TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, nama_outlet, tx_voucher, tx_point;
+    LinearLayout btn_outlet;
     ImageView gambar_outlet;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
@@ -90,6 +91,7 @@ public class frm_home extends Fragment {
         nama_outlet = view.findViewById(R.id.nama_outlet);
         tx_voucher = view.findViewById(R.id.tx_voucher);
         tx_point = view.findViewById(R.id.tx_point);
+        btn_outlet = view.findViewById(R.id.btn_outlet);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -155,6 +157,13 @@ public class frm_home extends Fragment {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getContext(), act_voucher.class));
+            }
+        });
+
+        btn_outlet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
             }
         });
 

@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,14 +33,19 @@ import retrofit2.Response;
 
 public class act_otp_validation_retail extends AppCompatActivity {
 
-    TextView email, resend;
+    TextView email, resend, timer;
     EditText satu, dua, tiga, empat;
+    CountDownTimer countDownTimer;
     Button btn_next;
+    LinearLayout ly_resend_in;
     Api api;
     Session session;
     Call<BaseResponse> aktifasi;
     Call<BaseResponse> resendAktifasi;
     String firebase_token = "";
+    long startTime = 30 * 1000;
+    long interval = 1 * 1000;
+    boolean timerHasStarted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +58,12 @@ public class act_otp_validation_retail extends AppCompatActivity {
         tiga = findViewById(R.id.tiga);
         empat = findViewById(R.id.empat);
         btn_next = findViewById(R.id.btn_next);
-        resend = findViewById(R.id.btn_next);
+        resend = findViewById(R.id.resend);
+        timer = findViewById(R.id.timer);
+        ly_resend_in = findViewById(R.id.ly_resend_in);
+
+        countDownTimer = new ResendIn(startTime, interval);
+        timer.setText(timer.getText() + String.valueOf(startTime / 1000));
 
         email.setText(getIntent().getStringExtra("email"));
         session = new Session(act_otp_validation_retail.this);
@@ -147,7 +159,11 @@ public class act_otp_validation_retail extends AppCompatActivity {
         resend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                resend.setVisibility(View.GONE);
+                ly_resend_in.setVisibility(View.VISIBLE);
+                countDownTimer.start();
                 resendAktifasi = api.resendAktifasi(email.getText().toString() + "");
+                System.out.println("test");
                 resendAktifasi.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -190,6 +206,24 @@ public class act_otp_validation_retail extends AppCompatActivity {
                 session.setUserActivation(false);
             }
         });
+    }
+
+    class ResendIn extends CountDownTimer{
+        public ResendIn(long startTime, long interval){
+            super(startTime, interval);
+        }
+
+        @Override
+        public void onTick(long millisUntilFinished) {
+            timer.setText("" + millisUntilFinished / 1000);
+        }
+
+        @Override
+        public void onFinish() {
+            countDownTimer.cancel();
+            resend.setVisibility(View.VISIBLE);
+            ly_resend_in.setVisibility(View.GONE);
+        }
     }
 
 }

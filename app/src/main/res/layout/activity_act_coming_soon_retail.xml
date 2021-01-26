@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFF"
+    android:orientation="vertical"
+    tools:context=".Activity.retail.act_coming_soon_retail">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_marginHorizontal="16dp"
+        android:text="Terima kasih atas antusiasme para customer. Tetap setia nantikan peluncuran LaRisso Apps segera, pada Februari 2021 ya!">
+    </TextView>
+
+</LinearLayout>

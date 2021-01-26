@@ -9,12 +9,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.asa.asri_larisso.Api.Api;
+import com.asa.asri_larisso.Api.RetrofitClient;
 import com.asa.asri_larisso.R;
+import com.asa.asri_larisso.Session.Session;
 
 public class act_customer_service_retail extends AppCompatActivity {
 
     ImageView back;
     Button hubungi_wa, hubungi_telpon;
+
+    Session session;
+    Api api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +30,9 @@ public class act_customer_service_retail extends AppCompatActivity {
         back = findViewById(R.id.back);
         hubungi_wa = findViewById(R.id.hubungi_wa);
         hubungi_telpon = findViewById(R.id.hubungi_telpon);
+
+        session = new Session(act_customer_service_retail.this);
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -35,21 +44,22 @@ public class act_customer_service_retail extends AppCompatActivity {
         hubungi_wa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String pesan = "Hallo, admin Larisso. Saya ingin menanyakan informasi mengenai ";
-                Intent kirimWA = new Intent(Intent.ACTION_SEND);
-                kirimWA.setType("text/plain");
-                kirimWA.putExtra(Intent.EXTRA_TEXT, pesan);
-                kirimWA.putExtra("jid","6282234078999" + "@s.whatsapp.net");
-                kirimWA.setPackage("com.whatsapp");
+                String noTelp = "6282234078999";
+                String pesan = "Hallo, admin. Saya " + session.getUsername() + ",pengguna LaRisso Apps. Ingin menanyakan informasi mengenai ";
+                String url = "https://api.whatsapp.com/send?phone="+ noTelp + "&text=" + pesan;
 
+                Intent kirimWA = new Intent(Intent.ACTION_VIEW);
+                kirimWA.setPackage("com.whatsapp"); //com.whatsapp or com.whatsapp.w4b
+                kirimWA.setData(Uri.parse(url));
                 startActivity(kirimWA);
+
             }
         });
 
         hubungi_telpon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String no_telepon = "082234078999";
+                String no_telepon = "081232349898";
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", no_telepon, null)));
             }
         });
