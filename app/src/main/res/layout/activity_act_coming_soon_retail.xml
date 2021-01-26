@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:background="#FFF"
     android:orientation="vertical"
+    android:gravity="center"
     tools:context=".Activity.retail.act_coming_soon_retail">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:layout_marginTop="45dp">
+        android:gravity="center">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -30,29 +30,55 @@
             android:textStyle="bold">
         </TextView>
     </LinearLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="atas antusiasme anda"
-        android:textSize="18sp">
+        android:text="A T A S   A N T U S I A S M E   A N D A"
+        android:textStyle="bold"
+        android:textColor="#FF661B">
     </TextView>
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
+        android:layout_margin="15dp"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_fileName="coming-soon-animation.json">
+        app:lottie_fileName="coming-soon-animation3.json">
     </com.airbnb.lottie.LottieAnimationView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="nantikan kehadiran kami"
-        android:textSize="18sp">
+        android:textAlignment="center"
+        android:paddingHorizontal="32dp"
+        android:textColor="#000"
+        android:textSize="17sp"
+        android:text="Tetap setia nantikan peluncuran LaRisso Apps segera, pada Februari 2021 ya!">
     </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:textColor="#000"
+        android:text="Untuk informasi &amp; promo terbaru, kunjungi "
+        android:textSize="12sp">
+    </TextView>
+
+    <Button
+        android:id="@+id/ig"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginHorizontal="32dp"
+        android:background="@drawable/ic_coming_soon">
+    </Button>
+
 
 </LinearLayout>
