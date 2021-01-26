@@ -56,14 +56,14 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="175dp"
+                android:layout_height="400dp"
                 android:layout_marginTop="-50dp"
                 android:gravity="center"
-                android:background="#FFCC4A">
+                android:background="#ffffff">
                 <ImageView
                     android:id="@+id/gambar"
-                    android:layout_width="125dp"
-                    android:layout_height="125dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center">
                 </ImageView>
             </LinearLayout>

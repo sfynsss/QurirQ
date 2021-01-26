@@ -69,7 +69,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
         session = new Session(act_detail_barang_retail.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
-        RequestOptions requestOptions = new RequestOptions().centerCrop().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
+        RequestOptions requestOptions = new RequestOptions().centerInside().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
         requestOptions.signature(
                 new ObjectKey(String.valueOf(System.currentTimeMillis())));
         Glide.with(act_detail_barang_retail.this)
@@ -80,7 +80,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
 
         nama_barang.setText(getIntent().getStringExtra("nm_brg"));
         kategori.setText(getIntent().getStringExtra("kat_brg"));
-        harga.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("harga_jl"))));
+        harga.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("harga_jl"))).replace(",00", ""));
 
         kd_brg = getIntent().getStringExtra("kd_brg");
         nm_brg = nama_barang.getText().toString();

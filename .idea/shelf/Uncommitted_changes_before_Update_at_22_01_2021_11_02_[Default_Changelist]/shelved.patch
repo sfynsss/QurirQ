@@ -1,0 +1,144 @@
+Index: app/src/main/java/com/asa/asri_larisso/Activity/retail/act_detail_voucher_retail.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.asa.asri_larisso.Activity.retail;\r\n\r\nimport androidx.appcompat.app.AppCompatActivity;\r\n\r\nimport android.graphics.Bitmap;\r\nimport android.os.Bundle;\r\nimport android.view.View;\r\nimport android.widget.ImageView;\r\nimport android.widget.TextView;\r\n\r\nimport com.asa.asri_larisso.R;\r\nimport com.asa.asri_larisso.Session.Session;\r\nimport com.bumptech.glide.Glide;\r\nimport com.bumptech.glide.request.RequestOptions;\r\nimport com.bumptech.glide.signature.ObjectKey;\r\nimport com.google.zxing.BarcodeFormat;\r\nimport com.google.zxing.MultiFormatWriter;\r\nimport com.google.zxing.WriterException;\r\nimport com.google.zxing.common.BitMatrix;\r\nimport com.journeyapps.barcodescanner.BarcodeEncoder;\r\n\r\npublic class act_detail_voucher_retail extends AppCompatActivity {\r\n\r\n    ImageView back, gambar_voucher, barcode_voucher;\r\n    TextView judul_voucher, kode_voucher, deskripsi_voucher, tgl_berlaku, tgl_berakhir;\r\n    Session session;\r\n    String kd_voucher = \"\";\r\n\r\n    @Override\r\n    protected void onCreate(Bundle savedInstanceState) {\r\n        super.onCreate(savedInstanceState);\r\n        setContentView(R.layout.activity_act_detail_voucher_retail);\r\n\r\n        back = findViewById(R.id.back);\r\n        back.setOnClickListener(new View.OnClickListener() {\r\n            @Override\r\n            public void onClick(View v) {\r\n                onBackPressed();\r\n            }\r\n        });\r\n        gambar_voucher = findViewById(R.id.gambar_voucher);\r\n        judul_voucher = findViewById(R.id.judul_voucher);\r\n        deskripsi_voucher = findViewById(R.id.deskripsi_voucher);\r\n        tgl_berlaku = findViewById(R.id.tgl_berlaku);\r\n\r\n        session = new Session(this);\r\n        kd_voucher = getIntent().getStringExtra(\"kd_voucher\");\r\n        RequestOptions requestOptions = new RequestOptions();\r\n        requestOptions.signature(\r\n                new ObjectKey(String.valueOf(System.currentTimeMillis())));\r\n        Glide.with(act_detail_voucher_retail.this)\r\n                .setDefaultRequestOptions(requestOptions)\r\n                .load(\"http://\" + session.getBaseUrl() + \"/storage/\" + getIntent().getStringExtra(\"gambar\") + \"\").into(gambar_voucher);\r\n        judul_voucher.setText(getIntent().getStringExtra(\"nama_voucher\"));\r\n        tgl_berlaku.setText(getIntent().getStringExtra(\"tgl_berlaku\"));\r\n        deskripsi_voucher.setText(getIntent().getStringExtra(\"sk\"));\r\n//        getBarcode();\r\n    }\r\n\r\n    public void getBarcode(){\r\n        try {\r\n            barcode();\r\n        } catch (Exception e) {\r\n            e.printStackTrace();;\r\n        }\r\n    }\r\n\r\n    MultiFormatWriter multiFormatWriter = new MultiFormatWriter();\r\n\r\n    private void barcode() throws WriterException {\r\n        BitMatrix bitMatrix = multiFormatWriter.encode(kode_voucher.getText().toString(), BarcodeFormat.CODE_128, 500, 60, null);\r\n        BarcodeEncoder barcodeEncoder = new BarcodeEncoder();\r\n        Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);\r\n        barcode_voucher.setImageBitmap(bitmap);\r\n    }\r\n\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/asa/asri_larisso/Activity/retail/act_detail_voucher_retail.java	(revision 2726ebdb6f8636056de7a1d9f4c98df0f88d3191)
++++ app/src/main/java/com/asa/asri_larisso/Activity/retail/act_detail_voucher_retail.java	(date 1611287955299)
+@@ -2,11 +2,15 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity;
+ 
++import android.app.Dialog;
+ import android.graphics.Bitmap;
+ import android.os.Bundle;
+ import android.view.View;
++import android.widget.AdapterView;
++import android.widget.Button;
+ import android.widget.ImageView;
+ import android.widget.TextView;
++import android.widget.Toast;
+ 
+ import com.asa.asri_larisso.R;
+ import com.asa.asri_larisso.Session.Session;
+@@ -19,12 +23,15 @@
+ import com.google.zxing.common.BitMatrix;
+ import com.journeyapps.barcodescanner.BarcodeEncoder;
+ 
++import es.dmoral.toasty.Toasty;
++
+ public class act_detail_voucher_retail extends AppCompatActivity {
+ 
+     ImageView back, gambar_voucher, barcode_voucher;
+     TextView judul_voucher, kode_voucher, deskripsi_voucher, tgl_berlaku, tgl_berakhir;
+     Session session;
+     String kd_voucher = "";
++    Button btn_gunakan;
+ 
+     @Override
+     protected void onCreate(Bundle savedInstanceState) {
+@@ -42,6 +49,7 @@
+         judul_voucher = findViewById(R.id.judul_voucher);
+         deskripsi_voucher = findViewById(R.id.deskripsi_voucher);
+         tgl_berlaku = findViewById(R.id.tgl_berlaku);
++        btn_gunakan = findViewById(R.id.btn_gunakan);
+ 
+         session = new Session(this);
+         kd_voucher = getIntent().getStringExtra("kd_voucher");
+@@ -54,7 +62,32 @@
+         judul_voucher.setText(getIntent().getStringExtra("nama_voucher"));
+         tgl_berlaku.setText(getIntent().getStringExtra("tgl_berlaku"));
+         deskripsi_voucher.setText(getIntent().getStringExtra("sk"));
+-//        getBarcode();
++
++        btn_gunakan.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                gunakanVoucher();
++            }
++        });
++    }
++
++    public void gunakanVoucher() {
++        final Dialog dialog = new Dialog(act_detail_voucher_retail.this);
++        dialog.setTitle("Gambar Barang");
++        View v = getLayoutInflater().inflate(R.layout.popup_barcode_voucher, null);
++        dialog.setContentView(v);
++        ImageView close = v.findViewById(R.id.close);
++        barcode_voucher = v.findViewById(R.id.barcode);
++
++        close.setOnClickListener(new View.OnClickListener() {
++            @Override
++            public void onClick(View v) {
++                dialog.dismiss();
++            }
++        });
++        getBarcode();
++
++        dialog.show();
+     }
+ 
+     public void getBarcode(){
+@@ -68,7 +101,7 @@
+     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
+ 
+     private void barcode() throws WriterException {
+-        BitMatrix bitMatrix = multiFormatWriter.encode(kode_voucher.getText().toString(), BarcodeFormat.CODE_128, 500, 60, null);
++        BitMatrix bitMatrix = multiFormatWriter.encode(kd_voucher, BarcodeFormat.CODE_128, 500, 60, null);
+         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
+         Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
+         barcode_voucher.setImageBitmap(bitmap);
+Index: app/src/main/res/layout/popup_barcode_voucher.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/popup_barcode_voucher.xml	(date 1611287982627)
++++ app/src/main/res/layout/popup_barcode_voucher.xml	(date 1611287982627)
+@@ -0,0 +1,43 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout
++    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
++    android:layout_height="wrap_content"
++    android:orientation="vertical"
++    android:weightSum="10">
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        android:weightSum="10"
++        android:layout_margin="10dp">
++        <ImageView
++            android:id="@+id/close"
++            android:layout_width="0dp"
++            android:layout_height="30dp"
++            android:layout_weight="2"
++            android:src="@drawable/ic_clear_24"></ImageView>
++        <TextView
++            android:layout_width="0dp"
++            android:layout_height="match_parent"
++            android:layout_weight="8"
++            android:text="Barcode Voucher"
++            android:gravity=""
++            android:textStyle="bold"
++            android:fontFamily="@font/poppins_medium"
++            android:textSize="20dp"></TextView>
++    </LinearLayout>
++
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="0dp"
++        android:layout_weight="10"
++        android:padding="10dp">
++
++        <ImageView
++            android:id="@+id/barcode"
++            android:layout_width="match_parent"
++            android:layout_height="100dp"></ImageView>
++    </LinearLayout>
++
++</LinearLayout>
+\ No newline at end of file

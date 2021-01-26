@@ -214,7 +214,7 @@ public class act_point_retail extends AppCompatActivity {
     MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
 
     private void barcode() throws WriterException {
-        BitMatrix bitMatrix = multiFormatWriter.encode(id_member_pengguna.getText().toString(), BarcodeFormat.CODE_128, 500, 60, null);
+        BitMatrix bitMatrix = multiFormatWriter.encode(id_member_pengguna.getText().toString(), BarcodeFormat.ITF, 500, 60, null);
         BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
         Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
         barcode.setImageBitmap(bitmap);
