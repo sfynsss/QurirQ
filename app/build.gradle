@@ -8,8 +8,8 @@ android {
         applicationId "com.asa.asri_larisso"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 3
-        versionName "3"
+        versionCode 4
+        versionName ""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
@@ -17,7 +17,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            versionNameSuffix '2'
+            versionNameSuffix ''
         }
     }
 }
