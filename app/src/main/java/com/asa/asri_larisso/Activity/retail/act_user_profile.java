@@ -58,9 +58,11 @@ public class act_user_profile extends AppCompatActivity {
         email.setText(session.getEmail());
         jenis_kelamin.setText(session.getJenisKelamin());
 
-        if (jenis_kelamin.equals("Laki-Laki")){
+        if (session.getJenisKelamin().equalsIgnoreCase("laki-laki")){
+            System.out.println("1");
             profil_pic.setBackgroundResource(R.drawable.rt_profil_ic_person1);
         } else {
+            System.out.println("2");
             profil_pic.setBackgroundResource(R.drawable.rt_profil_ic_person2);
         }
 

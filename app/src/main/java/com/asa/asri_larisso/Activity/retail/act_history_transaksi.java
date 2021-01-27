@@ -35,14 +35,17 @@ public class act_history_transaksi extends AppCompatActivity {
     Call<BaseResponse<MstJual>> getDataTransaksi;
 
     ArrayList<String> no_ent = new ArrayList<>();
-    ArrayList<Integer> jml_item = new ArrayList<>();
+    ArrayList<String> jml_item = new ArrayList<>();
     ArrayList<String> tgl_transaksi = new ArrayList<>();
     ArrayList<String> waktu_transaksi = new ArrayList<>();
     ArrayList<String> jns_pengiriman = new ArrayList<>();
     ArrayList<String> disc_value = new ArrayList<>();
-    ArrayList<Integer> ongkir = new ArrayList<>();
-    ArrayList<Integer> subtot = new ArrayList<>();
-    ArrayList<Integer> sts_byr = new ArrayList<>();
+    ArrayList<String> ongkir = new ArrayList<>();
+    ArrayList<String> subtot = new ArrayList<>();
+    ArrayList<String> sts_byr = new ArrayList<>();
+    ArrayList<String> payment_type = new ArrayList<>();
+    ArrayList<String> bank_name = new ArrayList<>();
+    ArrayList<String> va = new ArrayList<>();
 
     AdapterTransaksi adapterTransaksi;
 
@@ -78,6 +81,9 @@ public class act_history_transaksi extends AppCompatActivity {
                     disc_value.clear();
                     sts_byr.clear();
                     jns_pengiriman.clear();
+                    payment_type.clear();
+                    bank_name.clear();
+                    va.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         no_ent.add(response.body().getData().get(i).getNoEnt());
@@ -93,10 +99,23 @@ public class act_history_transaksi extends AppCompatActivity {
                         sts_byr.add(response.body().getData().get(i).getStsByr());
                         subtot.add(response.body().getData().get(i).getTotal());
                         jns_pengiriman.add(response.body().getData().get(i).getJnsPengiriman());
+                        payment_type.add(response.body().getData().get(i).getPaymentType());
+                        bank_name.add(response.body().getData().get(i).getBankName());
+                        va.add(response.body().getData().get(i).getVaNumber());
                     }
 
                     System.out.println(waktu_transaksi);
-                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot);
+                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, new AdapterTransaksi.OnEditLocationListener() {
+                        @Override
+                        public void onClickAdapter(int position) {
+                            Intent it = new Intent(act_history_transaksi.this, act_status_pembayaran.class);
+                            it.putExtra("payment_type", payment_type.get(position));
+                            it.putExtra("payment_bank", bank_name.get(position));
+                            it.putExtra("va", va.get(position));
+                            it.putExtra("total", subtot.get(position));
+                            startActivity(it);
+                        }
+                    });
                     adapterTransaksi.notifyDataSetChanged();
                     list_transaksi.setAdapter(adapterTransaksi);
                 } else {
