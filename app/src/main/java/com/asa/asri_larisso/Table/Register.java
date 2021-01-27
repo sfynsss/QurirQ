@@ -23,6 +23,9 @@ public class Register {
     @SerializedName("otoritas")
     @Expose
     private String otoritas;
+    @SerializedName("JNS_KELAMIN")
+    @Expose
+    private String jNSKELAMIN;
 
     public String getName() {
         return name;
@@ -70,6 +73,14 @@ public class Register {
 
     public void setOtoritas(String otoritas) {
         this.otoritas = otoritas;
+    }
+
+    public String getJNSKELAMIN() {
+        return jNSKELAMIN;
+    }
+
+    public void setJNSKELAMIN(String jNSKELAMIN) {
+        this.jNSKELAMIN = jNSKELAMIN;
     }
 
 }
