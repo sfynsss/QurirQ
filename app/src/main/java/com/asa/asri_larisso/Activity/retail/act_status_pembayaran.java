@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,6 +17,7 @@ import java.util.Locale;
 public class act_status_pembayaran extends AppCompatActivity {
 
     TextView payment_type, payment_bank, va, total;
+    Button belanja_lagi;
     NumberFormat formatRupiah;
 
     @Override
@@ -38,10 +40,17 @@ public class act_status_pembayaran extends AppCompatActivity {
         payment_bank = findViewById(R.id.payment_bank);
         va = findViewById(R.id.va);
         total = findViewById(R.id.total);
+        belanja_lagi = findViewById(R.id.belanja_lagi);
 
         payment_type.setText(getIntent().getStringExtra("payment_type"));
         payment_bank.setText(getIntent().getStringExtra("payment_bank").toUpperCase());
         va.setText(getIntent().getStringExtra("va"));
         total.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00",""));
+        belanja_lagi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(act_status_pembayaran.this, act_coming_soon_retail.class));
+            }
+        });
     }
 }

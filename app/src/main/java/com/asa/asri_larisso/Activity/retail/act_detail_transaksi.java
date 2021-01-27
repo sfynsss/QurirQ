@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -28,11 +29,12 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class act_detail_transaksi extends AppCompatActivity {
+public class  act_detail_transaksi extends AppCompatActivity {
 
     TextView no_ent, tgl_transaksi, waktu_transaksi, pengiriman, sts_byr, subtotal, potongan_voucher, ongkir;
     ListView list_barang;
     LinearLayout ly_ongkir, ly_potongan_voucher;
+    Button lacak_pesanan;
 
     NumberFormat formatRupiah;
     Session session;
@@ -68,6 +70,7 @@ public class act_detail_transaksi extends AppCompatActivity {
         ly_potongan_voucher = findViewById(R.id.ly_potongan_voucher);
         potongan_voucher = findViewById(R.id.potongan_voucher);
         ongkir = findViewById(R.id.ongkir);
+        lacak_pesanan = findViewById(R.id.lacak_pesanan);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -127,5 +130,13 @@ public class act_detail_transaksi extends AppCompatActivity {
                 Toasty.error(act_detail_transaksi.this, t.getMessage()+"", Toast.LENGTH_SHORT).show();
             }
         });
+
+        lacak_pesanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toasty.success(getApplicationContext(), "Fitur segera hadir", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 }

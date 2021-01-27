@@ -15,13 +15,14 @@ public class Session {
         this.editor = preferences.edit();
     }
 
-    public void setUserStatus(Boolean loggedIn, String id_user, String name, String email, String token, String otoritas){
+    public void setUserStatus(Boolean loggedIn, String id_user, String name, String email, String token, String otoritas, String jenis_kelamin){
         editor.putBoolean("loggedIn", loggedIn);
         editor.putString("id_user", id_user);
         editor.putString("name", name);
         editor.putString("email", email);
         editor.putString("token", token);
         editor.putString("otoritas", otoritas);
+        editor.putString("JNS_KELAMIN", jenis_kelamin);
         editor.commit();
     }
 
@@ -45,6 +46,11 @@ public class Session {
         editor.putString("nama_outlet", nama_outlet);
         editor.putString("gambar_outlet", gambar_outlet);
         editor.putBoolean("sts_outlet", sts_outlet);
+        editor.commit();
+    }
+
+    public void setCustomerJenisKelamin(String jenis_kelamin){
+        editor.putString("JNS_KELAMIN", jenis_kelamin);
         editor.commit();
     }
 
@@ -103,6 +109,8 @@ public class Session {
     public boolean getStsOutlet() {
         return preferences.getBoolean("sts_outlet", false);
     }
+
+    public String getJenisKelamin(){ return preferences.getString("JNS_KELAMIN", ""); }
 
     public void setAlamat(String nama_penerima, String provinsi, String kota, String kecamatan, String kd_provinsi, String kd_kota,
                           String kd_kecamatan, String alamat, String kode_pos, String latitude, String longitude) {

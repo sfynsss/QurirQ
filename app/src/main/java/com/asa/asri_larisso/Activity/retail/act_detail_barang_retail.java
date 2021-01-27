@@ -159,6 +159,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 harga_jl = getIntent().getStringExtra("harga_jl");
                 gbr = getIntent().getStringExtra("gambar");
                 kat = getIntent().getStringExtra("kat_brg");
+                ke_wishlist.setBackgroundResource(R.drawable.rt_ic_fav_on);
                 inputToWishlist = api.inputToWishlist(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, gbr, kat);
                 inputToWishlist.enqueue(new Callback<BaseResponse>() {
                     @Override
@@ -166,10 +167,10 @@ public class act_detail_barang_retail extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                onBackPressed();
+                                //onBackPressed();
                             } else if (response.code() == 201) {
                                 Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                                onBackPressed();
+                                //onBackPressed();
                             }
                         } else {
                             Toasty.error(act_detail_barang_retail.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();

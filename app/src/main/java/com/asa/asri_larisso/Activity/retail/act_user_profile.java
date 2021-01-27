@@ -16,12 +16,12 @@ import com.asa.asri_larisso.Session.Session;
 
 public class act_user_profile extends AppCompatActivity {
 
-    ImageView back;
+    ImageView back, profil_pic;
     Button btn_edit;
     TextView nama_pengguna, alamat, no_telp, email;
 
     Session session;
-    Api service;
+    Api api;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +35,7 @@ public class act_user_profile extends AppCompatActivity {
                 onBackPressed();
             }
         });
+        profil_pic = findViewById(R.id.profil_pic);
         nama_pengguna = findViewById(R.id.nama_pengguna);
         alamat = findViewById(R.id.alamat);
         no_telp = findViewById(R.id.no_telp);
@@ -48,11 +49,18 @@ public class act_user_profile extends AppCompatActivity {
         });
 
         session = new Session(act_user_profile.this);
-        service = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         nama_pengguna.setText(session.getUsername());
         alamat.setText(session.getAlamat());
         no_telp.setText(session.getNoTelp());
         email.setText(session.getEmail());
+
+        if (session.getJenisKelamin().equals("Laki-Laki")){
+            profil_pic.setBackgroundResource(R.drawable.rt_profil_ic_person1);
+        } else {
+            profil_pic.setBackgroundResource(R.drawable.rt_profil_ic_person2);
+        }
+
     }
 }

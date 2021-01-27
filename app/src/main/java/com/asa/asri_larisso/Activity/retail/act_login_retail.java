@@ -87,7 +87,8 @@ public class act_login_retail extends AppCompatActivity {
                                             response.body().getUser().getName() + "",
                                             response.body().getUser().getEmail() + "",
                                             response.body().getUser().getApiToken() + "",
-                                            response.body().getUser().getOtoritas() + "");
+                                            response.body().getUser().getOtoritas() + "",
+                                            response.body().getUser().getJNSKELAMIN()+"");
                                     session.setKdCust(response.body().getUser().getKDCUST());
                                     String latitude = "";
                                     String longitude = "";
@@ -149,7 +150,8 @@ public class act_login_retail extends AppCompatActivity {
                                             response.body().getUser().getName()+"",
                                             response.body().getUser().getEmail()+"",
                                             response.body().getUser().getApiToken()+"",
-                                            response.body().getUser().getOtoritas()+"");
+                                            response.body().getUser().getOtoritas()+"",
+                                            response.body().getUser().getJNSKELAMIN()+"");
                                     session.setUserActivation(false);
                                     Intent it = new Intent(act_login_retail.this, act_otp_validation_retail.class);
                                     it.putExtra("email", response.body().getUser().getEmail()+"");

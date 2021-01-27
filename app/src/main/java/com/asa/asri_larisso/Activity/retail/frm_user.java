@@ -129,12 +129,12 @@ public class frm_user extends Fragment {
                             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                 if (response.isSuccessful()) {
                                     sweetAlertDialog.dismissWithAnimation();
-                                    session.setUserStatus(false, "","", "", "", "");
+                                    session.setUserStatus(false, "","", "", "", "", "");
                                     startActivity(new Intent(getActivity(), act_login_retail.class));
                                     getActivity().finish();
                                 } else {
                                     sweetAlertDialog.dismissWithAnimation();
-                                    session.setUserStatus(false, "","", "", "", "");
+                                    session.setUserStatus(false, "","", "", "", "", "");
                                     startActivity(new Intent(getActivity(), act_login_retail.class));
                                     getActivity().finish();
                                 }
@@ -143,7 +143,7 @@ public class frm_user extends Fragment {
                             @Override
                             public void onFailure(Call<BaseResponse> call, Throwable t) {
                                 sweetAlertDialog.dismissWithAnimation();
-                                session.setUserStatus(false, "","", "", "", "");
+                                session.setUserStatus(false, "","", "", "", "","");
                                 startActivity(new Intent(getActivity(), act_login_retail.class));
                                 getActivity().finish();
                             }
