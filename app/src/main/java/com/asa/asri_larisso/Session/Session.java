@@ -49,7 +49,7 @@ public class Session {
         editor.commit();
     }
 
-    public void setCustomerJenisKelamin(String jenis_kelamin){
+    public void setJenisKelamin(String jenis_kelamin){
         editor.putString("JNS_KELAMIN", jenis_kelamin);
         editor.commit();
     }
