@@ -59,7 +59,7 @@
                 android:id="@+id/nama_barang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
+                android:layout_marginHorizontal="8dp"
                 android:text="Nama Barang Ukuruan Barang"
                 android:textSize="16sp"
                 android:textColor="#000">

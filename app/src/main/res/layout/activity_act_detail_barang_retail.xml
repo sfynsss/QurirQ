@@ -40,20 +40,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <Button
-                android:id="@+id/ke_wishlist"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="16dp"
-                android:gravity="center"
-                android:layout_gravity="center_vertical|end"
-                android:background="@drawable/rt_ic_fav_off">
-            </Button>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
-                android:layout_marginTop="-50dp"
                 android:gravity="center"
                 android:background="#ffffff">
                 <ImageView
@@ -63,6 +52,16 @@
                     android:layout_gravity="center">
                 </ImageView>
             </LinearLayout>
+            <Button
+                android:id="@+id/ke_wishlist"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginRight="16dp"
+                android:gravity="center"
+                android:layout_gravity="center_vertical|end"
+                android:background="@drawable/rt_ic_fav_off">
+            </Button>
 
             <TextView
                 android:id="@+id/nama_barang"
