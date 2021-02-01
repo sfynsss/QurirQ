@@ -164,6 +164,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getBarangDiskon")
+    Call<BaseResponse<Barang>> getBarangDiskon(
+            @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
     @POST("getKategori")
     Call<BaseResponse<kategori>> getKategoriBarang(
             @Field("filter") String filter,

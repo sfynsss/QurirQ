@@ -17,9 +17,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.asa.asri_larisso.Api.Api;
@@ -47,6 +49,7 @@ public class act_tambah_alamat extends AppCompatActivity {
     EditText nama_penerima, alamat, no_telp, kode_pos;
     Spinner provinsi, kota, kecamatan;
     Button btn_simpan;
+    Switch lengkapi_otomatis;
 
     Api api;
     Session session;
@@ -62,8 +65,8 @@ public class act_tambah_alamat extends AppCompatActivity {
     ArrayList<String> list_kecamatan = new ArrayList<>();
     ArrayList<String> list_id_kecamatan = new ArrayList<>();
 
-    String latitude ="0";
-    String longitude ="0";
+    String latitude = "0";
+    String longitude = "0";
     String kd_alamat = "";
 
     int PERMISSION_ID = 44;
@@ -89,6 +92,7 @@ public class act_tambah_alamat extends AppCompatActivity {
         kota = findViewById(R.id.kota);
         kecamatan = findViewById(R.id.kecamatan);
         btn_simpan = findViewById(R.id.btn_simpan);
+        lengkapi_otomatis = findViewById(R.id.lengkapi_otomatis);
 
         session = new Session(act_tambah_alamat.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -97,6 +101,21 @@ public class act_tambah_alamat extends AppCompatActivity {
         checkPermissions();
         isLocationEnabled();
         requestPermissions();
+
+        lengkapi_otomatis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
+                if(checked){
+                    nama_penerima.setText(session.getUsername());
+                    alamat.setText(session.getAlamat());
+                    no_telp.setText(session.getNoTelp());
+                }else {
+                    nama_penerima.setText("");
+                    alamat.setText("");
+                    no_telp.setText("");
+                }
+            }
+        });
 
         provinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -329,15 +348,25 @@ public class act_tambah_alamat extends AppCompatActivity {
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 FusedLocationProviderClient mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                    // TODO: Consider calling
+                    //    ActivityCompat#requestPermissions
+                    // here to request the missing permissions, and then overriding
+                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                    //                                          int[] grantResults)
+                    // to handle the case where the user grants the permission. See the documentation
+                    // for ActivityCompat#requestPermissions for more details.
+                    return;
+                }
                 mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
                     @Override
                     public void onSuccess(Location location) {
-                        if (location != null){
+                        if (location != null) {
                             // Do it all with location
                             Log.d("My Current location", "Lat : " + location.getLatitude() + " Long : " + location.getLongitude());
-                            latitude  = location.getLatitude()+"";
-                            longitude = location.getLongitude()+"";
-                            System.out.println(latitude+" | "+longitude);
+                            latitude = location.getLatitude() + "";
+                            longitude = location.getLongitude() + "";
+                            System.out.println(latitude + " | " + longitude);
                             // Display in Toast
 //                            Toast.makeText(KunjunganActivity.this,
 //                                    "Lat : " + location.getLatitude() + " Long : " + location.getLongitude(),

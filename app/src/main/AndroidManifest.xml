@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".Activity.retail.act_coming_soon_retail"></activity>
+        <activity android:name=".Activity.retail.act_browse_diskon"></activity>
+        <activity android:name=".Activity.retail.act_coming_soon_retail" />
         <activity android:name=".Activity.retail.act_pilih_outlet_retail" />
         <activity android:name=".Activity.retail.act_lupa_password" />
         <activity android:name=".Activity.retail.act_search_result" />

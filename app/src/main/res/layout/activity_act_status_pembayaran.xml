@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selesaikan Pembayaran"
+                android:text="Status Pembayaran"
                 android:textSize="20dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
@@ -161,6 +161,7 @@
                 android:gravity="center_vertical">
             </TextView>
             <TextView
+                android:id="@+id/salin_va"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
@@ -241,7 +242,7 @@
             android:gravity="center">
         </TextView>
         <Button
-            android:id="@+id/belanja_lagi"
+            android:id="@+id/kembali_dashboard"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_marginTop="16dp"
@@ -249,7 +250,7 @@
             android:textStyle="bold"
             android:textColor="#FFF"
             android:textAllCaps="false"
-            android:text="Belanja Lagi"
+            android:text="Kembali ke Menu Utama"
             android:background="#FFC62A">
         </Button>
         <Button

@@ -44,7 +44,7 @@ public class act_customer_service_retail extends AppCompatActivity {
         hubungi_wa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String noTelp = "6282234078999";
+                String noTelp = "6281232349898";
                 String pesan = "Hallo, admin. Saya " + session.getUsername() + ",pengguna LaRisso Apps. Ingin menanyakan informasi mengenai ";
                 String url = "https://api.whatsapp.com/send?phone="+ noTelp + "&text=" + pesan;
 

@@ -2,6 +2,7 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -88,10 +89,15 @@ public class  act_detail_transaksi extends AppCompatActivity {
         System.out.println(getIntent().getStringExtra("sts_byr"));
         if (getIntent().getStringExtra("sts_byr").equals("0")) {
             sts_byr.setText("Belum Terbayar");
+            //sts_byr.setTextColor(0xFFA52E);
+            sts_byr.setTextColor(Color.parseColor("#FFA52E"));
         } else if (getIntent().getStringExtra("sts_byr").equals("1")) {
             sts_byr.setText("Lunas");
+            sts_byr.setTextColor(Color.parseColor("#47D764"));
+            //sts_byr.setTextColor(0x);
         } else if (getIntent().getStringExtra("sts_byr").equals("2")) {
             sts_byr.setText("Transaksi Dibatalkan");
+            //sts_byr.setTextColor(0xFF661B);
         }
         subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
         if (TextUtils.isEmpty(getIntent().getStringExtra("nilai_voucher"))) {

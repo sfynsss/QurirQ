@@ -4,6 +4,7 @@ package com.asa.asri_larisso.Activity.retail;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -64,6 +65,7 @@ public class frm_home extends Fragment {
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
     Spinner pilih_outlet;
+    CardView btn_diskon;
 
     SwipeRefreshLayout swipeRefreshLayout;
     Handler handler = new Handler();
@@ -92,6 +94,7 @@ public class frm_home extends Fragment {
         tx_voucher = view.findViewById(R.id.tx_voucher);
         tx_point = view.findViewById(R.id.tx_point);
         btn_outlet = view.findViewById(R.id.btn_outlet);
+        btn_diskon = view.findViewById(R.id.btn_diskon);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -164,6 +167,13 @@ public class frm_home extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
+            }
+        });
+
+        btn_diskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getContext(), act_browse_diskon.class));
             }
         });
 

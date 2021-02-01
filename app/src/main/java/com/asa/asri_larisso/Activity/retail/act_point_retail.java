@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -27,6 +28,7 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -160,43 +162,65 @@ public class act_point_retail extends AppCompatActivity {
 
                     adapterRedeem = new AdapterRedeem(act_point_retail.this, nmr, nama_voucher, nilai_voucher, ketentuan, masa_berlaku, new AdapterRedeem.OnEditLocationListener() {
                         @Override
-                        public void onClickAdapter(int position) {
+                        public void onClickAdapter(final int position) {
                             if (point < Integer.parseInt(ketentuan.get(position))) {
                                 Toasty.warning(act_point_retail.this, "Maaf Point Anda Kurang !!!", Toast.LENGTH_SHORT).show();
                             } else {
-                                SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
-                                Date date = new Date(System.currentTimeMillis());
-                                Calendar c = Calendar.getInstance();
-                                String dt = formatter.format(date);
-                                try {
-                                    c.setTime(formatter.parse(dt));
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
-                                c.add(Calendar.DATE, Integer.parseInt(masa_berlaku.get(position)));  // number of days to add
-                                dt = formatter.format(c.getTime());  // dt is now the new date
-
-//                                System.out.println(dt+" | "+formatter.format(date));
-                                tambahVoucher = api.tambahVoucher(session.getKdCust(), nama_voucher.get(position), nilai_voucher.get(position),
-                                        formatter.format(date), dt, "", response.body().getData().get(position).getGambarVoucher(), ketentuan.get(position));
-                                tambahVoucher.enqueue(new Callback<BaseResponse>() {
+                                final SweetAlertDialog pDialog = new SweetAlertDialog(act_point_retail.this, SweetAlertDialog.WARNING_TYPE);
+                                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                pDialog.setTitleText("WARNING");
+                                pDialog.setContentText("Apakah Anda yakin untuk Keluar ??");
+                                pDialog.setConfirmText("Iya");
+                                pDialog.setCancelText("Tidak");
+                                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
                                     @Override
-                                    public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-                                        if (response.isSuccessful()) {
-                                            getBarcode();
-                                            dataPoinVoucher();
-                                            dataSettingVoucher();
-                                            Toasty.success(act_point_retail.this, "Voucher Berhasil Anda klaim !!!", Toast.LENGTH_SHORT).show();
-                                        } else {
-                                            Toasty.warning(act_point_retail.this, "Error, voucher gagal di klaim", Toast.LENGTH_SHORT).show();
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        SimpleDateFormat formatter= new SimpleDateFormat("yyyy-MM-dd");
+                                        Date date = new Date(System.currentTimeMillis());
+                                        Calendar c = Calendar.getInstance();
+                                        String dt = formatter.format(date);
+                                        try {
+                                            c.setTime(formatter.parse(dt));
+                                        } catch (ParseException e) {
+                                            e.printStackTrace();
                                         }
-                                    }
+                                        c.add(Calendar.DATE, Integer.parseInt(masa_berlaku.get(position)));  // number of days to add
+                                        dt = formatter.format(c.getTime());  // dt is now the new date
 
-                                    @Override
-                                    public void onFailure(Call<BaseResponse> call, Throwable t) {
-                                        Toasty.error(act_point_retail.this, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        tambahVoucher = api.tambahVoucher(session.getKdCust(), nama_voucher.get(position), nilai_voucher.get(position),
+                                                formatter.format(date), dt, "", response.body().getData().get(position).getGambarVoucher(), ketentuan.get(position));
+                                        tambahVoucher.enqueue(new Callback<BaseResponse>() {
+                                            @Override
+                                            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                                                if (response.isSuccessful()) {
+                                                    getBarcode();
+                                                    dataPoinVoucher();
+                                                    dataSettingVoucher();
+                                                    Toasty.success(act_point_retail.this, "Voucher Berhasil Anda klaim !!!", Toast.LENGTH_SHORT).show();
+                                                } else {
+                                                    Toasty.warning(act_point_retail.this, "Error, voucher gagal di klaim", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+
+                                            @Override
+                                            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                                Toasty.error(act_point_retail.this, "Error "+t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
                                     }
                                 });
+                                pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        sweetAlertDialog.dismissWithAnimation();
+                                    }
+                                });
+                                pDialog.show();
+
+
+
+//                                System.out.println(dt+" | "+formatter.format(date));
+
                             }
                         }
                     });

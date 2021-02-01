@@ -1,13 +1,17 @@
 package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
+import es.dmoral.toasty.Toasty;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asa.asri_larisso.R;
 
@@ -16,8 +20,8 @@ import java.util.Locale;
 
 public class act_status_pembayaran extends AppCompatActivity {
 
-    TextView payment_type, payment_bank, va, total;
-    Button belanja_lagi;
+    TextView payment_type, payment_bank, va, total, salin_va;
+    Button kembali_dashboard;
     NumberFormat formatRupiah;
 
     @Override
@@ -40,16 +44,26 @@ public class act_status_pembayaran extends AppCompatActivity {
         payment_bank = findViewById(R.id.payment_bank);
         va = findViewById(R.id.va);
         total = findViewById(R.id.total);
-        belanja_lagi = findViewById(R.id.belanja_lagi);
+        kembali_dashboard = findViewById(R.id.kembali_dashboard);
+        salin_va = findViewById(R.id.salin_va);
 
         payment_type.setText(getIntent().getStringExtra("payment_type"));
         payment_bank.setText(getIntent().getStringExtra("payment_bank").toUpperCase());
         va.setText(getIntent().getStringExtra("va"));
         total.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00",""));
-        belanja_lagi.setOnClickListener(new View.OnClickListener() {
+        kembali_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(act_status_pembayaran.this, act_coming_soon_retail.class));
+                startActivity(new Intent(act_status_pembayaran.this, frm_home.class));
+            }
+        });
+        salin_va.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ClipboardManager manager = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                ClipData clipData = ClipData.newPlainText("", va.getText());
+                manager.setPrimaryClip(clipData);
+                Toasty.success(act_status_pembayaran.this, "No. Virtual Account disalin", Toast.LENGTH_SHORT).show();
             }
         });
     }
