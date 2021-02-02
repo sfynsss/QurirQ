@@ -170,6 +170,27 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getBarangHargaRendah")
+    Call<BaseResponse<Barang>> getBarangHargaRendah(
+            @Field("kd_kategori") String kat,
+            @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
+    @POST("getBarangHargaTinggi")
+    Call<BaseResponse<Barang>> getBarangHargaTinggi(
+            @Field("kd_kategori") String kat,
+            @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
+    @POST("getBarangHargaDiskon")
+    Call<BaseResponse<Barang>> getBarangHargaDiskon(
+            @Field("kd_kategori") String kat,
+            @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
     @POST("getKategori")
     Call<BaseResponse<kategori>> getKategoriBarang(
             @Field("filter") String filter,
