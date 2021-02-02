@@ -168,8 +168,8 @@ public class act_point_retail extends AppCompatActivity {
                             } else {
                                 final SweetAlertDialog pDialog = new SweetAlertDialog(act_point_retail.this, SweetAlertDialog.WARNING_TYPE);
                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                                pDialog.setTitleText("WARNING");
-                                pDialog.setContentText("Apakah Anda yakin untuk Keluar ??");
+                                pDialog.setTitleText("Konfirmasi");
+                                pDialog.setContentText("Tukarkan point anda dengan voucher berikut?");
                                 pDialog.setConfirmText("Iya");
                                 pDialog.setCancelText("Tidak");
                                 pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {

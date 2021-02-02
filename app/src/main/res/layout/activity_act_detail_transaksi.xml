@@ -232,6 +232,18 @@
             android:textAllCaps="false"
             android:background="#FD7468">
         </Button>
+
+        <TextView
+            android:id="@+id/batalkan_pesanan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Batalkan pesanan?"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textColor="#FD7468"
+            android:visibility="visible">
+        </TextView>
     </LinearLayout>
 
     <ListView

@@ -20,6 +20,7 @@ import com.asa.asri_larisso.Response.BaseResponse;
 import com.asa.asri_larisso.Session.Session;
 import com.asa.asri_larisso.Table.DetJual;
 import com.asa.asri_larisso.Table.MstJual;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -32,7 +33,7 @@ import retrofit2.Response;
 
 public class  act_detail_transaksi extends AppCompatActivity {
 
-    TextView no_ent, tgl_transaksi, waktu_transaksi, pengiriman, sts_byr, subtotal, potongan_voucher, ongkir;
+    TextView no_ent, tgl_transaksi, waktu_transaksi, pengiriman, sts_byr, subtotal, potongan_voucher, ongkir, batalkan_pesanan;
     ListView list_barang;
     LinearLayout ly_ongkir, ly_potongan_voucher;
     Button lacak_pesanan;
@@ -72,6 +73,7 @@ public class  act_detail_transaksi extends AppCompatActivity {
         potongan_voucher = findViewById(R.id.potongan_voucher);
         ongkir = findViewById(R.id.ongkir);
         lacak_pesanan = findViewById(R.id.lacak_pesanan);
+        batalkan_pesanan = findViewById(R.id.batalkan_pesanan);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -89,15 +91,15 @@ public class  act_detail_transaksi extends AppCompatActivity {
         System.out.println(getIntent().getStringExtra("sts_byr"));
         if (getIntent().getStringExtra("sts_byr").equals("0")) {
             sts_byr.setText("Belum Terbayar");
-            //sts_byr.setTextColor(0xFFA52E);
             sts_byr.setTextColor(Color.parseColor("#FFA52E"));
+            batalkan_pesanan.setVisibility(View.VISIBLE);
         } else if (getIntent().getStringExtra("sts_byr").equals("1")) {
             sts_byr.setText("Lunas");
             sts_byr.setTextColor(Color.parseColor("#47D764"));
-            //sts_byr.setTextColor(0x);
+            batalkan_pesanan.setVisibility(View.GONE);
         } else if (getIntent().getStringExtra("sts_byr").equals("2")) {
             sts_byr.setText("Transaksi Dibatalkan");
-            //sts_byr.setTextColor(0xFF661B);
+            batalkan_pesanan.setVisibility(View.GONE);
         }
         subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
         if (TextUtils.isEmpty(getIntent().getStringExtra("nilai_voucher"))) {
@@ -141,6 +143,31 @@ public class  act_detail_transaksi extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Toasty.success(getApplicationContext(), "Fitur segera hadir", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        batalkan_pesanan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.WARNING_TYPE);
+                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                pDialog.setTitleText("Perhatian");
+                pDialog.setContentText("Yakin ingin membatalkan pesanan ini?");
+                pDialog.setConfirmText("Iya");
+                pDialog.setCancelText("Tidak");
+                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+
+                    }
+                });
+                pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                    @Override
+                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                        sweetAlertDialog.dismissWithAnimation();
+                    }
+                });
+                pDialog.show();
             }
         });
 
