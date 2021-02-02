@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -131,7 +132,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, int position) {
         holder.nama_brg.setText(nm_brg.get(position));
         holder.kategori_brg.setText(kat_brg.get(position));
         if (gambar.get(position) == null){
@@ -160,6 +161,12 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             holder.harga_disc.setVisibility(View.VISIBLE);
             holder.disc_value.setText("Disc "+disc.get(position)+"%");
             holder.harga_disc_value.setText(harga_jl.get(position).replace(",00", ""));
+            holder.fav.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    holder.fav.setBackgroundResource(R.drawable.rt_ic_fav_on);
+                }
+            });
         }
     }
 
@@ -173,7 +180,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         TextView nama_brg;
         TextView harga_brg;
         TextView kategori_brg;
-        ImageView gambar;
+        ImageView gambar, fav;
         RelativeLayout disc, harga_disc;
         TextView disc_value, harga_disc_value;
 
@@ -188,6 +195,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             harga_disc = (RelativeLayout) itemView.findViewById(R.id.harga_disc);
             disc_value = (TextView) itemView.findViewById(R.id.disc_value);
             harga_disc_value = (TextView) itemView.findViewById(R.id.harga_disc_value);
+            fav = (ImageView) itemView.findViewById(R.id.fav);
         }
     }
 
