@@ -3,6 +3,7 @@ package com.asa.asri_larisso.Activity.retail;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -155,6 +156,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         } else {
             holder.harga_brg.setText(formatRupiah.format((Double.parseDouble(harga_asli.get(position)) - Double.parseDouble(harga_disc.get(position)))).replace(",00", ""));
             holder.disc.setVisibility(View.VISIBLE);
+            holder.harga_brg.setTextColor(Color.parseColor("#47D764"));
             holder.harga_disc.setVisibility(View.VISIBLE);
             holder.disc_value.setText("Disc "+disc.get(position)+"%");
             holder.harga_disc_value.setText(harga_jl.get(position).replace(",00", ""));
