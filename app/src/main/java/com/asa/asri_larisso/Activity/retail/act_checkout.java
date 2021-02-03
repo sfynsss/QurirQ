@@ -264,6 +264,14 @@ public class act_checkout extends AppCompatActivity {
         // Create new Transaction Request
 
         //set customer details
+        // set start time
+        long timeInMili = System.currentTimeMillis();
+// format the time
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+        DateFormat date = new SimpleDateFormat("HHmm/ddMMyy");
+        df.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
+
+//        String order_id = TextUtils.substring(no_ent, 9, 23)+"/"+date.format(new Date(timeInMili));
         TransactionRequest transactionRequest = new TransactionRequest(no_ent, (long) netto);
 //        TransactionRequest transactionRequest = new TransactionRequest(System.currentTimeMillis() + "", (long) netto);
         transactionRequest.setCustomerDetails(initCustomerDetails());
@@ -313,11 +321,6 @@ public class act_checkout extends AppCompatActivity {
         transactionRequest.setItemDetails(itemDetailsArrayList);
 
         ExpiryModel expiryModel = new ExpiryModel();
-        // set start time
-        long timeInMili = System.currentTimeMillis();
-// format the time
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
-        df.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
 // format the time as a string
         String nowAsISO = df.format(new Date(timeInMili));
 // set the formatted time to expiry model
