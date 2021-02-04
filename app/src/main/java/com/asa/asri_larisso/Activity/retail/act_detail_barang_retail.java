@@ -2,6 +2,7 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,6 +64,8 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        final ProgressDialog pd = new ProgressDialog(act_detail_barang_retail.this);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -153,6 +156,12 @@ public class act_detail_barang_retail extends AppCompatActivity {
         ke_wishlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                pd.setTitle("Mohon Menunggu");
+                pd.setMessage("Barang sedang ditambahkan");
+                pd.setCancelable(false);
+                pd.show();
+
                 kd_brg = getIntent().getStringExtra("kd_brg");
                 nm_brg = nama_barang.getText().toString();
                 satuan = getIntent().getStringExtra("satuan");
@@ -166,19 +175,23 @@ public class act_detail_barang_retail extends AppCompatActivity {
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
+                                pd.hide();
                                 Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 //onBackPressed();
                             } else if (response.code() == 201) {
+                                pd.hide();
                                 Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 //onBackPressed();
                             }
                         } else {
+                            pd.hide();
                             Toasty.error(act_detail_barang_retail.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        pd.hide();
                         Toasty.error(act_detail_barang_retail.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });

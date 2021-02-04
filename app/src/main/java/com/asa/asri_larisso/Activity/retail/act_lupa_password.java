@@ -2,6 +2,7 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -37,9 +38,15 @@ public class act_lupa_password extends AppCompatActivity {
 
         api = RetrofitClient.createService(Api.class);
 
+        final ProgressDialog pd = new ProgressDialog(act_lupa_password.this);
+
         btn_reset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pd.setTitle("Mohon Menunggu");
+                pd.setMessage("Reset password sedang diproses");
+                pd.setCancelable(false);
+                pd.show();
                 call = api.forgetPassword(email.getText().toString());
                 call.enqueue(new Callback<BaseResponse>() {
                     @Override
@@ -48,13 +55,16 @@ public class act_lupa_password extends AppCompatActivity {
                             Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(act_lupa_password.this, act_login_retail.class));
                             finish();
+                            pd.hide();
                         } else {
+                            pd.hide();
                             Toasty.error(getApplicationContext(), "Reset password gagal, silahkan ulangi lagi.", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse> call, Throwable t) {
+                        pd.hide();
                         Toasty.error(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
