@@ -1,116 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:background="#ffffff"
     tools:context=".Activity.retail.frm_chart">
 
     <!-- HEADER START -->
     <LinearLayout
+        android:id="@+id/ly_header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
+        android:background="@drawable/rt_main_header"
         android:weightSum="2"
-        android:background="@drawable/rt_main_header">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Keranjang Belanja"
-            android:textSize="20dp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
+            android:layout_gravity="center"
             android:layout_marginLeft="16dp"
-            android:layout_gravity="center">
-        </TextView>
+            android:text="Keranjang Belanja"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
     </LinearLayout>
     <!-- HEADER END -->
 
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="10"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/ly_footer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ly_header">
+
+        <ListView
+            android:id="@+id/list_cart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:divider="@null"
+            android:dividerHeight="10dp"
+            android:paddingHorizontal="5dp"
+            tools:listitem="@layout/adapter_cart">
+        </ListView>
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="7.75"
-            android:orientation="vertical">
-            <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-                android:id="@+id/swipe_refresh_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <ListView
-                    android:id="@+id/list_cart"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:divider="@null"
-                    android:dividerHeight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingHorizontal="5dp">
-                </ListView>
-            </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center">
-                <ImageView
-                    android:id="@+id/not_found"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:src="@drawable/ic_not_found"
-                    android:visibility="invisible" />
-            </LinearLayout>
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <ImageView
+                android:id="@+id/not_found"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:src="@drawable/ic_not_found"
+                android:visibility="invisible" />
         </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
+    <LinearLayout
+        android:id="@+id/ly_footer"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:background="#FFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/swipe_refresh_layout">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:weightSum="10"
-            android:orientation="horizontal">
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="4"
-                android:gravity="center"
-                android:orientation="vertical">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total Belanja : "
-                    android:textStyle="bold"
-                    android:textColor="#000">
-                </TextView>
-                <TextView
-                    android:id="@+id/total"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:textColor="#FD7468"
-                    android:textSize="20dp"
-                    android:textStyle="bold">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
-                android:gravity="center">
-                <Button
-                    android:id="@+id/checkout"
-                    android:layout_width="160dp"
-                    android:layout_height="70dp"
-                    android:text="Lanjut ke Pembayaran"
-                    android:textColor="#FFF"
-                    android:textStyle="bold"
-                    android:background="@drawable/rt_bt_round_red">
-                </Button>
-            </LinearLayout>
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Belanja : "
+                android:textStyle="bold"
+                android:textColor="#000">
+            </TextView>
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="#FD7468"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:text="Rp100">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:gravity="center">
+            <Button
+                android:id="@+id/checkout"
+                android:layout_width="160dp"
+                android:layout_height="60dp"
+                android:text="Lanjut ke \nPembayaran"
+                android:textColor="#FFF"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:background="@drawable/rt_bt_round_red">
+            </Button>
         </LinearLayout>
     </LinearLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

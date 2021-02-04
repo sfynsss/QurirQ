@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:weightSum="9"
-        android:background="@drawable/rt_bg_white_round"
+        android:background="@drawable/rt_cart_bg"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"
@@ -42,7 +42,8 @@
                 android:maxLines="2"
                 android:ellipsize="end"
                 android:maxLength="30"
-                android:layout_marginTop="15dp">
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:id="@+id/harga_barang"
@@ -50,8 +51,9 @@
                 android:layout_height="wrap_content"
                 android:text="Rp. 12.800"
                 android:textStyle="bold"
-                android:textColor="#28306D"
-                android:gravity="center_vertical">
+                android:textColor="#FF661B"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
         </LinearLayout>
         <LinearLayout
@@ -97,7 +99,7 @@
                     android:textColor="#000000"
                     android:textAlignment="center"
                     android:gravity="center"
-                    >
+                    android:fontFamily="@font/overpass_regular">
                 </TextView>
                 <ImageView
                     android:id="@+id/plus"
