@@ -21,18 +21,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp">
                 <ImageView
-                    android:id="@+id/gambar"
-                    android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:layout_centerInParent="true">
-                </ImageView>
-                <ImageView
                     android:id="@+id/fav"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/rt_ic_fav_off">
+                </ImageView>
+                <ImageView
+                    android:id="@+id/gambar"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_centerInParent="true">
                 </ImageView>
                 <RelativeLayout
                     android:id="@+id/disc"
@@ -62,7 +62,8 @@
                 android:layout_marginTop="3dp"
                 android:layout_marginLeft="8dp"
                 android:text="Kategori Barang"
-                android:textColor="#FFC62A">
+                android:textColor="#FFC62A"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:id="@+id/nama_barang"
@@ -71,7 +72,8 @@
                 android:layout_marginHorizontal="8dp"
                 android:text="Nama Barang Ukuruan Barang Berat Barang"
                 android:textSize="16sp"
-                android:textColor="#000">
+                android:textColor="#000"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
 
             <LinearLayout
@@ -87,7 +89,8 @@
                     android:text="Rp100"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="#FF661B">
+                    android:textColor="#FF661B"
+                    android:fontFamily="@font/overpass_regular">
                 </TextView>
                 <RelativeLayout
                     android:id="@+id/harga_disc"
@@ -105,7 +108,8 @@
                         android:textAlignment="center"
                         android:textSize="12sp"
                         android:visibility="visible"
-                        android:layout_centerInParent="true">
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/overpass_regular">
                     </TextView>
                     <View
                         android:layout_width="wrap_content"

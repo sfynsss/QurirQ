@@ -13,7 +13,8 @@
         android:layout_height="100dp"
         android:weightSum="10"
         android:orientation="horizontal"
-        android:background="@drawable/rt_bg_white_round">
+        android:layout_marginHorizontal="8dp"
+        android:background="@drawable/rt_cart_bg">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -21,8 +22,9 @@
             android:gravity="center">
             <ImageView
                 android:id="@+id/gambar"
-                android:layout_width="65dp"
-                android:layout_height="65dp">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp">
             </ImageView>
         </LinearLayout>
         <LinearLayout
@@ -34,22 +36,25 @@
                 android:id="@+id/nama_barang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="4dp"
                 android:text="Coca Cola Kemasan PET 1,5 Liter"
                 android:textColor="#000000"
-                android:textSize="12dp"
+                android:textSize="14sp"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:maxLength="30"
-                android:layout_marginTop="15dp">
+                android:fontFamily="@font/overpass_regular">
             </TextView>
             <TextView
                 android:id="@+id/harga_barang"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp"
                 android:text="Rp. 12.800"
                 android:textStyle="bold"
-                android:textColor="#28306D"
-                android:gravity="center_vertical">
+                android:textColor="#FF661B"
+                android:gravity="center_vertical"
+                android:fontFamily="@font/overpass_regular">
             </TextView>
         </LinearLayout>
         <LinearLayout

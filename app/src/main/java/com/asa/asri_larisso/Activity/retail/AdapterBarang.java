@@ -161,12 +161,6 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             holder.harga_disc.setVisibility(View.VISIBLE);
             holder.disc_value.setText("Disc "+disc.get(position)+"%");
             holder.harga_disc_value.setText(harga_jl.get(position).replace(",00", ""));
-            holder.fav.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    holder.fav.setBackgroundResource(R.drawable.rt_ic_fav_on);
-                }
-            });
         }
     }
 
