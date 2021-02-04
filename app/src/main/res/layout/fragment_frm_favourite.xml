@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barang Favorit"
+            android:text="Barang Favorit Anda"
             android:textSize="20dp"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
@@ -26,18 +26,6 @@
         </TextView>
     </LinearLayout>
     <!-- HEADER END -->
-
-    <!-- Sub Judul -->
-    <TextView
-        android:id="@+id/ly_section"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Belanjain barang-barang favorit kamu yuk! \n Dijamin hemat loh!"
-        android:textColor="#000"
-        android:textSize="12dp"
-        android:gravity="center"
-        android:layout_below="@+id/ly_header">
-    </TextView>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"

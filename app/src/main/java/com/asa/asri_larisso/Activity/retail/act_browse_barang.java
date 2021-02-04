@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -93,6 +94,12 @@ public class act_browse_barang extends AppCompatActivity {
             public void onClick(View view) {
                 getBarangHargaRendah = api.getBarangHargaRendah(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
                 tampilBarangRendah();
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
             }
         });
 
@@ -101,6 +108,12 @@ public class act_browse_barang extends AppCompatActivity {
             public void onClick(View view) {
                 getBarangHargaTinggi = api.getBarangHargaTinggi(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
                 tampilBarangTinggi();
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
             }
         });
 
@@ -109,6 +122,12 @@ public class act_browse_barang extends AppCompatActivity {
             public void onClick(View view) {
                 getBarangHargaDiskon = api.getBarangHargaDiskon(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
                 tampilBarangDiskon();
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
             }
         });
 

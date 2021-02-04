@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:weightSum="9"
-        android:background="@drawable/rt_bg_white_round"
+        android:background="@drawable/rt_cart_bg"
         android:orientation="horizontal">
         <LinearLayout
             android:layout_width="0dp"

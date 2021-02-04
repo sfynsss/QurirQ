@@ -28,8 +28,8 @@
                 </ImageView>
                 <ImageView
                     android:id="@+id/fav"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginLeft="8dp"
                     android:background="@drawable/rt_ic_fav_off">
