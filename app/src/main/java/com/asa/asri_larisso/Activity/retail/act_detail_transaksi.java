@@ -2,6 +2,7 @@ package com.asa.asri_larisso.Activity.retail;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -142,7 +143,12 @@ public class  act_detail_transaksi extends AppCompatActivity {
         lacak_pesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toasty.success(getApplicationContext(), "Fitur segera hadir", Toast.LENGTH_SHORT).show();
+                Intent it = new Intent(act_detail_transaksi.this, act_order_track.class);
+                it.putExtra("no_ent", getIntent().getStringExtra("no_ent"));
+                it.putExtra("jns_pengiriman", getIntent().getStringExtra("jns_pengiriman"));
+                it.putExtra("tgl_transaksi", getIntent().getStringExtra("tgl_transaksi"));
+                it.putExtra("waktu_transaksi", getIntent().getStringExtra("waktu_transaksi"));
+                startActivity(it);
             }
         });
 
