@@ -8,6 +8,9 @@ public class MstJual {
     @SerializedName("no_ent")
     @Expose
     private String noEnt;
+    @SerializedName("no_resi")
+    @Expose
+    private String noResi;
     @SerializedName("id_user")
     @Expose
     private String idUser;
@@ -42,6 +45,7 @@ public class MstJual {
     @Expose
     private String vaNumber;
 
+
     public String getNoEnt() {
         return noEnt;
     }
@@ -49,6 +53,10 @@ public class MstJual {
     public void setNoEnt(String noEnt) {
         this.noEnt = noEnt;
     }
+
+    public String getNoResi() {return noResi;}
+
+    public void setNoResi(String noResi) {this.noResi = noResi;}
 
     public String getIdUser() {
         return idUser;

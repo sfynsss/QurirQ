@@ -323,6 +323,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getNoResi")
+    Call<BaseResponse<MstJual>> getNoResi(
+            @Field("no_ent") String no_ent
+    );
+
+    @FormUrlEncoded
     @POST("getDetailTransaksi")
     Call<BaseResponse<DetJual>> getDetailTransaksi(
             @Field("no_ent") String no_ent
@@ -355,4 +361,5 @@ public interface Api {
             @Field("gambar") String gambar,
             @Field("ketentuan") String ketentuan
     );
+
 }

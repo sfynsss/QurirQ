@@ -223,14 +223,14 @@
         <Button
             android:id="@+id/lacak_pesanan"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_marginTop="20dp"
             android:layout_marginHorizontal="16dp"
             android:text="Lacak Pesanan"
             android:textStyle="bold"
             android:textColor="#FFF"
             android:textAllCaps="false"
-            android:background="#FD7468">
+            android:background="#47D764">
         </Button>
 
         <TextView
