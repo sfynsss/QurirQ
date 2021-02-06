@@ -26,7 +26,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
-        <activity android:name=".Activity.retail.act_pin_location"></activity>
+        <activity android:name=".Activity.retail.act_edit_gambar_profile"></activity>
+        <activity android:name=".Activity.retail.act_pin_location" />
         <activity android:name=".Activity.retail.act_browse_diskon" />
         <activity android:name=".Activity.retail.act_coming_soon_retail" />
         <activity android:name=".Activity.retail.act_pilih_outlet_retail" />
