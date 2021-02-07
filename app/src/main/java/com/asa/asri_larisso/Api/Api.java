@@ -2,6 +2,7 @@ package com.asa.asri_larisso.Api;
 
 import com.asa.asri_larisso.Response.BaseResponse;
 import com.asa.asri_larisso.Response.BaseResponse1;
+import com.asa.asri_larisso.Response.BaseResponseLacak;
 import com.asa.asri_larisso.Response.RegisterResponse;
 import com.asa.asri_larisso.Response.UserResponse;
 import com.asa.asri_larisso.Table.Alamat;
@@ -365,7 +366,7 @@ public interface Api {
 
     @FormUrlEncoded
     @POST("lacakResi")
-    Call<BaseResponse<Lacak>> getLacakPengiriman(
+    Call<BaseResponseLacak> getLacakPengiriman(
             @Field("resi") String no_resi,
             @Field("kurir") String jns_pengiriman
     );

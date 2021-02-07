@@ -345,38 +345,38 @@ public class act_tambah_alamat extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_ID) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                FusedLocationProviderClient mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    // TODO: Consider calling
-                    //    ActivityCompat#requestPermissions
-                    // here to request the missing permissions, and then overriding
-                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-                    //                                          int[] grantResults)
-                    // to handle the case where the user grants the permission. See the documentation
-                    // for ActivityCompat#requestPermissions for more details.
-                    return;
-                }
-                mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            // Do it all with location
-                            Log.d("My Current location", "Lat : " + location.getLatitude() + " Long : " + location.getLongitude());
-                            latitude = location.getLatitude() + "";
-                            longitude = location.getLongitude() + "";
-                            System.out.println(latitude + " | " + longitude);
-                            // Display in Toast
-//                            Toast.makeText(KunjunganActivity.this,
-//                                    "Lat : " + location.getLatitude() + " Long : " + location.getLongitude(),
-//                                    Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-            } else {
-                Toasty.warning(this, "Silahkan hidupkan gps untuk menyimpan lokasi Anda.", Toast.LENGTH_SHORT).show();
-            }
-        }
+//        if (requestCode == PERMISSION_ID) {
+//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                FusedLocationProviderClient mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
+//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+//                    // TODO: Consider calling
+//                    //    ActivityCompat#requestPermissions
+//                    // here to request the missing permissions, and then overriding
+//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+//                    //                                          int[] grantResults)
+//                    // to handle the case where the user grants the permission. See the documentation
+//                    // for ActivityCompat#requestPermissions for more details.
+//                    return;
+//                }
+//                mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
+//                    @Override
+//                    public void onSuccess(Location location) {
+//                        if (location != null) {
+//                            // Do it all with location
+//                            Log.d("My Current location", "Lat : " + location.getLatitude() + " Long : " + location.getLongitude());
+//                            latitude = location.getLatitude() + "";
+//                            longitude = location.getLongitude() + "";
+//                            System.out.println(latitude + " | " + longitude);
+//                            // Display in Toast
+////                            Toast.makeText(KunjunganActivity.this,
+////                                    "Lat : " + location.getLatitude() + " Long : " + location.getLongitude(),
+////                                    Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//                });
+//            } else {
+//                Toasty.warning(this, "Silahkan hidupkan gps untuk menyimpan lokasi Anda.", Toast.LENGTH_SHORT).show();
+//            }
+//        }
     }
 }

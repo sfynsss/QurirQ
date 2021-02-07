@@ -5,12 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".Activity.retail.act_order_track">
 
     <!-- HEADER START -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="vertical"
         android:background="@drawable/rt_main_header">
         <LinearLayout
@@ -39,7 +41,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingLeft="16dp">
@@ -57,12 +60,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Pesanan Berhasil Ditempatkan"
+                android:fontFamily="@font/overpass_regular"
                 android:textStyle="bold"
                 android:textColor="#454F63">
             </TextView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/overpass_regular"
                 android:text="Anda dapat memantau proses pesanan dibawah ini">
             </TextView>
         </LinearLayout>
@@ -70,33 +75,36 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:gravity="center"
+        android:layout_height="0dp"
+        android:layout_weight="2.5"
         android:layout_marginBottom="10dp">
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="110dp"
+            android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
             app:cardElevation="5dp"
+            android:layout_gravity="center"
             android:layout_marginHorizontal="16dp">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:weightSum="12"
                 android:layout_gravity="center"
                 android:paddingHorizontal="16dp">
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:weightSum="2"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
                         android:gravity="center_vertical"
+                        android:fontFamily="@font/overpass_regular"
                         android:text="Resi Pengiriman">
                     </TextView>
                     <TextView
@@ -104,21 +112,26 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
                         android:gravity="center_vertical|end"
+                        android:fontFamily="@font/overpass_regular"
                         android:textStyle="bold">
                     </TextView>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:weightSum="2"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
                         android:gravity="center_vertical"
+                        android:fontFamily="@font/overpass_regular"
                         android:text="Jenis Pengiriman">
                     </TextView>
                     <TextView
@@ -126,15 +139,17 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/overpass_regular"
                         android:gravity="center_vertical|end"
-                        android:text="JNE"
                         android:textStyle="bold">
                     </TextView>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:weightSum="2"
                     android:orientation="horizontal">
                     <TextView
@@ -142,6 +157,8 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
+                        android:textSize="12dp"
+                        android:fontFamily="@font/overpass_regular"
                         android:text="Tanggal/Waktu Order">
                     </TextView>
                     <TextView
@@ -149,15 +166,17 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
                         android:gravity="center_vertical|end"
-                        android:text="07-11-2020 / 19:30"
+                        android:fontFamily="@font/overpass_regular"
                         android:textStyle="bold">
                     </TextView>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
                     android:weightSum="2"
                     android:orientation="horizontal">
                     <TextView
@@ -165,15 +184,18 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center_vertical"
-                        android:text="Pesanan Anda">
+                        android:textSize="12dp"
+                        android:fontFamily="@font/overpass_regular"
+                        android:text="Status Pengiriman">
                     </TextView>
                     <TextView
+                        android:id="@+id/status"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:textSize="12dp"
                         android:gravity="center_vertical|end"
-                        android:text="Lihat Detail"
-                        android:textColor="#47D764"
+                        android:fontFamily="@font/overpass_regular"
                         android:textStyle="bold">
                     </TextView>
                 </LinearLayout>
@@ -187,28 +209,26 @@
         android:text="Track Order"
         android:textStyle="bold"
         android:textColor="#454F63"
+        android:fontFamily="@font/overpass_regular"
         android:layout_marginLeft="16dp">
     </TextView>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/list_lacak_pesanan"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="0dp"
+        android:layout_weight="4.5"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="10dp"
+        android:divider="#FFFFFF"
+        android:dividerHeight="5dp"
         tools:listitem="@layout/adapter_lacak_pesanan">
-    </androidx.recyclerview.widget.RecyclerView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#E2E2E2"
-        android:layout_marginTop="20dp"
-        android:layout_marginHorizontal="16dp">
-    </View>
+    </ListView>
     <Button
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
+        android:layout_height="0dp"
+        android:layout_weight="0.8"
+        android:layout_marginTop="12dp"
         android:layout_marginHorizontal="16dp"
         android:text="SELESAI"
         android:textColor="#FFF"

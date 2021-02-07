@@ -9,59 +9,63 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="80dp">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="10"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kurir : ">
-                </TextView>
-                <TextView
-                    android:id="@+id/courier_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="JNE">
-                </TextView>
-            </LinearLayout>
-            <TextView
-                android:id="@+id/manifest_desc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="8dp"
-                android:text="Received On Destination"
-                android:textStyle="bold">
-            </TextView>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:orientation="horizontal">
+                android:layout_weight="2.7"
+                android:orientation="vertical">
+
                 <TextView
                     android:id="@+id/manifest_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2021-08-12">
-                </TextView>
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/overpass_regular"
+                    android:textColor="#AAAAAA"
+                    android:textSize="11dp"
+                    android:text="2021-02-07" />
+
                 <TextView
                     android:id="@+id/manifest_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" / 14:21">
-                </TextView>
+                    android:layout_gravity="center"
+                    android:textColor="#AAAAAA"
+                    android:textSize="11dp"
+                    android:fontFamily="@font/overpass_regular"
+                    android:text="18:20"/>
+
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/icon"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/bulet_grey"/>
+            </RelativeLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="7"
+                android:layout_marginLeft="10dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/manifest_desc"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" WIB">
-                </TextView>
+                    android:textSize="11dp"
+                    android:fontFamily="@font/overpass_regular"
+                    android:textColor="#AAAAAA"></TextView>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

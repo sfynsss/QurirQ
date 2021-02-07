@@ -5,60 +5,126 @@ import com.google.gson.annotations.SerializedName;
 
 public class Lacak {
 
-    @SerializedName("manifest_code")
+    @SerializedName("status_terkirim")
     @Expose
-    private String manifestCode;
-    @SerializedName("manifest_description")
+    private Boolean statusTerkirim;
+    @SerializedName("kode_kurir")
     @Expose
-    private String manifestDescription;
-    @SerializedName("manifest_date")
+    private String kodeKurir;
+    @SerializedName("nama_kurir")
     @Expose
-    private String manifestDate;
-    @SerializedName("manifest_time")
+    private String namaKurir;
+    @SerializedName("resi")
     @Expose
-    private String manifestTime;
-    @SerializedName("city_name")
+    private String resi;
+    @SerializedName("tipe_pengiriman")
     @Expose
-    private String cityName;
+    private String tipePengiriman;
+    @SerializedName("tgl_kirim")
+    @Expose
+    private String tglKirim;
+    @SerializedName("pengirim")
+    @Expose
+    private String pengirim;
+    @SerializedName("penerima")
+    @Expose
+    private String penerima;
+    @SerializedName("dari")
+    @Expose
+    private String dari;
+    @SerializedName("tujuan")
+    @Expose
+    private String tujuan;
+    @SerializedName("status")
+    @Expose
+    private String status;
 
-    public String getManifestCode() {
-        return manifestCode;
+    public Boolean getStatusTerkirim() {
+        return statusTerkirim;
     }
 
-    public void setManifestCode(String manifestCode) {
-        this.manifestCode = manifestCode;
+    public void setStatusTerkirim(Boolean statusTerkirim) {
+        this.statusTerkirim = statusTerkirim;
     }
 
-    public String getManifestDescription() {
-        return manifestDescription;
+    public String getKodeKurir() {
+        return kodeKurir;
     }
 
-    public void setManifestDescription(String manifestDescription) {
-        this.manifestDescription = manifestDescription;
+    public void setKodeKurir(String kodeKurir) {
+        this.kodeKurir = kodeKurir;
     }
 
-    public String getManifestDate() {
-        return manifestDate;
+    public String getNamaKurir() {
+        return namaKurir;
     }
 
-    public void setManifestDate(String manifestDate) {
-        this.manifestDate = manifestDate;
+    public void setNamaKurir(String namaKurir) {
+        this.namaKurir = namaKurir;
     }
 
-    public String getManifestTime() {
-        return manifestTime;
+    public String getResi() {
+        return resi;
     }
 
-    public void setManifestTime(String manifestTime) {
-        this.manifestTime = manifestTime;
+    public void setResi(String resi) {
+        this.resi = resi;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getTipePengiriman() {
+        return tipePengiriman;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName;
+    public void setTipePengiriman(String tipePengiriman) {
+        this.tipePengiriman = tipePengiriman;
+    }
+
+    public String getTglKirim() {
+        return tglKirim;
+    }
+
+    public void setTglKirim(String tglKirim) {
+        this.tglKirim = tglKirim;
+    }
+
+    public String getPengirim() {
+        return pengirim;
+    }
+
+    public void setPengirim(String pengirim) {
+        this.pengirim = pengirim;
+    }
+
+    public String getPenerima() {
+        return penerima;
+    }
+
+    public void setPenerima(String penerima) {
+        this.penerima = penerima;
+    }
+
+    public String getDari() {
+        return dari;
+    }
+
+    public void setDari(String dari) {
+        this.dari = dari;
+    }
+
+    public String getTujuan() {
+        return tujuan;
+    }
+
+    public void setTujuan(String tujuan) {
+        this.tujuan = tujuan;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
 }
