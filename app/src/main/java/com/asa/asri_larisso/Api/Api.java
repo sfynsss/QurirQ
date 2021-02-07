@@ -10,6 +10,7 @@ import com.asa.asri_larisso.Table.Cart;
 import com.asa.asri_larisso.Table.DetJual;
 import com.asa.asri_larisso.Table.Kecamatan;
 import com.asa.asri_larisso.Table.Kota;
+import com.asa.asri_larisso.Table.Lacak;
 import com.asa.asri_larisso.Table.MstJual;
 import com.asa.asri_larisso.Table.Notif;
 import com.asa.asri_larisso.Table.Outlet;
@@ -360,6 +361,13 @@ public interface Api {
             @Field("sk") String sk,
             @Field("gambar") String gambar,
             @Field("ketentuan") String ketentuan
+    );
+
+    @FormUrlEncoded
+    @POST("lacakResi")
+    Call<BaseResponse<Lacak>> getLacakPengiriman(
+            @Field("resi") String no_resi,
+            @Field("kurir") String jns_pengiriman
     );
 
 }

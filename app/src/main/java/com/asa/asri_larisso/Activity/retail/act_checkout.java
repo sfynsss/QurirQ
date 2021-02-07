@@ -271,8 +271,8 @@ public class act_checkout extends AppCompatActivity {
         DateFormat date = new SimpleDateFormat("HHmm/ddMMyy");
         df.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
 
-//        String order_id = TextUtils.substring(no_ent, 9, 23)+"/"+date.format(new Date(timeInMili));
-        TransactionRequest transactionRequest = new TransactionRequest(no_ent, (long) netto);
+        String order_id = TextUtils.substring(no_ent, 9, 23)+"/"+date.format(new Date(timeInMili));
+        TransactionRequest transactionRequest = new TransactionRequest(order_id, (long) netto);
 //        TransactionRequest transactionRequest = new TransactionRequest(System.currentTimeMillis() + "", (long) netto);
         transactionRequest.setCustomerDetails(initCustomerDetails());
 

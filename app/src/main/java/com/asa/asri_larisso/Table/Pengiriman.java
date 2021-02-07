@@ -6,6 +6,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 public class Pengiriman {
+
     @SerializedName("service")
     @Expose
     private String service;
@@ -39,4 +40,5 @@ public class Pengiriman {
     public void setCost(List<Cost> cost) {
         this.cost = cost;
     }
+
 }
