@@ -96,7 +96,7 @@
                 android:textColor="#FD7468"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:text="Rp100">
+                android:text="">
             </TextView>
         </LinearLayout>
         <LinearLayout
