@@ -252,6 +252,7 @@ public class act_checkout extends AppCompatActivity {
                     dialog.setCancelable(false);
                     dialog.show();
                 } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
+                    System.out.println("neng kene");
                     initInputPenjualan("0", "", "", "", "", "sukses");
                 } else {
                     initMidtransSdk();
@@ -684,8 +685,14 @@ public class act_checkout extends AppCompatActivity {
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
                     if (sts.equals("sukses")) {
-                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
-                        finish();
+                        if (a.equals("pickup")) {
+                            Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            finish();
+                        } else {
+                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            finish();
+                        }
                     } else if (sts.equals("pending")) {
                         Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
                         it.putExtra("payment_type", payment_type + "");

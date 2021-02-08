@@ -102,6 +102,7 @@ public class  act_detail_transaksi extends AppCompatActivity {
             sts_byr.setText("Transaksi Dibatalkan");
             batalkan_pesanan.setVisibility(View.GONE);
         }
+
         subtotal.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00", ""));
         if (TextUtils.isEmpty(getIntent().getStringExtra("nilai_voucher"))) {
             ly_potongan_voucher.setVisibility(View.GONE);
