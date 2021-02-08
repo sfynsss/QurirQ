@@ -90,7 +90,7 @@ public class act_checkout extends AppCompatActivity {
 
     // Koordinat Lokasi Larisso
     double finalLat = -8.3495079;
-    double finalLong =  113.6051873;
+    double finalLong = 113.6051873;
 
     Session session;
     Api api;
@@ -98,7 +98,7 @@ public class act_checkout extends AppCompatActivity {
     Call<BaseResponse> cekOngkirCod;
     Call<String> getNoEnt;
     Call<BaseResponse> inputPenjualan;
-    
+
     String no_va = "", payment_type = "", payment_bank = "";
 
     @Override
@@ -251,6 +251,8 @@ public class act_checkout extends AppCompatActivity {
                     dialog.setTitleText("Silahkan pilih jasa pengiriman terlebih dauhulu !!!");
                     dialog.setCancelable(false);
                     dialog.show();
+                } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
+                    initInputPenjualan("0", "", "", "", "", "sukses");
                 } else {
                     initMidtransSdk();
                     MidtransSDK.getInstance().setTransactionRequest(initTransactionRequest());
@@ -271,7 +273,7 @@ public class act_checkout extends AppCompatActivity {
         DateFormat date = new SimpleDateFormat("HHmm/ddMMyy");
         df.setTimeZone(TimeZone.getTimeZone("Asia/Jakarta"));
 
-        String order_id = TextUtils.substring(no_ent, 9, 23)+"/"+date.format(new Date(timeInMili));
+        String order_id = TextUtils.substring(no_ent, 9, 23) + "/" + date.format(new Date(timeInMili));
         TransactionRequest transactionRequest = new TransactionRequest(order_id, (long) netto);
 //        TransactionRequest transactionRequest = new TransactionRequest(System.currentTimeMillis() + "", (long) netto);
         transactionRequest.setCustomerDetails(initCustomerDetails());
@@ -351,26 +353,26 @@ public class act_checkout extends AppCompatActivity {
 
         //define customer detail (mandatory for coreflow)
         ShippingAddress shippingAddress = new ShippingAddress();
-        shippingAddress.setAddress(session.getAlamat()+"");
-        shippingAddress.setCity(session.getKota()+"");
-        shippingAddress.setPhone(session.getNoTelp()+"");
-        shippingAddress.setFirstName(session.getNamaPenerima()+"");
-        shippingAddress.setPostalCode(session.getKodePos()+"");
+        shippingAddress.setAddress(session.getAlamat() + "");
+        shippingAddress.setCity(session.getKota() + "");
+        shippingAddress.setPhone(session.getNoTelp() + "");
+        shippingAddress.setFirstName(session.getNamaPenerima() + "");
+        shippingAddress.setPostalCode(session.getKodePos() + "");
         shippingAddress.setCountryCode("id");
 
         BillingAddress billingAddress = new BillingAddress();
-        billingAddress.setAddress(session.getAlamat()+"");
-        billingAddress.setCity(session.getKota()+"");
-        billingAddress.setPhone(session.getNoTelp()+"");
-        billingAddress.setFirstName(session.getNamaPenerima()+"");
-        billingAddress.setPostalCode(session.getKodePos()+"");
+        billingAddress.setAddress(session.getAlamat() + "");
+        billingAddress.setCity(session.getKota() + "");
+        billingAddress.setPhone(session.getNoTelp() + "");
+        billingAddress.setFirstName(session.getNamaPenerima() + "");
+        billingAddress.setPostalCode(session.getKodePos() + "");
         billingAddress.setCountryCode("id");
 
-        CustomerDetails mCustomerDetails = new CustomerDetails(session.getNamaPenerima()+"","", session.getEmail()+"",session.getNoTelp()+"");
-        mCustomerDetails.setFirstName(session.getNamaPenerima()+"");
+        CustomerDetails mCustomerDetails = new CustomerDetails(session.getNamaPenerima() + "", "", session.getEmail() + "", session.getNoTelp() + "");
+        mCustomerDetails.setFirstName(session.getNamaPenerima() + "");
         mCustomerDetails.setLastName("");
-        mCustomerDetails.setEmail(session.getEmail()+"");
-        mCustomerDetails.setPhone(session.getNoTelp()+"");
+        mCustomerDetails.setEmail(session.getEmail() + "");
+        mCustomerDetails.setPhone(session.getNoTelp() + "");
 //
         System.out.println(session.getNamaPenerima());
         System.out.println(session.getEmail());
@@ -425,10 +427,10 @@ public class act_checkout extends AppCompatActivity {
 
                             // Bank Transfer
                             if (result.getResponse().getPaymentType().equals("bank_transfer")) {
-                                if(!TextUtils.isEmpty(result.getResponse().getPermataVANumber())){
+                                if (!TextUtils.isEmpty(result.getResponse().getPermataVANumber())) {
                                     no_va = result.getResponse().getPermataVANumber();
                                     payment_bank = "PERMATA";
-                                } else if(!TextUtils.isEmpty(result.getResponse().getMandiriBillExpiration())){
+                                } else if (!TextUtils.isEmpty(result.getResponse().getMandiriBillExpiration())) {
                                     no_va = result.getResponse().getMandiriBillExpiration();
                                     payment_bank = "MANDIRI";
                                 } else if (result.getResponse().getAccountNumbers() != null) {
@@ -443,9 +445,9 @@ public class act_checkout extends AppCompatActivity {
                             }
 
                             if (result.getResponse().getPaymentType().equals("echannel")) {
-                                if(!TextUtils.isEmpty(result.getResponse().getPaymentCode())){
-                                   no_va = result.getResponse().getPaymentCode();
-                                   payment_bank = "MANDIRI";
+                                if (!TextUtils.isEmpty(result.getResponse().getPaymentCode())) {
+                                    no_va = result.getResponse().getPaymentCode();
+                                    payment_bank = "MANDIRI";
                                 }
 
                                 payment_type = "Bank Transfer";
@@ -506,7 +508,7 @@ public class act_checkout extends AppCompatActivity {
         kurir.add(R.drawable.logo_jne);
         kurir.add(R.drawable.logo_jnt);
         kurir.add(R.drawable.logo_pos);
-        kurir.add(R.drawable.rt_checkout_cod);
+        kurir.add(R.drawable.take_away);
 //        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(act_checkout.this, android.R.layout.simple_expandable_list_item_1, kurir);
 //        adapter.setDropDownViewResource(R.layout.spinner_kurir);
         AdapterKurir adapter = new AdapterKurir(act_checkout.this, kurir);
@@ -527,31 +529,47 @@ public class act_checkout extends AppCompatActivity {
                     a = "jne";
                     nama_kurir.setImageResource(R.drawable.logo_jne);
                     getOngkir("160", session.getKdKecamatan(), "1000", a);
+                    pilih_pembayaran.setText("Pilih Pembayaran");
                 } else if (position == 1) {
                     nama_kurir.setImageResource(R.drawable.logo_jnt);
                     a = "jnt";
                     getOngkir("160", session.getKdKecamatan(), "1000", a);
+                    pilih_pembayaran.setText("Pilih Pembayaran");
                 } else if (position == 2) {
                     nama_kurir.setImageResource(R.drawable.logo_pos);
                     a = "pos";
                     getOngkir("160", session.getKdKecamatan(), "1000", a);
-                } else {
-                    nama_kurir.setImageResource(R.drawable.rt_checkout_cod);
-                    a = "cod";
+                    pilih_pembayaran.setText("Pilih Pembayaran");
+                } else if (position == 3) {
+                    nama_kurir.setImageResource(R.drawable.take_away);
+                    a = "pickup";
+                    service.clear();
+                    costs.clear();
+                    service.add("Ambil di tempat");
+                    costs.add("0");
 
-                    initialLat = Double.parseDouble(session.getLat());
-                    initialLong = Double.parseDouble(session.getLong());
-                    Double hasil = CalculationByDistance(initialLat, initialLong, finalLat, finalLong);
-//                    Double hasil1 = toRadians(hasil);
-                    if (session.getLat().equals("0") || session.getLong().equals("0")) {
-                        Toasty.error(act_checkout.this, "Maaf lokasi Anda error", Toast.LENGTH_SHORT).show();
-                        nama_kurir.setImageResource(R.drawable.logo_jne);
-                        getOngkir("160", session.getKdKecamatan(), "1000", a);
-                    } else {
-                        System.out.println(Math.round(hasil)+"km");
-                        getOngkirCod(Math.round(hasil)+"");
-                    }
+                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_checkout.this, R.layout.spinner_pengiriman, service);
+                    arrayAdapter.setDropDownViewResource(R.layout.spinner_pengiriman);
+                    servis.setAdapter(arrayAdapter);
+                    pilih_pembayaran.setText("Tempatkan Pesanan");
                 }
+//                else {
+//                    nama_kurir.setImageResource(R.drawable.rt_checkout_cod);
+//                    a = "cod";
+//
+//                    initialLat = Double.parseDouble(session.getLat());
+//                    initialLong = Double.parseDouble(session.getLong());
+//                    Double hasil = CalculationByDistance(initialLat, initialLong, finalLat, finalLong);
+////                    Double hasil1 = toRadians(hasil);
+//                    if (session.getLat().equals("0") || session.getLong().equals("0")) {
+//                        Toasty.error(act_checkout.this, "Maaf lokasi Anda error", Toast.LENGTH_SHORT).show();
+//                        nama_kurir.setImageResource(R.drawable.logo_jne);
+//                        getOngkir("160", session.getKdKecamatan(), "1000", a);
+//                    } else {
+//                        System.out.println(Math.round(hasil) + "km");
+//                        getOngkirCod(Math.round(hasil) + "");
+//                    }
+//                }
 
                 dialog.dismiss();
             }
@@ -603,7 +621,7 @@ public class act_checkout extends AppCompatActivity {
                     service.clear();
                     costs.clear();
 
-                    service.add("Next Day ("+jarak+" km)");
+                    service.add("Next Day (" + jarak + " km)");
                     costs.add(response.body().getMessage());
 
                     System.out.println(service);
@@ -651,15 +669,15 @@ public class act_checkout extends AppCompatActivity {
         String harga_barang = TextUtils.join(";", hrg_asli);
         String quantity = TextUtils.join(";", qty);
 
-        System.out.println(no_va+" | "+payment_bank+" | "+payment_type);
+        System.out.println(no_va + " | " + payment_bank + " | " + payment_type);
 
         System.out.println(kode_barang);
         System.out.println(nama_barang);
         System.out.println(harga_barang);
         System.out.println(quantity);
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
-                no_penerima.getText().toString(), total+"", "", nilai_voucher, tmp_kd_voucher, "", netto+"",
-                ongkir_total+"", a+"", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id,
+                no_penerima.getText().toString(), total + "", "", nilai_voucher, tmp_kd_voucher, "", netto + "",
+                ongkir_total + "", a + "", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id,
                 va, payment_bank, payment_type);
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
@@ -668,12 +686,12 @@ public class act_checkout extends AppCompatActivity {
                     if (sts.equals("sukses")) {
                         startActivity(new Intent(act_checkout.this, act_home_retail.class));
                         finish();
-                    } else if (sts.equals("pending")){
+                    } else if (sts.equals("pending")) {
                         Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
-                        it.putExtra("payment_type", payment_type+"");
-                        it.putExtra("payment_bank", payment_bank+"");
-                        it.putExtra("va", va+"");
-                        it.putExtra("total", netto+"");
+                        it.putExtra("payment_type", payment_type + "");
+                        it.putExtra("payment_bank", payment_bank + "");
+                        it.putExtra("va", va + "");
+                        it.putExtra("total", netto + "");
                         startActivity(it);
                         finish();
                     }
@@ -684,7 +702,7 @@ public class act_checkout extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BaseResponse> call, Throwable t) {
-                Toasty.error(act_checkout.this, t.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Toasty.error(act_checkout.this, t.getMessage() + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -743,21 +761,21 @@ public class act_checkout extends AppCompatActivity {
 
     }
 
-    public double CalculationByDistance(double initialLat, double initialLong, double finalLat, double finalLong){
+    public double CalculationByDistance(double initialLat, double initialLong, double finalLat, double finalLong) {
         int R = 6371; // km (Earth radius)
-        double dLat = toRadians(finalLat-initialLat);
-        double dLon = toRadians(finalLong-initialLong);
+        double dLat = toRadians(finalLat - initialLat);
+        double dLon = toRadians(finalLong - initialLong);
         initialLat = toRadians(initialLat);
         finalLat = toRadians(finalLat);
 
-        double a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(initialLat) * Math.cos(finalLat);
-        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(initialLat) * Math.cos(finalLat);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
 
     public double toRadians(double deg) {
-        return deg * (Math.PI/180);
+        return deg * (Math.PI / 180);
     }
 
 }
