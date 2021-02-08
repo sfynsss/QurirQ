@@ -1,9 +1,11 @@
 package com.asa.asri_larisso.Activity.retail;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +13,8 @@ import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Looper;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +26,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.asa.asri_larisso.Api.Api;
@@ -33,8 +38,13 @@ import com.asa.asri_larisso.Table.Kecamatan;
 import com.asa.asri_larisso.Table.Kota;
 import com.asa.asri_larisso.Table.Provinsi;
 import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.util.ArrayList;
@@ -50,6 +60,7 @@ public class act_tambah_alamat extends AppCompatActivity {
     Spinner provinsi, kota, kecamatan;
     Button btn_pin_lokasi, btn_simpan;
     Switch lengkapi_otomatis;
+    TextView lat_long;
 
     Api api;
     Session session;
@@ -68,6 +79,7 @@ public class act_tambah_alamat extends AppCompatActivity {
     String latitude = "0";
     String longitude = "0";
     String kd_alamat = "";
+    FusedLocationProviderClient fusedLocationProviderClient;
 
     int PERMISSION_ID = 44;
 
@@ -94,14 +106,11 @@ public class act_tambah_alamat extends AppCompatActivity {
         btn_simpan = findViewById(R.id.btn_simpan);
         lengkapi_otomatis = findViewById(R.id.lengkapi_otomatis);
         btn_pin_lokasi = findViewById(R.id.btn_pin_lokasi);
+        lat_long = findViewById(R.id.lat_long);
 
         session = new Session(act_tambah_alamat.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         getProvinsi();
-
-        checkPermissions();
-        isLocationEnabled();
-        requestPermissions();
 
         lengkapi_otomatis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -118,10 +127,18 @@ public class act_tambah_alamat extends AppCompatActivity {
             }
         });
 
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(act_tambah_alamat.this);
+
         btn_pin_lokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_tambah_alamat.this, act_pin_location.class));
+//                startActivity(new Intent(act_tambah_alamat.this, act_tambah_alamat.class));
+                if (ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+                    getCurrentLocation();
+                } else {
+                    ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                }
             }
         });
 
@@ -327,64 +344,51 @@ public class act_tambah_alamat extends AppCompatActivity {
         });
     }
 
-    private boolean checkPermissions() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            return true;
-        }
-        return false;
-    }
-
-    private void requestPermissions() {
-        ActivityCompat.requestPermissions(
-                this,
-                new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION},
-                PERMISSION_ID
-        );
-    }
-
-    private boolean isLocationEnabled() {
-        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
-                LocationManager.NETWORK_PROVIDER
-        );
-    }
-
     @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-//        if (requestCode == PERMISSION_ID) {
-//            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-//                FusedLocationProviderClient mFusedLocation = LocationServices.getFusedLocationProviderClient(this);
-//                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-//                    // TODO: Consider calling
-//                    //    ActivityCompat#requestPermissions
-//                    // here to request the missing permissions, and then overriding
-//                    //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-//                    //                                          int[] grantResults)
-//                    // to handle the case where the user grants the permission. See the documentation
-//                    // for ActivityCompat#requestPermissions for more details.
-//                    return;
-//                }
-//                mFusedLocation.getLastLocation().addOnSuccessListener(this, new OnSuccessListener<Location>() {
-//                    @Override
-//                    public void onSuccess(Location location) {
-//                        if (location != null) {
-//                            // Do it all with location
-//                            Log.d("My Current location", "Lat : " + location.getLatitude() + " Long : " + location.getLongitude());
-//                            latitude = location.getLatitude() + "";
-//                            longitude = location.getLongitude() + "";
-//                            System.out.println(latitude + " | " + longitude);
-//                            // Display in Toast
-////                            Toast.makeText(KunjunganActivity.this,
-////                                    "Lat : " + location.getLatitude() + " Long : " + location.getLongitude(),
-////                                    Toast.LENGTH_LONG).show();
-//                        }
-//                    }
-//                });
-//            } else {
-//                Toasty.warning(this, "Silahkan hidupkan gps untuk menyimpan lokasi Anda.", Toast.LENGTH_SHORT).show();
-//            }
-//        }
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 100 && grantResults.length > 0 && (grantResults[0] + grantResults[1] == PackageManager.PERMISSION_GRANTED)){
+            getCurrentLocation();
+        } else {
+            Toast.makeText(getApplicationContext(), "Permisson Dennied.", Toast.LENGTH_SHORT);
+        }
+    }
+
+    @SuppressLint("MissingPermission")
+    private void getCurrentLocation() {
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
+            fusedLocationProviderClient.getLastLocation().addOnCompleteListener(new OnCompleteListener<Location>() {
+                @Override
+                public void onComplete(@NonNull Task<Location> task) {
+                    final Location location = task.getResult();
+                    if (location != null){
+                        latitude = String.valueOf(location.getLatitude());
+                        longitude = String.valueOf(location.getLongitude());
+                        lat_long.setText(latitude+" | "+longitude);
+                    } else {
+                        LocationRequest locationRequest = new LocationRequest()
+                                .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
+                                .setInterval(10000)
+                                .setFastestInterval(1000)
+                                .setNumUpdates(1);
+
+                        LocationCallback locationCallback = new LocationCallback(){
+                            @Override
+                            public void onLocationResult(LocationResult locationResult) {
+                                super.onLocationResult(locationResult);
+                                Location location1 = locationResult.getLastLocation();
+                                latitude = String.valueOf(location1.getLatitude());
+                                longitude = String.valueOf(location1.getLongitude());
+                                lat_long.setText(latitude+" | "+longitude);
+                            }
+                        };
+                        fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+                    }
+                }
+            });
+        } else {
+            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+        }
     }
 }

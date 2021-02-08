@@ -341,7 +341,7 @@
                     android:layout_weight="7"
                     android:layout_marginRight="10dp">
                     <TextView
-                        android:id="@+id/latitude_longitude"
+                        android:id="@+id/lat_long"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/rt_bt_form"

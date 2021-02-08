@@ -105,15 +105,19 @@ public class act_history_transaksi extends AppCompatActivity {
                     }
 
                     System.out.println(waktu_transaksi);
-                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, new AdapterTransaksi.OnEditLocationListener() {
+                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, sts_byr, new AdapterTransaksi.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
-                            Intent it = new Intent(act_history_transaksi.this, act_status_pembayaran.class);
-                            it.putExtra("payment_type", payment_type.get(position));
-                            it.putExtra("payment_bank", bank_name.get(position));
-                            it.putExtra("va", va.get(position));
-                            it.putExtra("total", subtot.get(position));
-                            startActivity(it);
+                            if (sts_byr.get(position).equals("0")) {
+                                Intent it = new Intent(act_history_transaksi.this, act_status_pembayaran.class);
+                                it.putExtra("payment_type", payment_type.get(position));
+                                it.putExtra("payment_bank", bank_name.get(position));
+                                it.putExtra("va", va.get(position));
+                                it.putExtra("total", subtot.get(position));
+                                startActivity(it);
+                            } else {
+                                Toasty.success(act_history_transaksi.this, "Transaksi Sudah Terbayar", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                     adapterTransaksi.notifyDataSetChanged();

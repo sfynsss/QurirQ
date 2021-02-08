@@ -26,10 +26,11 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
     private ArrayList<String> jml_item = new ArrayList<>();
     private ArrayList<String> tgl_transaksi = new ArrayList<>();
     private ArrayList<String> subtot = new ArrayList<>();
+    private ArrayList<String> sts_byr = new ArrayList<>();
     NumberFormat formatRupiah;
     OnEditLocationListener lihat_status;
 
-    public AdapterTransaksi(Activity context, ArrayList<String> no_ent, ArrayList<String> jml_item, ArrayList<String> tgl_transaksi, ArrayList<String> subtot, OnEditLocationListener lihat_status) {
+    public AdapterTransaksi(Activity context, ArrayList<String> no_ent, ArrayList<String> jml_item, ArrayList<String> tgl_transaksi, ArrayList<String> subtot, ArrayList<String> sts_byr, OnEditLocationListener lihat_status) {
         super(context, R.layout.adapter_transaksi, no_ent);
 
         this.context = context;
@@ -37,6 +38,7 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         this.jml_item = jml_item;
         this.tgl_transaksi = tgl_transaksi;
         this.subtot = subtot;
+        this.sts_byr = sts_byr;
         this.lihat_status = lihat_status;
 
         Locale localeID = new Locale("in", "ID");
@@ -61,10 +63,18 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         viewHolder.jml_item.setText(jml_item.get(position)+"");
         viewHolder.tgl_transaksi.setText(tgl_transaksi.get(position));
         viewHolder.subtot.setText(formatRupiah.format(Double.parseDouble(subtot.get(position))).replace(",00", ""));
+
+        if (sts_byr.get(position).equals("0")) {
+            viewHolder.status.setText("Menunggu Pembayaran");
+            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        } else {
+            viewHolder.status.setText("Sudah Terbayar");
+            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.green_notif));
+        }
+
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.out.println("tambah");
                 if (lihat_status != null) {
                     System.out.println("di click");
                     lihat_status.onClickAdapter(position);
