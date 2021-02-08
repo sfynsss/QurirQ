@@ -15,9 +15,14 @@
         android:text="Pilih Peta">
     </Button>
     <TextView
-        android:id="@+id/tx_latitude_longitude"
+        android:id="@+id/tx_latitude"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:text="" />
+        android:layout_height="wrap_content"
+        android:text="0" />
+    <TextView
+        android:id="@+id/tx_longitude"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0" />
 
 </LinearLayout>
