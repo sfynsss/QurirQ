@@ -45,7 +45,8 @@
         <activity android:name=".Activity.retail.PopUpPengiriman" />
         <activity android:name=".Activity.retail.act_history_transaksi" />
         <activity android:name=".Activity.retail.act_checkout" />
-        <activity android:name=".Activity.retail.act_browse_barang" />
+        <activity android:name=".Activity.retail.act_browse_barang"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activity.retail.act_user_profile" />
         <activity android:name=".Activity.retail.act_point_retail" />
         <activity android:name=".Activity.retail.act_detail_voucher_retail" />

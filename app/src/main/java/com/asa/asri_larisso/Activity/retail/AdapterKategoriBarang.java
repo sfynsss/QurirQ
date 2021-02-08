@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.asa.asri_larisso.R;
+import com.asa.asri_larisso.Session.Session;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
@@ -40,6 +41,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
 
     boolean isShimmer = true;
     int shimmerNumber = 5;
+    Session session;
 
     public AdapterKategoriBarang(Context mContext, Activity activity, ArrayList<String> kd_kat, ArrayList<String> judul, ArrayList<String> gambar) {
         this.mContext = mContext;
@@ -48,6 +50,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
         this.judul = judul;
         this.gambar = gambar;
         option = new RequestOptions().centerCrop().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
+        session = new Session(mContext);
     }
 
 
@@ -83,7 +86,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
             Glide.with(mContext)
                     .setDefaultRequestOptions(requestOptions)
 //                    .load("http://192.168.1.16:8000/storage/" + gambar.get(position) + "").into(holder.gambar);
-                    .load("http://asarasa.id/larisso/storage/" + gambar.get(position) + "").into(holder.gambar);
+                    .load("http://" + session.getBaseUrl() + "/storage/" + gambar.get(position) + "").into(holder.gambar);
         }
     }
 

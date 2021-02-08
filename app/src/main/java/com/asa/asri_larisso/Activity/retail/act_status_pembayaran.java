@@ -55,6 +55,7 @@ public class act_status_pembayaran extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(act_status_pembayaran.this, frm_home.class));
+                finish();
             }
         });
         salin_va.setOnClickListener(new View.OnClickListener() {
