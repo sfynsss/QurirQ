@@ -28,7 +28,7 @@
         tools:replace="android:allowBackup">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyC1F_GXyCu2M4HXAEjpQk_ozMfuSkReK8I"/>
+            android:value="AIzaSyDbr4O5VwqOirPReSq4zBqWHydxAAYfmSM"/>
         <activity android:name=".Activity.retail.act_edit_gambar_profile"></activity>
         <activity android:name=".Activity.retail.act_pin_location" />
         <activity android:name=".Activity.retail.act_browse_diskon" />
