@@ -35,7 +35,6 @@ public class act_browse_barang extends AppCompatActivity {
     TextView nama_kategori, cari_brg;
     Button filter_hrg_rendah, filter_hrg_tinggi, filter_hrg_diskon, btn_search;
     RecyclerView recyclerBarang;
-    ProgressBar pb_loading;
     Api api;
     Session session;
     Call<BaseResponse<Barang>> getBarang;
@@ -76,7 +75,6 @@ public class act_browse_barang extends AppCompatActivity {
         filter_hrg_tinggi = findViewById(R.id.filter_hrg_tinggi);
         filter_hrg_diskon = findViewById(R.id.filter_hrg_diskon);
         btn_search = findViewById(R.id.btn_search);
-        pb_loading = findViewById(R.id.pb_loading);
 
         nama_kategori.setText(getIntent().getStringExtra("judul"));
         Locale localeID = new Locale("in", "ID");
@@ -97,9 +95,9 @@ public class act_browse_barang extends AppCompatActivity {
         btn_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pb_loading.setVisibility(View.VISIBLE);
                 getBarangByNameByCategory = api.getBarangByNameByCategory(cari_brg.getText().toString(), getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
                 tampilBarangByName();
+                Toasty.success(act_browse_barang.this, "Mencari barang " + cari_brg.getText().toString(), Toast.LENGTH_SHORT).show();
             }
         });
 
