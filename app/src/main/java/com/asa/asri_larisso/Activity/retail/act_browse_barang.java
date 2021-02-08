@@ -96,7 +96,7 @@ public class act_browse_barang extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getBarangByNameByCategory = api.getBarangByNameByCategory(cari_brg.getText().toString(), getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-                tampilBarangByName(cari_brg.getText().toString());
+                tampilBarangByName();
             }
         });
 
@@ -216,7 +216,7 @@ public class act_browse_barang extends AppCompatActivity {
             }
         });
     }
-    public void tampilBarangByName(String nama_barang){
+    public void tampilBarangByName(){
         getBarangByNameByCategory.enqueue(new Callback<BaseResponse<Barang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
