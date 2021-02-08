@@ -48,7 +48,7 @@ public class act_tambah_alamat extends AppCompatActivity {
 
     EditText nama_penerima, alamat, no_telp, kode_pos;
     Spinner provinsi, kota, kecamatan;
-    Button btn_simpan;
+    Button btn_pin_lokasi, btn_simpan;
     Switch lengkapi_otomatis;
 
     Api api;
@@ -93,6 +93,7 @@ public class act_tambah_alamat extends AppCompatActivity {
         kecamatan = findViewById(R.id.kecamatan);
         btn_simpan = findViewById(R.id.btn_simpan);
         lengkapi_otomatis = findViewById(R.id.lengkapi_otomatis);
+        btn_pin_lokasi = findViewById(R.id.btn_pin_lokasi);
 
         session = new Session(act_tambah_alamat.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -114,6 +115,13 @@ public class act_tambah_alamat extends AppCompatActivity {
                     alamat.setText("");
                     no_telp.setText("");
                 }
+            }
+        });
+
+        btn_pin_lokasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(act_tambah_alamat.this, act_pin_location.class));
             }
         });
 

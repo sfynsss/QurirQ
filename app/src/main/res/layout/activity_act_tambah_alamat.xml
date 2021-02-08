@@ -71,7 +71,7 @@
                     android:text="Nama Penerima"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:layout_marginLeft="22dp">
+                    android:layout_marginHorizontal="22dp">
                 </TextView>
             </LinearLayout>
             <LinearLayout
@@ -84,7 +84,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/rt_bt_form"
                     android:hint="Nama Penerima"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:inputType="text"
                     android:imeOptions="actionNext"
                     android:drawablePadding="10dp"
@@ -98,10 +98,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:text="Alamat"
+                    android:text="Alamat Lengkap"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:layout_marginLeft="22dp">
+                    android:layout_marginHorizontal="22dp">
                 </TextView>
             </LinearLayout>
             <LinearLayout
@@ -115,7 +115,7 @@
                     android:layout_height="50dp"
                     android:background="@drawable/rt_bt_form"
                     android:hint="Jl. Rasamala 101 "
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:inputType="text"
                     android:imeOptions="actionNext"
                     android:drawablePadding="10dp"
@@ -252,7 +252,7 @@
                         android:paddingLeft="12dp"
                         android:hint="12345"
                         android:inputType="number"
-                        android:textSize="13dp"
+                        android:textSize="13sp"
                         android:maxEms="5"
                         android:maxLength="5"
                         android:imeOptions="actionDone">
@@ -269,7 +269,7 @@
                     android:text="No. Telepon Penerima"
                     android:textStyle="bold"
                     android:textColor="#000"
-                    android:layout_marginLeft="22dp">
+                    android:layout_marginHorizontal="22dp">
                 </TextView>
             </LinearLayout>
             <LinearLayout
@@ -283,30 +283,87 @@
                     android:layout_height="50dp"
                     android:background="@drawable/rt_bt_form"
                     android:hint="082345678910"
-                    android:textSize="13dp"
+                    android:textSize="13sp"
                     android:inputType="text|number"
                     android:imeOptions="actionNext"
                     android:drawablePadding="10dp"
                     android:paddingLeft="20dp">
                 </EditText>
             </LinearLayout>
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="35dp"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_marginTop="10dp">-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:text="Pin Lokasi"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:layout_marginHorizontal="22dp">-->
+<!--                </TextView>-->
+<!--                <TextView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:text="Pilih titik lokasi alamat anda"-->
+<!--                    android:textSize="11sp"-->
+<!--                    android:layout_marginHorizontal="22dp">-->
+<!--                </TextView>-->
+<!--            </LinearLayout>-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Koordinat Lokasi Penerima"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:layout_marginHorizontal="22dp">
+                </TextView>
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:paddingHorizontal="10dp"
-                android:paddingVertical="5dp"
-                android:gravity="center">
+                android:layout_marginHorizontal="14dp"
+                android:weightSum="10"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="7"
+                    android:layout_marginRight="10dp">
+                    <TextView
+                        android:id="@+id/latitude_longitude"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/rt_bt_form"
+                        android:gravity="center_vertical"
+                        android:textSize="13sp"
+                        android:text="Koordinat belum dipilih"
+                        android:paddingLeft="20dp">
+                    </TextView>
+                </LinearLayout>
                 <Button
                     android:id="@+id/btn_pin_lokasi"
-                    android:layout_width="200dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:text="Pin Lokasi Pengiriman"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/roboto_regular"
-                    android:background="@drawable/bt_complete_payment_red">
+                    android:layout_weight="3"
+                    android:text="Pilih \nKoordinat"
+                    android:textAllCaps="false"
+                    android:textSize="11sp"
+                    android:background="@drawable/rt_bt_main"
+                    android:textColor="#FFF">
                 </Button>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
@@ -323,7 +380,13 @@
                     android:background="@drawable/rt_bt_tertiary">
                 </Button>
             </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="25dp">
+            </LinearLayout>
         </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

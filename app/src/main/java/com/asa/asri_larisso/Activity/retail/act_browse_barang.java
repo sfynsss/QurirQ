@@ -100,6 +100,7 @@ public class act_browse_barang extends AppCompatActivity {
                 filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
                 filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
                 filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga terendah ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -114,6 +115,7 @@ public class act_browse_barang extends AppCompatActivity {
                 filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
                 filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
                 filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga tertinggi ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -128,6 +130,7 @@ public class act_browse_barang extends AppCompatActivity {
                 filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
                 filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
                 filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan promo ", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -12,12 +12,11 @@
         android:id="@+id/ly_header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:background="@drawable/rt_main_header">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="match_parent">
             <ImageView
                 android:id="@+id/back"
                 android:layout_width="25dp"
@@ -39,15 +38,55 @@
     </LinearLayout>
     <!-- HEADER END -->
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFD45A">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rt_bg_white_round">
+            <EditText
+                android:id="@+id/cari_brg"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:hint="Cari barang di kategori ini ..."
+                android:layout_toStartOf="@+id/btn_search"
+                android:text=""
+                android:imeOptions="actionDone"
+                android:textSize="11sp"
+                android:maxLength="50"
+                android:maxLines="1"
+                android:textColor="#000"
+                android:background="@null"
+                android:paddingLeft="12sp">
+            </EditText>
+            <Button
+                android:id="@+id/btn_search"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="8dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rt_search_ic_search">
+            </Button>
+        </RelativeLayout>
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:weightSum="12">
+        android:layout_height="50dp"
+        android:weightSum="12"
+        android:background="#FFD45A">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:padding="8dp">
+            android:paddingLeft="8dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp">
             <Button
                 android:id="@+id/filter_hrg_diskon"
                 android:layout_width="match_parent"
@@ -64,7 +103,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:padding="8dp">
+            android:paddingHorizontal="4dp"
+            android:paddingBottom="8dp">
             <Button
                 android:id="@+id/filter_hrg_rendah"
                 android:layout_width="match_parent"
@@ -81,7 +121,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
-            android:padding="8dp">
+            android:paddingLeft="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp">
             <Button
                 android:id="@+id/filter_hrg_tinggi"
                 android:layout_width="match_parent"
