@@ -32,7 +32,7 @@ public class act_browse_barang extends AppCompatActivity {
 
     ImageView back;
     TextView nama_kategori, cari_brg;
-    Button filter_hrg_rendah, filter_hrg_tinggi, filter_hrg_diskon;
+    Button filter_hrg_rendah, filter_hrg_tinggi, filter_hrg_diskon, btn_search;
     RecyclerView recyclerBarang;
     Api api;
     Session session;
@@ -40,6 +40,7 @@ public class act_browse_barang extends AppCompatActivity {
     Call<BaseResponse<Barang>> getBarangHargaRendah;
     Call<BaseResponse<Barang>> getBarangHargaTinggi;
     Call<BaseResponse<Barang>> getBarangHargaDiskon;
+    Call<BaseResponse<Barang>> getBarangByNameByCategory;
 
 
     ArrayList<String> kd_brg = new ArrayList<>();
@@ -73,6 +74,7 @@ public class act_browse_barang extends AppCompatActivity {
         filter_hrg_rendah = findViewById(R.id.filter_hrg_rendah);
         filter_hrg_tinggi = findViewById(R.id.filter_hrg_tinggi);
         filter_hrg_diskon = findViewById(R.id.filter_hrg_diskon);
+        btn_search = findViewById(R.id.btn_search);
 
         nama_kategori.setText(getIntent().getStringExtra("judul"));
         Locale localeID = new Locale("in", "ID");
@@ -89,6 +91,14 @@ public class act_browse_barang extends AppCompatActivity {
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         getBarang = api.getBarang(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
         tampilBarang();
+
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBarangByNameByCategory = api.getBarangByNameByCategory(cari_brg.getText().toString(), getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
+                tampilBarangByName(cari_brg.getText().toString());
+            }
+        });
 
         filter_hrg_rendah.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +134,7 @@ public class act_browse_barang extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 getBarangHargaDiskon = api.getBarangHargaDiskon(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-                tampilBarangNamaDiskon(cari_brg.getText().toString());
+                tampilBarangDiskon();
                 filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_on);
                 filter_hrg_diskon.setTextColor(Color.parseColor("#FFFFFF"));
                 filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
@@ -206,9 +216,8 @@ public class act_browse_barang extends AppCompatActivity {
             }
         });
     }
-    public void tampilBarangNamaDiskon(String nama_barang) {
-        getBarang = api.getBarangByName(nama_barang, session.getKdOutlet());
-        getBarang.enqueue(new Callback<BaseResponse<Barang>>() {
+    public void tampilBarangByName(String nama_barang){
+        getBarangByNameByCategory.enqueue(new Callback<BaseResponse<Barang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
                 if (response.isSuccessful()) {

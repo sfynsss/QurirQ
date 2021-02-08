@@ -172,6 +172,14 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getBarangByNameByCategory")
+    Call<BaseResponse<Barang>> getBarangByNameByCategory(
+            @Field("nm_brg") String nm_brg,
+            @Field("kd_kategori") String kat,
+            @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
     @POST("getBarangHargaRendah")
     Call<BaseResponse<Barang>> getBarangHargaRendah(
             @Field("kd_kategori") String kat,
