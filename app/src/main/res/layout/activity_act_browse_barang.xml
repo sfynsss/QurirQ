@@ -51,10 +51,10 @@
                 android:id="@+id/cari_brg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentLeft="true"
                 android:hint="Cari barang di kategori ini ..."
                 android:layout_toStartOf="@+id/btn_search"
                 android:text=""
+                android:inputType="text"
                 android:imeOptions="actionDone"
                 android:textSize="11sp"
                 android:maxLength="50"
@@ -136,6 +136,20 @@
                 android:background="@drawable/rt_filter_bt_off">
             </Button>
         </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible">
+        </ProgressBar>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
