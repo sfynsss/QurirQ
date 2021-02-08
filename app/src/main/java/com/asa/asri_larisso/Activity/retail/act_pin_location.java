@@ -3,6 +3,7 @@ package com.asa.asri_larisso.Activity.retail;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,13 +29,14 @@ public class act_pin_location extends AppCompatActivity {
 
         btn_pilih = findViewById(R.id.btn_pilih);
         tx_latitude_longitude = findViewById(R.id.tx_latitude_longitude);
+        final Activity activity = act_pin_location.this;
 
         btn_pilih.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
                 try {
-                    startActivityForResult(builder.build(act_pin_location.this), PLACE_PICKER_REQUEST);
+                    startActivityForResult(builder.build(activity), PLACE_PICKER_REQUEST);
                 } catch (GooglePlayServicesRepairableException e) {
                     e.printStackTrace();
                 } catch (GooglePlayServicesNotAvailableException e) {
@@ -49,7 +51,7 @@ public class act_pin_location extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == PLACE_PICKER_REQUEST) {
             if (resultCode == RESULT_OK){
-                Place place = PlacePicker.getPlace(data, this);
+                Place place = PlacePicker.getPlace(data, act_pin_location.this);
                 StringBuilder stringBuilder = new StringBuilder();
                 String latitude = String.valueOf(place.getLatLng().latitude);
                 String longitude = String.valueOf(place.getLatLng().longitude);
