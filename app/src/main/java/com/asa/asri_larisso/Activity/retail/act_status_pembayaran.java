@@ -54,7 +54,7 @@ public class act_status_pembayaran extends AppCompatActivity {
         kembali_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(act_status_pembayaran.this, frm_home.class));
+                startActivity(new Intent(act_status_pembayaran.this, act_home_retail.class));
                 finish();
             }
         });
