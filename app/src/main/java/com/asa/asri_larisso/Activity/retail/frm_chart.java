@@ -91,6 +91,7 @@ public class frm_chart extends Fragment {
     private ArrayList<String> qty = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kategori = new ArrayList<>();
+    private ArrayList<String> sts_point = new ArrayList<>();
     NumberFormat formatRupiah;
     double tot = 0;
 
@@ -145,6 +146,7 @@ public class frm_chart extends Fragment {
                     i.putExtra("qty", qty);
                     i.putExtra("gambar", gambar);
                     i.putExtra("subtot", tot+"");
+                    i.putExtra("sts_point", sts_point);
                     startActivity(i);
                 } else {
                     final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
@@ -181,6 +183,7 @@ public class frm_chart extends Fragment {
                     qty.clear();
                     gambar.clear();
                     kategori.clear();
+                    sts_point.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         kd_brg.add(response.body().getData().get(i).getKdBrg());
@@ -190,7 +193,9 @@ public class frm_chart extends Fragment {
                         qty.add(response.body().getData().get(i).getQty().toString());
                         gambar.add(response.body().getData().get(i).getGambar());
                         kategori.add(response.body().getData().get(i).getKategoriBarang());
+                        sts_point.add(response.body().getData().get(i).getSts_point());
                     }
+                    System.out.println("sts_point : "+sts_point);
 
                     adapterCartBarang = new AdapterCartBarang(getActivity(), kd_brg, nm_brg, hrg_brg, qty, gambar, kategori, new AdapterCartBarang.OnEditLocationListener() {
                         @Override

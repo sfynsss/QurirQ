@@ -6,6 +6,7 @@ import com.facebook.stetho.BuildConfig;
 import com.facebook.stetho.okhttp3.StethoInterceptor;
 
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
@@ -16,8 +17,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-//    private static String BASE_URL = "http://192.168.0.3:8000/api/";
-    private static String BASE_URL = "https://server.larisso.co.id/api/";
+    private static String BASE_URL = "http://192.168.0.3:8000/api/";
+//    private static String BASE_URL = "https://server.larisso.co.id/api/";
     private final static OkHttpClient client = UnsafeOkHttpClient.getUnsafeOkHttpClient();
     private static RetrofitClient mInstance;
     private static Retrofit retrofit = buildRetrofit(client);
@@ -82,7 +83,11 @@ public class RetrofitClient {
 
     public static <T> T createServiceWithAuth(Class<T> service, final String api_token) {
 
-        OkHttpClient newClient = client.newBuilder().addInterceptor(new Interceptor() {
+        OkHttpClient newClient = client.newBuilder()
+                .connectTimeout(2, TimeUnit.MINUTES)
+                .readTimeout(2, TimeUnit.MINUTES)
+                .writeTimeout(2, TimeUnit.MINUTES)
+                .addInterceptor(new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();

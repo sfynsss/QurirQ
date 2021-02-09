@@ -25,6 +25,7 @@ import com.asa.asri_larisso.R;
 import com.asa.asri_larisso.Response.BaseResponse;
 import com.asa.asri_larisso.Session.Session;
 import com.asa.asri_larisso.Table.Pengiriman;
+import com.asa.asri_larisso.Table.SettingPoint;
 import com.midtrans.sdk.corekit.callback.TransactionFinishedCallback;
 import com.midtrans.sdk.corekit.core.MidtransSDK;
 import com.midtrans.sdk.corekit.core.TransactionRequest;
@@ -61,7 +62,8 @@ public class act_checkout extends AppCompatActivity {
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
-    double total = 0, netto = 0, ongkir_total = 0, potongan = 0;
+    private ArrayList<String> sts_point = new ArrayList<>();
+    double total = 0, netto = 0, ongkir_total = 0, potongan = 0, subtot_point = 0, tot_point = 0;
     boolean sts_kurir = false;
     NumberFormat formatRupiah;
     String no_ent, a = "";
@@ -75,6 +77,8 @@ public class act_checkout extends AppCompatActivity {
     Spinner servis;
     AdapterCheckout adapterCheckout;
     TextView pilih_voucher;
+
+    int ketentuan_point = 0, nilai_point = 0;
 
     ArrayList<Integer> kurir = new ArrayList<>();
     ArrayList<String> service = new ArrayList<>();
@@ -95,6 +99,7 @@ public class act_checkout extends AppCompatActivity {
     Session session;
     Api api;
     Call<BaseResponse<Pengiriman>> cekOngkir;
+    Call<BaseResponse<SettingPoint>> getSettingPoint;
     Call<BaseResponse> cekOngkirCod;
     Call<String> getNoEnt;
     Call<BaseResponse> inputPenjualan;
@@ -112,6 +117,7 @@ public class act_checkout extends AppCompatActivity {
         hrg_asli = (ArrayList<String>) getIntent().getSerializableExtra("hrg_asli");
         qty = (ArrayList<String>) getIntent().getSerializableExtra("qty");
         gambar = (ArrayList<String>) getIntent().getSerializableExtra("gambar");
+        sts_point = (ArrayList<String>) getIntent().getSerializableExtra("sts_point");
 
         total = Double.parseDouble(getIntent().getStringExtra("subtot"));
         Locale localeID = new Locale("in", "ID");
@@ -220,9 +226,17 @@ public class act_checkout extends AppCompatActivity {
                 if (nilai_voucher == 0) {
                     jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total).replace(",00", ""));
                 } else {
-                    jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total - nilai_voucher).replace(",00", ""));
+                    if (nilai_voucher <= (Double.parseDouble(costs.get(position)) + total)) {
+                        jumlah_total.setText(formatRupiah.format(Double.parseDouble(costs.get(position)) + total - nilai_voucher).replace(",00", ""));
+                    } else {
+                        jumlah_total.setText(formatRupiah.format(0).replace(",00", ""));
+                    }
                 }
-                netto = Double.parseDouble(costs.get(position)) + total;
+                if (nilai_voucher <= (Double.parseDouble(costs.get(position)) + total)) {
+                    netto = Double.parseDouble(costs.get(position)) + total - nilai_voucher;
+                } else {
+                    netto = 0;
+                }
                 ongkir_total = Double.parseDouble(costs.get(position).replace(",00", ""));
                 sts_kurir = true;
             }
@@ -241,6 +255,7 @@ public class act_checkout extends AppCompatActivity {
         });
 
         getNoEnt();
+        settingPoint();
 
         pilih_pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -664,6 +679,26 @@ public class act_checkout extends AppCompatActivity {
         });
     }
 
+    public void settingPoint(){
+        getSettingPoint = api.getSettingPoint();
+        getSettingPoint.enqueue(new Callback<BaseResponse<SettingPoint>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<SettingPoint>> call, Response<BaseResponse<SettingPoint>> response) {
+                if (response.isSuccessful()) {
+                    ketentuan_point = response.body().getData().get(0).getKetentuan();
+                    nilai_point = response.body().getData().get(0).getNilaiPoint();
+                } else {
+                    Toasty.error(act_checkout.this, "Setting Point Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<SettingPoint>> call, Throwable t) {
+                Toasty.error(act_checkout.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void initInputPenjualan(String sts_bayar, String transaction_id, final String va, final String payment_bank, final String payment_type, final String sts) {
         String kode_barang = TextUtils.join(";", kd_brg);
         String nama_barang = TextUtils.join(";", nm_brg);
@@ -676,10 +711,24 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(nama_barang);
         System.out.println(harga_barang);
         System.out.println(quantity);
+        subtot_point = 0;
+        for (int i = 0; i < sts_point.size(); i++) {
+            if (!sts_point.get(i).equals("1")) {
+                subtot_point += (Double.parseDouble(hrg_asli.get(i)) * Double.parseDouble(qty.get(i)));
+            }
+        }
+        System.out.println(subtot_point+"subtot point");
+        System.out.println(ketentuan_point+"ketentuan point");
+        tot_point = 0;
+        if (subtot_point % ketentuan_point != 0) {
+            tot_point += 1 * nilai_point;
+        }
+
+        System.out.println(tot_point+"tot point");
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
                 no_penerima.getText().toString(), total + "", "", nilai_voucher, tmp_kd_voucher, "", netto + "",
                 ongkir_total + "", a + "", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id,
-                va, payment_bank, payment_type);
+                va, payment_bank, payment_type, tot_point+"");
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -749,18 +798,34 @@ public class act_checkout extends AppCompatActivity {
                     if (nilai_voucher == 0) {
                         jumlah_total.setText(formatRupiah.format(0 + total).replace(",00", ""));
                     } else {
-                        jumlah_total.setText(formatRupiah.format(0 + total - nilai_voucher).replace(",00", ""));
+                        if (nilai_voucher <= total) {
+                            jumlah_total.setText(formatRupiah.format(0 + total - nilai_voucher).replace(",00", ""));
+                        } else if (nilai_voucher > total) {
+                            jumlah_total.setText(formatRupiah.format(0).replace(",00", ""));
+                        }
                     }
-                    netto = total - nilai_voucher;
+                    if (nilai_voucher <= total) {
+                        netto = total - nilai_voucher;
+                    } else {
+                        netto = 0;
+                    }
                 } else {
                     harga_ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
                     ongkir.setText(formatRupiah.format(ongkir_total).replace(",00", ""));
                     if (nilai_voucher == 0) {
                         jumlah_total.setText(formatRupiah.format(ongkir_total + total).replace(",00", ""));
                     } else {
-                        jumlah_total.setText(formatRupiah.format(ongkir_total + total - nilai_voucher).replace(",00", ""));
+                        if (nilai_voucher <= (total + ongkir_total)) {
+                            jumlah_total.setText(formatRupiah.format(ongkir_total + total - nilai_voucher).replace(",00", ""));
+                        } else if (nilai_voucher > (total + ongkir_total)) {
+                            jumlah_total.setText(formatRupiah.format(0).replace(",00", ""));
+                        }
                     }
-                    netto = ongkir_total + total - nilai_voucher;
+                    if (nilai_voucher <= (total + ongkir_total)) {
+                        netto = ongkir_total + total - nilai_voucher;
+                    } else {
+                        netto = 0;
+                    }
                 }
             }
 
