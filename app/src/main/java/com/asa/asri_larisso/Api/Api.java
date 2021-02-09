@@ -19,6 +19,7 @@ import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.Pengiriman;
 import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.Provinsi;
+import com.asa.asri_larisso.Table.SettingPoint;
 import com.asa.asri_larisso.Table.SettingVoucher;
 import com.asa.asri_larisso.Table.Voucher;
 import com.asa.asri_larisso.Table.Wishlist;
@@ -322,7 +323,8 @@ public interface Api {
             @Field("transaction_id") String transaction_id,
             @Field("no_va") String no_va,
             @Field("payment_bank") String payment_bank,
-            @Field("payment_type") String payment_type
+            @Field("payment_type") String payment_type,
+            @Field("point") String point
 
     );
 
@@ -349,6 +351,9 @@ public interface Api {
     Call<BaseResponse<Notif>> getNotif(
             @Field("id") String id
     );
+
+    @GET("getSettingPoint")
+    Call<BaseResponse<SettingPoint>> getSettingPoint();
 
     @GET("getPenawaran")
     Call<BaseResponse<Penawaran>> getPenawaran();

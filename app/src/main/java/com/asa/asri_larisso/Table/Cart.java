@@ -32,6 +32,9 @@ public class Cart {
     @SerializedName("kategori_barang")
     @Expose
     private String kategoriBarang;
+    @SerializedName("sts_point")
+    @Expose
+    private String sts_point;
 
     public Integer getIdCart() {
         return idCart;
@@ -103,6 +106,14 @@ public class Cart {
 
     public void setKategoriBarang(String kategoriBarang) {
         this.kategoriBarang = kategoriBarang;
+    }
+
+    public String getSts_point() {
+        return sts_point;
+    }
+
+    public void setSts_point(String sts_point) {
+        this.sts_point = sts_point;
     }
 
 }
