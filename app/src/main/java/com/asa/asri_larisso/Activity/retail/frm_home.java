@@ -1,7 +1,9 @@
 package com.asa.asri_larisso.Activity.retail;
 
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.cardview.widget.CardView;
@@ -14,6 +16,9 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -52,6 +57,7 @@ public class frm_home extends Fragment {
     Call<BaseResponse<kategori>> getKategori;
     Call<BaseResponse<Penawaran>> getPenawaran;
     Call<BaseResponse1<PoinVoucher>> getPointVoucher;
+    Call<BaseResponse> getStatusUpdate;
 
     ArrayList<String> kd_kategori = new ArrayList<>();
     ArrayList<String> judul = new ArrayList<>();
@@ -179,6 +185,7 @@ public class frm_home extends Fragment {
 
         tampilKategori();
         dataPoinVoucher();
+        checkUpdate();
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
             @Override
@@ -217,6 +224,44 @@ public class frm_home extends Fragment {
                     .into(imageView);
         }
     };
+
+    public void checkUpdate(){
+        getStatusUpdate = api.getStatuUpdate();
+        getStatusUpdate.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getMessage().equals("update")) {
+                        popUpUpdate();
+                    }
+                } else {
+                    System.out.println("Nothing to update");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
+    public void popUpUpdate() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setTitle("Gambar Barang");
+        View v = getLayoutInflater().inflate(R.layout.popup_update, null);
+        dialog.setContentView(v);
+        Button update = v.findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.asa.asri_larisso"));
+                startActivity(intent);
+            }
+        });
+
+        dialog.show();
+    }
 
     public void tampilKategori(){
         getKategori = api.getKategoriBarang("6", session.getKdOutlet());

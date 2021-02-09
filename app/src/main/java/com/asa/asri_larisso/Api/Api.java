@@ -391,4 +391,7 @@ public interface Api {
             @Field("kurir") String jns_pengiriman
     );
 
+    @GET("getStatusUpdate")
+    Call<BaseResponse> getStatuUpdate();
+
 }
