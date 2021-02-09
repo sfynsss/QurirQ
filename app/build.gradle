@@ -8,7 +8,7 @@ android {
         applicationId "com.asa.asri_larisso"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 4
+        versionCode 6
         versionName ""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
