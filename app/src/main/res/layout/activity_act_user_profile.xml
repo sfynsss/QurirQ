@@ -240,7 +240,8 @@
         android:textColor="#FFF"
         android:textAllCaps="false"
         android:text="Edit Profil"
-        android:background="#FF661B">
+        android:background="#FF661B"
+        android:visibility="invisible">
     </Button>
 
 </LinearLayout>

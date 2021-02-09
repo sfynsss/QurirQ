@@ -104,6 +104,7 @@ public class act_list_alamat extends AppCompatActivity {
                     it.putExtra("no_telp_penerima", no_telp_penerima.get(position));
                     setResult(1, it);
                     finish();
+                    Toasty.success(act_list_alamat.this, "Alamat ke " + alamat_asli.get(position) + " dipilih", Toast.LENGTH_SHORT).show();
                 }
             });
         }

@@ -169,7 +169,8 @@
                 android:textColor="#0B5392"
                 android:textStyle="bold"
                 android:paddingRight="20dp"
-                android:gravity="center_vertical|end">
+                android:gravity="center_vertical|end"
+                android:visibility="visible">
             </TextView>
         </LinearLayout>
         <TextView

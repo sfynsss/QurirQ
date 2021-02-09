@@ -309,11 +309,6 @@ public class frm_chart extends Fragment {
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
                     pDialog.dismiss();
-                    final SweetAlertDialog dialog = new SweetAlertDialog(getContext(), SweetAlertDialog.SUCCESS_TYPE);
-                    dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    dialog.setTitleText("Quantity berhasil diubah !!!");
-                    dialog.setCancelable(false);
-                    dialog.show();
                     adapterCartBarang.notifyDataSetChanged();
                 } else {
                     pDialog.dismiss();
