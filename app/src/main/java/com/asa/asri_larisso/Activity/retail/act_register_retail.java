@@ -139,6 +139,7 @@ public class act_register_retail extends AppCompatActivity {
                                     response.body().getRegister().getApiToken() + "",
                                     response.body().getRegister().getOtoritas() + "",
                                     response.body().getRegister().getJNSKELAMIN()+"");
+                            session.setKdCust(response.body().getRegister().getKDCUST());
                             Intent it = new Intent(act_register_retail.this, act_otp_validation_retail.class);
                             it.putExtra("email", response.body().getRegister().getEmail() + "");
                             startActivity(it);

@@ -26,6 +26,9 @@ public class Register {
     @SerializedName("JNS_KELAMIN")
     @Expose
     private String jNSKELAMIN;
+    @SerializedName("KD_CUST")
+    @Expose
+    private String kDCUST;
 
     public String getName() {
         return name;
@@ -81,6 +84,14 @@ public class Register {
 
     public void setJNSKELAMIN(String jNSKELAMIN) {
         this.jNSKELAMIN = jNSKELAMIN;
+    }
+
+    public String getKDCUST() {
+        return kDCUST;
+    }
+
+    public void setKDCUST(String kDCUST) {
+        this.kDCUST = kDCUST;
     }
 
 }
