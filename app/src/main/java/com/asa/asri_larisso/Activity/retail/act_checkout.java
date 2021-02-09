@@ -720,8 +720,10 @@ public class act_checkout extends AppCompatActivity {
         System.out.println(subtot_point+"subtot point");
         System.out.println(ketentuan_point+"ketentuan point");
         tot_point = 0;
-        if (subtot_point % ketentuan_point != 0) {
-            tot_point += 1 * nilai_point;
+        if (TextUtils.isEmpty(tmp_kd_voucher)) {
+            tot_point = (int)subtot_point / ketentuan_point;
+        } else {
+            tot_point = 0;
         }
 
         System.out.println(tot_point+"tot point");
