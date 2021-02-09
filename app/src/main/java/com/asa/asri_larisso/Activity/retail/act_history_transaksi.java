@@ -46,6 +46,7 @@ public class act_history_transaksi extends AppCompatActivity {
     ArrayList<String> payment_type = new ArrayList<>();
     ArrayList<String> bank_name = new ArrayList<>();
     ArrayList<String> va = new ArrayList<>();
+    ArrayList<String> sts_transaksi = new ArrayList<>();
 
     AdapterTransaksi adapterTransaksi;
 
@@ -84,6 +85,7 @@ public class act_history_transaksi extends AppCompatActivity {
                     payment_type.clear();
                     bank_name.clear();
                     va.clear();
+                    sts_transaksi.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
                         no_ent.add(response.body().getData().get(i).getNoEnt());
@@ -102,7 +104,9 @@ public class act_history_transaksi extends AppCompatActivity {
                         payment_type.add(response.body().getData().get(i).getPaymentType());
                         bank_name.add(response.body().getData().get(i).getBankName());
                         va.add(response.body().getData().get(i).getVaNumber());
+                        sts_transaksi.add(response.body().getData().get(i).getStsTransaksi());
                     }
+                    System.out.println("sts_transaksi"+sts_transaksi);
 
                     System.out.println(waktu_transaksi);
                     adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, sts_byr, new AdapterTransaksi.OnEditLocationListener() {
@@ -145,6 +149,7 @@ public class act_history_transaksi extends AppCompatActivity {
                 it.putExtra("jns_pengiriman", jns_pengiriman.get(position));
                 it.putExtra("ongkir", ongkir.get(position)+"");
                 it.putExtra("nilai_voucher", disc_value.get(position)+"");
+                it.putExtra("sts_transaksi", sts_transaksi.get(position));
                 startActivity(it);
             }
         });

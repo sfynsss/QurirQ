@@ -21,6 +21,7 @@ import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.Provinsi;
 import com.asa.asri_larisso.Table.SettingPoint;
 import com.asa.asri_larisso.Table.SettingVoucher;
+import com.asa.asri_larisso.Table.StsTransaksi;
 import com.asa.asri_larisso.Table.Voucher;
 import com.asa.asri_larisso.Table.Wishlist;
 import com.asa.asri_larisso.Table.kategori;
@@ -343,6 +344,12 @@ public interface Api {
     @FormUrlEncoded
     @POST("getDetailTransaksi")
     Call<BaseResponse<DetJual>> getDetailTransaksi(
+            @Field("no_ent") String no_ent
+    );
+
+    @FormUrlEncoded
+    @POST("getStatusTransaksi")
+    Call<BaseResponse1<StsTransaksi>> getStatusTransaksi(
             @Field("no_ent") String no_ent
     );
 

@@ -44,6 +44,9 @@ public class MstJual {
     @SerializedName("va_number")
     @Expose
     private String vaNumber;
+    @SerializedName("sts_transaksi")
+    @Expose
+    private String stsTransaksi;
 
 
     public String getNoEnt() {
@@ -144,6 +147,14 @@ public class MstJual {
 
     public void setVaNumber(String vaNumber) {
         this.vaNumber = vaNumber;
+    }
+
+    public String getStsTransaksi() {
+        return stsTransaksi;
+    }
+
+    public void setStsTransaksi(String stsTransaksi) {
+        this.stsTransaksi = stsTransaksi;
     }
 
 }
