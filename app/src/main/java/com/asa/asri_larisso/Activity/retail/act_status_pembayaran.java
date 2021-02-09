@@ -51,14 +51,6 @@ public class act_status_pembayaran extends AppCompatActivity {
         payment_bank.setText(getIntent().getStringExtra("payment_bank").toUpperCase());
         va.setText(getIntent().getStringExtra("va"));
         total.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("total"))).replace(",00",""));
-
-        if (getIntent().getStringArrayExtra("va").equals("")){
-            va.setText("-");
-            salin_va.setVisibility(View.VISIBLE);
-            payment_type.setText("Ambil Sendiri");
-            payment_bank.setText("Pick Up");
-        }
-
         kembali_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
