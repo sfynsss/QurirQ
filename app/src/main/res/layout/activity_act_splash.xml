@@ -25,10 +25,18 @@
             android:background="@drawable/rt_splash_logo">
         </ImageView>
     </LinearLayout>
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
+        android:orientation="vertical"
         android:background="@drawable/rt_splash_2">
-    </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="V 9.0"
+            android:fontFamily="@font/overpass_regular"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
 </LinearLayout>
