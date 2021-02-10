@@ -54,7 +54,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:text="Nomor Transaksi">
@@ -62,7 +63,8 @@
         <TextView
             android:id="@+id/no_ent"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:layout_gravity="center"
             android:text="12345678910"
             android:textStyle="bold"
@@ -71,7 +73,8 @@
         </TextView>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="5dp"
             android:layout_marginHorizontal="16dp"
@@ -96,7 +99,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="16dp"
@@ -121,7 +125,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="16dp"
@@ -147,7 +152,8 @@
         <LinearLayout
             android:id="@+id/ly_ongkir"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="16dp"
@@ -173,7 +179,8 @@
         <LinearLayout
             android:id="@+id/ly_potongan_voucher"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="16dp"
@@ -199,7 +206,8 @@
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:weightSum="10"
             android:layout_marginTop="6dp"
             android:layout_marginHorizontal="16dp"
@@ -225,7 +233,8 @@
         <Button
             android:id="@+id/lacak_pesanan"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2.5"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="16dp"
             android:text="Lacak Pesanan"
@@ -238,7 +247,8 @@
         <TextView
             android:id="@+id/batalkan_pesanan"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:text="Batalkan pesanan?"
             android:layout_gravity="center"
             android:layout_marginTop="5dp"
