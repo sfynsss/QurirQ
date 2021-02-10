@@ -354,6 +354,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("batalkanTransaksi")
+    Call<BaseResponse> batalkanTransaksi(
+            @Field("no_ent") String no_ent
+    );
+
+    @FormUrlEncoded
     @POST("getNotif")
     Call<BaseResponse<Notif>> getNotif(
             @Field("id") String id

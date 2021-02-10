@@ -3,6 +3,7 @@ package com.asa.asri_larisso.Activity.retail;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -15,8 +16,11 @@ import com.asa.asri_larisso.Api.Api;
 import com.asa.asri_larisso.Api.RetrofitClient;
 import com.asa.asri_larisso.R;
 import com.asa.asri_larisso.Response.BaseResponse;
+import com.asa.asri_larisso.Response.BaseResponse1;
 import com.asa.asri_larisso.Session.Session;
 import com.asa.asri_larisso.Table.MstJual;
+import com.asa.asri_larisso.Table.StsTransaksi;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -33,6 +37,7 @@ public class act_history_transaksi extends AppCompatActivity {
     Session session;
     Api api;
     Call<BaseResponse<MstJual>> getDataTransaksi;
+    Call<BaseResponse1<StsTransaksi>> getStatusTransaksi;
 
     ArrayList<String> no_ent = new ArrayList<>();
     ArrayList<String> jml_item = new ArrayList<>();
@@ -106,21 +111,189 @@ public class act_history_transaksi extends AppCompatActivity {
                         va.add(response.body().getData().get(i).getVaNumber());
                         sts_transaksi.add(response.body().getData().get(i).getStsTransaksi());
                     }
-                    System.out.println("sts_transaksi"+sts_transaksi);
+                    System.out.println("sts_transaksi" + sts_transaksi);
 
                     System.out.println(waktu_transaksi);
-                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, sts_byr, new AdapterTransaksi.OnEditLocationListener() {
+                    adapterTransaksi = new AdapterTransaksi(act_history_transaksi.this, no_ent, jml_item, tgl_transaksi, subtot, sts_byr, jns_pengiriman, sts_transaksi, new AdapterTransaksi.OnEditLocationListener() {
                         @Override
                         public void onClickAdapter(int position) {
-                            if (sts_byr.get(position).equals("0")) {
+                            if (sts_transaksi.get(position).equals("SELESAI")) {
+                                final SweetAlertDialog pDialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                pDialog.setTitleText("Loading");
+                                pDialog.show();
+                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                dialog.setTitleText("Pesanan Selesai");
+                                dialog.setContentText("Terimakasih telah berbelanja di LARISSO !!!");
+                                dialog.setConfirmText("OKE");
+                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        dialog.dismiss();
+                                        pDialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            } else if (sts_transaksi.get(position).equals("BATAL")) {
+                                final SweetAlertDialog pDialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                pDialog.setTitleText("Loading");
+                                pDialog.show();
+                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.WARNING_TYPE);
+                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                dialog.setTitleText("Pesanan Batal");
+                                dialog.setContentText("Pesanan Anda telah dibatalkan !!!");
+                                dialog.setConfirmText("OKE");
+                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        dialog.dismiss();
+                                        pDialog.dismiss();
+                                    }
+                                });
+                                dialog.show();
+                            } else if (sts_byr.get(position).equals("0") && !jns_pengiriman.get(position).equals("pickup")) {
                                 Intent it = new Intent(act_history_transaksi.this, act_status_pembayaran.class);
                                 it.putExtra("payment_type", payment_type.get(position));
                                 it.putExtra("payment_bank", bank_name.get(position));
                                 it.putExtra("va", va.get(position));
                                 it.putExtra("total", subtot.get(position));
                                 startActivity(it);
+                            } else if (jns_pengiriman.get(position).equals("pickup")) {
+                                final SweetAlertDialog pDialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                                pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                pDialog.setTitleText("Loading");
+                                pDialog.show();
+                                getStatusTransaksi = api.getStatusTransaksi(no_ent.get(position));
+                                getStatusTransaksi.enqueue(new Callback<BaseResponse1<StsTransaksi>>() {
+                                    @Override
+                                    public void onResponse(Call<BaseResponse1<StsTransaksi>> call, Response<BaseResponse1<StsTransaksi>> response) {
+                                        if (response.isSuccessful()) {
+                                            if (response.body().getData().getStsTransaksi().equals("MASUK")) {
+                                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                                dialog.setTitleText("Pesanan Diterima");
+                                                dialog.setContentText("Menunggu untuk di proses !!!");
+                                                dialog.setConfirmText("OKE");
+                                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        dialog.dismiss();
+                                                        pDialog.dismiss();
+                                                    }
+                                                });
+                                                dialog.show();
+                                            } else if (response.body().getData().getStsTransaksi().equals("PROSES")) {
+                                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                                dialog.setTitleText("Pesanan Proses");
+                                                dialog.setContentText("Pesanan Anda sedang di proses !!!");
+                                                dialog.setConfirmText("OKE");
+                                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        dialog.dismiss();
+                                                        pDialog.dismiss();
+                                                    }
+                                                });
+                                                dialog.show();
+                                            } else if (response.body().getData().getStsTransaksi().equals("SIAP DIAMBIL")) {
+                                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                                dialog.setTitleText("Pesanan Siap");
+                                                dialog.setContentText("Pesanan Anda telah siap untuk diambil !!!");
+                                                dialog.setConfirmText("OKE");
+                                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        dialog.dismiss();
+                                                        pDialog.dismiss();
+                                                    }
+                                                });
+                                                dialog.show();
+                                            } else if (response.body().getData().getStsTransaksi().equals("SELESAI")) {
+                                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                                dialog.setTitleText("Pesanan Selesai");
+                                                dialog.setContentText("Terimakasih telah berbelanja di LARISSO !!!");
+                                                dialog.setConfirmText("OKE");
+                                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        dialog.dismiss();
+                                                        pDialog.dismiss();
+                                                    }
+                                                });
+                                                dialog.show();
+                                            } else if (response.body().getData().getStsTransaksi().equals("BATAL")) {
+                                                final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.WARNING_TYPE);
+                                                dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                                dialog.setTitleText("Pesanan Batal");
+                                                dialog.setContentText("Pesanan Anda telah dibatalkan !!!");
+                                                dialog.setConfirmText("OKE");
+                                                dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                                    @Override
+                                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                                        dialog.dismiss();
+                                                        pDialog.dismiss();
+                                                    }
+                                                });
+                                                dialog.show();
+                                            }
+                                            pDialog.dismiss();
+                                        } else {
+                                            Toasty.error(act_history_transaksi.this, "Status Transaksi tidak ditemukan, Silahkan ulangi", Toast.LENGTH_SHORT).show();
+                                            pDialog.dismiss();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<BaseResponse1<StsTransaksi>> call, Throwable t) {
+                                        Toasty.error(act_history_transaksi.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                                        pDialog.dismiss();
+                                    }
+                                });
                             } else {
-                                Toasty.success(act_history_transaksi.this, "Transaksi Sudah Terbayar", Toast.LENGTH_SHORT).show();
+                                if (sts_transaksi.get(position).equals("SELESAI")) {
+                                    final SweetAlertDialog pDialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                    pDialog.setTitleText("Loading");
+                                    pDialog.show();
+                                    final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                                    dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                    dialog.setTitleText("Pesanan Selesai");
+                                    dialog.setContentText("Terimakasih telah berbelanja di LARISSO !!!");
+                                    dialog.setConfirmText("OKE");
+                                    dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            dialog.dismiss();
+                                            pDialog.dismiss();
+                                        }
+                                    });
+                                    dialog.show();
+                                } else if (sts_transaksi.get(position).equals("BATAL")) {
+                                    final SweetAlertDialog pDialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                    pDialog.setTitleText("Loading");
+                                    pDialog.show();
+                                    final SweetAlertDialog dialog = new SweetAlertDialog(act_history_transaksi.this, SweetAlertDialog.WARNING_TYPE);
+                                    dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                    dialog.setTitleText("Pesanan Batal");
+                                    dialog.setContentText("Pesanan Anda telah dibatalkan !!!");
+                                    dialog.setConfirmText("OKE");
+                                    dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            dialog.dismiss();
+                                            pDialog.dismiss();
+                                        }
+                                    });
+                                    dialog.show();
+                                } else {
+                                    Toasty.success(act_history_transaksi.this, "Transaksi Sudah Terbayar", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         }
                     });
@@ -133,7 +306,7 @@ public class act_history_transaksi extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BaseResponse<MstJual>> call, Throwable t) {
-                Toasty.error(act_history_transaksi.this, t.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Toasty.error(act_history_transaksi.this, t.getMessage() + "", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -144,11 +317,11 @@ public class act_history_transaksi extends AppCompatActivity {
                 it.putExtra("no_ent", no_ent.get(position));
                 it.putExtra("tgl_transaksi", tgl_transaksi.get(position));
                 it.putExtra("waktu_transaksi", waktu_transaksi.get(position));
-                it.putExtra("total", subtot.get(position)+"");
-                it.putExtra("sts_byr", sts_byr.get(position)+"");
+                it.putExtra("total", subtot.get(position) + "");
+                it.putExtra("sts_byr", sts_byr.get(position) + "");
                 it.putExtra("jns_pengiriman", jns_pengiriman.get(position));
-                it.putExtra("ongkir", ongkir.get(position)+"");
-                it.putExtra("nilai_voucher", disc_value.get(position)+"");
+                it.putExtra("ongkir", ongkir.get(position) + "");
+                it.putExtra("nilai_voucher", disc_value.get(position) + "");
                 it.putExtra("sts_transaksi", sts_transaksi.get(position));
                 startActivity(it);
             }

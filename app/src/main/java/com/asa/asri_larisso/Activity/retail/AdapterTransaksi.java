@@ -27,10 +27,12 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
     private ArrayList<String> tgl_transaksi = new ArrayList<>();
     private ArrayList<String> subtot = new ArrayList<>();
     private ArrayList<String> sts_byr = new ArrayList<>();
+    private ArrayList<String> jns_pengiriman = new ArrayList<>();
+    private ArrayList<String> sts_transaksi = new ArrayList<>();
     NumberFormat formatRupiah;
     OnEditLocationListener lihat_status;
 
-    public AdapterTransaksi(Activity context, ArrayList<String> no_ent, ArrayList<String> jml_item, ArrayList<String> tgl_transaksi, ArrayList<String> subtot, ArrayList<String> sts_byr, OnEditLocationListener lihat_status) {
+    public AdapterTransaksi(Activity context, ArrayList<String> no_ent, ArrayList<String> jml_item, ArrayList<String> tgl_transaksi, ArrayList<String> subtot, ArrayList<String> sts_byr, ArrayList<String> jns_pengiriman, ArrayList<String> sts_transaksi, OnEditLocationListener lihat_status) {
         super(context, R.layout.adapter_transaksi, no_ent);
 
         this.context = context;
@@ -39,6 +41,8 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         this.tgl_transaksi = tgl_transaksi;
         this.subtot = subtot;
         this.sts_byr = sts_byr;
+        this.jns_pengiriman = jns_pengiriman;
+        this.sts_transaksi = sts_transaksi;
         this.lihat_status = lihat_status;
 
         Locale localeID = new Locale("in", "ID");
@@ -50,7 +54,7 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
     public View getView(final int position, View convertView, ViewGroup parent) {
         View v = convertView;
         ViewHolder viewHolder = null;
-        if (v == null){
+        if (v == null) {
             LayoutInflater layoutInflater = context.getLayoutInflater();
             v = layoutInflater.inflate(R.layout.adapter_transaksi, null, true);
             viewHolder = new ViewHolder(v);
@@ -60,13 +64,22 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         }
 
         viewHolder.no_ent.setText(no_ent.get(position));
-        viewHolder.jml_item.setText(jml_item.get(position)+"");
+        viewHolder.jml_item.setText(jml_item.get(position) + "");
         viewHolder.tgl_transaksi.setText(tgl_transaksi.get(position));
         viewHolder.subtot.setText(formatRupiah.format(Double.parseDouble(subtot.get(position))).replace(",00", ""));
 
-        if (sts_byr.get(position).equals("0")) {
+        if (sts_transaksi.get(position).equals("SELESAI")) {
+            viewHolder.status.setText("Transaksi Selesai");
+            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.blue_notif));
+        } else if (sts_transaksi.get(position).equals("BATAL")) {
+            viewHolder.status.setText("Transaksi Batal");
+            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.red));
+        } else if (sts_byr.get(position).equals("0") && !jns_pengiriman.get(position).equals("pickup")) {
             viewHolder.status.setText("Menunggu Pembayaran");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+        } else if (jns_pengiriman.get(position).equals("pickup")) {
+            viewHolder.status.setText("Lihat Status Transaksi");
+            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.aquamarine_primary));
         } else {
             viewHolder.status.setText("Sudah Terbayar");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.green_notif));
@@ -85,10 +98,11 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         return v;
     }
 
-    class ViewHolder{
+    class ViewHolder {
         TextView no_ent, jml_item, tgl_transaksi, subtot, status;
         RelativeLayout relativeLayout;
-        ViewHolder(View view){
+
+        ViewHolder(View view) {
             no_ent = view.findViewById(R.id.no_ent);
             jml_item = view.findViewById(R.id.jml_item);
             tgl_transaksi = view.findViewById(R.id.tgl_transaksi);

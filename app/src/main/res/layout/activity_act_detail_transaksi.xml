@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,9 +12,10 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="0dp"
         android:background="@drawable/rt_main_header"
         android:orientation="vertical"
+        android:layout_weight="1"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints">
         <LinearLayout
@@ -43,9 +44,11 @@
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="290dp"
+        android:layout_height="0dp"
+        android:layout_weight="3.5"
         android:background="#FFF"
         android:orientation="vertical"
+        android:weightSum="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
@@ -70,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:weightSum="10"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="5dp"
             android:layout_marginHorizontal="16dp"
             android:orientation="horizontal">
             <TextView
@@ -213,7 +216,6 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="5"
-                android:text="Berhasil"
                 android:textColor="#47D764"
                 android:textStyle="bold"
                 android:gravity="center_vertical|end">
@@ -223,8 +225,8 @@
         <Button
             android:id="@+id/lacak_pesanan"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginHorizontal="16dp"
             android:text="Lacak Pesanan"
             android:textStyle="bold"
@@ -239,7 +241,7 @@
             android:layout_height="wrap_content"
             android:text="Batalkan pesanan?"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:textStyle="bold"
             android:textColor="#FD7468"
             android:visibility="visible">
@@ -250,6 +252,7 @@
         android:id="@+id/list_barang"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="4.5"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -259,7 +262,8 @@
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="#FFF"
         android:gravity="center"
         android:orientation="vertical"
@@ -282,4 +286,4 @@
             android:textStyle="bold"/>
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
