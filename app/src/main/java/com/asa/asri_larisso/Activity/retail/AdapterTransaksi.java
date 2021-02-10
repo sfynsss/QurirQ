@@ -74,16 +74,17 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
         } else if (sts_transaksi.get(position).equals("BATAL")) {
             viewHolder.status.setText("Transaksi Batal");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.red));
-        } else if (sts_byr.get(position).equals("0") && !jns_pengiriman.get(position).equals("pickup")) {
+        } else if (sts_byr.get(position).equals("0")) {
             viewHolder.status.setText("Menunggu Pembayaran");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
-        } else if (jns_pengiriman.get(position).equals("pickup")) {
-            viewHolder.status.setText("Lihat Status Transaksi");
+        } else if (sts_byr.get(position).equals("1")) {
+            viewHolder.status.setText("Pesanan Sudah Terbayar");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.aquamarine_primary));
-        } else {
-            viewHolder.status.setText("Sudah Terbayar");
-            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.green_notif));
         }
+//        else {
+//            viewHolder.status.setText("Sudah Terbayar");
+//            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.green_notif));
+//        }
 
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -185,7 +185,7 @@ public class frm_home extends Fragment {
 
         tampilKategori();
         dataPoinVoucher();
-//        checkUpdate();
+        checkUpdate();
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
             @Override
@@ -225,43 +225,43 @@ public class frm_home extends Fragment {
         }
     };
 
-//    public void checkUpdate(){
-//        getStatusUpdate = api.getStatusUpdate();
-//        getStatusUpdate.enqueue(new Callback<BaseResponse>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
-//                if (response.isSuccessful()) {
-//                    if (response.body().getMessage().equals("update")) {
-//                        popUpUpdate();
-//                    }
-//                } else {
-//                    System.out.println("Nothing to update");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse> call, Throwable t) {
-//                System.out.println(t.getMessage());
-//            }
-//        });
-//    }
-//
-//    public void popUpUpdate() {
-//        final Dialog dialog = new Dialog(getContext());
-//        dialog.setTitle("Gambar Barang");
-//        View v = getLayoutInflater().inflate(R.layout.popup_update, null);
-//        dialog.setContentView(v);
-//        Button update = v.findViewById(R.id.update);
-//        update.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.asa.asri_larisso"));
-//                startActivity(intent);
-//            }
-//        });
-//
-//        dialog.show();
-//    }
+    public void checkUpdate(){
+        getStatusUpdate = api.getStatusUpdate(getContext().getString(R.string.version));
+        getStatusUpdate.enqueue(new Callback<BaseResponse>() {
+            @Override
+            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().getMessage().equals("update")) {
+                        popUpUpdate();
+                    }
+                } else {
+                    System.out.println("Nothing to update");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse> call, Throwable t) {
+                System.out.println(t.getMessage());
+            }
+        });
+    }
+
+    public void popUpUpdate() {
+        final Dialog dialog = new Dialog(getContext());
+        dialog.setTitle("Gambar Barang");
+        View v = getLayoutInflater().inflate(R.layout.popup_update, null);
+        dialog.setContentView(v);
+        Button update = v.findViewById(R.id.update);
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.asa.asri_larisso"));
+                startActivity(intent);
+            }
+        });
+
+        dialog.show();
+    }
 
     public void tampilKategori(){
         getKategori = api.getKategoriBarang("6", session.getKdOutlet());

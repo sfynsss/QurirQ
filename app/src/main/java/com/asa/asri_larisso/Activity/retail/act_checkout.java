@@ -266,10 +266,12 @@ public class act_checkout extends AppCompatActivity {
                     dialog.setTitleText("Silahkan pilih jasa pengiriman terlebih dauhulu !!!");
                     dialog.setCancelable(false);
                     dialog.show();
-                } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
-                    System.out.println("neng kene");
-                    initInputPenjualan("0", "", "", "", "", "sukses");
-                } else {
+                }
+//                } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
+//                    System.out.println("neng kene");
+//                    initInputPenjualan("0", "", "", "", "", "sukses");
+//                }
+                else {
                     initMidtransSdk();
                     MidtransSDK.getInstance().setTransactionRequest(initTransactionRequest());
                     MidtransSDK.getInstance().startPaymentUiFlow(act_checkout.this);
@@ -490,7 +492,12 @@ public class act_checkout extends AppCompatActivity {
                                     break;
                                 case TransactionResult.STATUS_PENDING:
                                     Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
-                                    initInputPenjualan("0", result.getResponse().getTransactionId(), no_va, payment_bank, payment_type, "pending");
+                                    if (payment_bank.equals("GOPAY")) {
+                                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                                        finish();
+                                    } else {
+                                        initInputPenjualan("0", result.getResponse().getTransactionId(), no_va, payment_bank, payment_type, "pending");
+                                    }
                                     break;
                                 case TransactionResult.STATUS_FAILED:
                                     Toast.makeText(act_checkout.this, "Transaction Failed. ID: " + result.getResponse().getTransactionId() + ". Message: " + result.getResponse().getStatusMessage(), Toast.LENGTH_LONG).show();
@@ -736,14 +743,14 @@ public class act_checkout extends AppCompatActivity {
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
                     if (sts.equals("sukses")) {
-                        if (a.equals("pickup")) {
-                            Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
-                            finish();
-                        } else {
-                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
-                            finish();
-                        }
+//                        if (a.equals("pickup")) {
+//                            Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
+//                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+//                            finish();
+//                        } else {
+//                        }
+                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                        finish();
                     } else if (sts.equals("pending")) {
                         Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
                         it.putExtra("payment_type", payment_type + "");

@@ -93,12 +93,23 @@ public class act_detail_transaksi extends AppCompatActivity {
         }
 
         if (getIntent().getStringExtra("jns_pengiriman").equals("pickup")) {
-            if (getIntent().getStringExtra("sts_transaksi").equals("MASUK")) {
+            if (getIntent().getStringExtra("sts_byr").equals("0")){
+                sts_byr.setText("Belum Terbayar");
+            } else if (getIntent().getStringExtra("sts_byr").equals("1")) {
+                sts_byr.setText("Lunas");
+            }
+
+            if (getIntent().getStringExtra("sts_transaksi").equals("MASUK") && getIntent().getStringExtra("sts_byr").equals("0")) {
                 batalkan_pesanan.setVisibility(View.VISIBLE);
                 lacak_pesanan.setVisibility(View.GONE);
+            } else if (getIntent().getStringExtra("sts_transaksi").equals("MASUK") && getIntent().getStringExtra("sts_byr").equals("1")){
+                batalkan_pesanan.setVisibility(View.GONE);
+                lacak_pesanan.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.aquamarine_primary));
+                lacak_pesanan.setText("Lihat Status Transaksi");
             } else if (getIntent().getStringExtra("sts_transaksi").equals("PROSES") || getIntent().getStringExtra("sts_transaksi").equals("SIAP DIAMBIL")) {
                 batalkan_pesanan.setVisibility(View.GONE);
-                lacak_pesanan.setVisibility(View.GONE);
+                lacak_pesanan.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.green_forest_primary));
+                lacak_pesanan.setText("Lihat Status Transaksi");
             } else if (getIntent().getStringExtra("sts_transaksi").equals("SELESAI") || getIntent().getStringExtra("sts_transaksi").equals("BATAL")) {
                 System.out.println("Masuk SIni");
                 lacak_pesanan.setEnabled(false);
@@ -182,12 +193,106 @@ public class act_detail_transaksi extends AppCompatActivity {
         lacak_pesanan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(act_detail_transaksi.this, act_order_track.class);
-                it.putExtra("no_ent", getIntent().getStringExtra("no_ent"));
-                it.putExtra("jns_pengiriman", getIntent().getStringExtra("jns_pengiriman"));
-                it.putExtra("tgl_transaksi", getIntent().getStringExtra("tgl_transaksi"));
-                it.putExtra("waktu_transaksi", getIntent().getStringExtra("waktu_transaksi"));
-                startActivity(it);
+                if  (getIntent().getStringExtra("jns_pengiriman").equals("pickup") ) {
+                    if (getIntent().getStringExtra("sts_transaksi").equals("MASUK")) {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.show();
+                        final SweetAlertDialog dialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        dialog.setTitleText("Pesanan Diterima");
+                        dialog.setContentText("Menunggu untuk di proses !!!");
+                        dialog.setConfirmText("OKE");
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismiss();
+                                pDialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    } else if (getIntent().getStringExtra("sts_transaksi").equals("PROSES")) {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.show();
+                        final SweetAlertDialog dialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        dialog.setTitleText("Pesanan di Proses");
+                        dialog.setContentText("Pesanan Anda sedang di proses !!!");
+                        dialog.setConfirmText("OKE");
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismiss();
+                                pDialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    } else if (getIntent().getStringExtra("sts_transaksi").equals("SIAP DIAMBIL")) {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.show();
+                        final SweetAlertDialog dialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        dialog.setTitleText("Pesanan Siap");
+                        dialog.setContentText("Pesanan Anda telah siap untuk diambil !!!");
+                        dialog.setConfirmText("OKE");
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismiss();
+                                pDialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    } else if (getIntent().getStringExtra("sts_transaksi").equals("SELESAI")) {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.show();
+                        final SweetAlertDialog dialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.SUCCESS_TYPE);
+                        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        dialog.setTitleText("Pesanan Selesai");
+                        dialog.setContentText("Terimakasih telah berbelanja di LARISSO !!!");
+                        dialog.setConfirmText("OKE");
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismiss();
+                                pDialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    } else if (getIntent().getStringExtra("sts_transaksi").equals("BATAL")) {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.PROGRESS_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Loading");
+                        pDialog.show();
+                        final SweetAlertDialog dialog = new SweetAlertDialog(act_detail_transaksi.this, SweetAlertDialog.WARNING_TYPE);
+                        dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        dialog.setTitleText("Pesanan Batal");
+                        dialog.setContentText("Pesanan Anda telah dibatalkan !!!");
+                        dialog.setConfirmText("OKE");
+                        dialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                            @Override
+                            public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                dialog.dismiss();
+                                pDialog.dismiss();
+                            }
+                        });
+                        dialog.show();
+                    }
+                } else {
+                    Intent it = new Intent(act_detail_transaksi.this, act_order_track.class);
+                    it.putExtra("no_ent", getIntent().getStringExtra("no_ent"));
+                    it.putExtra("jns_pengiriman", getIntent().getStringExtra("jns_pengiriman"));
+                    it.putExtra("tgl_transaksi", getIntent().getStringExtra("tgl_transaksi"));
+                    it.putExtra("waktu_transaksi", getIntent().getStringExtra("waktu_transaksi"));
+                    startActivity(it);
+                }
             }
         });
 
