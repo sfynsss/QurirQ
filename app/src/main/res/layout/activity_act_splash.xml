@@ -34,7 +34,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="V 10.0"
+            android:text="V 11.0"
             android:fontFamily="@font/overpass_regular"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"/>
