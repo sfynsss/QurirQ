@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -40,6 +42,7 @@ public class act_detail_transaksi extends AppCompatActivity {
     ListView list_barang;
     LinearLayout ly_ongkir, ly_potongan_voucher;
     Button lacak_pesanan;
+    SwipeRefreshLayout swipe_refresh_layout;
 
     NumberFormat formatRupiah;
     Session session;
@@ -78,6 +81,7 @@ public class act_detail_transaksi extends AppCompatActivity {
         ongkir = findViewById(R.id.ongkir);
         lacak_pesanan = findViewById(R.id.lacak_pesanan);
         batalkan_pesanan = findViewById(R.id.batalkan_pesanan);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -88,6 +92,22 @@ public class act_detail_transaksi extends AppCompatActivity {
         tgl_transaksi.setText(getIntent().getStringExtra("tgl_transaksi"));
         waktu_transaksi.setText(getIntent().getStringExtra("waktu_transaksi"));
         pengiriman.setText(getIntent().getStringExtra("jns_pengiriman"));
+
+        tampilDetailTransaksi();
+
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                tampilDetailTransaksi();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+
         if (!TextUtils.isEmpty(getIntent().getStringExtra("ongkir"))) {
             ongkir.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("ongkir"))).replace(",00", ""));
         }
@@ -161,34 +181,7 @@ public class act_detail_transaksi extends AppCompatActivity {
             potongan_voucher.setText(getIntent().getStringExtra("nilai_voucher"));
         }
 
-        getDetailTransaksi = api.getDetailTransaksi(getIntent().getStringExtra("no_ent"));
-        getDetailTransaksi.enqueue(new Callback<BaseResponse<DetJual>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<DetJual>> call, Response<BaseResponse<DetJual>> response) {
-                if (response.isSuccessful()) {
-                    nm_brg.clear();
-                    qty.clear();
-                    sub.clear();
 
-                    for (int i = 0; i < response.body().getData().size(); i++) {
-                        nm_brg.add(response.body().getData().get(i).getNmBrg());
-                        qty.add(response.body().getData().get(i).getJumlah());
-                        sub.add(response.body().getData().get(i).getSubTotal());
-                    }
-
-                    adapterDetailTransaksi = new AdapterDetailTransaksi(act_detail_transaksi.this, nm_brg, qty, sub);
-                    adapterDetailTransaksi.notifyDataSetChanged();
-                    list_barang.setAdapter(adapterDetailTransaksi);
-                } else {
-                    Toasty.error(act_detail_transaksi.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponse<DetJual>> call, Throwable t) {
-                Toasty.error(act_detail_transaksi.this, t.getMessage() + "", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         lacak_pesanan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,5 +336,37 @@ public class act_detail_transaksi extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void tampilDetailTransaksi()
+    {
+        getDetailTransaksi = api.getDetailTransaksi(getIntent().getStringExtra("no_ent"));
+        getDetailTransaksi.enqueue(new Callback<BaseResponse<DetJual>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<DetJual>> call, Response<BaseResponse<DetJual>> response) {
+                if (response.isSuccessful()) {
+                    nm_brg.clear();
+                    qty.clear();
+                    sub.clear();
+
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+                        nm_brg.add(response.body().getData().get(i).getNmBrg());
+                        qty.add(response.body().getData().get(i).getJumlah());
+                        sub.add(response.body().getData().get(i).getSubTotal());
+                    }
+
+                    adapterDetailTransaksi = new AdapterDetailTransaksi(act_detail_transaksi.this, nm_brg, qty, sub);
+                    adapterDetailTransaksi.notifyDataSetChanged();
+                    list_barang.setAdapter(adapterDetailTransaksi);
+                } else {
+                    Toasty.error(act_detail_transaksi.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<DetJual>> call, Throwable t) {
+                Toasty.error(act_detail_transaksi.this, t.getMessage() + "", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
