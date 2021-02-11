@@ -97,7 +97,7 @@ public class act_register_retail extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             firebase_token = task.getResult().getToken();
                         } else {
-                            Toasty.error(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            System.out.println(task.getException().getMessage());
                         }
                     }
                 });
@@ -133,7 +133,7 @@ public class act_register_retail extends AppCompatActivity {
                     public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
                         if (response.isSuccessful()) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            session.setUserStatus(true, response.body().getRegister().getId() + "",
+                            session.setUserStatus(false, response.body().getRegister().getId() + "",
                                     response.body().getRegister().getName() + "",
                                     response.body().getRegister().getEmail() + "",
                                     response.body().getRegister().getApiToken() + "",

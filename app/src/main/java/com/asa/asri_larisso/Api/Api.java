@@ -129,6 +129,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getOtp")
+    Call<BaseResponse> getOtp(
+            @Field("email") String email
+    );
+
+    @FormUrlEncoded
     @POST("aktifasi")
     Call<BaseResponse> aktifasi(
             @Field("id") String id,

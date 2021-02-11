@@ -63,7 +63,7 @@
         <activity android:name=".Activity.retail.act_category_retail" />
         <activity
             android:name=".Activity.retail.act_register_retail"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".Activity.retail.act_detail_barang_retail" />
         <activity
             android:name=".Activity.retail.act_home_retail"

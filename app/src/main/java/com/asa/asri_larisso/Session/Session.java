@@ -15,6 +15,11 @@ public class Session {
         this.editor = preferences.edit();
     }
 
+    public void setLoggedIn(Boolean loggedIn) {
+        editor.putBoolean("loggedIn", loggedIn);
+        editor.commit();
+    }
+
     public void setUserStatus(Boolean loggedIn, String id_user, String name, String email, String token, String otoritas, String jenis_kelamin){
         editor.putBoolean("loggedIn", loggedIn);
         editor.putString("id_user", id_user);
