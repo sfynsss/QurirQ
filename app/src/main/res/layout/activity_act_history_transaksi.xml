@@ -37,6 +37,88 @@
     </LinearLayout>
     <!-- HEADER END -->
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#FFD45A"
+        android:weightSum="12"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="8dp"
+            android:paddingRight="4dp"
+            android:paddingBottom="8dp">
+            <Button
+                android:id="@+id/filter_semua_diskon"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Semua \nTransaksi"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#FFA722"
+                android:background="@drawable/rt_filter_bt_off_2">
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingHorizontal="6dp"
+            android:paddingBottom="8dp">
+            <Button
+                android:id="@+id/filter_transaksi_berhasil"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Transaksi \nBerhasil"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#FFA722"
+                android:background="@drawable/rt_filter_bt_off_2">
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingHorizontal="6dp"
+            android:paddingBottom="8dp">
+            <Button
+                android:id="@+id/filter_menunggu_pembayaran"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Menunggu \nPembayaran"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#FFA722"
+                android:background="@drawable/rt_filter_bt_off_2">
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:paddingLeft="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp">
+            <Button
+                android:id="@+id/filter_transaksi_dibatalkan"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Transaksi \nDibatalkan"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"
+                android:textColor="#FFA722"
+                android:background="@drawable/rt_filter_bt_off_2">
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
     <ListView
         android:id="@+id/list_transaksi"
         android:layout_width="match_parent"

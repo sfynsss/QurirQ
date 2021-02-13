@@ -342,6 +342,24 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("getDataTransaksiSukses")
+    Call<BaseResponse<MstJual>> getDataTransaksiSukses(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("getDataTransaksiPending")
+    Call<BaseResponse<MstJual>> getDataTransaksiPending(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
+    @POST("getDataTransaksiBatal")
+    Call<BaseResponse<MstJual>> getDataTransaksiBatal(
+            @Field("id") String id
+    );
+
+    @FormUrlEncoded
     @POST("getNoResi")
     Call<BaseResponse<MstJual>> getNoResi(
             @Field("no_ent") String no_ent
