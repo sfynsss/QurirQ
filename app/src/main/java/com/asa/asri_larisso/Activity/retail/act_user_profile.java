@@ -45,7 +45,7 @@ public class act_user_profile extends AppCompatActivity {
         btn_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(act_user_profile.this, act_edit_profil_retail.class));
+                startActivity(new Intent(act_user_profile.this, act_pin_location.class));
             }
         });
 

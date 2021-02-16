@@ -5,24 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".Activity.retail.act_pin_location">
+    tools:context=".Activity.retail.act_pin_location"
+    android:gravity="center">
+
+    <TextView
+        android:id="@+id/MyLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.323"></TextView>
 
     <Button
-        android:id="@+id/btn_pilih"
-        android:layout_width="200dp"
-        android:layout_height="60dp"
-        android:text="Pilih Peta">
-    </Button>
-    <TextView
-        android:id="@+id/tx_latitude"
+        android:id="@+id/BtnPickLocation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0" />
-    <TextView
-        android:id="@+id/tx_longitude"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="0" />
+        android:background="#000"
+        android:text="Pick Location"
+        android:textColor="#fff"
+        android:layout_margin="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.604"></Button>
 
 </LinearLayout>
