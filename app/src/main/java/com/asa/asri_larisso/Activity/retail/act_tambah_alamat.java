@@ -12,6 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
 import android.location.LocationManager;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Looper;
 import android.provider.Settings;
@@ -47,6 +48,11 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import java.util.ArrayList;
 
 import es.dmoral.toasty.Toasty;
@@ -58,9 +64,10 @@ public class act_tambah_alamat extends AppCompatActivity {
 
     EditText nama_penerima, alamat, no_telp, kode_pos;
     Spinner provinsi, kota, kecamatan;
-    Button btn_pin_lokasi, btn_simpan;
+    Button btn_pin_lokasi, btn_pin_maps, btn_simpan;
     Switch lengkapi_otomatis;
-    TextView lat_long;
+    TextView koordinat;
+    WifiManager wifiManager;
 
     Api api;
     Session session;
@@ -82,6 +89,7 @@ public class act_tambah_alamat extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
 
     int PERMISSION_ID = 44;
+    private final static int PLACE_PICKER_REQUEST = 999;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +114,10 @@ public class act_tambah_alamat extends AppCompatActivity {
         btn_simpan = findViewById(R.id.btn_simpan);
         lengkapi_otomatis = findViewById(R.id.lengkapi_otomatis);
         btn_pin_lokasi = findViewById(R.id.btn_pin_lokasi);
-        lat_long = findViewById(R.id.lat_long);
+        btn_pin_maps = findViewById(R.id.btn_pin_maps);
+        koordinat = findViewById(R.id.koordinat);
+
+        wifiManager= (WifiManager) this.getApplicationContext().getSystemService(Context.WIFI_SERVICE);
 
         session = new Session(act_tambah_alamat.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
@@ -139,6 +150,15 @@ public class act_tambah_alamat extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
                 }
+            }
+        });
+
+        btn_pin_maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Disable Wifi
+                wifiManager.setWifiEnabled(false);
+                openPlacePicker();
             }
         });
 
@@ -364,7 +384,7 @@ public class act_tambah_alamat extends AppCompatActivity {
                     if (location != null){
                         latitude = String.valueOf(location.getLatitude());
                         longitude = String.valueOf(location.getLongitude());
-                        lat_long.setText(latitude+" | "+longitude);
+                        koordinat.setText(latitude+" | "+longitude);
                     } else {
                         LocationRequest locationRequest = new LocationRequest()
                                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY)
@@ -379,7 +399,7 @@ public class act_tambah_alamat extends AppCompatActivity {
                                 Location location1 = locationResult.getLastLocation();
                                 latitude = String.valueOf(location1.getLatitude());
                                 longitude = String.valueOf(location1.getLongitude());
-                                lat_long.setText(latitude+" | "+longitude);
+                                koordinat.setText(latitude+" | "+longitude);
                             }
                         };
                         fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
@@ -391,4 +411,44 @@ public class act_tambah_alamat extends AppCompatActivity {
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         }
     }
+
+    private void openPlacePicker() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+
+            //Enable Wifi
+            wifiManager.setWifiEnabled(true);
+
+        } catch (GooglePlayServicesRepairableException e) {
+            Log.d("Exception",e.getMessage());
+
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            Log.d("Exception",e.getMessage());
+
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK) {
+            switch (requestCode){
+                case PLACE_PICKER_REQUEST:
+                    Place place = PlacePicker.getPlace(act_tambah_alamat.this, data);
+
+                    double latitude = place.getLatLng().latitude;
+                    double longitude = place.getLatLng().longitude;
+                    String PlaceLatLng = String.valueOf(latitude)+" , "+String.valueOf(longitude);
+                    koordinat.setText(PlaceLatLng);
+
+            }
+        }
+    }
+
+
 }
