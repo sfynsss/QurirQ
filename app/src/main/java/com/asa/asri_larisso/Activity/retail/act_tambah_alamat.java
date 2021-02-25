@@ -43,6 +43,8 @@ import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -50,8 +52,6 @@ import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
-import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.ui.PlacePicker;
 
 import java.util.ArrayList;
 
@@ -143,13 +143,13 @@ public class act_tambah_alamat extends AppCompatActivity {
         btn_pin_lokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                startActivity(new Intent(act_tambah_alamat.this, act_tambah_alamat.class));
-                if (ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-                        && ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
-                    getCurrentLocation();
-                } else {
-                    ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-                }
+                startActivity(new Intent(act_tambah_alamat.this, act_pin_location.class));
+//                if (ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+//                        && ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+//                    getCurrentLocation();
+//                } else {
+//                    ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+//                }
             }
         });
 
