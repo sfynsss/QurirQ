@@ -143,13 +143,13 @@ public class act_tambah_alamat extends AppCompatActivity {
         btn_pin_lokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_tambah_alamat.this, act_pin_location.class));
-//                if (ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-//                        && ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
-//                    getCurrentLocation();
-//                } else {
-//                    ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
-//                }
+//                startActivity(new Intent(act_tambah_alamat.this, act_pin_location.class));
+                if (ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                        && ActivityCompat.checkSelfPermission(act_tambah_alamat.this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED ){
+                    getCurrentLocation();
+                } else {
+                    ActivityCompat.requestPermissions(act_tambah_alamat.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 100);
+                }
             }
         });
 
@@ -443,6 +443,8 @@ public class act_tambah_alamat extends AppCompatActivity {
 
                     double latitude = place.getLatLng().latitude;
                     double longitude = place.getLatLng().longitude;
+                    this.latitude = latitude+"";
+                    this.longitude = longitude+"";
                     String PlaceLatLng = String.valueOf(latitude)+" , "+String.valueOf(longitude);
                     koordinat.setText(PlaceLatLng);
 

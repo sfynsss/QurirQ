@@ -81,6 +81,7 @@ public class act_checkout extends AppCompatActivity {
     int ketentuan_point = 0, nilai_point = 0;
 
     ArrayList<Integer> kurir = new ArrayList<>();
+    ArrayList<String> kurir_name = new ArrayList<>();
     ArrayList<String> service = new ArrayList<>();
     ArrayList<String> costs = new ArrayList<>();
     ArrayList<String> hrg_ongkir = new ArrayList<>();
@@ -531,10 +532,17 @@ public class act_checkout extends AppCompatActivity {
         kurir.add(R.drawable.logo_jne);
         kurir.add(R.drawable.logo_jnt);
         kurir.add(R.drawable.logo_pos);
+        kurir.add(R.drawable.rt_checkout_cod);
         kurir.add(R.drawable.take_away);
+        kurir_name.clear();
+        kurir_name.add("JNE");
+        kurir_name.add("JNT");
+        kurir_name.add("POS");
+        kurir_name.add("Larisso Kurir");
+        kurir_name.add("Ambil Ditempat");
 //        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(act_checkout.this, android.R.layout.simple_expandable_list_item_1, kurir);
 //        adapter.setDropDownViewResource(R.layout.spinner_kurir);
-        AdapterKurir adapter = new AdapterKurir(act_checkout.this, kurir);
+        AdapterKurir1 adapter = new AdapterKurir1(act_checkout.this, kurir, kurir_name);
         list_pengiriman = v.findViewById(R.id.list_pengiriman);
         list_pengiriman.setAdapter(adapter);
 
@@ -564,6 +572,22 @@ public class act_checkout extends AppCompatActivity {
                     getOngkir("160", session.getKdKecamatan(), "1000", a);
                     pilih_pembayaran.setText("Pilih Pembayaran");
                 } else if (position == 3) {
+                    nama_kurir.setImageResource(R.drawable.rt_checkout_cod);
+                    a = "cod";
+
+                    initialLat = Double.parseDouble(session.getLat());
+                    initialLong = Double.parseDouble(session.getLong());
+                    Double hasil = CalculationByDistance(initialLat, initialLong, finalLat, finalLong);
+//                    Double hasil1 = toRadians(hasil);
+                    if (session.getLat().equals("0") || session.getLong().equals("0")) {
+                        Toasty.error(act_checkout.this, "Maaf lokasi Anda error", Toast.LENGTH_SHORT).show();
+                        nama_kurir.setImageResource(R.drawable.logo_jne);
+                        getOngkir("160", session.getKdKecamatan(), "1000", a);
+                    } else {
+                        System.out.println(Math.round(hasil) + "km");
+                        getOngkirCod(Math.round(hasil) + "");
+                    }
+                } else {
                     nama_kurir.setImageResource(R.drawable.take_away);
                     a = "pickup";
                     service.clear();
@@ -574,25 +598,8 @@ public class act_checkout extends AppCompatActivity {
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_checkout.this, R.layout.spinner_pengiriman, service);
                     arrayAdapter.setDropDownViewResource(R.layout.spinner_pengiriman);
                     servis.setAdapter(arrayAdapter);
-                    pilih_pembayaran.setText("Tempatkan Pesanan");
+                    pilih_pembayaran.setText("Pilih Pembayaran");
                 }
-//                else {
-//                    nama_kurir.setImageResource(R.drawable.rt_checkout_cod);
-//                    a = "cod";
-//
-//                    initialLat = Double.parseDouble(session.getLat());
-//                    initialLong = Double.parseDouble(session.getLong());
-//                    Double hasil = CalculationByDistance(initialLat, initialLong, finalLat, finalLong);
-////                    Double hasil1 = toRadians(hasil);
-//                    if (session.getLat().equals("0") || session.getLong().equals("0")) {
-//                        Toasty.error(act_checkout.this, "Maaf lokasi Anda error", Toast.LENGTH_SHORT).show();
-//                        nama_kurir.setImageResource(R.drawable.logo_jne);
-//                        getOngkir("160", session.getKdKecamatan(), "1000", a);
-//                    } else {
-//                        System.out.println(Math.round(hasil) + "km");
-//                        getOngkirCod(Math.round(hasil) + "");
-//                    }
-//                }
 
                 dialog.dismiss();
             }
