@@ -19,6 +19,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
 
 import java.util.ArrayList;
+import android.text.InputFilter;
 
 /**
  * Created by Sfyn on 04/02/2018.
@@ -73,6 +74,7 @@ public class AdapterCartBarang extends ArrayAdapter<String> {
         viewHolder.nama_barang.setText(nm_brg.get(position));
         viewHolder.harga_barang.setText(hrg_brg.get(position).replace(",00", ""));
         viewHolder.qty.setText(qty.get(position));
+        viewHolder.qty.setFilters( new InputFilter[]{ new QtyMinMax( "1" , "100" )}) ;
         if (!TextUtils.isEmpty(gambar.get(position))) {
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.signature(

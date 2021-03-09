@@ -21,6 +21,7 @@ import com.bumptech.glide.signature.ObjectKey;
 
 import java.text.NumberFormat;
 import java.util.Locale;
+import android.text.InputFilter;
 
 import es.dmoral.toasty.Toasty;
 import retrofit2.Call;
@@ -53,6 +54,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
         harga = findViewById(R.id.harga_barang);
         jml = findViewById(R.id.jml);
         jml.setText(i+"");
+        jml.setFilters( new InputFilter[]{ new QtyMinMax( "1" , "100" )}) ;
         btn_min = findViewById(R.id.min);
         btn_plus = findViewById(R.id.plus);
         ke_cart = findViewById(R.id.ke_cart);

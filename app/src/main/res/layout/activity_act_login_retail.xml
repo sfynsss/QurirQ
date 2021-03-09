@@ -108,7 +108,7 @@
                 android:drawablePadding="10dp"
                 android:paddingLeft="20dp"
                 android:hint="Isi dengan email atau no.telp ..."
-                android:inputType="text"
+                android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:textSize="14dp"
                 android:textAlignment="textStart"/>
