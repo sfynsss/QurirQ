@@ -7,97 +7,112 @@
     android:orientation="vertical"
     tools:context=".Activity.retail.act_browse_diskon">
 
-    <!-- HEADER START -->
-    <LinearLayout
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:orientation="vertical"
-        android:background="@drawable/rt_main_header">
+        android:layout_height="wrap_content">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-            <ImageView
-                android:id="@+id/back"
-                android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!-- HEADER START -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:orientation="vertical"
+                android:background="@drawable/rt_main_header">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1">
+                    <ImageView
+                        android:id="@+id/back"
+                        android:layout_width="25dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_back_gbr"
+                        android:layout_marginLeft="20dp"/>
+                    <TextView
+                        android:id="@+id/nama_promo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="20sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"
+                        android:layout_marginLeft="23dp"
+                        android:layout_gravity="center">
+                    </TextView>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- HEADER END -->
+
+            <LinearLayout
+                android:id="@+id/periode_promo"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Berlangsung mulai  "
+                    android:textStyle="bold"
+                    android:textColor="#FF971E"
+                    android:fontFamily="@font/overpass_regular">
+                </TextView>
+                <TextView
+                    android:id="@+id/tgl_mulai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2021-12-12"
+                    android:textStyle="bold"
+                    android:textColor="#EF4B4B"
+                    android:fontFamily="@font/overpass_regular">
+                </TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  s/d  "
+                    android:textStyle="bold"
+                    android:textColor="#FF971E"
+                    android:fontFamily="@font/overpass_regular">
+                </TextView>
+                <TextView
+                    android:id="@+id/tgl_akhir"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2021-12-12"
+                    android:textStyle="bold"
+                    android:textColor="#EF4B4B"
+                    android:fontFamily="@font/overpass_regular">
+                </TextView>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycle_barang"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_back_gbr"
-                android:layout_marginLeft="20dp"/>
-            <TextView
-                android:id="@+id/nama_promo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20sp"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold"
-                android:layout_marginLeft="23dp"
-                android:layout_gravity="center">
-            </TextView>
+                tools:listitem="@layout/adapter_barang"
+                android:visibility="visible">
+            </androidx.recyclerview.widget.RecyclerView>
+            <LinearLayout
+                android:id="@+id/promo_kosong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:visibility="visible">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Belum ada promo"
+                    android:textStyle="italic">
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <!-- HEADER END -->
 
-    <LinearLayout
-        android:id="@+id/periode_promo"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:visibility="gone">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Berlangsung mulai  "
-            android:textStyle="bold"
-            android:textColor="#FF971E"
-            android:fontFamily="@font/overpass_regular">
-        </TextView>
-        <TextView
-            android:id="@+id/tgl_mulai"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2021-12-12"
-            android:textColor="#47D764"
-            android:fontFamily="@font/overpass_regular">
-        </TextView>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="  s/d  "
-            android:textStyle="bold"
-            android:textColor="#FF971E"
-            android:fontFamily="@font/overpass_regular">
-        </TextView>
-        <TextView
-            android:id="@+id/tgl_akhir"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="2021-12-12"
-            android:textColor="#47D764"
-            android:fontFamily="@font/overpass_regular">
-        </TextView>
-    </LinearLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycle_barang"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/adapter_barang"
-        android:visibility="visible">
-    </androidx.recyclerview.widget.RecyclerView>
-    <LinearLayout
-        android:id="@+id/promo_kosong"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:visibility="gone">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Belum ada promo"
-            android:textStyle="italic">
-        </TextView>
-    </LinearLayout>
+
 
 </LinearLayout>

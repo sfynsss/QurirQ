@@ -3,8 +3,10 @@ package com.asa.asri_larisso.Activity.retail;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,9 +36,10 @@ import retrofit2.Response;
 public class act_browse_diskon extends AppCompatActivity {
 
     ImageView back;
-    TextView nama_kategori, nama_promo, tgl_mulai, tgl_akhir;
+    TextView nama_kategori, nama_promo, tgl_mulai, tgl_akhir, t1, t2, t3;
     LinearLayout periode_promo, promo_kosong;
     RecyclerView recyclerBarang;
+    SwipeRefreshLayout swipe_refresh_layout;
     Api api;
     Session session;
     Call<BaseResponse<Barang>> getBarang;
@@ -61,7 +64,7 @@ public class act_browse_diskon extends AppCompatActivity {
     AdapterBarang adapterBarang;
     NumberFormat formatRupiah;
 
-    Boolean promo_aktif = false;
+    Boolean promo_aktif;
     Date c = Calendar.getInstance().getTime();
     SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
     String string_hari_ini = df.format(c).replace("-","");
@@ -81,6 +84,10 @@ public class act_browse_diskon extends AppCompatActivity {
         tgl_akhir = findViewById(R.id.tgl_akhir);
         periode_promo = findViewById(R.id.periode_promo);
         promo_kosong = findViewById(R.id.promo_kosong);
+        swipe_refresh_layout = findViewById(R.id.swipe_refresh_layout);
+        t1 = findViewById(R.id.t1);
+        t2 = findViewById(R.id.t2);
+        t3 = findViewById(R.id.t3);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
@@ -100,17 +107,20 @@ public class act_browse_diskon extends AppCompatActivity {
         session = new Session(act_browse_diskon.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
-        if (promo_aktif == false){
-            nama_promo.setText("Promo Untuk Anda");
-            periode_promo.setVisibility(View.VISIBLE);
-            recyclerBarang.setVisibility(View.GONE);
-            promo_kosong.setVisibility(View.VISIBLE);
-        } else {
-            periode_promo.setVisibility(View.VISIBLE);
-            recyclerBarang.setVisibility(View.VISIBLE);
-            promo_kosong.setVisibility(View.GONE);
-            getPromo();
-        }
+        swipe_refresh_layout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getPromo();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        swipe_refresh_layout.setRefreshing(false);
+                    }
+                }, 1000);
+            }
+        });
+        getPromo();
+
     }
 
     public void getPromo(){
@@ -120,25 +130,26 @@ public class act_browse_diskon extends AppCompatActivity {
             public void onResponse(Call<BaseResponse<Promo>> call, Response<BaseResponse<Promo>> response) {
                 if (response.isSuccessful()){
                     for (int i = 0; i < response.body().getData().size(); i++) {
-                        nama_promo.setText(response.body().getData().get(i).getNamaPromo());
-                        tgl_akhir.setText(response.body().getData().get(i).getTglAkhir());
+                        long int_tgl_mulai = Integer.parseInt(response.body().getData().get(i).getTglMulai().replace("-",""));
+                        long int_tgl_akhir = Integer.parseInt(response.body().getData().get(i).getTglAkhir().replace("-",""));
 
-                        String s_tgl_mulai = response.body().getData().get(i).getTglMulai().replace("-","");
-//                        String s_tgl_akhir = response.body().getData().get(i).getTglAkhir().replace("-","");
-//                        long int_tgl_mulai = Integer.parseInt(s_tgl_mulai);
-//                        long int_tgl_akhir = Integer.parseInt(s_tgl_akhir);
-//
-//                        if (int_hari_ini < int_tgl_mulai || int_hari_ini > int_tgl_akhir){
-//                            promo_aktif = false;
-//                        } else {
-//                            promo_aktif = true;
-//                        }
-
-                        tgl_mulai.setText(s_tgl_mulai);
-
+                        if (int_hari_ini < int_tgl_mulai || int_hari_ini > int_tgl_akhir){
+                            nama_promo.setText("Belum Ada Promo");
+                            periode_promo.setVisibility(View.GONE);
+                            recyclerBarang.setVisibility(View.GONE);
+                            promo_kosong.setVisibility(View.VISIBLE);
+                        } else {
+                            nama_promo.setText(response.body().getData().get(i).getNamaPromo());
+                            tgl_akhir.setText(response.body().getData().get(i).getTglAkhir());
+                            tgl_mulai.setText(response.body().getData().get(i).getTglMulai());
+                            periode_promo.setVisibility(View.VISIBLE);
+                            recyclerBarang.setVisibility(View.VISIBLE);
+                            promo_kosong.setVisibility(View.GONE);
+                            getData();
+                        }
                     }
                 } else {
-                    Toasty.error(act_browse_diskon.this, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+                    //Toasty.error(act_browse_diskon.this, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -219,4 +230,5 @@ public class act_browse_diskon extends AppCompatActivity {
             }
         });
     }
+
 }
