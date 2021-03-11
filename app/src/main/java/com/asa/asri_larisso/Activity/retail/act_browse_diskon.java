@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,9 +17,13 @@ import com.asa.asri_larisso.R;
 import com.asa.asri_larisso.Response.BaseResponse;
 import com.asa.asri_larisso.Session.Session;
 import com.asa.asri_larisso.Table.Barang;
+import com.asa.asri_larisso.Table.Promo;
 
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 import es.dmoral.toasty.Toasty;
@@ -29,11 +34,13 @@ import retrofit2.Response;
 public class act_browse_diskon extends AppCompatActivity {
 
     ImageView back;
-    TextView nama_kategori;
+    TextView nama_kategori, nama_promo, tgl_mulai, tgl_akhir;
+    LinearLayout periode_promo, promo_kosong;
     RecyclerView recyclerBarang;
     Api api;
     Session session;
     Call<BaseResponse<Barang>> getBarang;
+    Call<BaseResponse<Promo>> getPromo;
 
     ArrayList<String> kd_brg = new ArrayList<>();
     ArrayList<String> nm_brg = new ArrayList<>();
@@ -54,6 +61,13 @@ public class act_browse_diskon extends AppCompatActivity {
     AdapterBarang adapterBarang;
     NumberFormat formatRupiah;
 
+    Boolean promo_aktif = false;
+    Date c = Calendar.getInstance().getTime();
+    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+    String string_hari_ini = df.format(c).replace("-","");
+    long int_hari_ini = Integer.parseInt(string_hari_ini);
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,9 +76,19 @@ public class act_browse_diskon extends AppCompatActivity {
         back = findViewById(R.id.back);
         nama_kategori = findViewById(R.id.nama_kategori);
         recyclerBarang = findViewById(R.id.recycle_barang);
+        nama_promo = findViewById(R.id.nama_promo);
+        tgl_mulai = findViewById(R.id.tgl_mulai);
+        tgl_akhir = findViewById(R.id.tgl_akhir);
+        periode_promo = findViewById(R.id.periode_promo);
+        promo_kosong = findViewById(R.id.promo_kosong);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
+
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        final String hari_ini = df.format(c.getTime());
+        System.out.println("Hari ini adalah "+hari_ini);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,8 +99,54 @@ public class act_browse_diskon extends AppCompatActivity {
 
         session = new Session(act_browse_diskon.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-        getData();
 
+        if (promo_aktif == false){
+            nama_promo.setText("Promo Untuk Anda");
+            periode_promo.setVisibility(View.VISIBLE);
+            recyclerBarang.setVisibility(View.GONE);
+            promo_kosong.setVisibility(View.VISIBLE);
+        } else {
+            periode_promo.setVisibility(View.VISIBLE);
+            recyclerBarang.setVisibility(View.VISIBLE);
+            promo_kosong.setVisibility(View.GONE);
+            getPromo();
+        }
+    }
+
+    public void getPromo(){
+        getPromo = api.getPromo();
+        getPromo.enqueue(new Callback<BaseResponse<Promo>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Promo>> call, Response<BaseResponse<Promo>> response) {
+                if (response.isSuccessful()){
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+                        nama_promo.setText(response.body().getData().get(i).getNamaPromo());
+                        tgl_akhir.setText(response.body().getData().get(i).getTglAkhir());
+
+                        String s_tgl_mulai = response.body().getData().get(i).getTglMulai().replace("-","");
+//                        String s_tgl_akhir = response.body().getData().get(i).getTglAkhir().replace("-","");
+//                        long int_tgl_mulai = Integer.parseInt(s_tgl_mulai);
+//                        long int_tgl_akhir = Integer.parseInt(s_tgl_akhir);
+//
+//                        if (int_hari_ini < int_tgl_mulai || int_hari_ini > int_tgl_akhir){
+//                            promo_aktif = false;
+//                        } else {
+//                            promo_aktif = true;
+//                        }
+
+                        tgl_mulai.setText(s_tgl_mulai);
+
+                    }
+                } else {
+                    Toasty.error(act_browse_diskon.this, "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Promo>> call, Throwable t) {
+                Toasty.error(act_browse_diskon.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void getData() {

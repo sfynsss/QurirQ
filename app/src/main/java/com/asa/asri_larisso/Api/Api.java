@@ -18,6 +18,7 @@ import com.asa.asri_larisso.Table.Outlet;
 import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.Pengiriman;
 import com.asa.asri_larisso.Table.PoinVoucher;
+import com.asa.asri_larisso.Table.Promo;
 import com.asa.asri_larisso.Table.Provinsi;
 import com.asa.asri_larisso.Table.SettingPoint;
 import com.asa.asri_larisso.Table.SettingVoucher;
@@ -426,5 +427,8 @@ public interface Api {
     Call<BaseResponse> getStatusUpdate(
             @Field("id") String id
     );
+
+    @GET("getPromo")
+    Call<BaseResponse<Promo>> getPromo();
 
 }
