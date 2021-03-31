@@ -89,15 +89,19 @@ public class frm_chart extends Fragment {
     private ArrayList<String> hrg_brg = new ArrayList<>();
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
+    private ArrayList<String> berat = new ArrayList<>();
+    private ArrayList<String> volume = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kategori = new ArrayList<>();
     private ArrayList<String> sts_point = new ArrayList<>();
     NumberFormat formatRupiah;
     double tot = 0;
+    double total_berat = 0;
+    double total_volume = 0;
 
     AdapterCartBarang adapterCartBarang;
     ListView list_cart;
-    TextView total;
+    TextView total, v_total_berat, v_total_volume;
     LinearLayout linearLayout1, linearLayout2;
     Button checkout;
     ImageView not_found;
@@ -116,10 +120,14 @@ public class frm_chart extends Fragment {
         checkout = view.findViewById(R.id.checkout);
         not_found = view.findViewById(R.id.not_found);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+        v_total_berat = view.findViewById(R.id.berat_total);
+        v_total_volume = view.findViewById(R.id.volume_total);
 
         session = new Session(getContext());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         getData();
+
+        System.out.println("Total beratnya adalah " + total_berat);
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -144,6 +152,8 @@ public class frm_chart extends Fragment {
                     i.putExtra("hrg_brg", hrg_brg);
                     i.putExtra("hrg_asli", hrg_asli);
                     i.putExtra("qty", qty);
+                    i.putExtra("total_berat", v_total_berat.getText());
+                    i.putExtra("total_volume", v_total_volume.getText());
                     i.putExtra("gambar", gambar);
                     i.putExtra("subtot", tot+"");
                     i.putExtra("sts_point", sts_point);
@@ -181,6 +191,8 @@ public class frm_chart extends Fragment {
                     hrg_brg.clear();
                     hrg_asli.clear();
                     qty.clear();
+                    berat.clear();
+                    volume.clear();
                     gambar.clear();
                     kategori.clear();
                     sts_point.clear();
@@ -191,22 +203,60 @@ public class frm_chart extends Fragment {
                         hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
                         hrg_asli.add(response.body().getData().get(i).getHargaJl().toString());
                         qty.add(response.body().getData().get(i).getQty().toString());
+                        berat.add(response.body().getData().get(i).getBerat().toString());
+                        volume.add(response.body().getData().get(i).getVolume().toString());
                         gambar.add(response.body().getData().get(i).getGambar());
                         kategori.add(response.body().getData().get(i).getKategoriBarang());
                         sts_point.add(response.body().getData().get(i).getSts_point());
                     }
                     System.out.println("sts_point : "+sts_point);
-
-                    adapterCartBarang = new AdapterCartBarang(getActivity(), kd_brg, nm_brg, hrg_brg, qty, gambar, kategori, new AdapterCartBarang.OnEditLocationListener() {
-                        @Override
-                        public void onClickAdapter(final int position) {
-                            int kurang = Integer.parseInt(qty.get(position)) - 1;
-                            if (kurang > 0) {
-                                qty.set(position, kurang+"");
+                    if (getActivity()!=null) {
+                        adapterCartBarang = new AdapterCartBarang(getActivity(), kd_brg, nm_brg, hrg_brg, qty, berat, volume, gambar, kategori, new AdapterCartBarang.OnEditLocationListener() {
+                            @Override
+                            public void onClickAdapter(final int position) {
+                                int kurang = Integer.parseInt(qty.get(position)) - 1;
+                                if (kurang > 0) {
+                                    qty.set(position, kurang + "");
+                                    adapterCartBarang.notifyDataSetChanged();
+                                    sumTot();
+                                    updateQty(kd_brg.get(position), kurang + "");
+                                } else {
+                                    final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
+                                    pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                                    pDialog.setTitleText("Apakah Anda akan menghapus barang ini ?");
+                                    pDialog.setCancelable(false);
+                                    pDialog.setConfirmText("YA");
+                                    pDialog.setCancelText("TIDAK");
+                                    pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            deleteBarang(kd_brg.get(position), position);
+                                            pDialog.dismiss();
+                                        }
+                                    });
+                                    pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            pDialog.dismiss();
+                                        }
+                                    });
+                                    pDialog.show();
+                                    adapterCartBarang.notifyDataSetChanged();
+                                    sumTot();
+                                }
+                            }
+                        }, new AdapterCartBarang.OnEditLocationListener() {
+                            @Override
+                            public void onClickAdapter(int position) {
+                                int tambah = Integer.parseInt(qty.get(position)) + 1;
+                                qty.set(position, tambah + "");
                                 adapterCartBarang.notifyDataSetChanged();
                                 sumTot();
-                                updateQty(kd_brg.get(position), kurang+"");
-                            } else {
+                                updateQty(kd_brg.get(position), tambah + "");
+                            }
+                        }, new AdapterCartBarang.OnEditLocationListener() {
+                            @Override
+                            public void onClickAdapter(final int position) {
                                 final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
                                 pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
                                 pDialog.setTitleText("Apakah Anda akan menghapus barang ini ?");
@@ -230,49 +280,14 @@ public class frm_chart extends Fragment {
                                 adapterCartBarang.notifyDataSetChanged();
                                 sumTot();
                             }
-                        }
-                    }, new AdapterCartBarang.OnEditLocationListener() {
-                        @Override
-                        public void onClickAdapter(int position) {
-                            int tambah = Integer.parseInt(qty.get(position)) + 1;
-                            qty.set(position, tambah+"");
-                            adapterCartBarang.notifyDataSetChanged();
-                            sumTot();
-                            updateQty(kd_brg.get(position), tambah+"");
-                        }
-                    }, new AdapterCartBarang.OnEditLocationListener() {
-                        @Override
-                        public void onClickAdapter(final int position) {
-                            final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.WARNING_TYPE);
-                            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                            pDialog.setTitleText("Apakah Anda akan menghapus barang ini ?");
-                            pDialog.setCancelable(false);
-                            pDialog.setConfirmText("YA");
-                            pDialog.setCancelText("TIDAK");
-                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    deleteBarang(kd_brg.get(position), position);
-                                    pDialog.dismiss();
-                                }
-                            });
-                            pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
-                                @Override
-                                public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                    pDialog.dismiss();
-                                }
-                            });
-                            pDialog.show();
-                            adapterCartBarang.notifyDataSetChanged();
-                            sumTot();
-                        }
-                    });
+                        });
 
 //                    linearLayout1.setVisibility(View.VISIBLE);
 //                    linearLayout2.setVisibility(View.VISIBLE);
-                    adapterCartBarang.notifyDataSetChanged();
-                    list_cart.setAdapter(adapterCartBarang);
-                    sumTot();
+                        adapterCartBarang.notifyDataSetChanged();
+                        list_cart.setAdapter(adapterCartBarang);
+                        sumTot();
+                    }
                 } else {
                     final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -350,6 +365,8 @@ public class frm_chart extends Fragment {
                     hrg_brg.remove(pos);
                     hrg_asli.remove(pos);
                     qty.remove(pos);
+                    berat.remove(pos);
+                    volume.remove(pos);
                     gambar.remove(pos);
                     kategori.remove(pos);
                     adapterCartBarang.notifyDataSetChanged();
@@ -374,11 +391,17 @@ public class frm_chart extends Fragment {
 
     public void sumTot() {
         tot = 0;
+        total_berat = 0;
+        total_volume = 0;
 
         for (int i = 0; i < qty.size(); i++) {
             tot += Double.parseDouble(qty.get(i)) * Double.parseDouble(hrg_asli.get(i));
+            total_berat += Double.parseDouble(qty.get(i)) * Double.parseDouble(berat.get(i));
+            total_volume += Double.parseDouble(qty.get(i)) * Double.parseDouble(volume.get(i));
         }
 
         total.setText(formatRupiah.format(tot).replace(",00", ""));
+        v_total_berat.setText(total_berat+"");
+        v_total_volume.setText(total_volume+"");
     }
 }

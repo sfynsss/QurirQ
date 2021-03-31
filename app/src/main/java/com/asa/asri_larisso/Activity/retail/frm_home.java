@@ -65,13 +65,12 @@ public class frm_home extends Fragment {
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
     TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, nama_outlet, tx_voucher, tx_point;
-    LinearLayout btn_outlet;
+    LinearLayout btn_outlet, btn_diskon;
     ImageView gambar_outlet;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
     Spinner pilih_outlet;
-    CardView btn_diskon;
 
     SwipeRefreshLayout swipeRefreshLayout;
     Handler handler = new Handler();
@@ -106,6 +105,7 @@ public class frm_home extends Fragment {
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         nama_pengguna.setText(session.getUsername());
         requestOptions = new RequestOptions().centerCrop();
+        kategoriBarang.setFocusable(false);
         if (!session.getGambarOutlet().equals("")) {
             Glide.with(getActivity())
                     .setDefaultRequestOptions(requestOptions)
@@ -278,10 +278,11 @@ public class frm_home extends Fragment {
                         judul.add(response.body().getData().get(i).getNmKatAndroid());
                         gambar.add(response.body().getData().get(i).getGbrKatAndroid());
                     }
-
-                    adapterKategori = new AdapterKategoriBarang(getContext(), getActivity(), kd_kategori, judul, gambar);
-                    kategoriBarang.setLayoutManager(new GridLayoutManager(getContext(), 3));
-                    kategoriBarang.setAdapter(adapterKategori);
+                    if (getActivity()!=null) {
+                        adapterKategori = new AdapterKategoriBarang(getContext(), getActivity(), kd_kategori, judul, gambar);
+                        kategoriBarang.setLayoutManager(new GridLayoutManager(getContext(), 3));
+                        kategoriBarang.setAdapter(adapterKategori);
+                    }
                 } else {
                     Toasty.error(getContext(), "Error Bad Response", Toast.LENGTH_SHORT).show();
                 }

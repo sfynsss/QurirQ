@@ -31,11 +31,12 @@ import retrofit2.Response;
 public class act_detail_barang_retail extends AppCompatActivity {
 
     ImageView gambar, back;
-    TextView nama_barang, kategori, harga, jml;
+    TextView nama_barang, kategori, harga, jml, berat_brg, volume_brg;
     Button btn_min, btn_plus, ke_cart, ke_wishlist;
     NumberFormat formatRupiah;
     int i = 1;
-    String kd_brg = "", nm_brg = "", satuan = "", harga_jl = "", qty = "", gbr = "", kat = "";
+    double berat_total = 0;
+    String kd_brg = "", nm_brg = "", satuan = "", harga_jl = "", qty = "", gbr = "", kat = "", berat = "", volume="";
 
     Api api;
     Session session;
@@ -55,6 +56,8 @@ public class act_detail_barang_retail extends AppCompatActivity {
         jml = findViewById(R.id.jml);
         jml.setText(i+"");
         jml.setFilters( new InputFilter[]{ new QtyMinMax( "1" , "100" )}) ;
+        berat_brg = findViewById(R.id.berat_brg);
+        volume_brg = findViewById(R.id.volume);
         btn_min = findViewById(R.id.min);
         btn_plus = findViewById(R.id.plus);
         ke_cart = findViewById(R.id.ke_cart);
@@ -86,7 +89,8 @@ public class act_detail_barang_retail extends AppCompatActivity {
         nama_barang.setText(getIntent().getStringExtra("nm_brg"));
         kategori.setText(getIntent().getStringExtra("kat_brg"));
         harga.setText(formatRupiah.format(Double.parseDouble(getIntent().getStringExtra("harga_jl"))).replace(",00", ""));
-
+        berat_brg.setText(getIntent().getStringExtra("berat"));
+        volume_brg.setText(getIntent().getStringExtra("volume"));
         kd_brg = getIntent().getStringExtra("kd_brg");
         nm_brg = nama_barang.getText().toString();
         satuan = getIntent().getStringExtra("satuan");
@@ -94,6 +98,8 @@ public class act_detail_barang_retail extends AppCompatActivity {
         qty = jml.getText().toString();
         gbr = getIntent().getStringExtra("gambar");
         kat = getIntent().getStringExtra("kat_brg");
+        berat = getIntent().getStringExtra("berat");
+        volume = getIntent().getStringExtra("volume");
 
         btn_min.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +107,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 if (i > 1) {
                     i -= 1;
                     jml.setText(i + "");
+
                 } else {
                     i = 1;
                     jml.setText(i + "");
@@ -112,7 +119,6 @@ public class act_detail_barang_retail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 i += 1;
-
                 jml.setText(i + "");
             }
         });
@@ -125,17 +131,12 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 satuan = getIntent().getStringExtra("satuan");
                 harga_jl = getIntent().getStringExtra("harga_jl");
                 qty = jml.getText().toString();
+                berat = getIntent().getStringExtra("berat");
+                volume = getIntent().getStringExtra("volume");
                 gbr = getIntent().getStringExtra("gambar");
                 kat = getIntent().getStringExtra("kat_brg");
-//                System.out.println(session.getIdUser());
-//                System.out.println(kd_brg);
-//                System.out.println(nm_brg);
-//                System.out.println(satuan);
-//                System.out.println(harga_jl);
-//                System.out.println(qty);
-//                System.out.println(gbr);
-//                System.out.println(kat);
-                inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat, session.getKdOutlet());
+
+                inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, berat, volume, gbr, kat, session.getKdOutlet());
                 inputToCart.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -170,8 +171,10 @@ public class act_detail_barang_retail extends AppCompatActivity {
                 harga_jl = getIntent().getStringExtra("harga_jl");
                 gbr = getIntent().getStringExtra("gambar");
                 kat = getIntent().getStringExtra("kat_brg");
+                berat = getIntent().getStringExtra("berat");
+                volume = getIntent().getStringExtra("volume");
                 ke_wishlist.setBackgroundResource(R.drawable.rt_ic_fav_on);
-                inputToWishlist = api.inputToWishlist(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, gbr, kat);
+                inputToWishlist = api.inputToWishlist(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, berat, volume, gbr, kat);
                 inputToWishlist.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
