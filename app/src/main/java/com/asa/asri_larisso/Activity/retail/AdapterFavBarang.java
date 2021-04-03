@@ -31,13 +31,23 @@ public class AdapterFavBarang extends ArrayAdapter<String> {
     private ArrayList<String> nm_brg = new ArrayList<>();
     private ArrayList<String> hrg_brg = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
+    private ArrayList<String> berat = new ArrayList<>();
+    private ArrayList<String> volume = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kat = new ArrayList<>();
     private OnEditLocationListener cart;
     private OnEditLocationListener delete;
     Session session;
 
-    public AdapterFavBarang(Activity context, ArrayList<String> kd_brg, ArrayList<String> nm_brg, ArrayList<String> hrg_brg, ArrayList<String> gambar, ArrayList<String> kat, OnEditLocationListener cart, OnEditLocationListener delete) {
+    public AdapterFavBarang(Activity context,
+                            ArrayList<String> kd_brg,
+                            ArrayList<String> nm_brg,
+                            ArrayList<String> hrg_brg,
+                            ArrayList<String> berat,
+                            ArrayList<String> volume,
+                            ArrayList<String> gambar,
+                            ArrayList<String> kat,
+                            OnEditLocationListener cart, OnEditLocationListener delete) {
         super(context, R.layout.adapter_fav, kd_brg);
 
         this.context = context;
@@ -45,6 +55,8 @@ public class AdapterFavBarang extends ArrayAdapter<String> {
         this.kd_brg = kd_brg;
         this.nm_brg = nm_brg;
         this.hrg_brg = hrg_brg;
+        this.berat = berat;
+        this.volume = volume;
         this.gambar = gambar;
         this.kat = kat;
         this.cart = cart;
@@ -68,6 +80,8 @@ public class AdapterFavBarang extends ArrayAdapter<String> {
 
         viewHolder.nama_barang.setText(nm_brg.get(position));
         viewHolder.harga_barang.setText(hrg_brg.get(position));
+        viewHolder.v_berat.setText(berat.get(position));
+        viewHolder.v_volume.setText(volume.get(position));
         if (!TextUtils.isEmpty(gambar.get(position))) {
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.signature(
@@ -104,13 +118,15 @@ public class AdapterFavBarang extends ArrayAdapter<String> {
 
     class ViewHolder{
         ImageView gambar, cart, delete;
-        TextView nama_barang, harga_barang;
+        TextView nama_barang, harga_barang, v_berat, v_volume;
         ViewHolder(View view){
             gambar = view.findViewById(R.id.gambar);
             cart = view.findViewById(R.id.btn_cart);
             delete = view.findViewById(R.id.btn_delete);
             nama_barang = view.findViewById(R.id.nama_barang);
             harga_barang = view.findViewById(R.id.harga_barang);
+            v_berat = view.findViewById(R.id.v_berat);
+            v_volume = view.findViewById(R.id.v_volume);
         }
     }
 

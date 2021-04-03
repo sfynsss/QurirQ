@@ -113,10 +113,11 @@ public class frm_notification extends Fragment {
                         isi.add(response.body().getData().get(i).getNotif());
                         jenis.add(response.body().getData().get(i).getJenisNotif()+"");
                     }
-
-                    adapterNotif = new AdapterNotif(getActivity(), id_notif, judul, isi, jenis);
-                    adapterNotif.notifyDataSetChanged();
-                    list_notif.setAdapter(adapterNotif);
+                    if (getActivity()!=null) {
+                        adapterNotif = new AdapterNotif(getActivity(), id_notif, judul, isi, jenis);
+                        adapterNotif.notifyDataSetChanged();
+                        list_notif.setAdapter(adapterNotif);
+                    }
                 } else {
                     final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));

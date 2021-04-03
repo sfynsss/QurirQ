@@ -88,9 +88,11 @@ public class frm_favourite extends Fragment {
     private ArrayList<String> hrg_brg = new ArrayList<>();
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
+    private ArrayList<String> berat = new ArrayList<>();
+    private ArrayList<String> volume = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kategori = new ArrayList<>();
-    String tmp_kd_brg = "", tmp_nm_brg = "", tmp_satuan = "", tmp_harga_jl = "", tmp_qty = "", tmp_gbr = "", tmp_kat = "";
+    String tmp_kd_brg = "", tmp_nm_brg = "", tmp_satuan = "", tmp_harga_jl = "", tmp_qty = "", tmp_gbr = "", tmp_kat = "", tmp_berat = "", tmp_volume = "";
 
     ListView list_fav;
     ImageView not_found;
@@ -147,6 +149,8 @@ public class frm_favourite extends Fragment {
                     nm_brg.clear();
                     hrg_brg.clear();
                     hrg_asli.clear();
+                    berat.clear();
+                    volume.clear();
                     gambar.clear();
                     kategori.clear();
 
@@ -155,24 +159,27 @@ public class frm_favourite extends Fragment {
                         nm_brg.add(response.body().getData().get(i).getNmBrg());
                         hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
                         hrg_asli.add(response.body().getData().get(i).getHargaJl().toString());
+                        berat.add(response.body().getData().get(i).getBerat().toString());
+                        volume.add(response.body().getData().get(i).getVolume().toString());
                         gambar.add(response.body().getData().get(i).getGambar());
                         kategori.add(response.body().getData().get(i).getKategoriBarang());
                     }
+                    if (getActivity()!=null) {
+                        adapterFavBarang = new AdapterFavBarang(getActivity(), kd_brg, nm_brg, hrg_brg, berat, volume, gambar, kategori, new AdapterFavBarang.OnEditLocationListener() {
+                            @Override
+                            public void onClickAdapter(int position) {
+                                tambahKeCart(position);
+                            }
+                        }, new AdapterFavBarang.OnEditLocationListener() {
+                            @Override
+                            public void onClickAdapter(int position) {
+                                deleteData(kd_brg.get(position), position);
+                            }
+                        });
 
-                    adapterFavBarang = new AdapterFavBarang(getActivity(), kd_brg, nm_brg, hrg_brg, gambar, kategori, new AdapterFavBarang.OnEditLocationListener() {
-                        @Override
-                        public void onClickAdapter(int position) {
-                            tambahKeCart(position);
-                        }
-                    }, new AdapterFavBarang.OnEditLocationListener() {
-                        @Override
-                        public void onClickAdapter(int position) {
-                            deleteData(kd_brg.get(position), position);
-                        }
-                    });
-
-                    adapterFavBarang.notifyDataSetChanged();
-                    list_fav.setAdapter(adapterFavBarang);
+                        adapterFavBarang.notifyDataSetChanged();
+                        list_fav.setAdapter(adapterFavBarang);
+                    }
                 } else {
                     final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
@@ -202,10 +209,12 @@ public class frm_favourite extends Fragment {
         tmp_nm_brg = nm_brg.get(position);
         tmp_satuan = "PCS";
         tmp_qty = "1";
+        tmp_berat = berat.get(position);
+        tmp_volume = volume.get(position);
         tmp_harga_jl = hrg_asli.get(position);
         tmp_gbr = gambar.get(position);
         tmp_kat = kategori.get(position);
-        inputToCart = api.inputToCart(session.getIdUser(), tmp_kd_brg, tmp_nm_brg, tmp_satuan, tmp_harga_jl, tmp_qty, tmp_gbr, tmp_kat, session.getKdOutlet());
+        inputToCart = api.inputToCart(session.getIdUser(), tmp_kd_brg, tmp_nm_brg, tmp_satuan, tmp_harga_jl, tmp_qty, tmp_berat, tmp_volume, tmp_gbr, tmp_kat, session.getKdOutlet());
         inputToCart.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
@@ -240,6 +249,8 @@ public class frm_favourite extends Fragment {
                     nm_brg.remove(pos);
                     hrg_brg.remove(pos);
                     hrg_asli.remove(pos);
+                    berat.remove(pos);
+                    volume.remove(pos);
                     gambar.remove(pos);
                     kategori.remove(pos);
                     adapterFavBarang.notifyDataSetChanged();

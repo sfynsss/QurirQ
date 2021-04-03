@@ -26,6 +26,12 @@ public class Wishlist {
     @SerializedName("qty")
     @Expose
     private Integer qty;
+    @SerializedName("berat")
+    @Expose
+    private Double berat;
+    @SerializedName("volume")
+    @Expose
+    private Double volume;
     @SerializedName("gambar")
     @Expose
     private String gambar;
@@ -87,6 +93,22 @@ public class Wishlist {
 
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+    public Double getBerat() {
+        return berat;
+    }
+
+    public void setBerat(Double berat) {
+        this.berat = berat;
+    }
+
+    public Double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(Double volume) {
+        this.volume = volume;
     }
 
     public String getGambar() {

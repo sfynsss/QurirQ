@@ -56,6 +56,21 @@
                 android:gravity="center_vertical"
                 android:fontFamily="@font/overpass_regular">
             </TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
+                <TextView
+                    android:id="@+id/v_berat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+                <TextView
+                    android:id="@+id/v_volume"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                </TextView>
+            </LinearLayout>
         </LinearLayout>
         <LinearLayout
             android:layout_width="0dp"

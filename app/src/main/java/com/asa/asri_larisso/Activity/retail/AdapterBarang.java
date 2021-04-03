@@ -44,6 +44,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
     private ArrayList<String> qty_min2 = new ArrayList<String>();
     private ArrayList<String> qty_min3 = new ArrayList<String>();
     private ArrayList<String> qty_min4 = new ArrayList<String>();
+    private ArrayList<String> berat = new ArrayList<String>();
+    private ArrayList<String> volume = new ArrayList<String>();
     private ArrayList<String> satuan = new ArrayList<String>();
     private ArrayList<String> harga_asli = new ArrayList<String>();
     private ArrayList<String> disc = new ArrayList<String>();
@@ -69,6 +71,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
                          ArrayList<String> qty_min2,
                          ArrayList<String> qty_min3,
                          ArrayList<String> qty_min4,
+                         ArrayList<String> berat,
+                         ArrayList<String> volume,
                          ArrayList<String> satuan,
                          ArrayList<String> disc,
                          ArrayList<String> harga_disc) {
@@ -85,6 +89,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         this.qty_min2 = qty_min2;
         this.qty_min3 = qty_min3;
         this.qty_min4 = qty_min4;
+        this.berat = berat;
+        this.volume = volume;
         this.satuan = satuan;
         this.disc = disc;
         this.harga_disc = harga_disc;
@@ -121,6 +127,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
                 it.putExtra("qty_min2", qty_min2.get(pos));
                 it.putExtra("qty_min3", qty_min3.get(pos));
                 it.putExtra("qty_min4", qty_min4.get(pos));
+                it.putExtra("berat", berat.get(pos));
+                it.putExtra("volume", volume.get(pos));
                 it.putExtra("satuan", satuan.get(pos));
                 it.putExtra("diskon", disc.get(pos));
                 it.putExtra("harga_diskon", harga_disc.get(pos));
@@ -135,6 +143,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         holder.nama_brg.setText(nm_brg.get(position));
         holder.kategori_brg.setText(kat_brg.get(position));
+        holder.berat_brg.setText(berat.get(position));
+        holder.volume_brg.setText(volume.get(position));
         if (gambar.get(position) == null){
             holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
         } else {
@@ -177,6 +187,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         ImageView gambar, fav;
         RelativeLayout disc, harga_disc;
         TextView disc_value, harga_disc_value;
+        TextView berat_brg;
+        TextView volume_brg;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -190,6 +202,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             disc_value = (TextView) itemView.findViewById(R.id.disc_value);
             harga_disc_value = (TextView) itemView.findViewById(R.id.harga_disc_value);
             fav = (ImageView) itemView.findViewById(R.id.fav);
+            berat_brg = (TextView) itemView.findViewById(R.id.berat_brg);
+            volume_brg = (TextView) itemView.findViewById(R.id.volume_brg);
         }
     }
 

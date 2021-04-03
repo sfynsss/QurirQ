@@ -34,13 +34,26 @@ public class AdapterCartBarang extends ArrayAdapter<String> {
     private ArrayList<String> nm_brg = new ArrayList<>();
     private ArrayList<String> hrg_brg = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
+    private ArrayList<String> berat = new ArrayList<>();
+    private ArrayList<String> volume = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kat = new ArrayList<>();
     private OnEditLocationListener min;
     private OnEditLocationListener plus;
     private OnEditLocationListener delete;
 
-    public AdapterCartBarang(Activity context, ArrayList<String> kd_brg, ArrayList<String> nm_brg, ArrayList<String> hrg_brg, ArrayList<String> qty, ArrayList<String> gambar, ArrayList<String> kat, OnEditLocationListener min, OnEditLocationListener plus, OnEditLocationListener delete) {
+    public AdapterCartBarang(Activity context,
+                             ArrayList<String> kd_brg,
+                             ArrayList<String> nm_brg,
+                             ArrayList<String> hrg_brg,
+                             ArrayList<String> qty,
+                             ArrayList<String> berat,
+                             ArrayList<String> volume,
+                             ArrayList<String> gambar,
+                             ArrayList<String> kat,
+                             OnEditLocationListener min,
+                             OnEditLocationListener plus,
+                             OnEditLocationListener delete) {
         super(context, R.layout.adapter_cart, kd_brg);
 
         this.mContext = context;
@@ -50,6 +63,8 @@ public class AdapterCartBarang extends ArrayAdapter<String> {
         this.nm_brg = nm_brg;
         this.hrg_brg = hrg_brg;
         this.qty = qty;
+        this.berat = berat;
+        this.volume = volume;
         this.gambar = gambar;
         this.kat = kat;
         this.min = min;
