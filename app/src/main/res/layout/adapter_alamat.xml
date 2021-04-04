@@ -2,13 +2,16 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" android:background="#ffffff">
+    android:orientation="vertical"
+    android:background="#FFF">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:orientation="horizontal"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/rt_cart_bg">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,6 +29,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="7"
                     android:text=""
+                    android:hint="Penerima"
                     android:textColor="#000"
                     android:textStyle="bold"
                     android:paddingTop="5dp"
@@ -38,7 +42,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="3"
                     android:gravity="center"
-                    android:text="Ubah Alamat">
+                    android:text="Ubah Alamat"
+                    android:textStyle="bold"
+                    android:textColor="#FF971E">
                 </TextView>
             </LinearLayout>
             <TextView

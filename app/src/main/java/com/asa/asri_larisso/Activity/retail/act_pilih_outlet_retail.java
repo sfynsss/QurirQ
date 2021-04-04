@@ -29,6 +29,8 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
     ImageView back;
     ListView outlet;
 
+    Integer sts_aktif = 0;
+
     Api api;
     Session session;
     Call<BaseResponse<Outlet>> getOutlet;
@@ -56,6 +58,7 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
 
         session = new Session(act_pilih_outlet_retail.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+
         dataOutlet();
         outlet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -65,6 +68,15 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
                 finish();
             }
         });
+
+//        if (session.getUserActivation() == false || getIntent().getStringExtra("sts_aktif_otp").equals(1)) {
+//            Intent it = new Intent(act_pilih_outlet_retail.this, act_home_retail.class);
+//            it.putExtra("sts_aktif_otp", 1);
+//        } else {
+//            Intent it = new Intent(act_pilih_outlet_retail.this, act_home_retail.class);
+//            it.putExtra("sts_aktif_otp", 0);
+//        }
+
     }
 
     public void dataOutlet() {
