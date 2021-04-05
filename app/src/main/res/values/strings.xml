@@ -3,7 +3,7 @@
     <string name="daftar">Belum memiliki akun? Klik <b>disini</b></string>
     <string name="welcome">Selamat datang, <b>User</b></string>
     <string name="forgot"><u><b>Lupa Password</b></u></string>
-    <string name="version">13</string>
+    <string name="version">14</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
