@@ -36,7 +36,7 @@ import retrofit2.Response;
 public class act_browse_diskon extends AppCompatActivity {
 
     ImageView back;
-    TextView nama_kategori, nama_promo, tgl_mulai, tgl_akhir, t1, t2, t3;
+    TextView nama_kategori, nama_promo, tgl_mulai, tgl_akhir;
     LinearLayout periode_promo, promo_kosong;
     RecyclerView recyclerBarang;
     SwipeRefreshLayout swipe_refresh_layout;

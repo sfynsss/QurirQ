@@ -145,25 +145,33 @@ public class frm_chart extends Fragment {
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (kd_brg.size() > 0) {
-                    Intent i = new Intent(getContext(), act_checkout.class);
-                    i.putExtra("kd_brg", kd_brg);
-                    i.putExtra("nm_brg", nm_brg);
-                    i.putExtra("hrg_brg", hrg_brg);
-                    i.putExtra("hrg_asli", hrg_asli);
-                    i.putExtra("qty", qty);
-                    i.putExtra("total_berat", v_total_berat.getText());
-                    i.putExtra("total_volume", v_total_volume.getText());
-                    i.putExtra("gambar", gambar);
-                    i.putExtra("subtot", tot+"");
-                    i.putExtra("sts_point", sts_point);
-                    startActivity(i);
-                } else {
+                if (session.getUserActivation() == false) {
                     final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
                     pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    pDialog.setTitleText("Silahkan Masukkan Barang !!");
+                    pDialog.setTitleText("Silahkan Registrasi Dahulu");
                     pDialog.setCancelable(false);
                     pDialog.show();
+                } else {
+                    if (kd_brg.size() > 0) {
+                        Intent i = new Intent(getContext(), act_checkout.class);
+                        i.putExtra("kd_brg", kd_brg);
+                        i.putExtra("nm_brg", nm_brg);
+                        i.putExtra("hrg_brg", hrg_brg);
+                        i.putExtra("hrg_asli", hrg_asli);
+                        i.putExtra("qty", qty);
+                        i.putExtra("total_berat", v_total_berat.getText());
+                        i.putExtra("total_volume", v_total_volume.getText());
+                        i.putExtra("gambar", gambar);
+                        i.putExtra("subtot", tot + "");
+                        i.putExtra("sts_point", sts_point);
+                        startActivity(i);
+                    } else {
+                        final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
+                        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                        pDialog.setTitleText("Silahkan Masukkan Barang !!");
+                        pDialog.setCancelable(false);
+                        pDialog.show();
+                    }
                 }
             }
         });

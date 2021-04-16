@@ -98,6 +98,7 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="8"
+                    android:layout_marginEnd="16dp"
                     android:text=""
                     android:textColor="#000"
                     android:gravity="center_vertical">
@@ -188,7 +189,8 @@
                         android:id="@+id/nama_kurir"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
-                        android:layout_margin="5dp">
+                        android:layout_margin="5dp"
+                        android:background="#EAEAEA">
                     </ImageView>
                 </LinearLayout>
 
@@ -196,7 +198,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="5"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:gravity="center">
                     <Spinner
                         android:id="@+id/service"
                         android:layout_width="match_parent"
@@ -208,7 +211,7 @@
                         android:id="@+id/harga_ongkir"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=""
+                        android:text="Kurir belum dipilih"
                         android:textStyle="bold"
                         android:textSize="12dp"
                         android:textColor="#000"

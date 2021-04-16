@@ -197,6 +197,8 @@ public class act_checkout extends AppCompatActivity {
             }
         });
 
+
+
         hapus_voucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -272,18 +274,19 @@ public class act_checkout extends AppCompatActivity {
         pilih_pembayaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (sts_kurir == false) {
-                    final SweetAlertDialog dialog = new SweetAlertDialog(act_checkout.this, SweetAlertDialog.WARNING_TYPE);
+                if (alamat_pengiriman.getText().equals(", , , ")) {
+                    final SweetAlertDialog dialog = new SweetAlertDialog(act_checkout.this, SweetAlertDialog.ERROR_TYPE);
                     dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
-                    dialog.setTitleText("Silahkan pilih jasa pengiriman terlebih dauhulu !!!");
+                    dialog.setTitleText("Alamat Belum Dipilih");
                     dialog.setCancelable(false);
                     dialog.show();
-                }
-//                } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
-//                    System.out.println("neng kene");
-//                    initInputPenjualan("0", "", "", "", "", "sukses");
-//                }
-                else {
+                } else if (sts_kurir == false) {
+                    final SweetAlertDialog dialog = new SweetAlertDialog(act_checkout.this, SweetAlertDialog.ERROR_TYPE);
+                    dialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                    dialog.setTitleText("Jenis Pengiriman Belum Dipilih");
+                    dialog.setCancelable(false);
+                    dialog.show();
+                } else {
                     initMidtransSdk();
                     MidtransSDK.getInstance().setTransactionRequest(initTransactionRequest());
                     MidtransSDK.getInstance().startPaymentUiFlow(act_checkout.this);
@@ -566,7 +569,7 @@ public class act_checkout extends AppCompatActivity {
 
         list_pengiriman.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { 
                 if (position == 0) {
                     a = "jne";
                     nama_kurir.setImageResource(R.drawable.logo_jne);

@@ -17,9 +17,6 @@ public class Promo {
     @SerializedName("nama_promo")
     @Expose
     private String namaPromo;
-    @SerializedName("sts_aktif")
-    @Expose
-    private String stsAktif;
 
     public Integer getId() {
         return id;
@@ -51,14 +48,6 @@ public class Promo {
 
     public void setNamaPromo(String namaPromo) {
         this.namaPromo = namaPromo;
-    }
-
-    public String getStsAktif() {
-        return stsAktif;
-    }
-
-    public void setStsAktif(String stsAktif) {
-        this.stsAktif = stsAktif;
     }
 
 }

@@ -24,6 +24,11 @@ public class act_otp_success_retail extends AppCompatActivity {
             public void onClick(View v) {
                 startActivity(new Intent(act_otp_success_retail.this, act_pilih_outlet_retail.class));
                 finish();
+
+//                Intent it = new Intent(act_otp_success_retail.this, act_pilih_outlet_retail.class);
+//                it.putExtra("sts_aktif_otp", 1);
+//                startActivity(it);
+//                finish();
             }
         });
     }

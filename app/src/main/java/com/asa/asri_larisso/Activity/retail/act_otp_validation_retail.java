@@ -39,7 +39,7 @@ public class act_otp_validation_retail extends AppCompatActivity {
     EditText satu, dua, tiga, empat;
     CountDownTimer countDownTimer;
     Button btn_next, request;
-    LinearLayout ly_resend_in;
+    LinearLayout ly_resend_in, skip;
     ImageView wa_cs;
     Api api;
     Session session;
@@ -67,6 +67,7 @@ public class act_otp_validation_retail extends AppCompatActivity {
         timer = findViewById(R.id.timer);
         ly_resend_in = findViewById(R.id.ly_resend_in);
         wa_cs = findViewById(R.id.wa_cs);
+        skip = findViewById(R.id.skip);
 
         countDownTimer = new ResendIn(startTime, interval);
         timer.setText(timer.getText() + String.valueOf(startTime / 1000));
@@ -86,6 +87,14 @@ public class act_otp_validation_retail extends AppCompatActivity {
                         }
                     }
                 });
+
+        skip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(act_otp_validation_retail.this, act_pilih_outlet_retail.class));
+                finish();
+            }
+        });
 
         wa_cs.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,6 +250,7 @@ public class act_otp_validation_retail extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     startActivity(new Intent(act_otp_validation_retail.this, act_otp_success_retail.class));
                     session.setLoggedIn(true);
+                    session.setUserActivation(true);
                     finish();
                 } else {
                     Toasty.error(getApplicationContext(), "Aktifasi Gagal", Toast.LENGTH_SHORT).show();
