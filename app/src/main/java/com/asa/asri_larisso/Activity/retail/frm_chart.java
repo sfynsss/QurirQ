@@ -187,7 +187,7 @@ public class frm_chart extends Fragment {
     }
 
     public void getData() {
-        getDataCart = api.getDataCart(session.getIdUser());
+        getDataCart = api.getDataCart(session.getIdUser(), session.getKdOutlet());
         getDataCart.enqueue(new Callback<BaseResponse<Cart>>() {
             @Override
             public void onResponse(Call<BaseResponse<Cart>> call, Response<BaseResponse<Cart>> response) {
