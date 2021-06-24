@@ -277,7 +277,8 @@ public interface Api {
     @FormUrlEncoded
     @POST("getDataWishlist")
     Call<BaseResponse<Wishlist>> getDataWishlist(
-            @Field("id_user") String id_user
+            @Field("id_user") String id_user,
+            @Field("kd_outlet") String kd_outlet
     );
 
     @FormUrlEncoded

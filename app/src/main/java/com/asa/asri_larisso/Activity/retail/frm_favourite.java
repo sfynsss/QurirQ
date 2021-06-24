@@ -138,7 +138,7 @@ public class frm_favourite extends Fragment {
     }
 
     public void getData() {
-        getDataWishlist = api.getDataWishlist(session.getIdUser());
+        getDataWishlist = api.getDataWishlist(session.getIdUser(), session.getKdOutlet());
         getDataWishlist.enqueue(new Callback<BaseResponse<Wishlist>>() {
             @Override
             public void onResponse(Call<BaseResponse<Wishlist>> call, Response<BaseResponse<Wishlist>> response) {

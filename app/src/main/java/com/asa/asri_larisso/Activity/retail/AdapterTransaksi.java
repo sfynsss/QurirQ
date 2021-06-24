@@ -75,8 +75,21 @@ public class AdapterTransaksi extends ArrayAdapter<String> {
             viewHolder.status.setText("Transaksi Batal");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.red));
         } else if (sts_byr.get(position).equals("0")) {
-            viewHolder.status.setText("Menunggu Pembayaran");
-            viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            if (jns_pengiriman.get(position).equals("pickup")) {
+                if (sts_transaksi.get(position).equals("MASUK")) {
+                    viewHolder.status.setText("Pesanan Masuk");
+                    viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.green_forest_primary));
+                } else if (sts_transaksi.get(position).equals("PROSES")) {
+                    viewHolder.status.setText("Pesanan Sedang Diproses");
+                    viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.yellow_notif));
+                } else if (sts_transaksi.get(position).equals("SIAP DIAMBIL")) {
+                    viewHolder.status.setText("Pesanan Siap Diambil");
+                    viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.aquamarine_primary));
+                }
+            } else {
+                viewHolder.status.setText("Menunggu Pembayaran");
+                viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
+            }
         } else if (sts_byr.get(position).equals("1")) {
             viewHolder.status.setText("Pesanan Sudah Terbayar");
             viewHolder.relativeLayout.setBackgroundColor(context.getResources().getColor(R.color.aquamarine_primary));

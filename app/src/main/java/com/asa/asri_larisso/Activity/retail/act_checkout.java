@@ -198,7 +198,6 @@ public class act_checkout extends AppCompatActivity {
         });
 
 
-
         hapus_voucher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -286,6 +285,9 @@ public class act_checkout extends AppCompatActivity {
                     dialog.setTitleText("Jenis Pengiriman Belum Dipilih");
                     dialog.setCancelable(false);
                     dialog.show();
+                } else if (sts_kurir == true && servis.getSelectedItem().equals("Ambil di tempat")) {
+                    System.out.println("neng kene");
+                    initInputPenjualan("0", "", "", "", "", "sukses");
                 } else {
                     initMidtransSdk();
                     MidtransSDK.getInstance().setTransactionRequest(initTransactionRequest());
@@ -569,7 +571,7 @@ public class act_checkout extends AppCompatActivity {
 
         list_pengiriman.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) { 
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0) {
                     a = "jne";
                     nama_kurir.setImageResource(R.drawable.logo_jne);
@@ -612,7 +614,7 @@ public class act_checkout extends AppCompatActivity {
                     ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_checkout.this, R.layout.spinner_pengiriman, service);
                     arrayAdapter.setDropDownViewResource(R.layout.spinner_pengiriman);
                     servis.setAdapter(arrayAdapter);
-                    pilih_pembayaran.setText("Pilih Pembayaran");
+                    pilih_pembayaran.setText("Simpan Pesanan");
                 }
 
                 dialog.dismiss();
@@ -707,7 +709,7 @@ public class act_checkout extends AppCompatActivity {
         });
     }
 
-    public void settingPoint(){
+    public void settingPoint() {
         getSettingPoint = api.getSettingPoint();
         getSettingPoint.enqueue(new Callback<BaseResponse<SettingPoint>>() {
             @Override
@@ -745,33 +747,33 @@ public class act_checkout extends AppCompatActivity {
                 subtot_point += (Double.parseDouble(hrg_asli.get(i)) * Double.parseDouble(qty.get(i)));
             }
         }
-        System.out.println(subtot_point+"subtot point");
-        System.out.println(ketentuan_point+"ketentuan point");
+        System.out.println(subtot_point + "subtot point");
+        System.out.println(ketentuan_point + "ketentuan point");
         tot_point = 0;
         if (TextUtils.isEmpty(tmp_kd_voucher)) {
-            tot_point = (int)subtot_point / ketentuan_point;
+            tot_point = (int) subtot_point / ketentuan_point;
         } else {
             tot_point = 0;
         }
 
-        System.out.println(tot_point+"tot point");
+        System.out.println(tot_point + "tot point");
         inputPenjualan = api.inputPenjualan(no_ent, session.getIdUser(), nama_penerima.getText().toString(), alamat_pengiriman.getText().toString(),
                 no_penerima.getText().toString(), total + "", "", nilai_voucher, tmp_kd_voucher, "", netto + "",
                 ongkir_total + "", a + "", "", kode_barang, nama_barang, harga_barang, quantity, "pcs", "RETAIL", sts_bayar, transaction_id,
-                va, payment_bank, payment_type, tot_point+"");
+                va, payment_bank, payment_type, tot_point + "");
         inputPenjualan.enqueue(new Callback<BaseResponse>() {
             @Override
             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                 if (response.isSuccessful()) {
                     if (sts.equals("sukses")) {
-//                        if (a.equals("pickup")) {
-//                            Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
-//                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
-//                            finish();
-//                        } else {
-//                        }
-                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
-                        finish();
+                        if (a.equals("pickup")) {
+                            Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            finish();
+                        } else {
+                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            finish();
+                        }
                     } else if (sts.equals("pending")) {
                         Intent it = new Intent(act_checkout.this, act_status_pembayaran.class);
                         it.putExtra("payment_type", payment_type + "");
