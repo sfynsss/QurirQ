@@ -32,6 +32,7 @@ import com.asa.asri_larisso.R;
 import com.asa.asri_larisso.Response.BaseResponse;
 import com.asa.asri_larisso.Response.BaseResponse1;
 import com.asa.asri_larisso.Session.Session;
+import com.asa.asri_larisso.Table.GambarPromo;
 import com.asa.asri_larisso.Table.Penawaran;
 import com.asa.asri_larisso.Table.PoinVoucher;
 import com.asa.asri_larisso.Table.kategori;
@@ -56,6 +57,7 @@ public class frm_home extends Fragment {
     Session session;
     Call<BaseResponse<kategori>> getKategori;
     Call<BaseResponse<Penawaran>> getPenawaran;
+    Call<BaseResponse<GambarPromo>> gambar_promo;
     Call<BaseResponse1<PoinVoucher>> getPointVoucher;
     Call<BaseResponse> getStatusUpdate;
 
@@ -65,7 +67,8 @@ public class frm_home extends Fragment {
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
     TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, nama_outlet, tx_voucher, tx_point;
-    LinearLayout btn_outlet, btn_diskon;
+    LinearLayout btn_outlet;
+    ImageView btn_diskon;
     ImageView gambar_outlet;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
@@ -186,6 +189,30 @@ public class frm_home extends Fragment {
         tampilKategori();
         dataPoinVoucher();
         checkUpdate();
+
+        gambar_promo = api.getGambarPromo();
+        gambar_promo.enqueue(new Callback<BaseResponse<GambarPromo>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<GambarPromo>> call, Response<BaseResponse<GambarPromo>> response) {
+                if (response.isSuccessful()) {
+                    RequestOptions requestOptions = new RequestOptions();
+                    requestOptions.fitCenter().signature(
+                            new ObjectKey(String.valueOf(System.currentTimeMillis())));
+                    Glide.with(getContext())
+                            .setDefaultRequestOptions(requestOptions)
+//                    .load("http://192.168.1.16:8000/storage/" + gambar.get(position) + "").into(viewHolder.gambar);
+                            .load("http://"+session.getBaseUrl()+"/storage/" + response.body().getData().get(0).getGambar() + "").into(btn_diskon);
+                } else {
+                    System.out.println("Data Tidak Ditemukan");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<GambarPromo>> call, Throwable t) {
+                System.out.println("Error "+t.getMessage());
+            }
+        });
+
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
             @Override

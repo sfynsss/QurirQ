@@ -9,6 +9,7 @@ import com.asa.asri_larisso.Table.Alamat;
 import com.asa.asri_larisso.Table.Barang;
 import com.asa.asri_larisso.Table.Cart;
 import com.asa.asri_larisso.Table.DetJual;
+import com.asa.asri_larisso.Table.GambarPromo;
 import com.asa.asri_larisso.Table.Kecamatan;
 import com.asa.asri_larisso.Table.Kota;
 import com.asa.asri_larisso.Table.Lacak;
@@ -398,6 +399,9 @@ public interface Api {
 
     @GET("getSettingPoint")
     Call<BaseResponse<SettingPoint>> getSettingPoint();
+
+    @GET("getGambarPromo")
+    Call<BaseResponse<GambarPromo>> getGambarPromo();
 
     @GET("getPenawaran")
     Call<BaseResponse<Penawaran>> getPenawaran();
