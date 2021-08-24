@@ -4,39 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorPrimaryDark"
     android:orientation="vertical"
-    android:weightSum="10"
     tools:context=".Activity.retail.act_splash">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:background="@drawable/rt_splash_1">
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="4"
-        android:gravity="center">
-        <ImageView
-            android:layout_width="240dp"
-            android:layout_height="120dp"
-            android:background="@drawable/rt_splash_logo">
-        </ImageView>
-    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:orientation="vertical"
-        android:background="@drawable/rt_splash_2">
-        <TextView
+        android:layout_height="match_parent">
+
+        <ImageView
             android:layout_width="wrap_content"
+            android:layout_height="140dp"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/splash1"></ImageView>
+
+        <ImageView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Version 1.7"
-            android:fontFamily="@font/overpass_regular"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"/>
+            android:src="@drawable/logos" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="185dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-10dp"
+            android:src="@drawable/splash2"></ImageView>
     </RelativeLayout>
 </LinearLayout>

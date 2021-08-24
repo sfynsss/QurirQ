@@ -8,35 +8,35 @@
     <fragment
         android:id="@+id/home"
         android:label="fragment_home"
-        android:name="com.asa.asri_larisso.Activity.retail.frm_home"
+        android:name="com.mss.quriq.Activity.retail.frm_home"
         tools:layout="@layout/fragment_frm_home" >
     </fragment>
 
     <fragment
         android:id="@+id/fav"
         android:label="fragment_favourite"
-        android:name="com.asa.asri_larisso.Activity.retail.frm_favourite"
+        android:name="com.mss.quriq.Activity.retail.frm_favourite"
         tools:layout="@layout/fragment_frm_favourite" >
     </fragment>
 
     <fragment
         android:id="@+id/cart"
         android:label="fragment_explore"
-        android:name="com.asa.asri_larisso.Activity.retail.frm_chart"
+        android:name="com.mss.quriq.Activity.retail.frm_chart"
         tools:layout="@layout/fragment_frm_chart" >
     </fragment>
 
     <fragment
         android:id="@+id/notif"
         android:label="fragment_explore"
-        android:name="com.asa.asri_larisso.Activity.retail.frm_notification"
+        android:name="com.mss.quriq.Activity.retail.frm_notification"
         tools:layout="@layout/fragment_frm_notification" >
     </fragment>
 
     <fragment
         android:id="@+id/user"
         android:label="fragment_explore"
-        android:name="com.asa.asri_larisso.Activity.retail.frm_user"
+        android:name="com.mss.quriq.Activity.retail.frm_user"
         tools:layout="@layout/fragment_frm_user" >
     </fragment>
 

@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:1013043778047:android:31b5cf57f5805d23dc57ca",
         "android_client_info": {
-          "package_name": "com.asa.asri_larisso"
+          "package_name": "com.asa.qurirq"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "1013043778047-9c4jgogc2tovre8kntoh1gbmg8jumdj2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.asa.asri_larisso",
+            "package_name": "com.asa.qurirq",
             "certificate_hash": "68bc459c297e586773f9ea49228f3e9783d93b3a"
           }
         },
