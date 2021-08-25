@@ -72,7 +72,7 @@
         <activity
             android:name="com.mss.quriq.Activity.retail.act_home_retail"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name="com.mss.quriq.Activity.retail.act_login_retail" />
+        <activity android:name="com.mss.quriq.Activity.retail.act_login" />
         <activity android:name="com.mss.quriq.Activity.retail.act_customer_service_retail" />
         <activity android:name="com.mss.quriq.Activity.retail.act_splash">
             <intent-filter>

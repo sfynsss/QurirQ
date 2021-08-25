@@ -32,7 +32,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class act_login_retail extends AppCompatActivity {
+public class act_login extends AppCompatActivity {
 
     Button btn_masuk;
     TextView btn_daftar, lupa_password;
@@ -48,7 +48,7 @@ public class act_login_retail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_login_retail);
+        setContentView(R.layout.activity_act_login);
 
         btn_masuk = findViewById(R.id.btn_masuk);
         btn_daftar = findViewById(R.id.daftar);
@@ -127,10 +127,10 @@ public class act_login_retail extends AppCompatActivity {
                                                             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                                                 if (response.isSuccessful()) {
 //                                                                    startActivity(new Intent(act_login_retail.this, act_home_retail.class));
-                                                                    startActivity(new Intent(act_login_retail.this, act_pilih_outlet_retail.class));
+                                                                    startActivity(new Intent(act_login.this, act_pilih_outlet_retail.class));
                                                                     finish();
                                                                 } else {
-                                                                    startActivity(new Intent(act_login_retail.this, act_pilih_outlet_retail.class));
+                                                                    startActivity(new Intent(act_login.this, act_pilih_outlet_retail.class));
                                                                     finish();
                                                                 }
                                                             }
@@ -153,7 +153,7 @@ public class act_login_retail extends AppCompatActivity {
                                             response.body().getUser().getOtoritas()+"",
                                             response.body().getUser().getJNSKELAMIN()+"");
                                     session.setUserActivation(false);
-                                    Intent it = new Intent(act_login_retail.this, act_otp_validation_retail.class);
+                                    Intent it = new Intent(act_login.this, act_otp_validation_retail.class);
                                     it.putExtra("email", response.body().getUser().getEmail()+"");
                                     startActivity(it);
                                     finish();
@@ -175,7 +175,7 @@ public class act_login_retail extends AppCompatActivity {
                         @Override
                         public void onFailure(Call<UserResponse> call, Throwable t) {
                             progressBar.setVisibility(View.INVISIBLE);
-                            Toasty.error(act_login_retail.this, "Ini error juga bos" + t.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toasty.error(act_login.this, "Ini error juga bos" + t.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
                 }
@@ -185,14 +185,14 @@ public class act_login_retail extends AppCompatActivity {
         lupa_password.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_login_retail.this, act_lupa_password.class));
+                startActivity(new Intent(act_login.this, act_lupa_password.class));
             }
         });
 
         btn_daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_login_retail.this, act_register_retail.class));
+                startActivity(new Intent(act_login.this, act_register_retail.class));
             }
         });
 

@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 
 import com.mss.quriq.Api.Api;
 import com.mss.quriq.Api.RetrofitClient;
@@ -26,11 +29,17 @@ public class act_splash extends AppCompatActivity {
     Session session;
     Api api2;
     Call<BaseResponse> updateToken;
+    ImageView logo;
+    Animation splash_anim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_act_splash);
+
+        logo = findViewById(R.id.logo);
+        splash_anim = AnimationUtils.loadAnimation(this, R.anim.anim_splash1);
+        logo.setAnimation(splash_anim);
 
         session = new Session(this);
         Thread timer = new Thread() {
@@ -85,16 +94,16 @@ public class act_splash extends AppCompatActivity {
                                     }
                                 });
                     } else if(session.getUserActivation() == false) {
-                        startActivity(new Intent(act_splash.this, act_login_retail.class));
+                        startActivity(new Intent(act_splash.this, act_login.class));
                         finish();
                     } else {
-                        startActivity(new Intent(act_splash.this, act_login_retail.class));
+                        startActivity(new Intent(act_splash.this, act_login.class));
                         finish();
                     }
                 }
             }
         };
 
-//        timer.start();
+        timer.start();
     }
 }

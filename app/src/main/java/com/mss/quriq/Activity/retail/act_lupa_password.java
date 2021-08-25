@@ -53,7 +53,7 @@ public class act_lupa_password extends AppCompatActivity {
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         if (response.isSuccessful()) {
                             Toasty.success(getApplicationContext(), response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(act_lupa_password.this, act_login_retail.class));
+                            startActivity(new Intent(act_lupa_password.this, act_login.class));
                             finish();
                             pd.hide();
                         } else {

@@ -30,8 +30,8 @@ public class NotificationHelper {
         );
 
         NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context, "LARISSO GROUP")
-                        .setSmallIcon(R.drawable.logo_larisso1)
+                new NotificationCompat.Builder(context, "QurirQ")
+                        .setSmallIcon(R.drawable.logos)
                         .setContentTitle(title)
                         .setContentText(body)
                         .setContentIntent(pendingIntent)
