@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_home_retail">
+    tools:context=".Activity.retail.act_home">
 
     <fragment
         android:id="@+id/nav_host_fragment"
@@ -13,8 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/divider"
+        android:layout_marginBottom="0dp"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_graph"/>
+        app:navGraph="@navigation/nav_graph" />
 
     <RelativeLayout
         android:id="@+id/ly_activation"
@@ -66,8 +67,7 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_above="@+id/navigation"
-        android:background="#EAEAEA">
-    </View>
+        android:background="#EAEAEA"></View>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/navigation"
@@ -75,10 +75,9 @@
         android:layout_height="65dp"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
-        app:labelVisibilityMode="labeled"
         android:background="#fff"
         app:itemIconSize="22dp"
-        app:menu="@menu/list_botom_navigation">
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/list_botom_navigation"></com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </RelativeLayout>

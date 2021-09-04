@@ -510,7 +510,7 @@ public class act_checkout extends AppCompatActivity {
                                 case TransactionResult.STATUS_PENDING:
                                     Toast.makeText(act_checkout.this, "Transaction Pending", Toast.LENGTH_LONG).show();
                                     if (payment_bank.equals("GOPAY")) {
-                                        startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                                        startActivity(new Intent(act_checkout.this, act_home.class));
                                         finish();
                                     } else {
                                         initInputPenjualan("0", result.getResponse().getTransactionId(), no_va, payment_bank, payment_type, "pending");
@@ -768,10 +768,10 @@ public class act_checkout extends AppCompatActivity {
                     if (sts.equals("sukses")) {
                         if (a.equals("pickup")) {
                             Toasty.success(act_checkout.this, "Pesanan Berhasil Ditempatkan", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            startActivity(new Intent(act_checkout.this, act_home.class));
                             finish();
                         } else {
-                            startActivity(new Intent(act_checkout.this, act_home_retail.class));
+                            startActivity(new Intent(act_checkout.this, act_home.class));
                             finish();
                         }
                     } else if (sts.equals("pending")) {

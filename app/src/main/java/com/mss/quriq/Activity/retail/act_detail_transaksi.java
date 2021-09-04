@@ -305,7 +305,7 @@ public class act_detail_transaksi extends AppCompatActivity {
                                 if (response.isSuccessful()) {
                                     pDialog.dismiss();
                                     Toasty.success(act_detail_transaksi.this, "Transaksi Berhasil Dibatalkan", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(act_detail_transaksi.this, act_home_retail.class));
+                                    startActivity(new Intent(act_detail_transaksi.this, act_home.class));
                                     finish();
                                 } else {
                                     pDialog.dismiss();
@@ -317,7 +317,7 @@ public class act_detail_transaksi extends AppCompatActivity {
                             public void onFailure(Call<BaseResponse> call, Throwable t) {
                                 pDialog.dismiss();
                                 Toasty.success(act_detail_transaksi.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(act_detail_transaksi.this, act_home_retail.class));
+                                startActivity(new Intent(act_detail_transaksi.this, act_home.class));
                                 finish();
                             }
                         });

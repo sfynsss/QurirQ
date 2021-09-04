@@ -47,7 +47,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
         this.kd_kat = kd_kat;
         this.judul = judul;
         this.gambar = gambar;
-        option = new RequestOptions().centerCrop().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
+        option = new RequestOptions().circleCrop().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
         session = new Session(mContext);
     }
 
@@ -79,7 +79,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
             holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
         } else {
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.signature(
+            requestOptions.circleCrop().signature(
                     new ObjectKey(String.valueOf(System.currentTimeMillis())));
             Glide.with(mContext)
                     .setDefaultRequestOptions(requestOptions)

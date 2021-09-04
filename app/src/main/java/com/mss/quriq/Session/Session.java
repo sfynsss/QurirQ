@@ -60,7 +60,7 @@ public class Session {
     }
 
     public String getBaseUrl() {
-        return preferences.getString("baseUrl", "server.larisso.co.id");
+        return preferences.getString("baseUrl", "jaringan.my.id:8000");
     }
 
     public boolean getUserStatus(){

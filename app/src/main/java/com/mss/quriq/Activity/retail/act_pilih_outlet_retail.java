@@ -64,7 +64,7 @@ public class act_pilih_outlet_retail extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 session.setOutlet(kd_outlet.get(position), nama_outlet.get(position), gambar.get(position), true);
-                startActivity(new Intent(act_pilih_outlet_retail.this, act_home_retail.class));
+                startActivity(new Intent(act_pilih_outlet_retail.this, act_home.class));
                 finish();
             }
         });

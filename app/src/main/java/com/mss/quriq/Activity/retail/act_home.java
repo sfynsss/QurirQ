@@ -16,7 +16,7 @@ import com.mss.quriq.R;
 import com.mss.quriq.Session.Session;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class act_home_retail extends AppCompatActivity {
+public class act_home extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
     Session session;
@@ -28,7 +28,7 @@ public class act_home_retail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_home_retail);
+        setContentView(R.layout.activity_act_home);
         setUpNavigation();
 
         ly_activation = findViewById(R.id.ly_activation);
@@ -48,7 +48,7 @@ public class act_home_retail extends AppCompatActivity {
         btn_aktivasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent it = new Intent(act_home_retail.this, act_otp_validation_retail.class);
+                Intent it = new Intent(act_home.this, act_otp_validation_retail.class);
                 it.putExtra("email", session.getEmail());
                 startActivity(it);
                 finish();

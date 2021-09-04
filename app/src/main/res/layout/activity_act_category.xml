@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_category_retail">
+    tools:context=".Activity.retail.act_category">
 
     <!-- HEADER START -->
     <LinearLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="vertical"
-        android:background="@drawable/rt_main_header">
+        android:background="@drawable/header1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

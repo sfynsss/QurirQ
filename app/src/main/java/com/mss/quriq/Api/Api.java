@@ -10,6 +10,7 @@ import com.mss.quriq.Table.Barang;
 import com.mss.quriq.Table.Cart;
 import com.mss.quriq.Table.DetJual;
 import com.mss.quriq.Table.GambarPromo;
+import com.mss.quriq.Table.KategoriOutlet;
 import com.mss.quriq.Table.Kecamatan;
 import com.mss.quriq.Table.Kota;
 import com.mss.quriq.Table.MstJual;
@@ -214,6 +215,12 @@ public interface Api {
     Call<BaseResponse<kategori>> getKategoriBarang(
             @Field("filter") String filter,
             @Field("kd_outlet") String kd_outlet
+    );
+
+    @FormUrlEncoded
+    @POST("getKategoriOutlet")
+    Call<BaseResponse<KategoriOutlet>> getKategoriOutlet(
+            @Field("filter") String filter
     );
 
     @FormUrlEncoded

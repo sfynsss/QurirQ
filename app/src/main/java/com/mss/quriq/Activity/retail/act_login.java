@@ -126,11 +126,11 @@ public class act_login extends AppCompatActivity {
                                                             @Override
                                                             public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                                                                 if (response.isSuccessful()) {
-//                                                                    startActivity(new Intent(act_login_retail.this, act_home_retail.class));
-                                                                    startActivity(new Intent(act_login.this, act_pilih_outlet_retail.class));
+                                                                    startActivity(new Intent(act_login.this, act_home.class));
+//                                                                    startActivity(new Intent(act_login.this, act_pilih_outlet_retail.class));
                                                                     finish();
                                                                 } else {
-                                                                    startActivity(new Intent(act_login.this, act_pilih_outlet_retail.class));
+                                                                    startActivity(new Intent(act_login.this, act_home.class));
                                                                     finish();
                                                                 }
                                                             }
@@ -153,7 +153,7 @@ public class act_login extends AppCompatActivity {
                                             response.body().getUser().getOtoritas()+"",
                                             response.body().getUser().getJNSKELAMIN()+"");
                                     session.setUserActivation(false);
-                                    Intent it = new Intent(act_login.this, act_otp_validation_retail.class);
+                                    Intent it = new Intent(act_login.this, act_home.class);
                                     it.putExtra("email", response.body().getUser().getEmail()+"");
                                     startActivity(it);
                                     finish();

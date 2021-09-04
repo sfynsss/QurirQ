@@ -46,7 +46,7 @@ public class act_splash extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    sleep(1500);
+                    sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
@@ -67,7 +67,7 @@ public class act_splash extends AppCompatActivity {
                                                         if (session.getStsOutlet() == false) {
                                                             startActivity(new Intent(act_splash.this, act_pilih_outlet_retail.class));
                                                         } else {
-                                                            startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                            startActivity(new Intent(act_splash.this, act_home.class));
                                                         }
                                                         finish();
                                                     } else {
@@ -75,7 +75,7 @@ public class act_splash extends AppCompatActivity {
                                                         if (session.getStsOutlet() == false) {
                                                             startActivity(new Intent(act_splash.this, act_pilih_outlet_retail.class));
                                                         } else {
-                                                            startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                            startActivity(new Intent(act_splash.this, act_home.class));
                                                         }
                                                         finish();
                                                     }
@@ -84,7 +84,7 @@ public class act_splash extends AppCompatActivity {
                                                 @Override
                                                 public void onFailure(Call<BaseResponse> call, Throwable t) {
                                                     System.out.println("sukses");
-                                                    startActivity(new Intent(act_splash.this, act_home_retail.class));
+                                                    startActivity(new Intent(act_splash.this, act_home.class));
                                                     finish();
                                                 }
                                             });

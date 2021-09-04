@@ -30,12 +30,11 @@ import com.mss.quriq.Response.BaseResponse;
 import com.mss.quriq.Response.BaseResponse1;
 import com.mss.quriq.Session.Session;
 import com.mss.quriq.Table.GambarPromo;
+import com.mss.quriq.Table.KategoriOutlet;
 import com.mss.quriq.Table.Penawaran;
 import com.mss.quriq.Table.PoinVoucher;
-import com.mss.quriq.Table.kategori;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.bumptech.glide.signature.ObjectKey;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageListener;
@@ -52,7 +51,7 @@ public class frm_home extends Fragment {
     CarouselView carouselView;
     Api api;
     Session session;
-    Call<BaseResponse<kategori>> getKategori;
+    Call<BaseResponse<KategoriOutlet>> getKategori;
     Call<BaseResponse<Penawaran>> getPenawaran;
     Call<BaseResponse<GambarPromo>> gambar_promo;
     Call<BaseResponse1<PoinVoucher>> getPointVoucher;
@@ -94,34 +93,32 @@ public class frm_home extends Fragment {
         shimmer = view.findViewById(R.id.shimmer);
         btn_voucher = view.findViewById(R.id.btn_voucher);
         btn_point = view.findViewById(R.id.btn_point);
-        gambar_outlet = view.findViewById(R.id.gambar_outlet);
-        nama_outlet = view.findViewById(R.id.nama_outlet);
-        tx_voucher = view.findViewById(R.id.tx_voucher);
-        tx_point = view.findViewById(R.id.tx_point);
-        btn_outlet = view.findViewById(R.id.btn_outlet);
-        btn_diskon = view.findViewById(R.id.btn_diskon);
+//        gambar_outlet = view.findViewById(R.id.gambar_outlet);
+//        nama_outlet = view.findViewById(R.id.nama_outlet);
+
+//        btn_outlet = view.findViewById(R.id.btn_outlet);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         nama_pengguna.setText(session.getUsername());
         requestOptions = new RequestOptions().centerCrop();
         kategoriBarang.setFocusable(false);
-        if (!session.getGambarOutlet().equals("")) {
-            Glide.with(getActivity())
-                    .setDefaultRequestOptions(requestOptions)
-                    .load("http://" + session.getBaseUrl() + "/storage/" + session.getGambarOutlet() + "")
-                    .into(gambar_outlet);
-        }
+//        if (!session.getGambarOutlet().equals("")) {
+//            Glide.with(getActivity())
+//                    .setDefaultRequestOptions(requestOptions)
+//                    .load("http://" + session.getBaseUrl() + "/storage/" + session.getGambarOutlet() + "")
+//                    .into(gambar_outlet);
+//        }
 
-        if (!session.getNamaOutlet().equals("")) {
-            nama_outlet.setText(session.getNamaOutlet());
-        }
+//        if (!session.getNamaOutlet().equals("")) {
+//            nama_outlet.setText(session.getNamaOutlet());
+//        }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 tampilKategori();
-                dataPoinVoucher();
+//                dataPoinVoucher();
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -144,7 +141,7 @@ public class frm_home extends Fragment {
         lihat_semua.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(), act_category_retail.class));
+                startActivity(new Intent(getContext(), act_category.class));
             }
         });
 
@@ -155,60 +152,53 @@ public class frm_home extends Fragment {
             }
         });
 
-        btn_point.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), act_point_retail.class));
-            }
-        });
+//        btn_point.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), act_point_retail.class));
+//            }
+//        });
 
-        btn_voucher.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getContext(), act_voucher.class));
-            }
-        });
+//        btn_voucher.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(getContext(), act_voucher.class));
+//            }
+//        });
 
-        btn_outlet.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
-            }
-        });
-
-        btn_diskon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getContext(), act_browse_diskon.class));
-            }
-        });
+//        btn_outlet.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
+//            }
+//        });
 
         tampilKategori();
-        dataPoinVoucher();
+//        dataPoinVoucher();
         checkUpdate();
 
-        gambar_promo = api.getGambarPromo();
-        gambar_promo.enqueue(new Callback<BaseResponse<GambarPromo>>() {
-            @Override
-            public void onResponse(Call<BaseResponse<GambarPromo>> call, Response<BaseResponse<GambarPromo>> response) {
-                if (response.isSuccessful()) {
-                    RequestOptions requestOptions = new RequestOptions();
-                    requestOptions.fitCenter().signature(
-                            new ObjectKey(String.valueOf(System.currentTimeMillis())));
-                    Glide.with(getContext())
-                            .setDefaultRequestOptions(requestOptions)
-//                    .load("http://192.168.1.16:8000/storage/" + gambar.get(position) + "").into(viewHolder.gambar);
-                            .load("http://"+session.getBaseUrl()+"/storage/" + response.body().getData().get(0).getGambar() + "").into(btn_diskon);
-                } else {
-                    System.out.println("Data Tidak Ditemukan");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponse<GambarPromo>> call, Throwable t) {
-                System.out.println("Error "+t.getMessage());
-            }
-        });
+//        gambar_promo = api.getGambarPromo();
+//        gambar_promo.enqueue(new Callback<BaseResponse<GambarPromo>>() {
+//            @Override
+//            public void onResponse(Call<BaseResponse<GambarPromo>> call, Response<BaseResponse<GambarPromo>> response) {
+//                if (response.isSuccessful()) {
+//                    RequestOptions requestOptions = new RequestOptions();
+//                    requestOptions.fitCenter().signature(
+//                            new ObjectKey(String.valueOf(System.currentTimeMillis())));
+//                    Glide.with(getContext())
+//                            .setDefaultRequestOptions(requestOptions)
+////                    .load("http://192.168.1.16:8000/storage/" + gambar.get(position) + "").into(viewHolder.gambar);
+//                            .load("http://"+session.getBaseUrl()+"/storage/" + response.body().getData().get(0).getGambar() + "").into(btn_diskon);
+//                } else {
+//                    System.out.println("Data Tidak Ditemukan");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BaseResponse<GambarPromo>> call, Throwable t) {
+//                System.out.println("Error "+t.getMessage());
+//            }
+//        });
 
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
@@ -288,19 +278,19 @@ public class frm_home extends Fragment {
     }
 
     public void tampilKategori(){
-        getKategori = api.getKategoriBarang("6", session.getKdOutlet());
-        getKategori.enqueue(new Callback<BaseResponse<kategori>>() {
+        getKategori = api.getKategoriOutlet("6");
+        getKategori.enqueue(new Callback<BaseResponse<KategoriOutlet>>() {
             @Override
-            public void onResponse(Call<BaseResponse<kategori>> call, Response<BaseResponse<kategori>> response) {
+            public void onResponse(Call<BaseResponse<KategoriOutlet>> call, Response<BaseResponse<KategoriOutlet>> response) {
                 if (response.isSuccessful()) {
                     kd_kategori.clear();
                     judul.clear();
                     gambar.clear();
 
                     for (int i = 0; i < response.body().getData().size(); i++) {
-                        kd_kategori.add(response.body().getData().get(i).getKdKatAndroid());
-                        judul.add(response.body().getData().get(i).getNmKatAndroid());
-                        gambar.add(response.body().getData().get(i).getGbrKatAndroid());
+                        kd_kategori.add(response.body().getData().get(i).getId().toString());
+                        judul.add(response.body().getData().get(i).getNmKategoriOutlet());
+                        gambar.add(response.body().getData().get(i).getGbrKategoriOutlet());
                     }
                     if (getActivity()!=null) {
                         adapterKategori = new AdapterKategoriBarang(getContext(), getActivity(), kd_kategori, judul, gambar);
@@ -313,38 +303,38 @@ public class frm_home extends Fragment {
             }
 
             @Override
-            public void onFailure(Call<BaseResponse<kategori>> call, Throwable t) {
+            public void onFailure(Call<BaseResponse<KategoriOutlet>> call, Throwable t) {
                 Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public void dataPoinVoucher(){
-        getPointVoucher = api.getPointVoucher(session.getIdUser());
-        getPointVoucher.enqueue(new Callback<BaseResponse1<PoinVoucher>>() {
-            @Override
-            public void onResponse(Call<BaseResponse1<PoinVoucher>> call, Response<BaseResponse1<PoinVoucher>> response) {
-                if (response.isSuccessful()) {
-                    if (response.body().getData().getVoucher() == null){
-                        tx_voucher.setText("0");
-                    } else if(response.body().getData().getPoint() == null) {
-                        tx_point.setText("0");
-                    } else {
-                        voucher = response.body().getData().getVoucher();
-                        point = response.body().getData().getPoint();
-                        tx_voucher.setText(voucher+"");
-                        tx_point.setText(point+"");
-                    }
-                } else {
-                    Toasty.error(getContext(), "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<BaseResponse1<PoinVoucher>> call, Throwable t) {
-                Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    public void dataPoinVoucher(){
+//        getPointVoucher = api.getPointVoucher(session.getIdUser());
+//        getPointVoucher.enqueue(new Callback<BaseResponse1<PoinVoucher>>() {
+//            @Override
+//            public void onResponse(Call<BaseResponse1<PoinVoucher>> call, Response<BaseResponse1<PoinVoucher>> response) {
+//                if (response.isSuccessful()) {
+//                    if (response.body().getData().getVoucher() == null){
+//                        tx_voucher.setText("0");
+//                    } else if(response.body().getData().getPoint() == null) {
+//                        tx_point.setText("0");
+//                    } else {
+//                        voucher = response.body().getData().getVoucher();
+//                        point = response.body().getData().getPoint();
+//                        tx_voucher.setText(voucher+"");
+//                        tx_point.setText(point+"");
+//                    }
+//                } else {
+//                    Toasty.error(getContext(), "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BaseResponse1<PoinVoucher>> call, Throwable t) {
+//                Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
 }

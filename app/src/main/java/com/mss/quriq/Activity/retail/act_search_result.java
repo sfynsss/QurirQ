@@ -81,7 +81,7 @@ public class act_search_result extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(act_search_result.this, act_home_retail.class));
+                startActivity(new Intent(act_search_result.this, act_home.class));
             }
         });
 

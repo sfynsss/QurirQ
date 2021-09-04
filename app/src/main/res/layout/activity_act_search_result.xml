@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:background="#FF971E"
+        android:background="@drawable/bg_header_login"
         android:weightSum="10"
         android:orientation="vertical">
         <LinearLayout
@@ -86,9 +86,12 @@
                 android:gravity="center">
                 <Button
                     android:id="@+id/btn_search"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:background="@drawable/rt_search_ic_search">
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:drawableStart="@drawable/ic_search_24"
+                    android:paddingLeft="13dp"
+                    android:background="@drawable/rt_bt_primary">
                 </Button>
             </LinearLayout>
         </LinearLayout>
