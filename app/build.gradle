@@ -5,7 +5,7 @@ android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
     defaultConfig {
-        applicationId "com.asa.qurirq"
+        applicationId "com.mss.qurirq"
         minSdkVersion 17
         targetSdkVersion 29
         versionCode 17

@@ -1,42 +1,33 @@
 {
   "project_info": {
-    "project_number": "1013043778047",
-    "firebase_url": "https://asrilarisso.firebaseio.com",
-    "project_id": "asrilarisso",
-    "storage_bucket": "asrilarisso.appspot.com"
+    "project_number": "730225883134",
+    "project_id": "qurirq-j3mb3r",
+    "storage_bucket": "qurirq-j3mb3r.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1013043778047:android:31b5cf57f5805d23dc57ca",
+        "mobilesdk_app_id": "1:730225883134:android:ebc193480e9d8b3d8372af",
         "android_client_info": {
-          "package_name": "com.asa.qurirq"
+          "package_name": "com.mss.qurirq"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1013043778047-9c4jgogc2tovre8kntoh1gbmg8jumdj2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.asa.qurirq",
-            "certificate_hash": "68bc459c297e586773f9ea49228f3e9783d93b3a"
-          }
-        },
-        {
-          "client_id": "1013043778047-p49rs4lbot8nri10gpmpn322th06vkes.apps.googleusercontent.com",
+          "client_id": "730225883134-et5c0cta4tvnj9ps3h8mdpv209onmsnc.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA5PGROK_SWWCU-a8ZPr5Mj-v57NalQJ6A"
+          "current_key": "AIzaSyCZJGvLqqaXynN9Uv3durUjc7fTinE81Uk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1013043778047-p49rs4lbot8nri10gpmpn322th06vkes.apps.googleusercontent.com",
+              "client_id": "730225883134-et5c0cta4tvnj9ps3h8mdpv209onmsnc.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
