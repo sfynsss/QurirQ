@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class Barang {
 
+    @SerializedName("id")
+    @Expose
+    private Integer id;
     @SerializedName("kd_brg")
     @Expose
     private String kdBrg;
@@ -89,6 +92,14 @@ public class Barang {
     @SerializedName("harga_disc")
     @Expose
     private Integer hargaDisc;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getKdBrg() {
         return kdBrg;

@@ -20,20 +20,21 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <ImageView
                     android:id="@+id/gambar"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true">
-                </ImageView>
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:layout_centerInParent="true"></ImageView>
+
                 <ImageView
                     android:id="@+id/fav"
                     android:layout_width="40dp"
                     android:layout_height="40dp"
-                    android:layout_marginTop="8dp"
                     android:layout_marginLeft="8dp"
-                    android:background="@drawable/rt_ic_fav_off">
-                </ImageView>
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rt_ic_fav_off"></ImageView>
                 <RelativeLayout
                     android:id="@+id/disc"
                     android:layout_width="80dp"
@@ -56,6 +57,7 @@
                 </RelativeLayout>
             </RelativeLayout>
             <TextView
+                android:visibility="gone"
                 android:id="@+id/kategori_barang"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

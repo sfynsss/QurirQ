@@ -72,7 +72,7 @@ public class AdapterOutlet extends ArrayAdapter<String> {
         viewHolder.alamat.setText(alamat.get(position));
         if (!TextUtils.isEmpty(gambar.get(position))) {
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.signature(
+            requestOptions.fitCenter().signature(
                     new ObjectKey(String.valueOf(System.currentTimeMillis())));
             Glide.with(getContext())
                     .setDefaultRequestOptions(requestOptions)

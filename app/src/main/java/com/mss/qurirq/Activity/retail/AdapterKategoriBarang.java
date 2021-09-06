@@ -62,9 +62,9 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
             @Override
             public void onClick(View v) {
                 pos = viewHolder.getAdapterPosition();
-                Intent it = new Intent(mContext, act_browse_barang.class);
+                Intent it = new Intent(mContext, act_browse_outlet.class);
                 it.putExtra("judul", judul.get(pos));
-                it.putExtra("kd_kategori", kd_kat.get(pos));
+                it.putExtra("id_kategori", kd_kat.get(pos));
                 activity.startActivity(new Intent(it));
             }
         });

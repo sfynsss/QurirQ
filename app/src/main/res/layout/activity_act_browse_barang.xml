@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="@drawable/rt_main_header">
+        android:background="@drawable/bg_header3">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -41,7 +41,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FFD45A">
+        android:background="#35BD3E">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"
@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:weightSum="12"
-        android:background="#FFD45A">
+        android:background="#35BD3E">
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
@@ -95,7 +95,7 @@
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="#FFA722"
+                android:textColor="@color/colorPrimaryDark"
                 android:background="@drawable/rt_filter_bt_off">
             </Button>
         </LinearLayout>
@@ -113,7 +113,7 @@
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="#FFA722"
+                android:textColor="@color/colorPrimaryDark"
                 android:background="@drawable/rt_filter_bt_off">
             </Button>
         </LinearLayout>
@@ -132,7 +132,7 @@
                 android:textSize="10sp"
                 android:textStyle="bold"
                 android:textAllCaps="false"
-                android:textColor="#FFA722"
+                android:textColor="@color/colorPrimaryDark"
                 android:background="@drawable/rt_filter_bt_off">
             </Button>
         </LinearLayout>

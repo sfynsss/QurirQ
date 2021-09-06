@@ -5,9 +5,12 @@ import com.google.gson.annotations.SerializedName;
 
 public class Outlet {
 
-    @SerializedName("kd_outlet")
+    @SerializedName("id")
     @Expose
-    private String kdOutlet;
+    private Integer id;
+    @SerializedName("id_kategori_outlet")
+    @Expose
+    private Integer idKategoriOutlet;
     @SerializedName("nama_outlet")
     @Expose
     private String namaOutlet;
@@ -23,13 +26,27 @@ public class Outlet {
     @SerializedName("gambar_outlet")
     @Expose
     private String gambarOutlet;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("long")
+    @Expose
+    private String _long;
 
-    public String getKdOutlet() {
-        return kdOutlet;
+    public Integer getId() {
+        return id;
     }
 
-    public void setKdOutlet(String kdOutlet) {
-        this.kdOutlet = kdOutlet;
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getIdKategoriOutlet() {
+        return idKategoriOutlet;
+    }
+
+    public void setIdKategoriOutlet(Integer idKategoriOutlet) {
+        this.idKategoriOutlet = idKategoriOutlet;
     }
 
     public String getNamaOutlet() {
@@ -70,6 +87,22 @@ public class Outlet {
 
     public void setGambarOutlet(String gambarOutlet) {
         this.gambarOutlet = gambarOutlet;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLong() {
+        return _long;
+    }
+
+    public void setLong(String _long) {
+        this._long = _long;
     }
 
 }

@@ -197,7 +197,7 @@ public class frm_user extends Fragment {
         btn_outlet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
+                startActivity(new Intent(getContext(), act_pilih_outlet.class));
             }
         });
 

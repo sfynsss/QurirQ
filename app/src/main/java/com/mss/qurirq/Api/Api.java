@@ -164,8 +164,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("getBarang")
     Call<BaseResponse<Barang>> getBarang(
-            @Field("kd_kategori") String kd_kategori,
-            @Field("kd_outlet") String kd_outlet
+            @Field("id_outlet") String id_outlet
     );
 
     @FormUrlEncoded
@@ -412,8 +411,11 @@ public interface Api {
     @GET("getPenawaran")
     Call<BaseResponse<Penawaran>> getPenawaran();
 
-    @GET("getOutlet")
-    Call<BaseResponse<Outlet>> getOutlet();
+    @FormUrlEncoded
+    @POST("getOutlet")
+    Call<BaseResponse<Outlet>> getOutlet(
+            @Field("id") String id
+    );
 
     @GET("getSettingVoucher")
     Call<BaseResponse<SettingVoucher>> getSettingVoucher();

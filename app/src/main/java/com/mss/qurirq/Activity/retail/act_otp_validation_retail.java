@@ -91,7 +91,7 @@ public class act_otp_validation_retail extends AppCompatActivity {
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(act_otp_validation_retail.this, act_pilih_outlet_retail.class));
+                startActivity(new Intent(act_otp_validation_retail.this, act_pilih_outlet.class));
                 finish();
             }
         });

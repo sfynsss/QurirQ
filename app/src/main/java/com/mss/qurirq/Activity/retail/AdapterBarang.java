@@ -150,7 +150,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
                 holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
             } else {
                 RequestOptions requestOptions = new RequestOptions();
-                requestOptions.centerInside().signature(
+                requestOptions.circleCrop().signature(
                         new ObjectKey(String.valueOf(System.currentTimeMillis())));
                 Glide.with(mContext)
                         .setDefaultRequestOptions(requestOptions)
