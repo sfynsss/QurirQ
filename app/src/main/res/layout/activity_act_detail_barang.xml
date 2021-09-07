@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_detail_barang_retail">
+    tools:context=".Activity.retail.act_detail_barang">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/rt_main_header">
+        android:background="@drawable/bg_header3">
         <ImageView
             android:id="@+id/back"
             android:layout_width="30dp"
@@ -43,11 +43,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:gravity="center">
+
                 <ImageView
                     android:id="@+id/gambar"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                </ImageView>
+                    android:layout_height="match_parent"
+                    android:layout_margin="15dp"></ImageView>
                 <Button
                     android:id="@+id/ke_wishlist"
                     android:layout_width="40dp"

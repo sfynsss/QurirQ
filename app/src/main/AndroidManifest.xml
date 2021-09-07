@@ -75,7 +75,7 @@
         <activity
             android:name="com.mss.qurirq.Activity.retail.act_register_retail"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_detail_barang_retail" />
+        <activity android:name="com.mss.qurirq.Activity.retail.act_detail_barang" />
         <activity
             android:name="com.mss.qurirq.Activity.retail.act_home"
             android:windowSoftInputMode="adjustNothing" />

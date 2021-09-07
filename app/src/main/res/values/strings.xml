@@ -13,6 +13,7 @@
 
     <string name="dashboard_home"><font size="12">Beranda</font></string>
     <string name="dashboard_favourite"><font size="12">Favorit</font></string>
+    <string name="dashboard_send"><font size="12">Q-Send</font></string>
     <string name="dashboard_cart"><font size="12">Keranjang</font></string>
     <string name="dashboard_notification"><font size="12">Notifikasi</font></string>
     <string name="dashboard_user"><font size="12">User</font></string>

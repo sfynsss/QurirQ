@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable-anydpi/ic_home_nav.xml" value="0.10277777777777777" />
+        <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable-xxhdpi/selector_dashboard_send.xml" value="0.3402777777777778" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/bg_login_round.xml" value="0.2703125" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/bg_progress.xml" value="0.1300925925925926" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/bt_round_otp.xml" value="0.24027777777777778" />
@@ -14,6 +15,7 @@
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/rt_bt_primary.xml" value="0.1300925925925926" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/rt_bt_secondary.xml" value="0.2703125" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/rt_filter_bt_off.xml" value="0.24027777777777778" />
+        <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/rt_filter_bt_on.xml" value="0.3402777777777778" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/selector_dashboard_cart.xml" value="0.24027777777777778" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/selector_dashboard_favourite.xml" value="0.24027777777777778" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/drawable/selector_dashboard_home.xml" value="0.24027777777777778" />
@@ -23,6 +25,7 @@
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_browse_outlet.xml" value="0.2" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_category.xml" value="0.4199814986123959" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_category_retail.xml" value="0.22592592592592592" />
+        <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_detail_barang_retail.xml" value="0.32592592592592595" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_home.xml" value="0.2" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_home_retail.xml" value="0.22592592592592592" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/activity_act_login.xml" value="0.152" />
@@ -34,6 +37,7 @@
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/adapter_barang.xml" value="0.32592592592592595" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/adapter_kategori.xml" value="0.536" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/adapter_pilih_outlet.xml" value="0.3251783893985729" />
+        <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/fragment_frm_favourite.xml" value="0.32592592592592595" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/fragment_frm_home.xml" value="0.264" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/layout/spinner_alamat.xml" value="0.22592592592592592" />
         <entry key="..\:/Kantor/Freelance/Android/QurirQ/QurirQ/app/src/main/res/menu/list_botom_navigation.xml" value="0.22592592592592592" />

@@ -7,8 +7,8 @@
 
     <item
         android:id="@+id/fav"
-        android:icon="@drawable/selector_dashboard_favourite"
-        android:title="@string/dashboard_favourite"/>
+        android:icon="@drawable/selector_dashboard_send"
+        android:title="@string/dashboard_send"/>
 
     <item
         android:id="@+id/cart"

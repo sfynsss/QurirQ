@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class act_detail_barang_retail extends AppCompatActivity {
+public class act_detail_barang extends AppCompatActivity {
 
     ImageView gambar, back;
     TextView nama_barang, kategori, harga, jml, berat_brg, volume_brg;
@@ -46,7 +46,7 @@ public class act_detail_barang_retail extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_detail_barang_retail);
+        setContentView(R.layout.activity_act_detail_barang);
 
         back = findViewById(R.id.back);
         gambar = findViewById(R.id.gambar);
@@ -70,17 +70,17 @@ public class act_detail_barang_retail extends AppCompatActivity {
             }
         });
 
-        final ProgressDialog pd = new ProgressDialog(act_detail_barang_retail.this);
+        final ProgressDialog pd = new ProgressDialog(act_detail_barang.this);
 
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
-        session = new Session(act_detail_barang_retail.this);
+        session = new Session(act_detail_barang.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         RequestOptions requestOptions = new RequestOptions().centerInside().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
-        requestOptions.signature(
+        requestOptions.circleCrop().signature(
                 new ObjectKey(String.valueOf(System.currentTimeMillis())));
-        Glide.with(act_detail_barang_retail.this)
+        Glide.with(act_detail_barang.this)
                 .setDefaultRequestOptions(requestOptions)
 //                .load("http://192.168.1.16:8000/storage/" + getIntent().getStringExtra("gambar") + "")
                 .load("http://"+session.getBaseUrl()+"/storage/" + getIntent().getStringExtra("gambar") + "")
@@ -141,16 +141,16 @@ public class act_detail_barang_retail extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         if (response.isSuccessful()) {
-                            Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                            Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                             onBackPressed();
                         } else {
-                            Toasty.error(act_detail_barang_retail.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
+                            Toasty.error(act_detail_barang.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse> call, Throwable t) {
-                        Toasty.error(act_detail_barang_retail.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toasty.error(act_detail_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
@@ -181,23 +181,23 @@ public class act_detail_barang_retail extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             if (response.code() == 200) {
                                 pd.hide();
-                                Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 //onBackPressed();
                             } else if (response.code() == 201) {
                                 pd.hide();
-                                Toasty.success(act_detail_barang_retail.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
                                 //onBackPressed();
                             }
                         } else {
                             pd.hide();
-                            Toasty.error(act_detail_barang_retail.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
+                            Toasty.error(act_detail_barang.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onFailure(Call<BaseResponse> call, Throwable t) {
                         pd.hide();
-                        Toasty.error(act_detail_barang_retail.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                        Toasty.error(act_detail_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

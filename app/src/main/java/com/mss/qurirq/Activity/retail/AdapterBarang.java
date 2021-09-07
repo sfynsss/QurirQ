@@ -109,7 +109,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             @Override
             public void onClick(View v) {
                 pos = viewHolder.getAdapterPosition();
-                Intent it = new Intent(activity, act_detail_barang_retail.class);
+                Intent it = new Intent(activity, act_detail_barang.class);
                 it.putExtra("kd_brg", kd_brg.get(pos));
                 it.putExtra("gambar", gambar.get(pos));
                 it.putExtra("nm_brg", nm_brg.get(pos));

@@ -37,10 +37,7 @@ public class act_browse_barang extends AppCompatActivity {
     Api api;
     Session session;
     Call<BaseResponse<Barang>> getBarang;
-    Call<BaseResponse<Barang>> getBarangHargaRendah;
-    Call<BaseResponse<Barang>> getBarangHargaTinggi;
-    Call<BaseResponse<Barang>> getBarangHargaDiskon;
-    Call<BaseResponse<Barang>> getBarangByNameByCategory;
+    Call<BaseResponse<Barang>> getBarangByName;
 
     ArrayList<String> kd_brg = new ArrayList<>();
     ArrayList<String> nm_brg = new ArrayList<>();
@@ -90,66 +87,63 @@ public class act_browse_barang extends AppCompatActivity {
 
         session = new Session(act_browse_barang.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-        tampilBarang(getIntent().getStringExtra("id_outlet"));
+        tampilBarang("all", getIntent().getStringExtra("id_outlet"));
 
-//        btn_search.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getBarangByNameByCategory = api.getBarangByNameByCategory(cari_brg.getText().toString(), getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-//                tampilBarangByName();
-//                Toasty.success(act_browse_barang.this, "Mencari barang " + cari_brg.getText().toString(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        filter_hrg_rendah.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getBarangHargaRendah = api.getBarangHargaRendah(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-//                tampilBarangRendah();
-//                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_on);
-//                filter_hrg_rendah.setTextColor(Color.parseColor("#FFFFFF"));
-//                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
-//                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
-//                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga terendah ", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        filter_hrg_tinggi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getBarangHargaTinggi = api.getBarangHargaTinggi(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-//                tampilBarangTinggi();
-//                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_on);
-//                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFFFFF"));
-//                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
-//                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_diskon.setTextColor(Color.parseColor("#FFA722"));
-//                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga tertinggi ", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        filter_hrg_diskon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                getBarangHargaDiskon = api.getBarangHargaDiskon(getIntent().getStringExtra("kd_kategori"), session.getKdOutlet()+"");
-//                tampilBarangDiskon();
-//                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_on);
-//                filter_hrg_diskon.setTextColor(Color.parseColor("#FFFFFF"));
-//                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFA722"));
-//                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
-//                filter_hrg_rendah.setTextColor(Color.parseColor("#FFA722"));
-//                Toasty.success(act_browse_barang.this, "Disortir berdasarkan promo ", Toast.LENGTH_SHORT).show();
-//            }
-//        });
+        btn_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getBarangByName = api.getBarangByName(cari_brg.getText().toString().toUpperCase(Locale.ROOT), getIntent().getStringExtra("id_outlet"));
+                tampilBarangByName();
+                Toasty.success(act_browse_barang.this, "Mencari barang " + cari_brg.getText().toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        filter_hrg_rendah.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tampilBarang("rendah", getIntent().getStringExtra("id_outlet"));
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#00874D"));
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#00874D"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga terendah ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        filter_hrg_tinggi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tampilBarang("tinggi", getIntent().getStringExtra("id_outlet"));
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#00874D"));
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#00874D"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan harga tertinggi ", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        filter_hrg_diskon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tampilBarang("diskon", getIntent().getStringExtra("id_outlet"));
+                filter_hrg_diskon.setBackgroundResource(R.drawable.rt_filter_bt_on);
+                filter_hrg_diskon.setTextColor(Color.parseColor("#FFFFFF"));
+                filter_hrg_tinggi.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_tinggi.setTextColor(Color.parseColor("#00874D"));
+                filter_hrg_rendah.setBackgroundResource(R.drawable.rt_filter_bt_off);
+                filter_hrg_rendah.setTextColor(Color.parseColor("#00874D"));
+                Toasty.success(act_browse_barang.this, "Disortir berdasarkan promo ", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
-    public void tampilBarang(String id_outlet){
-        getBarang = api.getBarang(id_outlet);
+    public void tampilBarang(String filter, String id_outlet){
+        getBarang = api.getBarang(filter, id_outlet);
         getBarang.enqueue(new Callback<BaseResponse<Barang>>() {
             @Override
             public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
@@ -225,306 +219,80 @@ public class act_browse_barang extends AppCompatActivity {
             }
         });
     }
-//    public void tampilBarangByName(){
-//        getBarangByNameByCategory.enqueue(new Callback<BaseResponse<Barang>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
-//                if (response.isSuccessful()) {
-//                    kd_brg.clear();
-//                    nm_brg.clear();
-//                    kat_brg.clear();
-//                    hrg_brg.clear();
-//                    harga_asli.clear();
-//                    harga_jl2.clear();
-//                    harga_jl3.clear();
-//                    harga_jl4.clear();
-//                    qty_min2.clear();
-//                    qty_min3.clear();
-//                    qty_min4.clear();
-//                    berat.clear();
-//                    volume.clear();
-//                    satuan.clear();
-//                    gambar.clear();
-//                    disc.clear();
-//                    harga_disc.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        kd_brg.add(response.body().getData().get(i).getKdBrg());
-//                        nm_brg.add(response.body().getData().get(i).getNmBrg());
-//                        kat_brg.add(getIntent().getStringExtra("judul"));
-//                        hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
-//                        harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
-//                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
-//                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
-//                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
-//                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
-//                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
-//                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
-//                        berat.add(response.body().getData().get(i).getBerat().toString());
-//                        volume.add(response.body().getData().get(i).getVolume().toString());
-//                        satuan. add(response.body().getData().get(i).getSatuan1());
-//                        gambar.add(response.body().getData().get(i).getGambar());
-//                        disc.add(response.body().getData().get(i).getDisc().toString());
-//                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
-//                    }
-//
-//                    adapterBarang = new AdapterBarang(act_browse_barang.this, act_browse_barang.this,
-//                            kd_brg,
-//                            gambar,
-//                            nm_brg,
-//                            kat_brg,
-//                            harga_asli,
-//                            hrg_brg,
-//                            harga_jl2,
-//                            harga_jl3,
-//                            harga_jl4,
-//                            qty_min2,
-//                            qty_min3,
-//                            qty_min4,
-//                            berat,
-//                            volume,
-//                            satuan,
-//                            disc,
-//                            harga_disc);
-//                    recyclerBarang.setLayoutManager(new GridLayoutManager(act_browse_barang.this, 2));
-//                    recyclerBarang.setAdapter(adapterBarang);
-//
-//                } else {
-//                    Toasty.error(act_browse_barang.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Barang>> call, Throwable t) {
-//                Toasty.error(act_browse_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//    public void tampilBarangRendah(){
-//        getBarangHargaRendah.enqueue(new Callback<BaseResponse<Barang>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
-//                if (response.isSuccessful()) {
-//                    kd_brg.clear();
-//                    nm_brg.clear();
-//                    kat_brg.clear();
-//                    hrg_brg.clear();
-//                    harga_asli.clear();
-//                    harga_jl2.clear();
-//                    harga_jl3.clear();
-//                    harga_jl4.clear();
-//                    qty_min2.clear();
-//                    qty_min3.clear();
-//                    qty_min4.clear();
-//                    berat.clear();
-//                    volume.clear();
-//                    satuan.clear();
-//                    gambar.clear();
-//                    disc.clear();
-//                    harga_disc.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        kd_brg.add(response.body().getData().get(i).getKdBrg());
-//                        nm_brg.add(response.body().getData().get(i).getNmBrg());
-//                        kat_brg.add(getIntent().getStringExtra("judul"));
-//                        hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
-//                        harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
-//                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
-//                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
-//                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
-//                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
-//                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
-//                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
-//                        berat.add(response.body().getData().get(i).getBerat().toString());
-//                        volume.add(response.body().getData().get(i).getVolume().toString());
-//                        satuan. add(response.body().getData().get(i).getSatuan1());
-//                        gambar.add(response.body().getData().get(i).getGambar());
-//                        disc.add(response.body().getData().get(i).getDisc().toString());
-//                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
-//                    }
-//
-//                    adapterBarang = new AdapterBarang(act_browse_barang.this, act_browse_barang.this,
-//                            kd_brg,
-//                            gambar,
-//                            nm_brg,
-//                            kat_brg,
-//                            harga_asli,
-//                            hrg_brg,
-//                            harga_jl2,
-//                            harga_jl3,
-//                            harga_jl4,
-//                            qty_min2,
-//                            qty_min3,
-//                            qty_min4,
-//                            berat,
-//                            volume,
-//                            satuan,
-//                            disc,
-//                            harga_disc);
-//                    recyclerBarang.setLayoutManager(new GridLayoutManager(act_browse_barang.this, 2));
-//                    recyclerBarang.setAdapter(adapterBarang);
-//
-//                } else {
-//                    Toasty.error(act_browse_barang.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Barang>> call, Throwable t) {
-//                Toasty.error(act_browse_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//    public void tampilBarangTinggi(){
-//        getBarangHargaTinggi.enqueue(new Callback<BaseResponse<Barang>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
-//                if (response.isSuccessful()) {
-//                    kd_brg.clear();
-//                    nm_brg.clear();
-//                    kat_brg.clear();
-//                    hrg_brg.clear();
-//                    harga_asli.clear();
-//                    harga_jl2.clear();
-//                    harga_jl3.clear();
-//                    harga_jl4.clear();
-//                    qty_min2.clear();
-//                    qty_min3.clear();
-//                    qty_min4.clear();
-//                    berat.clear();
-//                    volume.clear();
-//                    satuan.clear();
-//                    gambar.clear();
-//                    disc.clear();
-//                    harga_disc.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        kd_brg.add(response.body().getData().get(i).getKdBrg());
-//                        nm_brg.add(response.body().getData().get(i).getNmBrg());
-//                        kat_brg.add(getIntent().getStringExtra("judul"));
-//                        hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
-//                        harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
-//                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
-//                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
-//                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
-//                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
-//                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
-//                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
-//                        berat.add(response.body().getData().get(i).getBerat().toString());
-//                        volume.add(response.body().getData().get(i).getVolume().toString());
-//                        satuan. add(response.body().getData().get(i).getSatuan1());
-//                        gambar.add(response.body().getData().get(i).getGambar());
-//                        disc.add(response.body().getData().get(i).getDisc().toString());
-//                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
-//                    }
-//
-//                    adapterBarang = new AdapterBarang(act_browse_barang.this, act_browse_barang.this,
-//                            kd_brg,
-//                            gambar,
-//                            nm_brg,
-//                            kat_brg,
-//                            harga_asli,
-//                            hrg_brg,
-//                            harga_jl2,
-//                            harga_jl3,
-//                            harga_jl4,
-//                            qty_min2,
-//                            qty_min3,
-//                            qty_min4,
-//                            berat,
-//                            volume,
-//                            satuan,
-//                            disc,
-//                            harga_disc);
-//                    recyclerBarang.setLayoutManager(new GridLayoutManager(act_browse_barang.this, 2));
-//                    recyclerBarang.setAdapter(adapterBarang);
-//
-//                } else {
-//                    Toasty.error(act_browse_barang.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Barang>> call, Throwable t) {
-//                Toasty.error(act_browse_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//    public void tampilBarangDiskon(){
-//        getBarangHargaDiskon.enqueue(new Callback<BaseResponse<Barang>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
-//                if (response.isSuccessful()) {
-//                    kd_brg.clear();
-//                    nm_brg.clear();
-//                    kat_brg.clear();
-//                    hrg_brg.clear();
-//                    harga_asli.clear();
-//                    harga_jl2.clear();
-//                    harga_jl3.clear();
-//                    harga_jl4.clear();
-//                    qty_min2.clear();
-//                    qty_min3.clear();
-//                    qty_min4.clear();
-//                    berat.clear();
-//                    volume.clear();
-//                    satuan.clear();
-//                    gambar.clear();
-//                    disc.clear();
-//                    harga_disc.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        kd_brg.add(response.body().getData().get(i).getKdBrg());
-//                        nm_brg.add(response.body().getData().get(i).getNmBrg());
-//                        kat_brg.add(getIntent().getStringExtra("judul"));
-//                        hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
-//                        harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
-//                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
-//                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
-//                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
-//                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
-//                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
-//                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
-//                        berat.add(response.body().getData().get(i).getBerat().toString());
-//                        volume.add(response.body().getData().get(i).getVolume().toString());
-//                        satuan. add(response.body().getData().get(i).getSatuan1());
-//                        gambar.add(response.body().getData().get(i).getGambar());
-//                        disc.add(response.body().getData().get(i).getDisc().toString());
-//                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
-//                    }
-//
-//                    adapterBarang = new AdapterBarang(act_browse_barang.this, act_browse_barang.this,
-//                            kd_brg,
-//                            gambar,
-//                            nm_brg,
-//                            kat_brg,
-//                            harga_asli,
-//                            hrg_brg,
-//                            harga_jl2,
-//                            harga_jl3,
-//                            harga_jl4,
-//                            qty_min2,
-//                            qty_min3,
-//                            qty_min4,
-//                            berat,
-//                            volume,
-//                            satuan,
-//                            disc,
-//                            harga_disc);
-//                    recyclerBarang.setLayoutManager(new GridLayoutManager(act_browse_barang.this, 2));
-//                    recyclerBarang.setAdapter(adapterBarang);
-//
-//                } else {
-//                    Toasty.error(act_browse_barang.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Barang>> call, Throwable t) {
-//                Toasty.error(act_browse_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
+    public void tampilBarangByName(){
+        getBarangByName.enqueue(new Callback<BaseResponse<Barang>>() {
+            @Override
+            public void onResponse(Call<BaseResponse<Barang>> call, Response<BaseResponse<Barang>> response) {
+                if (response.isSuccessful()) {
+                    kd_brg.clear();
+                    nm_brg.clear();
+                    kat_brg.clear();
+                    hrg_brg.clear();
+                    harga_asli.clear();
+                    harga_jl2.clear();
+                    harga_jl3.clear();
+                    harga_jl4.clear();
+                    qty_min2.clear();
+                    qty_min3.clear();
+                    qty_min4.clear();
+                    berat.clear();
+                    volume.clear();
+                    satuan.clear();
+                    gambar.clear();
+                    disc.clear();
+                    harga_disc.clear();
 
+                    for (int i = 0; i < response.body().getData().size(); i++) {
+                        kd_brg.add(response.body().getData().get(i).getId().toString());
+                        nm_brg.add(response.body().getData().get(i).getNmBrg());
+                        kat_brg.add(getIntent().getStringExtra("judul"));
+                        hrg_brg.add(formatRupiah.format(response.body().getData().get(i).getHargaJl()));
+                        harga_asli.add(response.body().getData().get(i).getHargaJl().toString());
+                        harga_jl2.add(response.body().getData().get(i).getHargaJl2().toString());
+                        harga_jl3.add(response.body().getData().get(i).getHargaJl3().toString());
+                        harga_jl4.add(response.body().getData().get(i).getHargaJl4().toString());
+                        qty_min2.add(response.body().getData().get(i).getQtyMin2().toString());
+                        qty_min3.add(response.body().getData().get(i).getQtyMin3().toString());
+                        qty_min4.add(response.body().getData().get(i).getQtyMin4().toString());
+                        berat.add(response.body().getData().get(i).getBerat().toString());
+                        volume.add(response.body().getData().get(i).getVolume().toString());
+                        satuan. add(response.body().getData().get(i).getSatuan1());
+                        gambar.add(response.body().getData().get(i).getGambar());
+                        disc.add(response.body().getData().get(i).getDisc().toString());
+                        harga_disc.add(response.body().getData().get(i).getHargaDisc().toString());
+                    }
+
+                    adapterBarang = new AdapterBarang(act_browse_barang.this, act_browse_barang.this,
+                            kd_brg,
+                            gambar,
+                            nm_brg,
+                            kat_brg,
+                            harga_asli,
+                            hrg_brg,
+                            harga_jl2,
+                            harga_jl3,
+                            harga_jl4,
+                            qty_min2,
+                            qty_min3,
+                            qty_min4,
+                            berat,
+                            volume,
+                            satuan,
+                            disc,
+                            harga_disc);
+                    recyclerBarang.setLayoutManager(new GridLayoutManager(act_browse_barang.this, 2));
+                    recyclerBarang.setAdapter(adapterBarang);
+
+                } else {
+                    Toasty.error(act_browse_barang.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BaseResponse<Barang>> call, Throwable t) {
+                Toasty.error(act_browse_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }
