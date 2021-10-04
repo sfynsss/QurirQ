@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_browse_outlet">
+    tools:context=".Activity.act_browse_outlet">
 
     <!-- HEADER START -->
     <LinearLayout
@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="horizontal"
-        android:background="@drawable/bg_header3">
+        android:background="@color/colorPrimaryDark">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -27,7 +27,7 @@
                 android:id="@+id/nama_kategori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama Kategori"
+                android:text="Data Outlet"
                 android:textSize="20dp"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold"
@@ -41,7 +41,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#35BD3E">
+        android:background="@color/colorPrimaryDark">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="42dp"

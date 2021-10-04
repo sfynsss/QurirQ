@@ -8,9 +8,9 @@ public class Barang {
     @SerializedName("id")
     @Expose
     private Integer id;
-    @SerializedName("kd_brg")
+    @SerializedName("id_outlet")
     @Expose
-    private String kdBrg;
+    private Integer idOutlet;
     @SerializedName("kd_kat_android")
     @Expose
     private String kdKatAndroid;
@@ -92,6 +92,9 @@ public class Barang {
     @SerializedName("harga_disc")
     @Expose
     private Integer hargaDisc;
+    @SerializedName("nm_kategori_barang")
+    @Expose
+    private String nmKategoriBarang;
 
     public Integer getId() {
         return id;
@@ -101,13 +104,14 @@ public class Barang {
         this.id = id;
     }
 
-    public String getKdBrg() {
-        return kdBrg;
+    public Integer getIdOutlet() {
+        return idOutlet;
     }
 
-    public void setKdBrg(String kdBrg) {
-        this.kdBrg = kdBrg;
+    public void setIdOutlet(Integer idOutlet) {
+        this.idOutlet = idOutlet;
     }
+
 
     public String getKdKatAndroid() {
         return kdKatAndroid;
@@ -324,5 +328,14 @@ public class Barang {
     public void setHargaDisc(Integer hargaDisc) {
         this.hargaDisc = hargaDisc;
     }
+
+    public String getNmKategoriBarang() {
+        return nmKategoriBarang;
+    }
+
+    public void setNmKategoriBarang(String nmKategoriBarang) {
+        this.nmKategoriBarang = nmKategoriBarang;
+    }
+
 
 }

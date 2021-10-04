@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#F5F5F8"
-    tools:context=".Activity.retail.frm_home">
+    tools:context=".Activity.frm_home">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh_layout"
@@ -26,7 +26,7 @@
                     android:id="@+id/ly_header"
                     android:layout_width="match_parent"
                     android:layout_height="180dp"
-                    android:background="@drawable/bg_header_home"
+                    android:background="@color/colorPrimaryDark"
                     android:orientation="vertical"
                     android:paddingLeft="16dp">
 

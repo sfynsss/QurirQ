@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="5dp"
+    android:layout_marginTop="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- CART 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="10"
+        android:padding="10dp"
+        android:background="@drawable/rt_cart_bg"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="9"
+            android:orientation="vertical"
+            android:layout_marginHorizontal="5dp">
+            <TextView
+                android:id="@+id/nama_penerima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/overpass_regular"
+                android:text="Penerima"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/detail_alamat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Detail alamat lengkap"
+                android:textColor="#000000"
+                android:textSize="12dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:maxLength="30"
+                android:fontFamily="@font/overpass_regular"/>
+            <TextView
+                android:id="@+id/no_telp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0810000000"
+                android:textColor="@color/colorAccent"
+                android:textSize="12dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:maxLength="30"
+                android:fontFamily="@font/overpass_regular">
+            </TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <ImageView
+                    android:id="@+id/delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete_24">
+                </ImageView>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

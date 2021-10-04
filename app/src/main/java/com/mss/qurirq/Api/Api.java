@@ -58,15 +58,8 @@ public interface Api {
     Call<BaseResponse> tambahAlamat(
             @Field("id_user") String id_user,
             @Field("nama") String nama,
-            @Field("provinsi") String provinsi,
-            @Field("kota") String kota,
-            @Field("kecamatan") String kecamatan,
-            @Field("kd_provinsi") String kd_provinsi,
-            @Field("kd_kota") String kd_kota,
-            @Field("kd_kecamatan") String kd_kecamatan,
             @Field("alamat") String alamat,
             @Field("no_telp") String no_telp,
-            @Field("kode_pos") String kode_pos,
             @Field("latitude") String latitude,
             @Field("longitude") String longitude
     );
@@ -76,15 +69,8 @@ public interface Api {
     Call<BaseResponse> ubahAlamat(
             @Field("kd_alamat") String kd_alamat,
             @Field("nama") String nama,
-            @Field("provinsi") String provinsi,
-            @Field("kota") String kota,
-            @Field("kecamatan") String kecamatan,
-            @Field("kd_provinsi") String kd_provinsi,
-            @Field("kd_kota") String kd_kota,
-            @Field("kd_kecamatan") String kd_kecamatan,
             @Field("alamat") String alamat,
             @Field("no_telp") String no_telp,
-            @Field("kode_pos") String kode_pos,
             @Field("latitude") String latitude,
             @Field("longitude") String longitude
     );
@@ -233,23 +219,20 @@ public interface Api {
     @POST("inputToCart")
     Call<BaseResponse> inputToCart(
             @Field("id_user") String id_user,
-            @Field("kd_brg") String kd_brg,
+            @Field("id_barang") String id_barang,
             @Field("nm_brg") String nm_brg,
             @Field("satuan1") String satuan1,
             @Field("harga_jl") String harga_jl,
             @Field("qty") String qty,
-            @Field("berat") String berat,
-            @Field("volume") String volume,
             @Field("gambar") String gambar,
             @Field("kategori") String kat,
-            @Field("kd_outlet") String kd_outlet
+            @Field("id_outlet") String id_outlet
     );
 
     @FormUrlEncoded
     @POST("getDataCart")
     Call<BaseResponse<Cart>> getDataCart(
-            @Field("id_user") String id_user,
-            @Field("kd_outlet") String kd_oulet
+            @Field("id_user") String id_user
     );
 
     @FormUrlEncoded
@@ -411,6 +394,9 @@ public interface Api {
 
     @GET("getPenawaran")
     Call<BaseResponse<Penawaran>> getPenawaran();
+
+    @GET("getPenawaranQsend")
+    Call<BaseResponse<Penawaran>> getPenawaranQsend();
 
     @FormUrlEncoded
     @POST("getOutlet")

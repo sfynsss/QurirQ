@@ -7,14 +7,14 @@
     android:weightSum="10"
     android:orientation="vertical"
     android:background="#ffffff"
-    tools:context=".Activity.retail.act_checkout">
+    tools:context=".Activity.act_checkout">
 
     <!-- HEADER START -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:orientation="vertical"
-        android:background="@drawable/rt_main_header">
+        android:background="@color/colorPrimaryDark">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -162,87 +162,6 @@
                 android:background="#E9E9E9">
             </ImageView>
             <!--batas garis-->
-
-            <!--Pilih Kurir-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="Pilih Kurir"
-                android:textColor="#000"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingLeft="16dp">
-            </TextView>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="85dp"
-                android:orientation="horizontal"
-                android:weightSum="10"
-                android:layout_marginBottom="10dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:layout_marginLeft="5dp"
-                    android:layout_gravity="center">
-                    <ImageView
-                        android:id="@+id/nama_kurir"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="5dp"
-                        android:background="#EAEAEA">
-                    </ImageView>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:orientation="vertical"
-                    android:gravity="center">
-                    <Spinner
-                        android:id="@+id/service"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:background="#fff">
-                    </Spinner>
-                    <TextView
-                        android:id="@+id/harga_ongkir"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Kurir belum dipilih"
-                        android:textStyle="bold"
-                        android:textSize="12dp"
-                        android:textColor="#000"
-                        android:ellipsize="none"
-                        android:layout_marginLeft="10dp"
-                        android:gravity="center_vertical|top">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="3"
-                    android:gravity="center">
-                    <Button
-                        android:id="@+id/btn_pengiriman"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_margin="15dp"
-                        android:textAllCaps="false"
-                        android:background="@drawable/rt_bt_round_red"
-                        android:text="Pilih"
-                        android:textColor="#fff">
-                    </Button>
-                </LinearLayout>
-            </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="#E9E9E9">
-            </ImageView>
-            <!--Pilih Kurir-->
 
             <!--Cart-->
             <TextView
@@ -412,58 +331,6 @@
                 </TextView>
                 <TextView
                     android:id="@+id/total_belanja"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical|end"
-                    android:paddingRight="20dp">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Total Berat :"
-                    android:textColor="#000"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/v_berat"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text=""
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical|end"
-                    android:paddingRight="20dp">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Total Volume :"
-                    android:textColor="#000"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="20dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/v_volume"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"

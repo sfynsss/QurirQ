@@ -7,7 +7,7 @@
     android:background="@drawable/rt_bg_coming_soon"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".Activity.retail.act_coming_soon_retail">
+    tools:context=".Activity.act_coming_soon_retail">
 
     <LinearLayout
         android:layout_width="match_parent"

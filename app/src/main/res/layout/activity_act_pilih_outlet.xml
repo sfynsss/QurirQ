@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#F9F9F9"
-    tools:context=".Activity.retail.act_pilih_outlet">
+    tools:context=".Activity.act_pilih_outlet">
 
     <LinearLayout
         android:layout_width="match_parent"

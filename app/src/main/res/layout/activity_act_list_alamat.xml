@@ -5,26 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_list_alamat">
+    tools:context=".Activity.act_list_alamat">
 
     <!-- HEADER START -->
     <RelativeLayout
         android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:orientation="vertical"
         android:layout_alignParentTop="true"
-        android:background="@drawable/rt_main_header">
+        android:background="@drawable/bg_header3"
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Daftar Alamat"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp">
-        </TextView>
+            android:layout_marginLeft="16dp"
+            android:text="Daftar Alamat"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"></TextView>
     </RelativeLayout>
     <!-- HEADER END -->
 
@@ -42,16 +42,16 @@
             android:gravity="center"
             android:text="Pilih salah satu alamat pengiriman berikut">
         </TextView>
+
         <ListView
             android:id="@+id/list_alamat"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="8dp"
-            android:divider="#FFF"
-            android:dividerHeight="8dp"
             android:layout_below="@id/tx_1"
-            tools:listitem="@layout/adapter_alamat">
-        </ListView>
+            android:layout_marginTop="8dp"
+            android:divider="#FFFF"
+            android:dividerHeight="8dp"
+            tools:listitem="@layout/adapter_alamat"></ListView>
     </RelativeLayout>
 
     <RelativeLayout

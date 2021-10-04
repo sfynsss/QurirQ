@@ -3,27 +3,53 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#FFF"
-    tools:context=".Activity.retail.frm_favourite">
+    android:background="#F5F5F8"
+    tools:context=".Activity.frm_favourite">
 
     <!-- HEADER START -->
     <LinearLayout
         android:id="@+id/ly_header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:weightSum="2"
-        android:background="@drawable/rt_main_header">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:background="@drawable/round">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:src="@drawable/q_send_active" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Barang Favorit Anda"
-            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Q-Send"
             android:textColor="#FFFFFF"
-            android:textStyle="bold"
-            android:layout_marginLeft="16dp"
-            android:layout_gravity="center">
-        </TextView>
+            android:textSize="20dp"
+            android:textStyle="bold"></TextView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/riwayat_qsend"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:src="@drawable/order"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
     </LinearLayout>
     <!-- HEADER END -->
 
@@ -31,28 +57,114 @@
         android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
         android:layout_below="@+id/ly_header">
-        <RelativeLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ListView
-                android:id="@+id/list_fav"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kabar dari Q-Send"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Promo special cuma buat kamu"
+                android:fontFamily="@font/poppins_medium"/>
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:divider="@null"
-                android:dividerHeight="5dp">
-            </ListView>
-            <ImageView
-                android:id="@+id/not_found"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/ic_not_found"
-                android:visibility="invisible"
-                android:layout_margin="25dp"
-                android:layout_centerInParent="true">
-            </ImageView>
-        </RelativeLayout>
+                android:layout_height="175dp"
+                app:cardCornerRadius="15dp">
+
+                <com.synnapps.carouselview.CarouselView
+                    android:id="@+id/carouselView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:fillColor="#FFFFFFFF"
+                    app:pageColor="#00000000"
+                    app:radius="4dp"
+                    app:slideInterval="3000"
+                    android:scaleType="fitXY"
+                    app:shapeAppearanceOverlay="@style/circular"/>
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="Mau kirim barang ke mana?"
+                android:textColor="@color/black"
+                android:fontFamily="@font/poppins_medium"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kirim - kirim barang percayakan pada Q-send\nsekali kirim ke 5 tempat tujuan, kenapa tidak?"
+                android:fontFamily="@font/poppins_medium"/>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/dalam_kota"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                app:cardCornerRadius="15dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:padding="10dp"
+                    android:weightSum="10">
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2.5">
+                        <ImageView
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="10dp"
+                            android:src="@drawable/paket"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="6">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Dalam Kota"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textStyle="bold"
+                            android:textSize="15dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Bisa kirim - kirim 5 paket sekaligus, "
+                            android:fontFamily="@font/poppins_medium"/>
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.5">
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_arrow_right"
+                            android:layout_centerInParent="true"/>
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </RelativeLayout>

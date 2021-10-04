@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_detail_barang">
+    tools:context=".Activity.act_detail_barang">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -96,58 +96,6 @@
                     android:layout_height="match_parent"
                     android:layout_weight="5"
                     android:text="kategoribarang"
-                    android:gravity="center_vertical|end"
-                    android:layout_marginRight="16dp"
-                    android:fontFamily="@font/overpass_regular">
-                </TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:weightSum="10"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:text="Berat (Gram)"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="16dp"
-                    android:fontFamily="@font/overpass_regular">
-                </TextView>
-                <TextView
-                    android:id="@+id/berat_brg"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:text=""
-                    android:gravity="center_vertical|end"
-                    android:layout_marginRight="16dp"
-                    android:fontFamily="@font/overpass_regular">
-                </TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:weightSum="10"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:text="Volume"
-                    android:gravity="center_vertical"
-                    android:layout_marginLeft="16dp"
-                    android:fontFamily="@font/overpass_regular">
-                </TextView>
-                <TextView
-                    android:id="@+id/volume"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="5"
-                    android:text=""
                     android:gravity="center_vertical|end"
                     android:layout_marginRight="16dp"
                     android:fontFamily="@font/overpass_regular">

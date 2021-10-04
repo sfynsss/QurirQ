@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    tools:context=".Activity.retail.frm_chart">
+    tools:context=".Activity.frm_chart">
 
     <!-- HEADER START -->
     <LinearLayout
         android:id="@+id/ly_header"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:background="@drawable/rt_main_header"
+        android:background="@color/colorPrimaryDark"
         android:weightSum="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:textColor="#FD7468"
+                android:textColor="@color/colorPrimaryDark"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="">

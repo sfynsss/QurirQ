@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_detail_transaksi">
+    tools:context=".Activity.act_detail_transaksi">
 
     <!-- HEADER START -->
     <LinearLayout

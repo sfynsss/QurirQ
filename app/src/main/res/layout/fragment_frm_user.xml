@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.frm_user">
+    tools:context=".Activity.frm_user">
 
     <!-- HEADER START -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:weightSum="2"
-        android:background="@drawable/rt_main_header">
+        android:background="@color/colorPrimaryDark">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -152,63 +152,63 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="10dp">
             </TextView>
-            <!-- Outlet Pengguna -->
-            <LinearLayout
-                android:id="@+id/btn_outlet"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="#fff"
-                android:weightSum="10"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_marginHorizontal="14dp"
-                        android:layout_marginVertical="10dp"
-                        android:background="@drawable/ic_profil_outlet">
-                    </ImageView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:orientation="vertical"
-                    android:weightSum="2">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:gravity="center_vertical|bottom"
-                        android:text="Outlet Saat Ini">
-                    </TextView>
-                    <TextView
-                        android:id="@+id/nama_outlet"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:text="LaRisso Ambulu Jember"
-                        android:textStyle="bold"
-                        android:gravity="center_vertical|top">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-                    <Button
-                        android:layout_width="14dp"
-                        android:layout_height="22dp"
-                        android:background="@drawable/ic_arrow_right">
-                    </Button>
-                </LinearLayout>
-            </LinearLayout>
+<!--            &lt;!&ndash; Outlet Pengguna &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_outlet"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="65dp"-->
+<!--                android:background="#fff"-->
+<!--                android:weightSum="10"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="3dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:gravity="center">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="34dp"-->
+<!--                        android:layout_height="34dp"-->
+<!--                        android:layout_marginHorizontal="14dp"-->
+<!--                        android:layout_marginVertical="10dp"-->
+<!--                        android:background="@drawable/ic_profil_outlet">-->
+<!--                    </ImageView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:weightSum="2">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:gravity="center_vertical|bottom"-->
+<!--                        android:text="Outlet Saat Ini">-->
+<!--                    </TextView>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/nama_outlet"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="LaRisso Ambulu Jember"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:gravity="center_vertical|top">-->
+<!--                    </TextView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center">-->
+<!--                    <Button-->
+<!--                        android:layout_width="14dp"-->
+<!--                        android:layout_height="22dp"-->
+<!--                        android:background="@drawable/ic_arrow_right">-->
+<!--                    </Button>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
             <!-- Sub Judul -->
             <LinearLayout
                 android:id="@+id/btn_transaksi"
@@ -257,108 +257,108 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Sub Judul -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:text="Voucher dan Point"
-                android:textStyle="bold"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp">
-            </TextView>
-            <!-- Sub Judul -->
-            <LinearLayout
-                android:id="@+id/btn_voucher"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="#fff"
-                android:weightSum="10"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_marginHorizontal="14dp"
-                        android:layout_marginVertical="10dp"
-                        android:background="@drawable/ic_profil_voucher">
-                    </ImageView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:text="Halaman Voucher"
-                        android:gravity="center_vertical">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-                    <Button
-                        android:layout_width="14dp"
-                        android:layout_height="22dp"
-                        android:background="@drawable/ic_arrow_right">
-                    </Button>
-                </LinearLayout>
-            </LinearLayout>
-            <!-- Sub Judul -->
-            <LinearLayout
-                android:id="@+id/btn_point"
-                android:layout_width="match_parent"
-                android:layout_height="65dp"
-                android:background="#fff"
-                android:weightSum="10"
-                android:orientation="horizontal"
-                android:layout_marginTop="3dp">
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="2"
-                    android:gravity="center">
-                    <ImageView
-                        android:layout_width="34dp"
-                        android:layout_height="34dp"
-                        android:layout_marginHorizontal="14dp"
-                        android:layout_marginVertical="10dp"
-                        android:background="@drawable/ic_profil_point">
-                    </ImageView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="7"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:text="Point Anda"
-                        android:gravity="center_vertical">
-                    </TextView>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center">
-                    <Button
-                        android:layout_width="14dp"
-                        android:layout_height="22dp"
-                        android:background="@drawable/ic_arrow_right">
-                    </Button>
-                </LinearLayout>
-            </LinearLayout>
+<!--            &lt;!&ndash; Sub Judul &ndash;&gt;-->
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:text="Voucher dan Point"-->
+<!--                android:textStyle="bold"-->
+<!--                android:gravity="center_vertical"-->
+<!--                android:paddingLeft="10dp">-->
+<!--            </TextView>-->
+<!--            &lt;!&ndash; Sub Judul &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_voucher"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="65dp"-->
+<!--                android:background="#fff"-->
+<!--                android:weightSum="10"-->
+<!--                android:orientation="horizontal">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:gravity="center">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:layout_marginHorizontal="14dp"-->
+<!--                        android:layout_marginVertical="10dp"-->
+<!--                        android:background="@drawable/ic_profil_voucher">-->
+<!--                    </ImageView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Halaman Voucher"-->
+<!--                        android:gravity="center_vertical">-->
+<!--                    </TextView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center">-->
+<!--                    <Button-->
+<!--                        android:layout_width="14dp"-->
+<!--                        android:layout_height="22dp"-->
+<!--                        android:background="@drawable/ic_arrow_right">-->
+<!--                    </Button>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            &lt;!&ndash; Sub Judul &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/btn_point"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="65dp"-->
+<!--                android:background="#fff"-->
+<!--                android:weightSum="10"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="3dp">-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="2"-->
+<!--                    android:gravity="center">-->
+<!--                    <ImageView-->
+<!--                        android:layout_width="34dp"-->
+<!--                        android:layout_height="34dp"-->
+<!--                        android:layout_marginHorizontal="14dp"-->
+<!--                        android:layout_marginVertical="10dp"-->
+<!--                        android:background="@drawable/ic_profil_point">-->
+<!--                    </ImageView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="7"-->
+<!--                    android:orientation="vertical">-->
+<!--                    <TextView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:text="Point Anda"-->
+<!--                        android:gravity="center_vertical">-->
+<!--                    </TextView>-->
+<!--                </LinearLayout>-->
+<!--                <LinearLayout-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:gravity="center">-->
+<!--                    <Button-->
+<!--                        android:layout_width="14dp"-->
+<!--                        android:layout_height="22dp"-->
+<!--                        android:background="@drawable/ic_arrow_right">-->
+<!--                    </Button>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
 
             <!-- Sub Judul -->
             <TextView
@@ -399,7 +399,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="Larisso Customer Service"
+                        android:text="QurirQ Customer Service"
                         android:gravity="center_vertical">
                     </TextView>
                 </LinearLayout>

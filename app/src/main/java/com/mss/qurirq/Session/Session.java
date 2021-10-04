@@ -60,7 +60,7 @@ public class Session {
     }
 
     public String getBaseUrl() {
-        return preferences.getString("baseUrl", "jaringan.my.id:8000");
+        return preferences.getString("baseUrl", "192.168.100.235:8000");
     }
 
     public boolean getUserStatus(){
@@ -117,17 +117,9 @@ public class Session {
 
     public String getJenisKelamin(){ return preferences.getString("JNS_KELAMIN", ""); }
 
-    public void setAlamat(String nama_penerima, String provinsi, String kota, String kecamatan, String kd_provinsi, String kd_kota,
-                          String kd_kecamatan, String alamat, String kode_pos, String latitude, String longitude) {
+    public void setAlamat(String nama_penerima, String alamat, String latitude, String longitude) {
         editor.putString("nama_penerima", nama_penerima);
-        editor.putString("provinsi", provinsi);
-        editor.putString("kota", kota);
-        editor.putString("kecamatan", kecamatan);
-        editor.putString("kd_provinsi", kd_provinsi);
-        editor.putString("kd_kota", kd_kota);
-        editor.putString("kd_kecamatan", kd_kecamatan);
         editor.putString("alamat", alamat);
-        editor.putString("kode_pos", kode_pos);
         editor.putString("latitude", latitude);
         editor.putString("longitude", longitude);
         editor.commit();

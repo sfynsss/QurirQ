@@ -5,15 +5,18 @@ import com.google.gson.annotations.SerializedName;
 
 public class Cart {
 
-    @SerializedName("id_cart")
+    @SerializedName("id")
     @Expose
-    private Integer idCart;
+    private Integer id;
     @SerializedName("id_user")
     @Expose
     private Integer idUser;
-    @SerializedName("kd_brg")
+    @SerializedName("id_barang")
     @Expose
-    private String kdBrg;
+    private Integer idBarang;
+    @SerializedName("id_outlet")
+    @Expose
+    private Integer idOutlet;
     @SerializedName("nm_brg")
     @Expose
     private String nmBrg;
@@ -26,28 +29,28 @@ public class Cart {
     @SerializedName("qty")
     @Expose
     private Integer qty;
-    @SerializedName("berat")
-    @Expose
-    private Double berat;
-    @SerializedName("volume")
-    @Expose
-    private Double volume;
     @SerializedName("gambar")
     @Expose
     private String gambar;
     @SerializedName("kategori_barang")
     @Expose
     private String kategoriBarang;
+    @SerializedName("sts_jual")
+    @Expose
+    private String stsJual;
     @SerializedName("sts_point")
     @Expose
-    private String sts_point;
+    private Integer stsPoint;
+    @SerializedName("nama_outlet")
+    @Expose
+    private String namaOutlet;
 
-    public Integer getIdCart() {
-        return idCart;
+    public Integer getId() {
+        return id;
     }
 
-    public void setIdCart(Integer idCart) {
-        this.idCart = idCart;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getIdUser() {
@@ -58,12 +61,20 @@ public class Cart {
         this.idUser = idUser;
     }
 
-    public String getKdBrg() {
-        return kdBrg;
+    public Integer getIdBarang() {
+        return idBarang;
     }
 
-    public void setKdBrg(String kdBrg) {
-        this.kdBrg = kdBrg;
+    public void setIdBarang(Integer idBarang) {
+        this.idBarang = idBarang;
+    }
+
+    public Integer getIdOutlet() {
+        return idOutlet;
+    }
+
+    public void setIdOutlet(Integer idOutlet) {
+        this.idOutlet = idOutlet;
     }
 
     public String getNmBrg() {
@@ -98,22 +109,6 @@ public class Cart {
         this.qty = qty;
     }
 
-    public Double getBerat() {
-        return berat;
-    }
-
-    public void setBerat(Double berat) {
-        this.berat = berat;
-    }
-
-    public Double getVolume() {
-        return volume;
-    }
-
-    public void setVolume(Double volume) {
-        this.volume = volume;
-    }
-
     public String getGambar() {
         return gambar;
     }
@@ -130,12 +125,28 @@ public class Cart {
         this.kategoriBarang = kategoriBarang;
     }
 
-    public String getSts_point() {
-        return sts_point;
+    public String getStsJual() {
+        return stsJual;
     }
 
-    public void setSts_point(String sts_point) {
-        this.sts_point = sts_point;
+    public void setStsJual(String stsJual) {
+        this.stsJual = stsJual;
+    }
+
+    public Integer getStsPoint() {
+        return stsPoint;
+    }
+
+    public void setStsPoint(Integer stsPoint) {
+        this.stsPoint = stsPoint;
+    }
+
+    public String getNamaOutlet() {
+        return namaOutlet;
+    }
+
+    public void setNamaOutlet(String namaOutlet) {
+        this.namaOutlet = namaOutlet;
     }
 
 }

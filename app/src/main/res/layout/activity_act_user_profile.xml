@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.retail.act_user_profile">
+    tools:context=".Activity.act_user_profile">
 
     <!-- HEADER START -->
     <LinearLayout

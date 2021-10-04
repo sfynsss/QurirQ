@@ -30,58 +30,70 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:allowBackup">
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_browse_outlet"
+            android:name=".Activity.act_detail_barang_kirim"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.act_pilih_lokasi_qsend"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activity.act_pilih_lokasi_pengirim"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Activity.act_qsend"
+            android:exported="true" />
+        <activity
+            android:name=".Activity.act_browse_outlet"
             android:exported="true" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBZQBPj60E697_DL2nbRxTjbCRVQROzgas" />
+            android:value="AIzaSyBhYpivDh3X593xIjPmfgqiMP3eB6KSbZM" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name="com.mss.qurirq.Activity.retail.act_edit_gambar_profile" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_pin_location" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_browse_diskon" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_coming_soon_retail" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_pilih_outlet" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_lupa_password" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_search_result" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_order_track" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_detail_transaksi" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_status_pembayaran" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_tambah_alamat" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_list_alamat" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_voucher" />
-        <activity android:name="com.mss.qurirq.Activity.retail.PopUpPengiriman" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_history_transaksi" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_checkout" />
+        <activity android:name=".Activity.act_edit_gambar_profile" />
+        <activity android:name=".Activity.act_pin_location" />
+        <activity android:name=".Activity.act_browse_diskon" />
+        <activity android:name=".Activity.act_coming_soon_retail" />
+        <activity android:name=".Activity.act_pilih_outlet" />
+        <activity android:name=".Activity.act_lupa_password" />
+        <activity android:name=".Activity.act_search_result" />
+        <activity android:name=".Activity.act_order_track" />
+        <activity android:name=".Activity.act_detail_transaksi" />
+        <activity android:name=".Activity.act_status_pembayaran" />
+        <activity android:name=".Activity.act_tambah_alamat" />
+        <activity android:name=".Activity.act_list_alamat" />
+        <activity android:name=".Activity.act_voucher" />
+        <activity android:name=".Activity.PopUpPengiriman" />
+        <activity android:name=".Activity.act_history_transaksi" />
+        <activity android:name=".Activity.act_checkout" />
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_browse_barang"
+            android:name=".Activity.act_browse_barang"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_user_profile" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_point_retail" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_detail_voucher_retail" />
+        <activity android:name=".Activity.act_user_profile" />
+        <activity android:name=".Activity.act_point_retail" />
+        <activity android:name=".Activity.act_detail_voucher_retail" />
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_edit_profil_retail"
-            android:windowSoftInputMode="adjustPan" />
-        <activity
-            android:name="com.mss.qurirq.Activity.retail.act_otp_validation_retail"
+            android:name=".Activity.act_edit_profil_retail"
             android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_otp_success_retail"
+            android:name=".Activity.act_otp_validation_retail"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_category" />
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_register_retail"
+            android:name=".Activity.act_otp_success_retail"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Activity.act_category" />
+        <activity
+            android:name=".Activity.act_register_retail"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_detail_barang" />
+        <activity android:name=".Activity.act_detail_barang" />
         <activity
-            android:name="com.mss.qurirq.Activity.retail.act_home"
+            android:name=".Activity.act_home"
             android:windowSoftInputMode="adjustNothing" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_login" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_customer_service_retail" />
-        <activity android:name="com.mss.qurirq.Activity.retail.act_splash">
+        <activity android:name=".Activity.act_login" />
+        <activity android:name=".Activity.act_customer_service_retail" />
+        <activity android:name=".Activity.act_splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

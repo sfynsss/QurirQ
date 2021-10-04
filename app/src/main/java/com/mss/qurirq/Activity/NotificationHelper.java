@@ -8,7 +8,6 @@ import android.text.TextUtils;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import com.mss.qurirq.Activity.retail.frm_notification;
 import com.mss.qurirq.R;
 
 public class NotificationHelper {

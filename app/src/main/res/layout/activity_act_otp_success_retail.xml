@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFF"
-    tools:context=".Activity.retail.act_otp_validation_retail">
+    tools:context=".Activity.act_otp_validation_retail">
 
     <LinearLayout
         android:layout_width="match_parent"
