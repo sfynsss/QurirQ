@@ -35,43 +35,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link frm_chart#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class frm_chart extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public frm_chart() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment frm_chart.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static frm_chart newInstance(String param1, String param2) {
-        frm_chart fragment = new frm_chart();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -89,8 +53,6 @@ public class frm_chart extends Fragment {
     private ArrayList<String> hrg_brg = new ArrayList<>();
     private ArrayList<String> hrg_asli = new ArrayList<>();
     private ArrayList<String> qty = new ArrayList<>();
-    private ArrayList<String> berat = new ArrayList<>();
-    private ArrayList<String> volume = new ArrayList<>();
     private ArrayList<String> gambar = new ArrayList<>();
     private ArrayList<String> kategori = new ArrayList<>();
     private ArrayList<String> sts_point = new ArrayList<>();
@@ -98,6 +60,8 @@ public class frm_chart extends Fragment {
     double tot = 0;
     double total_berat = 0;
     double total_volume = 0;
+
+    String lat, lng;
 
     AdapterCartBarang adapterCartBarang;
     ListView list_cart;
@@ -160,6 +124,8 @@ public class frm_chart extends Fragment {
                         i.putExtra("gambar", gambar);
                         i.putExtra("subtot", tot + "");
                         i.putExtra("sts_point", sts_point);
+                        i.putExtra("lat", lat);
+                        i.putExtra("lng", lng);
                         startActivity(i);
                     } else {
                         final SweetAlertDialog pDialog = new SweetAlertDialog(getContext(), SweetAlertDialog.ERROR_TYPE);
@@ -208,6 +174,9 @@ public class frm_chart extends Fragment {
                         gambar.add(response.body().getData().get(i).getGambar());
                         kategori.add(response.body().getData().get(i).getKategoriBarang());
                     }
+
+                    lat = response.body().getData().get(0).getLat();
+                    lng = response.body().getData().get(0).getLng();
                     System.out.println("sts_point : "+sts_point);
                     if (getActivity()!=null) {
                         adapterCartBarang = new AdapterCartBarang(getActivity(), kd_brg, nm_brg, hrg_brg, qty, gambar, kategori, new AdapterCartBarang.OnEditLocationListener() {

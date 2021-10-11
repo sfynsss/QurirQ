@@ -67,6 +67,7 @@ public class act_browse_outlet extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent it = new Intent(act_browse_outlet.this, act_browse_barang.class);
                 it.putExtra("id_outlet", kd_outlet.get(position));
+                it.putExtra("nama_outlet", nama_outlet.get(position));
                 startActivity(it);
                 finish();
             }

@@ -127,7 +127,7 @@
                         android:id="@+id/nama_penerima"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="nama_penerima"
+                        android:text="-"
                         android:textColor="#000"
                         android:textStyle="bold">
                     </TextView>
@@ -149,7 +149,7 @@
                         android:id="@+id/no_penerima"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="nomor_penerima"
+                        android:text="-"
                         android:textColor="#000"
                         android:textStyle="bold">
                     </TextView>
@@ -193,85 +193,85 @@
             <!--Cart-->
 
             <!--Voucher-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:orientation="horizontal"
-                android:weightSum="2">
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Voucher Anda"
-                    android:textColor="#000"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="16dp">
-                </TextView>
-                <TextView
-                    android:id="@+id/pilih_voucher"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:text="Lihat Semua"
-                    android:textStyle="bold"
-                    android:gravity="center_vertical|end"
-                    android:paddingRight="20dp">
-                </TextView>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="vertical">
-                <TextView
-                    android:id="@+id/tx_voucher"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="16dp"
-                    android:gravity="center"
-                    android:text="Anda belum menggunakan voucher">
-                </TextView>
-                <LinearLayout
-                    android:id="@+id/ly_gunakan_voucher"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginHorizontal="16dp"
-                    android:orientation="vertical"
-                    android:weightSum="10"
-                    android:visibility="gone">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="6"
-                        android:gravity="center"
-                        android:background="@drawable/rt_checkout_bt_voucher">
-                        <TextView
-                            android:id="@+id/nama_voucher"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Nama Voucher"
-                            android:textColor="#FF983C">
-                        </TextView>
-                    </LinearLayout>
-                    <TextView
-                        android:id="@+id/hapus_voucher"
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="4"
-                        android:gravity="center"
-                        android:text="gunakan nanti"
-                        android:textStyle="bold"
-                        android:textColor="#EF4B4B"
-                        android:textSize="12sp">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="5dp"
-                android:background="#E9E9E9">
-            </ImageView>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:weightSum="2">-->
+<!--                <TextView-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Voucher Anda"-->
+<!--                    android:textColor="#000"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:paddingLeft="16dp">-->
+<!--                </TextView>-->
+<!--                <TextView-->
+<!--                    android:id="@+id/pilih_voucher"-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:text="Lihat Semua"-->
+<!--                    android:textStyle="bold"-->
+<!--                    android:gravity="center_vertical|end"-->
+<!--                    android:paddingRight="20dp">-->
+<!--                </TextView>-->
+<!--            </LinearLayout>-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="70dp"-->
+<!--                android:orientation="vertical">-->
+<!--                <TextView-->
+<!--                    android:id="@+id/tx_voucher"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginHorizontal="16dp"-->
+<!--                    android:gravity="center"-->
+<!--                    android:text="Anda belum menggunakan voucher">-->
+<!--                </TextView>-->
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/ly_gunakan_voucher"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginHorizontal="16dp"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:weightSum="10"-->
+<!--                    android:visibility="gone">-->
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="6"-->
+<!--                        android:gravity="center"-->
+<!--                        android:background="@drawable/rt_checkout_bt_voucher">-->
+<!--                        <TextView-->
+<!--                            android:id="@+id/nama_voucher"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:gravity="center"-->
+<!--                            android:text="Nama Voucher"-->
+<!--                            android:textColor="#FF983C">-->
+<!--                        </TextView>-->
+<!--                    </LinearLayout>-->
+<!--                    <TextView-->
+<!--                        android:id="@+id/hapus_voucher"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="4"-->
+<!--                        android:gravity="center"-->
+<!--                        android:text="gunakan nanti"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="#EF4B4B"-->
+<!--                        android:textSize="12sp">-->
+<!--                    </TextView>-->
+<!--                </LinearLayout>-->
+<!--            </LinearLayout>-->
+<!--            <ImageView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="5dp"-->
+<!--                android:background="#E9E9E9">-->
+<!--            </ImageView>-->
             <!--Voucher-->
 
             <TextView

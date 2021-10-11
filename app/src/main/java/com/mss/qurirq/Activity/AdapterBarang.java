@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.mss.qurirq.R;
 import com.mss.qurirq.Session.Session;
 import com.bumptech.glide.Glide;
@@ -152,7 +153,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
                 holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
             } else {
                 RequestOptions requestOptions = new RequestOptions();
-                requestOptions.circleCrop().signature(
+                requestOptions.signature(
                         new ObjectKey(String.valueOf(System.currentTimeMillis())));
                 Glide.with(mContext)
                         .setDefaultRequestOptions(requestOptions)
@@ -184,7 +185,8 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
         TextView nama_brg;
         TextView harga_brg;
         TextView kategori_brg;
-        ImageView gambar, fav;
+        ImageView fav;
+        ShapeableImageView gambar;
         RelativeLayout disc, harga_disc;
         TextView disc_value, harga_disc_value;
         TextView berat_brg;
@@ -196,7 +198,7 @@ public class AdapterBarang extends RecyclerView.Adapter<AdapterBarang.MyViewHold
             nama_brg = (TextView) itemView.findViewById(R.id.nama_barang);
             harga_brg = (TextView) itemView.findViewById(R.id.harga_barang);
             kategori_brg = (TextView) itemView.findViewById(R.id.kategori_barang);
-            gambar = (ImageView) itemView.findViewById(R.id.gambar);
+            gambar = (ShapeableImageView) itemView.findViewById(R.id.gambar);
             disc = (RelativeLayout) itemView.findViewById(R.id.disc);
             harga_disc = (RelativeLayout) itemView.findViewById(R.id.harga_disc);
             disc_value = (TextView) itemView.findViewById(R.id.disc_value);

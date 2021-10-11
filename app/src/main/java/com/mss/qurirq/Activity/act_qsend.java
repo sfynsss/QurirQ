@@ -9,11 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.mss.qurirq.Api.Api;
+import com.mss.qurirq.Api.RetrofitClient;
 import com.mss.qurirq.R;
+import com.mss.qurirq.Session.Session;
+import com.mss.qurirq.Table.Jarak;
 
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class act_qsend extends AppCompatActivity {
 
@@ -30,6 +39,10 @@ public class act_qsend extends AppCompatActivity {
     RelativeLayout gambar_pengiriman;
     ListView list_alamat_pengiriman;
     AdapterQsend adapterQsend;
+
+    Api api;
+    Session session;
+    Call<Jarak> getJarak;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +67,25 @@ public class act_qsend extends AppCompatActivity {
 
         gambar_pengiriman = findViewById(R.id.gambar_pengiriman);
         list_alamat_pengiriman = findViewById(R.id.list_alamat_pengiriman);
+
+//        session = new Session(this);
+//        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+//        getJarak = api.getJarak("-8.2045512,113.5314046", "-8.1580916,113.6761221", "AIzaSyBhYpivDh3X593xIjPmfgqiMP3eB6KSbZM");
+//        getJarak.enqueue(new Callback<Jarak>() {
+//            @Override
+//            public void onResponse(Call<Jarak> call, Response<Jarak> response) {
+//                if (response.isSuccessful()) {
+//                    System.out.println(response.body().getRows().get(0).getElements().get(0).getDistance().getValue());
+//                } else {
+//                    Toast.makeText(act_qsend.this, "Error", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<Jarak> call, Throwable t) {
+//                Toast.makeText(act_qsend.this, t.getMessage()+"", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     @Override

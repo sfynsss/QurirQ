@@ -46,12 +46,20 @@ import com.google.android.libraries.places.api.net.FindCurrentPlaceResponse;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.mss.qurirq.Api.Api;
+import com.mss.qurirq.Api.RetrofitClient;
 import com.mss.qurirq.R;
+import com.mss.qurirq.Session.Session;
+import com.mss.qurirq.Table.Jarak;
 
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class act_pilih_lokasi_qsend extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -79,6 +87,19 @@ public class act_pilih_lokasi_qsend extends AppCompatActivity implements OnMapRe
     LinearLayout pick_location;
     ImageView back;
 
+    Api api;
+    Session session;
+    Call<Jarak> getJarak;
+
+    static String before(String value, String a) {
+        // Return substring containing all characters before a string.
+        int posA = value.indexOf(a);
+        if (posA == -1) {
+            return "";
+        }
+        return value.substring(0, posA);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +120,7 @@ public class act_pilih_lokasi_qsend extends AppCompatActivity implements OnMapRe
         back = findViewById(R.id.back);
         cari_lokasi = findViewById(R.id.cari_lokasi);
         cari_lokasi.setFocusable(false);
-        double radius = 50;
+//        double radius = 50;
         cari_lokasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,8 +128,27 @@ public class act_pilih_lokasi_qsend extends AppCompatActivity implements OnMapRe
                         Place.Field.LAT_LNG);
 
                 Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, placeFields)
-                        .setCountry("ID").build(act_pilih_lokasi_qsend.this);
+                        .build(act_pilih_lokasi_qsend.this);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        session = new Session(act_pilih_lokasi_qsend.this);
+        api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
+        getJarak = api.getJarak("-8.2045512,113.5314046", "-8.1580916,113.6761221", "AIzaSyBhYpivDh3X593xIjPmfgqiMP3eB6KSbZM");
+        getJarak.enqueue(new Callback<Jarak>() {
+            @Override
+            public void onResponse(Call<Jarak> call, Response<Jarak> response) {
+                if (response.isSuccessful()) {
+                    System.out.println(before(response.body().getRows().get(0).getElements().get(0).getDistance().getText(), " "));
+                } else {
+                    Toast.makeText(act_pilih_lokasi_qsend.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Jarak> call, Throwable t) {
+                Toast.makeText(act_pilih_lokasi_qsend.this, t.getMessage()+"", Toast.LENGTH_SHORT).show();
             }
         });
 

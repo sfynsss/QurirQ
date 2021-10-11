@@ -44,6 +44,12 @@ public class Cart {
     @SerializedName("nama_outlet")
     @Expose
     private String namaOutlet;
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+    @SerializedName("long")
+    @Expose
+    private String lng;
 
     public Integer getId() {
         return id;
@@ -147,6 +153,22 @@ public class Cart {
 
     public void setNamaOutlet(String namaOutlet) {
         this.namaOutlet = namaOutlet;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public void setLat(String lat) {
+        this.lat = lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
+    public void setLng(String lng) {
+        this.lng = lng;
     }
 
 }

@@ -15,8 +15,8 @@
     <fragment
         android:id="@+id/fav"
         android:label="fragment_favourite"
-        android:name="com.mss.qurirq.Activity.frm_favourite"
-        tools:layout="@layout/fragment_frm_favourite" >
+        android:name="com.mss.qurirq.Activity.frm_qsend"
+        tools:layout="@layout/fragment_qsend" >
     </fragment>
 
     <fragment

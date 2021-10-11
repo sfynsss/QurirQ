@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F5F5F8"
     tools:context=".Activity.act_browse_outlet">
 
     <!-- HEADER START -->
@@ -81,8 +82,7 @@
         android:id="@+id/outlet"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:dividerHeight="5dp"
-        android:divider="#00FFFFFF">
-    </ListView>
+        android:divider="#00FFFFFF"
+        android:dividerHeight="5dp"></ListView>
 
 </LinearLayout>

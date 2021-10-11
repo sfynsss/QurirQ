@@ -21,12 +21,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/gambar"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_margin="10dp"
-                    android:layout_centerInParent="true"></ImageView>
+                    android:layout_marginBottom="10dp"
+                    android:scaleType="fitXY"
+                    app:shapeAppearanceOverlay="@style/circular"></com.google.android.material.imageview.ShapeableImageView>
 
                 <ImageView
                     android:id="@+id/fav"

@@ -106,10 +106,6 @@ public class act_tambah_alamat extends AppCompatActivity {
         nama_penerima = findViewById(R.id.nama_penerima);
         no_telp = findViewById(R.id.no_telp);
         alamat = findViewById(R.id.alamat);
-//        kode_pos = findViewById(R.id.kode_pos);
-//        provinsi = findViewById(R.id.provinsi);
-//        kota = findViewById(R.id.kota);
-//        kecamatan = findViewById(R.id.kecamatan);
         btn_simpan = findViewById(R.id.btn_simpan);
         lengkapi_otomatis = findViewById(R.id.lengkapi_otomatis);
         btn_pin_lokasi = findViewById(R.id.btn_pin_lokasi);
@@ -120,7 +116,6 @@ public class act_tambah_alamat extends AppCompatActivity {
 
         session = new Session(act_tambah_alamat.this);
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
-//        getProvinsi();
 
         lengkapi_otomatis.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -156,42 +151,16 @@ public class act_tambah_alamat extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Disable Wifi
-//                wifiManager.setWifiEnabled(false);
-//                openPlacePicker();
                 startActivityForResult(new Intent(act_tambah_alamat.this, act_pin_location.class), 0);
             }
         });
-
-//        provinsi.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                getKota(list_id_provinsi.get(position));
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
-//
-//        kota.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                getKecamatan(list_id_kota.get(position));
-//            }
-//
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//
-//            }
-//        });
 
         if (!TextUtils.isEmpty(getIntent().getStringExtra("sts_edit"))) {
             kd_alamat = getIntent().getStringExtra("kd_alamat");
             nama_penerima.setText(getIntent().getStringExtra("nama_penerima"));
             no_telp.setText(getIntent().getStringExtra("no_telp"));
             alamat.setText(getIntent().getStringExtra("alamat"));
-            kode_pos.setText(getIntent().getStringExtra("kode_pos"));
+            System.out.println(kd_alamat);
         }
 
         btn_simpan.setOnClickListener(new View.OnClickListener() {
@@ -247,104 +216,7 @@ public class act_tambah_alamat extends AppCompatActivity {
             }
         });
 
-
-
     }
-
-//    public void getProvinsi() {
-//        getProvinsi = api.getProvinsi();
-//        getProvinsi.enqueue(new Callback<BaseResponse<Provinsi>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Provinsi>> call, Response<BaseResponse<Provinsi>> response) {
-//                if (response.isSuccessful()) {
-//                    list_provinsi.clear();
-//                    list_id_provinsi.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-//                        list_provinsi.add(response.body().getData().get(i).getProvince());
-//                        list_id_provinsi.add(response.body().getData().get(i).getProvinceId());
-//                    }
-//
-//                    //Ini buat ngisi Spinner
-//                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_tambah_alamat.this, R.layout.spinner_alamat, list_provinsi);
-//                    arrayAdapter.setDropDownViewResource(R.layout.spinner_alamat);
-//                    provinsi.setAdapter(arrayAdapter);
-//                    //End isi spinner
-//                } else {
-//                    Toasty.error(act_tambah_alamat.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Provinsi>> call, Throwable t) {
-//                Toasty.error(act_tambah_alamat.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
-//    public void getKota(String id_provinsi) {
-//        getKota = api.getKota(id_provinsi);
-//        getKota.enqueue(new Callback<BaseResponse<Kota>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Kota>> call, Response<BaseResponse<Kota>> response) {
-//                if (response.isSuccessful()) {
-//                    list_kota.clear();
-//                    list_id_kota.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-////                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
-//                        list_kota.add(response.body().getData().get(i).getCityName());
-//                        list_id_kota.add(response.body().getData().get(i).getCityId());
-//                    }
-//
-//                    //Ini buat ngisi Spinner
-//                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_tambah_alamat.this, R.layout.spinner_alamat, list_kota);
-//                    arrayAdapter.setDropDownViewResource(R.layout.spinner_alamat);
-//                    kota.setAdapter(arrayAdapter);
-//                    //End isi spinner
-//                } else {
-//                    Toasty.error(act_tambah_alamat.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Kota>> call, Throwable t) {
-//                Toasty.error(act_tambah_alamat.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-//
-//    public void getKecamatan(String id_kota) {
-//        getKecamatan = api.getKecamatan(id_kota);
-//        getKecamatan.enqueue(new Callback<BaseResponse<Kecamatan>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<Kecamatan>> call, Response<BaseResponse<Kecamatan>> response) {
-//                if (response.isSuccessful()) {
-//                    list_kecamatan.clear();
-//                    list_id_kecamatan.clear();
-//
-//                    for (int i = 0; i < response.body().getData().size(); i++) {
-////                        list_kota.add(response.body().getData().get(i).getType()+" "+response.body().getData().get(i).getCityName());
-//                        list_kecamatan.add(response.body().getData().get(i).getSubdistrictName());
-//                        list_id_kecamatan.add(response.body().getData().get(i).getSubdistrictId());
-//                    }
-//
-//                    //Ini buat ngisi Spinner
-//                    ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(act_tambah_alamat.this, R.layout.spinner_alamat, list_kecamatan);
-//                    arrayAdapter.setDropDownViewResource(R.layout.spinner_alamat);
-//                    kecamatan.setAdapter(arrayAdapter);
-//                    //End isi spinner
-//                } else {
-//                    Toasty.error(act_tambah_alamat.this, "Data Tidak Ditemukan !!!", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<Kecamatan>> call, Throwable t) {
-//                Toasty.error(act_tambah_alamat.this, t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

@@ -42,13 +42,6 @@ public class act_list_alamat extends AppCompatActivity {
     ArrayList<String> no_telp_penerima = new ArrayList<>();
     ArrayList<String> alamat = new ArrayList<>();
     ArrayList<String> alamat_asli = new ArrayList<>();
-    ArrayList<String> list_provinsi = new ArrayList<>();
-    ArrayList<String> list_id_provinsi = new ArrayList<>();
-    ArrayList<String> list_kota = new ArrayList<>();
-    ArrayList<String> list_id_kota = new ArrayList<>();
-    ArrayList<String> list_kecamatan = new ArrayList<>();
-    ArrayList<String> list_id_kecamatan = new ArrayList<>();
-    ArrayList<String> list_kode_pos = new ArrayList<>();
     ArrayList<String> latitude = new ArrayList<>();
     ArrayList<String> longitude = new ArrayList<>();
 
@@ -80,16 +73,12 @@ public class act_list_alamat extends AppCompatActivity {
             list_alamat.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    session.setAlamat(
-                            nama_penerima.get(position),
-                            alamat_asli.get(position),
-                            latitude.get(position),
-                            longitude.get(position));
-                    session.setNoTelp(no_telp_penerima.get(position));
                     Intent it = new Intent();
                     it.putExtra("alamat", alamat.get(position));
                     it.putExtra("nama_penerima", nama_penerima.get(position));
                     it.putExtra("no_telp_penerima", no_telp_penerima.get(position));
+                    it.putExtra("latitude", latitude.get(position));
+                    it.putExtra("longitude", longitude.get(position));
                     setResult(1, it);
                     finish();
                     Toasty.success(act_list_alamat.this, "Alamat ke " + alamat_asli.get(position) + " dipilih", Toast.LENGTH_SHORT).show();
@@ -134,6 +123,7 @@ public class act_list_alamat extends AppCompatActivity {
                             @Override
                             public void onClickAdapter(int position) {
                                 Intent it = new Intent(act_list_alamat.this, act_tambah_alamat.class);
+                                it.putExtra("kd_alamat", kd_alamat.get(position));
                                 it.putExtra("nama_penerima", nama_penerima.get(position));
                                 it.putExtra("no_telp", no_telp_penerima.get(position));
                                 it.putExtra("alamat", alamat_asli.get(position));

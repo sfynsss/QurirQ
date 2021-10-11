@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.imageview.ShapeableImageView;
 import com.mss.qurirq.R;
 import com.mss.qurirq.Session.Session;
 import com.bumptech.glide.Glide;
@@ -47,7 +48,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
         this.kd_kat = kd_kat;
         this.judul = judul;
         this.gambar = gambar;
-        option = new RequestOptions().circleCrop().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
+        option = new RequestOptions().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
         session = new Session(mContext);
     }
 
@@ -79,7 +80,7 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
             holder.gambar.setImageResource(R.drawable.ic_highlight_off_24);
         } else {
             RequestOptions requestOptions = new RequestOptions();
-            requestOptions.circleCrop().signature(
+            requestOptions.signature(
                     new ObjectKey(String.valueOf(System.currentTimeMillis())));
             Glide.with(mContext)
                     .setDefaultRequestOptions(requestOptions)
@@ -96,12 +97,12 @@ public class AdapterKategoriBarang extends RecyclerView.Adapter<AdapterKategoriB
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         ShimmerFrameLayout shimmerFrameLayout;
         TextView judul;
-        ImageView gambar;
+        ShapeableImageView gambar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             judul = (TextView) itemView.findViewById(R.id.judul);
-            gambar = (ImageView) itemView.findViewById(R.id.gambar);
+            gambar = (ShapeableImageView) itemView.findViewById(R.id.gambar);
         }
     }
 

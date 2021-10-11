@@ -26,7 +26,7 @@
                 android:layout_height="60dp"
                 android:layout_gravity="top"
                 android:layout_marginLeft="10dp"
-                android:background="@drawable/logos_crop"></ImageView>
+                android:background="@drawable/logo_png"></ImageView>
         </LinearLayout>
 
         <LinearLayout

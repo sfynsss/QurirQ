@@ -12,16 +12,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/gambar"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
-            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
             android:visibility="visible"
             android:layout_gravity="center"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"></ImageView>
+            android:scaleType="fitXY"
+            app:shapeAppearanceOverlay="@style/circular"></com.google.android.material.imageview.ShapeableImageView>
 
         <TextView
             android:id="@+id/judul"

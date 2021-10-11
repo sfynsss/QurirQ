@@ -10,6 +10,7 @@ import com.mss.qurirq.Table.Barang;
 import com.mss.qurirq.Table.Cart;
 import com.mss.qurirq.Table.DetJual;
 import com.mss.qurirq.Table.GambarPromo;
+import com.mss.qurirq.Table.Jarak;
 import com.mss.qurirq.Table.KategoriOutlet;
 import com.mss.qurirq.Table.Kecamatan;
 import com.mss.qurirq.Table.Kota;
@@ -33,6 +34,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface Api {
 
@@ -216,6 +218,12 @@ public interface Api {
     );
 
     @FormUrlEncoded
+    @POST("cekOutlet")
+    Call<BaseResponse> cekOutlet(
+            @Field("id_outlet") String id_outlet
+    );
+
+    @FormUrlEncoded
     @POST("inputToCart")
     Call<BaseResponse> inputToCart(
             @Field("id_user") String id_user,
@@ -226,7 +234,8 @@ public interface Api {
             @Field("qty") String qty,
             @Field("gambar") String gambar,
             @Field("kategori") String kat,
-            @Field("id_outlet") String id_outlet
+            @Field("id_outlet") String id_outlet,
+            @Field("status") String status
     );
 
     @FormUrlEncoded
@@ -435,5 +444,12 @@ public interface Api {
 
     @GET("getPromo")
     Call<BaseResponse<Promo>> getPromo();
+
+    @GET("https://maps.googleapis.com/maps/api/distancematrix/json")
+    Call<Jarak> getJarak (
+            @Query(value = "origins", encoded = true) String origin,
+            @Query(value = "destinations", encoded = true) String destination,
+            @Query("key") String api_key
+    );
 
 }

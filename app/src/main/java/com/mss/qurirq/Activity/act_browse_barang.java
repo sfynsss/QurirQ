@@ -75,7 +75,7 @@ public class act_browse_barang extends AppCompatActivity {
         filter_hrg_diskon = findViewById(R.id.filter_hrg_diskon);
         btn_search = findViewById(R.id.btn_search);
 
-        nama_kategori.setText(getIntent().getStringExtra("judul"));
+        nama_kategori.setText(getIntent().getStringExtra("nama_outlet"));
         Locale localeID = new Locale("in", "ID");
         formatRupiah = NumberFormat.getCurrencyInstance(localeID);
 

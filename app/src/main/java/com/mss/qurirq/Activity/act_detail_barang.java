@@ -3,6 +3,7 @@ package com.mss.qurirq.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,8 +19,13 @@ import com.mss.qurirq.Session.Session;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.ObjectKey;
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog;
 
 import java.text.NumberFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import android.text.InputFilter;
 
@@ -40,6 +46,7 @@ public class act_detail_barang extends AppCompatActivity {
 
     Api api;
     Session session;
+    Call<BaseResponse> cekOutlet;
     Call<BaseResponse> inputToCart;
     Call<BaseResponse> inputToWishlist;
 
@@ -78,7 +85,7 @@ public class act_detail_barang extends AppCompatActivity {
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
 
         RequestOptions requestOptions = new RequestOptions().centerInside().placeholder(R.drawable.ic_hourglass_empty_24).error(R.drawable.ic_highlight_off_24);
-        requestOptions.circleCrop().signature(
+        requestOptions.signature(
                 new ObjectKey(String.valueOf(System.currentTimeMillis())));
         Glide.with(act_detail_barang.this)
                 .setDefaultRequestOptions(requestOptions)
@@ -136,15 +143,67 @@ public class act_detail_barang extends AppCompatActivity {
                 gbr = getIntent().getStringExtra("gambar");
                 kat = getIntent().getStringExtra("kat_brg");
 
-                inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat, outlet);
-                inputToCart.enqueue(new Callback<BaseResponse>() {
+                cekOutlet = api.cekOutlet(outlet);
+                cekOutlet.enqueue(new Callback<BaseResponse>() {
                     @Override
                     public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
                         if (response.isSuccessful()) {
-                            Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                            inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat, outlet, "");
+                            inputToCart.enqueue(new Callback<BaseResponse>() {
+                                @Override
+                                public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                                    if (response.isSuccessful()) {
+                                        Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                        onBackPressed();
+                                    } else {
+                                        Toasty.error(act_detail_barang.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                    Toasty.error(act_detail_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
                         } else {
-                            Toasty.error(act_detail_barang.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
+                            final SweetAlertDialog pDialog = new SweetAlertDialog(act_detail_barang.this, SweetAlertDialog.WARNING_TYPE);
+                            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+                            pDialog.setTitleText("Konfirmasi");
+                            pDialog.setContentText("Apakah Anda akan order pada outlet yang berbeda?");
+                            pDialog.setConfirmText("Iya");
+                            pDialog.setCancelText("Tidak");
+                            pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    inputToCart = api.inputToCart(session.getIdUser(), kd_brg, nm_brg, satuan, harga_jl, qty, gbr, kat, outlet, "clear");
+                                    inputToCart.enqueue(new Callback<BaseResponse>() {
+                                        @Override
+                                        public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+                                            if (response.isSuccessful()) {
+                                                Toasty.success(act_detail_barang.this, "Success " + response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                                                onBackPressed();
+                                                pDialog.dismiss();
+                                            } else {
+                                                Toasty.error(act_detail_barang.this, "Error, Input Data Gagal", Toast.LENGTH_SHORT).show();
+                                                pDialog.dismiss();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<BaseResponse> call, Throwable t) {
+                                            Toasty.error(act_detail_barang.this, "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                                            pDialog.dismiss();
+                                        }
+                                    });
+                                }
+                            });
+                            pDialog.setCancelClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                @Override
+                                public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                    sweetAlertDialog.dismissWithAnimation();
+                                }
+                            });
+                            pDialog.show();
                         }
                     }
 

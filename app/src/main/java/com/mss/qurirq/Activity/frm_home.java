@@ -53,8 +53,6 @@ public class frm_home extends Fragment {
     Session session;
     Call<BaseResponse<KategoriOutlet>> getKategori;
     Call<BaseResponse<Penawaran>> getPenawaran;
-    Call<BaseResponse<GambarPromo>> gambar_promo;
-    Call<BaseResponse1<PoinVoucher>> getPointVoucher;
     Call<BaseResponse> getStatusUpdate;
 
     ArrayList<String> kd_kategori = new ArrayList<>();
@@ -62,21 +60,14 @@ public class frm_home extends Fragment {
     ArrayList<String> gambar = new ArrayList<>();
     ArrayList<String> gambar_penawaran = new ArrayList<>();
 
-    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna, nama_outlet, tx_voucher, tx_point;
-    LinearLayout btn_outlet;
-    ImageView btn_diskon;
-    ImageView gambar_outlet;
+    TextView lihat_semua, ke_halaman_pencarian, nama_pengguna;
     RecyclerView kategoriBarang;
     AdapterKategoriBarang adapterKategori;
     RequestOptions requestOptions;
-    Spinner pilih_outlet;
 
     SwipeRefreshLayout swipeRefreshLayout;
     Handler handler = new Handler();
     ShimmerFrameLayout shimmer;
-
-    RelativeLayout btn_voucher, btn_point;
-    int voucher = 0, point = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -91,28 +82,12 @@ public class frm_home extends Fragment {
         ke_halaman_pencarian = view.findViewById(R.id.ke_halaman_pencarian);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
         shimmer = view.findViewById(R.id.shimmer);
-//        btn_voucher = view.findViewById(R.id.btn_voucher);
-//        btn_point = view.findViewById(R.id.btn_point);
-//        gambar_outlet = view.findViewById(R.id.gambar_outlet);
-//        nama_outlet = view.findViewById(R.id.nama_outlet);
-
-//        btn_outlet = view.findViewById(R.id.btn_outlet);
 
         session = new Session(getActivity());
         api = RetrofitClient.createServiceWithAuth(Api.class, session.getToken());
         nama_pengguna.setText(session.getUsername());
         requestOptions = new RequestOptions().centerCrop();
         kategoriBarang.setFocusable(false);
-//        if (!session.getGambarOutlet().equals("")) {
-//            Glide.with(getActivity())
-//                    .setDefaultRequestOptions(requestOptions)
-//                    .load("http://" + session.getBaseUrl() + "/storage/" + session.getGambarOutlet() + "")
-//                    .into(gambar_outlet);
-//        }
-
-//        if (!session.getNamaOutlet().equals("")) {
-//            nama_outlet.setText(session.getNamaOutlet());
-//        }
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -152,53 +127,8 @@ public class frm_home extends Fragment {
             }
         });
 
-//        btn_point.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getContext(), act_point_retail.class));
-//            }
-//        });
-
-//        btn_voucher.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                startActivity(new Intent(getContext(), act_voucher.class));
-//            }
-//        });
-
-//        btn_outlet.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startActivity(new Intent(getContext(), act_pilih_outlet_retail.class));
-//            }
-//        });
-
         tampilKategori();
-//        dataPoinVoucher();
-        checkUpdate();
-
-//        gambar_promo = api.getGambarPromo();
-//        gambar_promo.enqueue(new Callback<BaseResponse<GambarPromo>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse<GambarPromo>> call, Response<BaseResponse<GambarPromo>> response) {
-//                if (response.isSuccessful()) {
-//                    RequestOptions requestOptions = new RequestOptions();
-//                    requestOptions.fitCenter().signature(
-//                            new ObjectKey(String.valueOf(System.currentTimeMillis())));
-//                    Glide.with(getContext())
-//                            .setDefaultRequestOptions(requestOptions)
-////                    .load("http://192.168.1.16:8000/storage/" + gambar.get(position) + "").into(viewHolder.gambar);
-//                            .load("http://"+session.getBaseUrl()+"/storage/" + response.body().getData().get(0).getGambar() + "").into(btn_diskon);
-//                } else {
-//                    System.out.println("Data Tidak Ditemukan");
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse<GambarPromo>> call, Throwable t) {
-//                System.out.println("Error "+t.getMessage());
-//            }
-//        });
+//        checkUpdate();
 
         getPenawaran = api.getPenawaran();
         getPenawaran.enqueue(new Callback<BaseResponse<Penawaran>>() {
@@ -308,33 +238,5 @@ public class frm_home extends Fragment {
             }
         });
     }
-
-//    public void dataPoinVoucher(){
-//        getPointVoucher = api.getPointVoucher(session.getIdUser());
-//        getPointVoucher.enqueue(new Callback<BaseResponse1<PoinVoucher>>() {
-//            @Override
-//            public void onResponse(Call<BaseResponse1<PoinVoucher>> call, Response<BaseResponse1<PoinVoucher>> response) {
-//                if (response.isSuccessful()) {
-//                    if (response.body().getData().getVoucher() == null){
-//                        tx_voucher.setText("0");
-//                    } else if(response.body().getData().getPoint() == null) {
-//                        tx_point.setText("0");
-//                    } else {
-//                        voucher = response.body().getData().getVoucher();
-//                        point = response.body().getData().getPoint();
-//                        tx_voucher.setText(voucher+"");
-//                        tx_point.setText(point+"");
-//                    }
-//                } else {
-//                    Toasty.error(getContext(), "Data Tidak Ditemukan", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<BaseResponse1<PoinVoucher>> call, Throwable t) {
-//                Toasty.error(getContext(), "Error " + t.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
 
 }
